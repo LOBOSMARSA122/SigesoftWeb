@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace BE.Common
 {
-    class prueba
+    public class EmailBE
     {
+        public int EmailId { get; set; }
+        public string Email { get; set; }
     }
 }

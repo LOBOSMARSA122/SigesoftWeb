@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using BE.Security;
 using BE.Common;
+using BE.Component;
 
 namespace DAL
 {
@@ -17,6 +18,8 @@ namespace DAL
         public DbSet<ApplicationHierarchyBE> ApplicationHierarchy { get; set; }
         public DbSet<SystemParameterBE> SystemParameter { get; set; }
         public DbSet<SystemUserGobalProfileBE> SystemUserGobalProfile { get; set; }
+
+        public DbSet<ComponentFieldBE> ComponentField { get; set; }
 
     }
 }
