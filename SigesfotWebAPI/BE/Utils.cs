@@ -91,7 +91,7 @@ namespace BE
         #endregion
 
         #region PK
-        public static string GetPrimaryKey(int nodeId, int tableId)
+        public static string GetPrimaryKey(int nodeId, int tableId, string pre)
         {
             return "";
         }

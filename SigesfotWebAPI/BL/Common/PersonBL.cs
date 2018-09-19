@@ -96,7 +96,7 @@ namespace BL.Common
             {
                 PersonBE oPersonBE = new PersonBE()
                 {
-                    PersonId = BE.Utils.GetPrimaryKey(1,1),
+                    PersonId = BE.Utils.GetPrimaryKey(1,1,"PE"),
                     FirstName = person.FirstName,
                     FirstLastName = person.FirstLastName,
                     SecondLastName = person.SecondLastName,

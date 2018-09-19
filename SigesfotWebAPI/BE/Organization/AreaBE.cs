@@ -14,6 +14,7 @@ namespace BE.Organization
 
         public string LocationId { get; set; }
         public string Name { get; set; }
+
         public int? IsDeleted { get; set; }
         public int? InsertUserId { get; set; }
         public DateTime? InsertDate { get; set; }
