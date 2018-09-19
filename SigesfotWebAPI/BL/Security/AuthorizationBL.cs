@@ -32,7 +32,7 @@ namespace BL.Security
                                     FullName = per.FirstName + " " + per.FirstLastName,
                                     PersonImage = per.PersonImage,
                                     UserName = sys.UserName,
-                                    SystemUserId = sys.SystemUserId
+                                    SystemUserId = sys.SystemUserId.Value
 
                                 }).FirstOrDefault();
                 if (user != null)
@@ -67,8 +67,8 @@ namespace BL.Security
 
                          join ah in ctx.ApplicationHierarchy on rnp.ApplicationHierarchyId equals ah.ApplicationHierarchyId
 
-                         join fff in ctx.SystemParameter on new { a = surnj.RoleId, b = 115 } // ROLES DEL SISTEMA
-                                                               equals new { a = fff.i_ParameterId, b = fff.i_GroupId } into J5_join
+                         join fff in ctx.SystemParameter on new { a = surnj.RoleId.Value, b = 115 } // ROLES DEL SISTEMA
+                                                               equals new { a = fff.i_ParameterId.Value, b = fff.i_GroupId.Value } into J5_join
                          from fff in J5_join.DefaultIfEmpty()
 
                          where (surnj.NodeId == nodeId) &&
@@ -78,13 +78,13 @@ namespace BL.Security
                                (ah.TypeFormId == (int)TypeForm.Windows) && (ah.IsDeleted == 0)
                          select new Permission
                          {
-                             ApplicationHierarchyId = rnp.ApplicationHierarchyId,
-                             ApplicationHierarchyTypeId = ah.ApplicationHierarchyTypeId,
+                             ApplicationHierarchyId = rnp.ApplicationHierarchyId.Value,
+                             ApplicationHierarchyTypeId = ah.ApplicationHierarchyTypeId.Value,
                              Description = ah.Description,
-                             ParentId = ah.ParentId,
+                             ParentId = ah.ParentId.Value,
                              Form = ah.Form == null ? string.Empty : ah.Form,
                              RoleName = fff.v_Value1,
-                             RoleId = fff.i_ParameterId
+                             RoleId = fff.i_ParameterId.Value
                          }
                           ).Concat(from a in ctx.SystemUserGobalProfile
                                    join b in ctx.ApplicationHierarchy on a.ApplicationHierarchyId equals b.ApplicationHierarchyId
@@ -94,13 +94,13 @@ namespace BL.Security
                                          (b.TypeFormId == (int)TypeForm.Windows)
                                    select new Permission
                                    {
-                                       ApplicationHierarchyId = a.ApplicationHierarchyId,
-                                       ApplicationHierarchyTypeId = b.ApplicationHierarchyTypeId,
+                                       ApplicationHierarchyId = a.ApplicationHierarchyId.Value,
+                                       ApplicationHierarchyTypeId = b.ApplicationHierarchyTypeId.Value,
                                        Description = b.Description,
-                                       ParentId = b.ParentId,
+                                       ParentId = b.ParentId.Value,
                                        Form = b.Form == null ? string.Empty : b.Form,
                                        RoleName = "",
-                                       RoleId = null
+                                       //RoleId = null
                                    });
 
             List<Permission> objAutorizationList = query.AsEnumerable()

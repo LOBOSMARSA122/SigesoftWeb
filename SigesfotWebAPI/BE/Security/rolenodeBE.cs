@@ -10,9 +10,9 @@ namespace BE.Security
     public class RoleNodeBE
     {
         [Key]
-        public int NodeId { get; set; }
+        public int? NodeId { get; set; }
         [Key]
-        public int RoleId { get; set; }
-        public int IsDeleted { get; set; }
+        public int? RoleId { get; set; }
+        public int? IsDeleted { get; set; }
     }
 }

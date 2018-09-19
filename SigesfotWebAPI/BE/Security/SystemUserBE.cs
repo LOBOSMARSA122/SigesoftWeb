@@ -9,7 +9,8 @@ namespace BE.Security
 {
     public class SystemUserBE
     {
-        public int SystemUserId { get; set; }
+        [Key]
+        public int? SystemUserId { get; set; }
         public string PersonId { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
@@ -17,13 +18,13 @@ namespace BE.Security
         public string SecretQuestion { get; set; }
         public string SecretAnswer { get; set; }
         public DateTime? ExpireDate { get; set; }
-        public int IsDeleted { get; set; }
-        public int InsertUserId { get; set; }
+        public int? IsDeleted { get; set; }
+        public int? InsertUserId { get; set; }
 
         public DateTime? InsertDate { get; set; }
-        public int UpdateUserId { get; set; }
+        public int? UpdateUserId { get; set; }
         public DateTime? UpdateDate { get; set; }
-        public int SystemUserTypeId { get; set; }
-        public int RolVentaId { get; set; }
+        public int? SystemUserTypeId { get; set; }
+        public int? RolVentaId { get; set; }
     }
 }

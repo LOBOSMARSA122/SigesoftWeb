@@ -10,9 +10,13 @@ namespace BE.Security
     public class RoleNodeProfileBE
     {
         [Key]
-        public int NodeId { get; set; }
-        public int RoleId { get; set; }
-        public int ApplicationHierarchyId { get; set; }
-        public int IsDeleted { get; set; }
+        public int? NodeId { get; set; }
+
+        [Key]
+        public int? RoleId { get; set; }
+
+        [Key]
+        public int? ApplicationHierarchyId { get; set; }
+        public int? IsDeleted { get; set; }
     }
 }

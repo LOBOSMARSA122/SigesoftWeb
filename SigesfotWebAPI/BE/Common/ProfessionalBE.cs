@@ -11,6 +11,6 @@ namespace BE.Common
     {
         [Key]
         public string PersonId { get; set; }
-        public int ProfesionId { get; set; }
+        public int? ProfesionId { get; set; }
     }
 }

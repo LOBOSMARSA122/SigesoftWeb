@@ -68,7 +68,7 @@
     <Compile Include="Component\ComponentBE.cs" />
     <Compile Include="Component\ComponentFieldBE.cs" />
     <Compile Include="Component\ComponentFieldsBE.cs" />
-    <Compile Include="Component\ComponentFieldsValuesBE.cs" />
+    <Compile Include="Component\ComponentFieldValuesBE.cs" />
     <Compile Include="Component\ComponentFieldValuesRecommendationBE.cs" />
     <Compile Include="Component\ComponentFieldValuesRestrictionBE.cs" />
     <Compile Include="Diagnostic\DiseasesBE.cs" />
@@ -110,7 +110,7 @@
     <Compile Include="Warehouse\MovementBE.cs" />
     <Compile Include="Warehouse\MovementDetailBE.cs" />
     <Compile Include="Warehouse\ProductBE.cs" />
-    <Compile Include="Warehouse\ProductsFormigrationBE.cs" />
+    <Compile Include="Warehouse\ProductsForMigrationBE.cs" />
     <Compile Include="Warehouse\ProductWarehouseBE.cs" />
     <Compile Include="Warehouse\RestrictedWarehouseProfileBE.cs" />
     <Compile Include="Warehouse\WarehouseBE.cs" />

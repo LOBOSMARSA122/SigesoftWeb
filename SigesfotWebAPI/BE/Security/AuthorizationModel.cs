@@ -19,11 +19,11 @@ namespace BE.Security
     public class Permission
     {
         public string Description{ get; set; }
-        public int? ParentId { get; set; }
+        public int ParentId { get; set; }
         public int ApplicationHierarchyId { get; set; }
         public string Form { get; set; }
-        public int? ApplicationHierarchyTypeId { get; set; }
+        public int ApplicationHierarchyTypeId { get; set; }
         public string RoleName { get; set; }
-        public int? RoleId { get; set; }
+        public int RoleId { get; set; }
     }
 }

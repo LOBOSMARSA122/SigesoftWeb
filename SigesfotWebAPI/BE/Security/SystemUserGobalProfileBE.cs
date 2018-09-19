@@ -10,9 +10,9 @@ namespace BE.Security
     public class SystemUserGobalProfileBE
     {
         [Key]
-        public int SystemUserId { get; set; }
+        public int? SystemUserId { get; set; }
         [Key]
-        public int ApplicationHierarchyId { get; set; }
-        public int IsDeleted { get; set; }
+        public int? ApplicationHierarchyId { get; set; }
+        public int? IsDeleted { get; set; }
     }
 }
