@@ -14,6 +14,7 @@ namespace BE.Common
         public int? NodeId { get; set; }
         public string Name { get; set; }
         public string OfficeNumber { get; set; }
+
         public int? IsDeleted { get; set; }
         public int? InsertUserId { get; set; }
         public DateTime? InsertDate { get; set; }

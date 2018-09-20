@@ -95,8 +95,8 @@ namespace BL
                 if (oAttentionInArea == null)
                     return false;
 
-                oAttentionInArea.NodeId = attentionInArea.NodeId;
-                oAttentionInArea.Name = attentionInArea.Name;
+                oAttentionInArea.NodeId       = attentionInArea.NodeId;
+                oAttentionInArea.Name         = attentionInArea.Name;
                 oAttentionInArea.OfficeNumber = attentionInArea.OfficeNumber;
 
                 //Auditoria
@@ -124,7 +124,7 @@ namespace BL
 
                 oAttentionInArea.UpdateUserId = systemUserId;
                 oAttentionInArea.UpdateDate = DateTime.UtcNow;
-                oAttentionInArea.UpdateUserId = systemUserId;
+                oAttentionInArea.IsDeleted = (int)Enumeratores.SiNo.Si;
 
                 int rows = ctx.SaveChanges();
 

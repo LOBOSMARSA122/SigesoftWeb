@@ -47,11 +47,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AttentionInAreaBL.cs" />
+    <Compile Include="Common\AttentionInAreaBL.cs" />
+    <Compile Include="Common\AttentionInAreaComponentBL.cs" />
     <Compile Include="Common\PersonBL.cs" />
+    <Compile Include="Component\ComponentBL.cs" />
+    <Compile Include="Component\ComponentFieldBL.cs" />
+    <Compile Include="Component\ComponentFieldValuesBL.cs" />
+    <Compile Include="Component\ComponentFieldValuesRecommendationBL.cs" />
+    <Compile Include="Component\ComponentFieldValuesRestrictionBL.cs" />
+    <Compile Include="Diagnostic\DiseasesBL.cs" />
+    <Compile Include="Diagnostic\DxFrecuenteBL.cs" />
+    <Compile Include="Diagnostic\DxFrecuenteDetalleBL.cs" />
     <Compile Include="Organization\AreaBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AuthorizationBL.cs" />
+    <Compile Include="Service\CalendarBL.cs" />
+    <Compile Include="Service\DiagnosticRepositoryBL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BE\BE.csproj">
@@ -67,5 +78,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

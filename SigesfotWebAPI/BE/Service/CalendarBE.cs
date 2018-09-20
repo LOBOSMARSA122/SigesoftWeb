@@ -27,7 +27,7 @@ namespace BE.Service
         public int? IsDeleted { get; set; }
         public int? InsertUserId { get; set; }
         public DateTime? InsertDate { get; set; }
-        public string UpdateUserId { get; set; }
+        public int? UpdateUserId { get; set; }
         public DateTime? UpdateDate { get; set; }
         public DateTime? SalidaCM { get; set; }
     }
