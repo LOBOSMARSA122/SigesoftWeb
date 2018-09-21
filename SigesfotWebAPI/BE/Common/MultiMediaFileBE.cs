@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BE.Common
 {
-    public class MultiMediaFileBE
+    public class MultimediaFileBE
     {
         [Key]
         public string MultimediaFileId { get; set; }

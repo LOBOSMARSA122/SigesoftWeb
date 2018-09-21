@@ -21,10 +21,10 @@ namespace DAL
         public DbSet<RoleNodeProfileBE> RoleNodeProfile { get; set; }
         public DbSet<RoleNodeBE> RoleNode { get; set; }
         public DbSet<SystemUserRoleNodeBE> SystemUserRoleNode { get; set; }
-        public DbSet<ApplicationHierarchyBE> ApplicationHierarchy { get; set; }
+        
         public DbSet<SystemParameterBE> SystemParameter { get; set; }
         public DbSet<SystemUserGobalProfileBE> SystemUserGobalProfile { get; set; }
-      
+        public DbSet<AplicationHierarchyBE> AplicationHierarchy { get; set; }
         public DbSet<AttentionInAreaBE> AttentionInArea { get; set; }
         public DbSet<AttentionInAreaComponentBE> AttentionInAreaComponent { get; set; }
         public DbSet<Cie10BE> Cie10 { get; set; }
@@ -33,7 +33,7 @@ namespace DAL
         public DbSet<EmailBE> Email { get; set; }
         public DbSet<LogBE> Log { get; set; }
         public DbSet<MasterRecommendationRestricctionBE> MasterRecommendationRestricction { get; set; }
-        public DbSet<MultiMediaFileBE> MultiMediaFile { get; set; }
+        public DbSet<MultimediaFileBE> MultimediaFile { get; set; }
         public DbSet<NodeBE> Node { get; set; }
         public DbSet<NodeOrganizationLocationProfileBE> NodeOrganizationLocationProfile { get; set; }
         public DbSet<NodeOrganizationLocationWarehouseProfileBE> NodeOrganizationLocationWarehouseProfile { get; set; }
@@ -95,6 +95,6 @@ namespace DAL
         public DbSet<RestrictedWarehouseProfileBE> RestrictedWarehouseProfile { get; set; }
         public DbSet<WarehouseBE> Warehouse { get; set; }
 
-
+        public DbSet<ApplicationHierarchyBE> ApplicationHierarchy { get; set; }
     }
 }

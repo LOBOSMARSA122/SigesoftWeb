@@ -29,7 +29,10 @@ namespace BE.Warehouse
         public string Observations { get; set; }
         public int? IsLocallyProcessed { get; set; }
         public int? IsRemoteProcessed { get; set; }
+
         public int? InsertUserId { get; set; }
+        public int? IsDeleted { get; set; }
+        public DateTime? InsertDate { get; set; }
         public int? UpdateUserId { get; set; }
         public DateTime? UpdateDate { get; set; }
         public int? UpdateNodeId { get; set; }

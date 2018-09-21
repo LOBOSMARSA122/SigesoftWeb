@@ -26,7 +26,7 @@ namespace BE.Warehouse
         public string Presentation { get; set; }
         public string AdditionalInformation { get; set; }
         public byte [] Image { get; set; }
-        public int IsDeleted { get; set; }
+        public int? IsDeleted { get; set; }
         public int? InsertUserId { get; set; }
         public DateTime? InsertDate { get; set; }
         public int? UpdateUserId { get; set; }

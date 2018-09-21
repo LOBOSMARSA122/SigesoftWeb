@@ -32,11 +32,13 @@ namespace BE.Service
         public string Comment { get; set; }
         public int? Iscalling { get; set; }
         public int? IsApprovedId { get; set; }
+
         public int? IsDeleted { get; set; }
         public int? InsertUserId { get; set; }
         public DateTime? InsertDate { get; set; }
         public int? UpdateUserId { get; set; }
         public DateTime? UpdateDate { get; set; }
+
         public int? ApprovedInsertUserId { get; set; }
         public int? ApprovedUpdateUserId { get; set; }
         public DateTime? ApprovedInsertDate { get; set; }

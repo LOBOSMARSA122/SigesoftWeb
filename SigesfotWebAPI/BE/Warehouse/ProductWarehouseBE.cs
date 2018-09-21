@@ -17,6 +17,10 @@ namespace BE.Warehouse
         public float StockMin { get; set; }
         public float StockMax { get; set; }
         public float StockActual { get; set; }
+
+        #region Creado
+        public int? IsDeleted { get; set; }
+        #endregion
         public int? InsertUserId { get; set; }
         public DateTime? InsertDate { get; set; }
         public int? UpdateUserId { get; set; }

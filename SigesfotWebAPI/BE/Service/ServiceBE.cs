@@ -47,12 +47,16 @@ namespace BE.Service
         public DateTime? EndDateRestriction { get; set; }
         public int? HasRestrictionId { get; set; }
         public int? HasSymptomId { get; set; }
+
         public DateTime? UpdateDate { get; set; }
+
         public DateTime? NextAppointment { get; set; }
+
         public int? IsDeleted { get; set; }
         public int? InsertUserId { get; set; }
         public DateTime? InsertDate { get; set; }
         public int? UpdateUserId { get; set; }
+
         public int? SendToTracking { get; set; }
         public int? InsertUserMedicalAnalystId { get; set; }
         public int? UpdateUserMedicalAnalystId { get; set; }

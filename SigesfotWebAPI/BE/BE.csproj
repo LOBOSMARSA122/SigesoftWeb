@@ -51,7 +51,7 @@
     <Compile Include="Common\Enumeratores.cs" />
     <Compile Include="Common\LogBE.cs" />
     <Compile Include="Common\MasterRecommendationRestricctionBE.cs" />
-    <Compile Include="Common\MultiMediaFileBE.cs" />
+    <Compile Include="Common\MultimediaFileBE.cs" />
     <Compile Include="Common\NodeBE.cs" />
     <Compile Include="Common\NodeOrganizationLocationProfileBE.cs" />
     <Compile Include="Common\NodeOrganizationLocationWarehouseProfileBE.cs" />

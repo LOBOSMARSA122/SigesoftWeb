@@ -47,22 +47,57 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\AplicationHierarchyBL.cs" />
     <Compile Include="Common\AttentionInAreaBL.cs" />
     <Compile Include="Common\AttentionInAreaComponentBL.cs" />
+    <Compile Include="Common\DataHierarchyBL.cs" />
+    <Compile Include="Common\EmailBL.cs" />
+    <Compile Include="Common\LogBL.cs" />
+    <Compile Include="Common\MasterRecommendationRestricctionBL.cs" />
+    <Compile Include="Common\MultimediaFileBL.cs" />
+    <Compile Include="Common\NodeBL.cs" />
+    <Compile Include="Common\NodeServiceProfileBL.cs" />
     <Compile Include="Common\PersonBL.cs" />
+    <Compile Include="Common\RecommendationBL.cs" />
+    <Compile Include="Common\RestrictionBL.cs" />
+    <Compile Include="Common\RoleNodeComponentProfileBL.cs" />
     <Compile Include="Component\ComponentBL.cs" />
     <Compile Include="Component\ComponentFieldBL.cs" />
+    <Compile Include="Component\ComponentFieldsBL.cs" />
     <Compile Include="Component\ComponentFieldValuesBL.cs" />
     <Compile Include="Component\ComponentFieldValuesRecommendationBL.cs" />
     <Compile Include="Component\ComponentFieldValuesRestrictionBL.cs" />
     <Compile Include="Diagnostic\DiseasesBL.cs" />
     <Compile Include="Diagnostic\DxFrecuenteBL.cs" />
     <Compile Include="Diagnostic\DxFrecuenteDetalleBL.cs" />
+    <Compile Include="History\FamilyMedicalAntecedentsBL.cs" />
+    <Compile Include="History\HistoryBL.cs" />
+    <Compile Include="History\NoxiousHabitsBL.cs" />
+    <Compile Include="History\WorkStationDangersBL.cs" />
     <Compile Include="Organization\AreaBL.cs" />
+    <Compile Include="Organization\GesBL.cs" />
+    <Compile Include="Organization\GroupOccupationBL.cs" />
+    <Compile Include="Organization\LocationBL.cs" />
+    <Compile Include="Organization\OccupationBL.cs" />
+    <Compile Include="Organization\OrganizationBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Protocol\ProtocolBL.cs" />
+    <Compile Include="Protocol\ProtocolComponentBL.cs" />
+    <Compile Include="Protocol\ProtocolSystemUserBL.cs" />
     <Compile Include="Security\AuthorizationBL.cs" />
     <Compile Include="Service\CalendarBL.cs" />
     <Compile Include="Service\DiagnosticRepositoryBL.cs" />
+    <Compile Include="Service\ServiceBL.cs" />
+    <Compile Include="Service\ServiceComponentBL.cs" />
+    <Compile Include="Service\ServiceComponentFieldsBL.cs" />
+    <Compile Include="Service\ServiceComponentFieldValuesBL.cs" />
+    <Compile Include="Service\ServiceComponentMultimediaBL.cs" />
+    <Compile Include="Warehouse\MovementBL.cs" />
+    <Compile Include="Warehouse\MovementDetailBL.cs" />
+    <Compile Include="Warehouse\ProductBL.cs" />
+    <Compile Include="Warehouse\ProductsForMigrationBL.cs" />
+    <Compile Include="Warehouse\ProductWarehouseBL.cs" />
+    <Compile Include="Warehouse\WarehouseBL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BE\BE.csproj">
