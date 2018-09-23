@@ -76,8 +76,6 @@ namespace DAL
         public DbSet<ProtocolSystemUserBE> ProtocolSystemUser { get; set; }
         public DbSet<SecuentialBE> Secuential { get; set; }
 
-        public DbSet<AuthorizationModel> AuthorizationModel { get; set; }
-
         public DbSet<CalendarBE> Calendar { get; set; }
         public DbSet<DiagnosticRepositoryBE> DiagnosticRepository { get; set; }
         public DbSet<ServiceBE> Service { get; set; }

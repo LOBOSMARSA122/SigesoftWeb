@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BE.Security
 {
+    [Table("systemuser")]
     public class SystemUserBE
     {
         [Key]
@@ -26,5 +25,5 @@ namespace BE.Security
         public DateTime? UpdateDate { get; set; }
         public int? SystemUserTypeId { get; set; }
         public int? RolVentaId { get; set; }
-    }
+    }  
 }

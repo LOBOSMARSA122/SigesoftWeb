@@ -78,7 +78,7 @@ namespace SigesoftWeb.Controllers
 
         private bool ValidateEmptyFields(FormCollection collection)
         {
-            if (string.IsNullOrWhiteSpace(collection.Get("usuario").Trim()) || string.IsNullOrWhiteSpace(collection.Get("pass").Trim()))
+            if (string.IsNullOrWhiteSpace(collection.Get("userName").Trim()) || string.IsNullOrWhiteSpace(collection.Get("password").Trim()))
                 return false;
 
             return true;
@@ -101,8 +101,9 @@ namespace SigesoftWeb.Controllers
         {
             Dictionary<string, string> accessUser = new Dictionary<string, string>
             {
-                { "usuario", collection.Get("usuario").Trim() },
-                { "contrasenia", Utils.Utils.Encrypt(collection.Get("pass").Trim()) }
+                { "nodeId", "1" },
+                { "userName", collection.Get("userName").Trim() },
+                { "password", Utils.Utils.Encrypt(collection.Get("password").Trim()) }
             };
 
             return accessUser;

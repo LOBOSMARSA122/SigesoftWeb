@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +10,9 @@ namespace BE.Component
 {
     public class ComponentFieldsBE
     {
-        [Key]
+        [Key, Column(Order = 1)]
         public string ComponentId { get; set; }
-        [Key]
+        [Key, Column(Order = 2)]
         public string ComponentFieldId { get; set; }
         public string Group { get; set; }
         public int? IsDeleted { get; set; }

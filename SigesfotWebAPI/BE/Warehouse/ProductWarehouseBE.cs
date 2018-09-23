@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +10,9 @@ namespace BE.Warehouse
 {
     public class ProductWarehouseBE
     {
-        [Key]
+        [Key, Column(Order = 1)]
         public string WarehouseId { get; set; }
-        [Key]
+        [Key, Column(Order = 2)]
         public string ProductId { get; set; }
 
         public float StockMin { get; set; }

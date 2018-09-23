@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,11 +10,11 @@ namespace BE.Warehouse
 {
     public class MovementDetailBE
     {
-        [Key]
+        [Key, Column(Order = 1)]
         public string MovementId { get; set; }
-        [Key]
+        [Key, Column(Order = 2)]
         public string ProductId { get; set; }
-        [Key]
+        [Key, Column(Order = 3)]
         public string WarehouseId { get; set; }
 
         public float StockMax { get; set; }

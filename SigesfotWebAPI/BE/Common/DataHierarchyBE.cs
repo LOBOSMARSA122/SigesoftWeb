@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +10,9 @@ namespace BE.Common
 {
     public class DataHierarchyBE
     {
-        [Key]
+        [Key,Column(Order = 1)]
         public int? GroupId { get; set; }
-        [Key]
+        [Key, Column(Order = 2)]
         public int? ItemId { get; set; } 
         public string Value1 { get; set; } 
         public string Value2 { get; set; } 

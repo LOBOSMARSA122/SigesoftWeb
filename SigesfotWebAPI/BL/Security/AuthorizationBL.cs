@@ -19,7 +19,6 @@ namespace BL.Security
             try
             {
                 var isDeleted = (int)Enumeratores.SiNo.No;
-                var oAuthorizationModel = new AuthorizationModel();
                 var user = (from sys in ctx.SystemUser
                                 join per in ctx.Person on sys.PersonId equals per.PersonId
                                 join pro in ctx.Professional on per.PersonId equals pro.PersonId
@@ -45,7 +44,7 @@ namespace BL.Security
                     return null;
                 }
 
-                return user;
+                return null;
             }
             catch (Exception ex)
             {

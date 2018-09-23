@@ -7,6 +7,10 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
+using System.Data;
+using System.Data.Entity;
+using DAL;
+
 namespace SigesoftWebAPI
 {
     public class WebApiApplication : System.Web.HttpApplication
@@ -18,6 +22,8 @@ namespace SigesoftWebAPI
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Database.SetInitializer<DatabaseContext>(new DropCreateDatabaseIfModelChanges<DatabaseContext>());
         }
     }
 }
