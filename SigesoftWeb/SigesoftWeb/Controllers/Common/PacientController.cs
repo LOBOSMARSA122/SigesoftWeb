@@ -11,6 +11,7 @@ namespace SigesoftWeb.Controllers.Common
         // GET: Pacient
         public ActionResult Index()
         {
+            ViewBag.DocType = Utils.Utils.LoadDropDownList(API.Get<List<Dropdownlist>>("Empresa/GetTipoEmpresa"), Constantes.Select);
             return View();
         }
     }
