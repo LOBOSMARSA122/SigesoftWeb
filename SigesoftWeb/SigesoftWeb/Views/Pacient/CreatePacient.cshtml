@@ -10,15 +10,15 @@
 
 
 
-    if (ViewBag.Empresa != null)
+    if (ViewBag.Pacients != null)
     {
-        FirstName = ViewBag.Pacient.FirstName;
-        FirstLastName = ViewBag.Pacient.FirstLastName;
-        SecondLastName = ViewBag.Pacient.SecondLastName;
-        DocType = ViewBag.Pacient.DocType;
-        DocNumber = ViewBag.Pacient.DocNumber;
-        TelephoneNumber = ViewBag.Pacient.TelephoneNumber;
-        PersonId = ViewBag.Pacient.PersonId;
+        FirstName = ViewBag.Pacients.FirstName;
+        FirstLastName = ViewBag.Pacients.FirstLastName;
+        SecondLastName = ViewBag.Pacients.SecondLastName;
+        DocType = ViewBag.Pacients.DocType;
+        DocNumber = ViewBag.Pacients.DocNumber;
+        TelephoneNumber = ViewBag.Pacients.TelephoneNumber;
+        PersonId = ViewBag.Pacients.PersonId;
     }
 }
 
@@ -108,15 +108,15 @@
                             <div class="SubTitulo">Tipo documento: </div>
                             <div>
                                 @{
-                                    if (ViewBag.DocType != null)
-                                    {
-                                        <select class="dropdown" id="DocType" data-validation="number" data-validation-allowing="range[1;100]" data-validation-error-msg="Debe seleccionar una opción">
-                                            @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.DocType)
-                                            {
-                                                <option value="@G.Id" @(DocType == G.Id ? "selected" : "")>@G.Value</option>
-                                            }
-                                        </select>
-                                    }
+                    if (ViewBag.DocType != null)
+                    {
+                        <select class="dropdown" id="DocType" data-validation="number" data-validation-allowing="range[1;100]" data-validation-error-msg="Debe seleccionar una opción">
+                            @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.DocType)
+            {
+                <option value="@G.Id" @(DocType == G.Id ? "selected" : "")>@G.Value</option>
+}
+                        </select>
+    }
                                 }
                             </div>
                         </div>
