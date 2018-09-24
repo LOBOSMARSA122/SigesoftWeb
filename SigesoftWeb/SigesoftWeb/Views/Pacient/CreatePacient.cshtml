@@ -1,6 +1,6 @@
 ﻿
 @{
-    string PersonId = "";
+    string PacientId = "";
     string FirstName = "";
     string FirstLastName = "";
     string SecondLastName = "";
@@ -10,7 +10,7 @@
 
 
 
-    if (ViewBag.Empresa != null)
+    if (ViewBag.Pacient != null)
     {
         FirstName = ViewBag.Pacient.FirstName;
         FirstLastName = ViewBag.Pacient.FirstLastName;
@@ -18,7 +18,7 @@
         DocType = ViewBag.Pacient.DocType;
         DocNumber = ViewBag.Pacient.DocNumber;
         TelephoneNumber = ViewBag.Pacient.TelephoneNumber;
-        PersonId = ViewBag.Pacient.PersonId;
+        PacientId = ViewBag.Pacient.PacientId;
     }
 }
 
@@ -188,7 +188,7 @@
             DocType: $("#DocType").val(),
             DocNumber: $("#DocNumber").val(),
             TelephoneNumber: $("#TelephoneNumber").val(),
-            PersonId: @PersonId,
+            PacientId: @PacientId,
 
         };
 
