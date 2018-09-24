@@ -1,7 +1,6 @@
 ﻿using SigesoftWeb.Models;
 using SigesoftWeb.Models.Common;
 using System.Collections.Generic;
-using SigesoftWeb.Controllers.Security;
 using System.Web.Mvc;
 using System.IO;
 using Newtonsoft.Json;
@@ -41,5 +40,4 @@ namespace SigesoftWeb.Controllers.Common
         }
     }
 
-  
 }

@@ -1,5 +1,6 @@
 ﻿using BE.Common;
 using BL.Common;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,5 +20,6 @@ namespace SigesoftWebAPI.Controllers.Common
             List<Dropdownlist> result = oSystemParameterBL.GetParametroByGrupoId(grupoId);
             return Ok(result);
         }
+       
     }
 }
