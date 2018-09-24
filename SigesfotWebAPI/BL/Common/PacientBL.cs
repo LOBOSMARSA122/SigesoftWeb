@@ -77,9 +77,8 @@ namespace BL.Common
                                 PacientId = a.v_PersonId,
                                 PacientFullName = a.v_FirstName + " " + a.v_FirstLastName + " " + a.v_SecondLastName,
                                 DocTypeId = a.i_DocTypeId.Value,
-                                //DocType = a.DocType,
-                                //DocNumber = a.DocNumber,
-                                //TelephoneNumber = a.TelephoneNumber,
+                                DocNumber = a.v_DocNumber,
+                                TelephoneNumber = a.v_TelephoneNumber,
 
                                 //FirstName = a.v_PersonId,
                                 //FirstLastName = a.v_PersonId,
@@ -99,7 +98,7 @@ namespace BL.Common
                                 //BloodFactorId = a.v_PersonId,
                                 //FingerPrintTemplate = a.v_PersonId,
                                 //RubricImage = a.v_PersonId,
-                                // FingerPrintImage = a.v_PersonId,
+                                //FingerPrintImage = a.v_PersonId,
                                 //RubricImageText = a.v_PersonId,
                                 //CurrentOccupation = a.v_PersonId,
                                 //DepartmentId = a.v_PersonId,
@@ -114,7 +113,7 @@ namespace BL.Common
                                 //OwnerName = a.v_PersonId,
                                 //NumberLiveChildren = a.v_PersonId,
                                 //NumberDeadChildren = a.v_PersonId,
-                        }).FirstOrDefault();
+                            }).FirstOrDefault();
 
                 return data;
             }

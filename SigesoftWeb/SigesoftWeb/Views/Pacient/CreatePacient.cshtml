@@ -1,11 +1,12 @@
-﻿@{
-    string PersonId= "";
+﻿
+@{
+    string PersonId = "";
     string FirstName = "";
     string FirstLastName = "";
     string SecondLastName = "";
     string DocType = "";
-    int DocNumber = 0;
-    int TelephoneNumber = 0;
+    string DocNumber = "";
+    string TelephoneNumber = "";
 
 
 
@@ -82,7 +83,7 @@
             <div class="row d-flex justify-content-center">
                 <div class="col-12 col-md-8 col-lg-7 col-xl-6 border">
                     <div class="row">
-                        <div class="col-12 Titulo">Datos de Paciente</div>
+                        <div class="col-12 Titulo">Datos del Paciente</div>
                     </div>
                     <div class="row">
                         <div class="col-12">
@@ -112,7 +113,7 @@
                                         <select class="dropdown" id="DocType" data-validation="number" data-validation-allowing="range[1;100]" data-validation-error-msg="Debe seleccionar una opción">
                                             @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.DocType)
                                             {
-                                                 <option value="@G.Id" @(DocType == G.Id ? "selected" : "")>@G.Value</option>
+                                                <option value="@G.Id" @(DocType == G.Id ? "selected" : "")>@G.Value</option>
                                             }
                                         </select>
                                     }
@@ -133,7 +134,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 p-0 d-flex justify-content-center">
+                <div class="col-12 p-0 mt-2 d-flex justify-content-center">
                     <div class="row">
                         <div class="col">
                             <button class="btn mt-2 mt-sm-0 pl-lg-5 pr-lg-5 btn-info boton form-control ">
@@ -141,7 +142,7 @@
                             </button>
                         </div>
                         <div class="col">
-                            <button class="btn mt-2 mt-sm-0  pl-lg-5 pr-lg-5 btn-info boton form-control" onclick="location.href='@Url.Action("Paciente","Administracion")'">
+                            <button class="btn mt-2 mt-sm-0  pl-lg-5 pr-lg-5 btn-info boton form-control" onclick="location.href='@Url.Action("Index","Pacient")'">
                                 <i class="fa fa-search"></i> Cancelar
                             </button>
                         </div>
@@ -202,7 +203,7 @@
             dataType: 'json',
             method: 'POST',
             data: data,
-            url: '@(ViewBag.Empresa != null  ? "/Administracion/EditProveedor" : "/Administracion/InsertNewProveedor")',
+            url: '@(ViewBag.Empresa != null  ? "/Pacient/EditPacient" : "/Pacient/InsertNewPacient")',
             success: function (json) {
                 $("#Loading").hide();
                 if (json) {

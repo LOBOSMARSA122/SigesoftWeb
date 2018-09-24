@@ -68,14 +68,14 @@
                     {
                         foreach (var item in ViewBag.Pacients.List)
                         {
-                            <tr>
-                                <td>@item.PacientFullName</td>
-                                <td>@item.DocType</td>
-                                <td>@item.DocNumber</td>
-                                <td>@item.TelephoneNumber</td>
-                                <td><a href="@Url.Action("","",new {id = item.PacientId })"><span class="icon-edit"></span></a></td>
-                                <td><a onclick="Delete(@item.PacientId)"><span class="icon-trash"></span></a></td>
-                            </tr>
+                        <tr>
+                            <td>@item.PacientFullName</td>
+                            <td>@item.DocType</td>
+                            <td>@item.DocNumber</td>
+                            <td>@item.TelephoneNumber</td>
+                            <td><a href="@Url.Action("CreatePacient","Pacient",new {id = item.PacientId })"><span class="icon-edit"></span></a></td>
+                            <td><a onclick="Delete(@item.PacientId)"><span class="icon-trash"></span></a></td>
+                        </tr>
                         }
                     }
                 }

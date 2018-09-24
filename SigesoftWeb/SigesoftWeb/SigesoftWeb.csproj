@@ -419,7 +419,7 @@
     <Content Include="Views\Shared\_HeaderPartial.cshtml" />
     <Content Include="Views\Pacient\Index.cshtml" />
     <Content Include="Views\Shared\_BoardPacientsPartial.cshtml" />
-    <Content Include="Views\Pacient\CrearPaciente.cshtml" />
+    <Content Include="Views\Pacient\CreatePacient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

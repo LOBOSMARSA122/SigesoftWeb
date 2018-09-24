@@ -38,6 +38,24 @@ namespace SigesoftWeb.Controllers.Common
             ViewBag.Pacients = API.Post<BoardPacient>("Pacient/GetBordPacients", arg);
             return PartialView("_BoardPacientsPartial");
         }
+
+        //[GeneralSecurity(Rol = "Administracion-Proveedores")]
+        public ActionResult CreatePacient(int? id)
+        {
+            Api API = new Api();
+            Dictionary<string, string> arg = new Dictionary<string, string>()
+            {
+                { "grupoId" , ((int)Enums.DataHierarchy.DocType).ToString() }
+            };
+
+            ViewBag.DocType = Utils.Utils.LoadDropDownList(API.Get<List<Dropdownlist>>("DataHierarchy/GetDataHierarchyByGrupoId", arg), Constants.Select);
+            //if (id.HasValue)
+            //{
+                ViewBag.Pacient = API.Get<Pacients>("Pacient/GetPacientById", new Dictionary<string, string> { { "pacientId", "N009-PP000004786" } });
+            //}
+
+            return View();
+        }
     }
 
 }
