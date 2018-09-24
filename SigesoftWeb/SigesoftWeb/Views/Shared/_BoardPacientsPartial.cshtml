@@ -7,11 +7,11 @@
 
     if (ViewBag.Pacientes != null)
     {
-        Take = ViewBag.Pacientes.Take;
-        Index = ViewBag.Pacientes.Index;
-        Total = ViewBag.Pacientes.TotalRegistros;
+        Take = ViewBag.Pacients.Take;
+        Index = ViewBag.Pacients.Index;
+        Total = ViewBag.Pacients.TotalRegistros;
         Primer = ((Index - 1) * Take) + 1;
-        Ultimo = Primer + (ViewBag.Pacientes.Lista.Count - 1);
+        Ultimo = Primer + (ViewBag.Pacients.Lista.Count - 1);
 
         Primer = Primer < 0 ? 0 : Primer;
         Ultimo = Ultimo < 0 ? 0 : Ultimo;
@@ -56,25 +56,25 @@
             </thead>
             <tbody>
                 @{
-                    if (ViewBag.Personas == null)
+                    if (ViewBag.Pacients == null)
                     {
                         <tr><td colspan="7" class="text-center">Error al conectarse al servidor</td></tr>
                     }
-                    else if (ViewBag.Personas.Lista.Count == 0)
+                    else if (ViewBag.Pacients.Lista.Count == 0)
                     {
                         <tr><td colspan="7" class="text-center">No hay resultados</td></tr>
                     }
                     else
                     {
-                        foreach (var item in ViewBag.Personas.Lista)
+                        foreach (var item in ViewBag.Pacients.Lista)
                         {
                             <tr>
-                                <td>@item.Pacientes</td>
-                                <td>@item.TipoDocumento</td>
-                                <td>@item.NroDocumento</td>
-                                <td>@item.Telefono</td>
-                                <td><a href="@Url.Action("","",new {id = item.PacienteId })"><span class="icon-edit"></span></a></td>
-                                <td><a onclick="Delete(@item.PacienteId)"><span class="icon-trash"></span></a></td>
+                                <td>@item.PacientFullName</td>
+                                <td>@item.DocType</td>
+                                <td>@item.DocNumber</td>
+                                <td>@item.TelephoneNumber</td>
+                                <td><a href="@Url.Action("","",new {id = item.PacientId })"><span class="icon-edit"></span></a></td>
+                                <td><a onclick="Delete(@item.PacientId)"><span class="icon-trash"></span></a></td>
                             </tr>
                         }
                     }

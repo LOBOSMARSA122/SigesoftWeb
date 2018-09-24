@@ -23,21 +23,23 @@ namespace SigesoftWeb.Controllers.Common
             ViewBag.DocType = Utils.Utils.LoadDropDownList(API.Get<List<Dropdownlist>>("DataHierarchy/GetDataHierarchyByGrupoId", arg), Constants.Select);
             return View();
         }
-    }
 
-    //[GeneralSecurity(Rol = "Administracion-Proveedores")]
-    public ActionResult FilterPacient(BoardPacient data)
-    {
-        Api API = new Api();
-        Dictionary<string, string> arg = new Dictionary<string, string>()
+        //[GeneralSecurity(Rol = "Administracion-Proveedores")]
+        public ActionResult FilterPacient(BoardPacient data)
+        {
+            Api API = new Api();
+            Dictionary<string, string> arg = new Dictionary<string, string>()
             {
-                { "Pacient",data.Pacient },
+                { "Pacient",data.Pacient},
                 { "DocTypeId", data.DocTypeId.ToString()},
                 { "DocNumber", data.DocNumber},
                 { "Index", data.Index.ToString()},
                 { "Take", data.Take.ToString()}
             };
-        ViewBag.Pacients = API.Post<BoardPacient>("Pacient/GetBordPacients", arg);
-        return PartialView("_BoardPacientsPartial");
+            ViewBag.Pacients = API.Post<BoardPacient>("Pacient/GetBordPacients", arg);
+            return PartialView("_BoardPacientsPartial");
+        }
     }
+
+  
 }

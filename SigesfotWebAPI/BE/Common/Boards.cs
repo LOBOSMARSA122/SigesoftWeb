@@ -24,6 +24,7 @@ namespace BE.Common
 
     public class Pacients
     {
+        public string PacientId { get; set; }
         public string PacientFullName { get; set; }
         public string DocType { get; set; }
         public string DocNumber { get; set; }

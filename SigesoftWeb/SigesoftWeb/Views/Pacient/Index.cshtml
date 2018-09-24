@@ -38,7 +38,7 @@
                 <div class="col-12 col-lg-3 col-xl-3">
                     <div class="form-group">
                         <label for="">Paciente</label>
-                        <input type="text" id="Paciente" class="form-control" maxlength="150" placeholder="Ingrese nombre del paciente" />
+                        <input type="text" id="PacientFullName" class="form-control" maxlength="150" placeholder="Ingrese nombre del paciente" />
                     </div>
                 </div>
                 <div class="col-12 col-lg-4 col-xl-3">
@@ -49,10 +49,10 @@
                                 @{
                                     if (ViewBag.DocType != null)
                                     {
-                                        <select id="TipoEmpresa" data-validation="number" data-validation-allowing="range[1;100]" data-validation-error-msg="Debe seleccionar una opción">
+                                        <select id="DocType"  @*data-validation="number" data-validation-allowing="range[1;100]" data-validation-error-msg="Debe seleccionar una opción"*@>
                                             @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.DocType)
                                             {
-                                                <option value="@G.Id">@G.Value</option>
+                                                <option  value="@G.Id">@G.Value</option>
                                             }
                                         </select>
                                     }
@@ -106,8 +106,8 @@
 <script>
     function Filtrar(index) {
         var data = {
-            FullName: $("#Paciente").val(),
-            DocTypeNumber: $("#DocTypeNumber").val(),
+            Pacient: $("#PacientFullName").val(),
+            DocTypeId: $("#DocType").val(),
             DocNumber: $("#DocNumber").val(),
             Index: index,
             Take: $("#take").val()
@@ -123,7 +123,7 @@
             dataType: 'html',
             method: 'POST',
             data: data,
-            url: '/Pacient/FiltrarPaciente',
+            url: '/Pacient/FilterPacient',
             success: function (html) {
                 if (html.indexOf("IniciarSesion") == -1) {
                     $("#Loading").hide();

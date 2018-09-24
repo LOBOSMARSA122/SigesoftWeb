@@ -40,6 +40,7 @@ namespace BL.Common
                                 && (a.i_IsDeleted == isDeleted)
                             select new Pacients
                             {
+                                PacientId = a.v_PersonId,
                                 PacientFullName = b.v_FirstName + " " + b.v_FirstLastName + " " + b.v_SecondLastName,
                                 DocType = c.v_Value1,
                                 DocNumber = b.v_DocNumber,

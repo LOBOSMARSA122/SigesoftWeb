@@ -15,6 +15,7 @@ namespace SigesoftWeb.Models.Common
 
         public class BoardPacient : Boards
         {
+
             public string Pacient { get; set; }
             public int DocTypeId { get; set; }
             public string DocNumber { get; set; }
@@ -24,6 +25,7 @@ namespace SigesoftWeb.Models.Common
 
         public class Pacients
         {
+            public string PacientId { get; set; }
             public string PacientFullName { get; set; }
             public string DocType { get; set; }
             public string DocNumber { get; set; }
