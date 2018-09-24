@@ -67,7 +67,7 @@ namespace BL.Security
                          join ah in ctx.ApplicationHierarchy on rnp.i_ApplicationHierarchyId equals ah.i_ApplicationHierarchyId
 
                          join fff in ctx.SystemParameter on new { a = surnj.i_RoleId.Value, b = 115 } // ROLES DEL SISTEMA
-                                                               equals new { a = fff.i_ParameterId.Value, b = fff.i_GroupId.Value } into J5_join
+                                                               equals new { a = fff.i_ParameterId, b = fff.i_GroupId } into J5_join
                          from fff in J5_join.DefaultIfEmpty()
 
                          where (surnj.i_NodeId == nodeId) &&
@@ -83,7 +83,7 @@ namespace BL.Security
                              ParentId = ah.i_ParentId.Value,
                              Form = ah.v_Form == null ? string.Empty : ah.v_Form,
                              RoleName = fff.v_Value1,
-                             RoleId = fff.i_ParameterId.Value
+                             RoleId = fff.i_ParameterId
                          }
                           ).Concat(from a in ctx.SystemUserGobalProfile
                                    join b in ctx.ApplicationHierarchy on a.ApplicationHierarchyId equals b.i_ApplicationHierarchyId

@@ -31,63 +31,63 @@ namespace BL.Common
 
         public List<PersonBE> GetAllPerson()
         {
-            //try
-            //{
-            //    var isDeleted = (int)Enumeratores.SiNo.No;
-            //    var objEntity = (from a in ctx.Person
-            //                     where a.IsDeleted == isDeleted
-            //                     select new PersonBE()
-            //                     {
-            //                        PersonId  = a.PersonId ,
-            //                        FirstName  = a.FirstName,
-            //                        FirstLastName  = a.FirstLastName,
-            //                        SecondLastName  = a.SecondLastName,
-            //                        DocTypeId  = a.DocTypeId,
-            //                        DocNumber  = a.DocNumber,
-            //                        Birthdate  = a.Birthdate,
-            //                        BirthPlace  = a.BirthPlace,
-            //                        SexTypeId  = a.SexTypeId,
-            //                        MaritalStatusId  = a.MaritalStatusId,
-            //                        LevelOfId  = a.LevelOfId,
-            //                        TelephoneNumber  = a.TelephoneNumber,
-            //                        AdressLocation  = a.AdressLocation,
-            //                        GeografyLocationId  = a.GeografyLocationId,
-            //                        ContactName  = a.ContactName,
-            //                        EmergencyPhone  = a.EmergencyPhone,
-            //                        PersonImage  = a.PersonImage,
-            //                        Mail  = a.Mail,
-            //                        BloodGroupId  = a.BloodGroupId,
-            //                        BloodFactorId  = a.BloodFactorId,
-            //                        FingerPrintTemplate  = a.FingerPrintTemplate,
-            //                        RubricImage  = a.RubricImage,
-            //                        FingerPrintImage  = a.FingerPrintImage,
-            //                        RubricImageText  = a.RubricImageText,
-            //                        CurrentOccupation  = a.CurrentOccupation,
-            //                        DepartmentId  = a.DepartmentId,
-            //                        ProvinceId  = a.ProvinceId,
-            //                        DistrictId  = a.DistrictId,
-            //                        ResidenceInWorkplaceId  = a.ResidenceInWorkplaceId,
-            //                        ResidenceTimeInWorkplace  = a.ResidenceTimeInWorkplace,
-            //                        TypeOfInsuranceId  = a.TypeOfInsuranceId,
-            //                        NumberLivingChildren  = a.NumberLivingChildren,
-            //                        NumberDependentChildren  = a.NumberDependentChildren,
-            //                        OccupationTypeId  = a.OccupationTypeId,
-            //                        OwnerName  = a.OwnerName,
-            //                        NumberLiveChildren  = a.NumberLiveChildren,
-            //                        NumberDeadChildren  = a.NumberDeadChildren,
-            //                        IsDeleted  = a.IsDeleted,
-            //                        InsertUserId  = a.InsertUserId,
-            //                        InsertDate  = a.InsertDate,
-            //                        UpdateUserId  = a.UpdateUserId,
-            //                        UpdateDate = a.UpdateDate
-            //                    }).ToList();
+            try
+            {
+                var isDeleted = (int)Enumeratores.SiNo.No;
+                var objEntity = (from a in ctx.Person
+                                 where a.i_IsDeleted == isDeleted
+                                 select new PersonBE()
+                                 {
+                                     v_PersonId = a.v_PersonId,
+                                     v_FirstName = a.v_FirstName,
+                                     v_FirstLastName = a.v_FirstLastName,
+                                     v_SecondLastName = a.v_SecondLastName,
+                                     i_DocTypeId = a.i_DocTypeId,
+                                     v_DocNumber = a.v_DocNumber,
+                                     d_Birthdate = a.d_Birthdate,
+                                     v_BirthPlace = a.v_BirthPlace,
+                                     i_SexTypeId = a.i_SexTypeId,
+                                     i_MaritalStatusId = a.i_MaritalStatusId,
+                                     i_LevelOfId = a.i_LevelOfId,
+                                     v_TelephoneNumber = a.v_TelephoneNumber,
+                                     v_AdressLocation = a.v_AdressLocation,
+                                     v_GeografyLocationId = a.v_GeografyLocationId,
+                                     v_ContactName = a.v_ContactName,
+                                     v_EmergencyPhone = a.v_EmergencyPhone,
+                                     b_PersonImage = a.b_PersonImage,
+                                     v_Mail = a.v_Mail,
+                                     i_BloodGroupId = a.i_BloodGroupId,
+                                     i_BloodFactorId = a.i_BloodFactorId,
+                                     v_FingerPrintTemplate = a.v_FingerPrintTemplate,
+                                     b_RubricImage = a.b_RubricImage,
+                                     b_FingerPrintImage = a.b_FingerPrintImage,
+                                     v_RubricImageText = a.v_RubricImageText,
+                                     v_CurrentOccupation = a.v_CurrentOccupation,
+                                     i_DepartmentId = a.i_DepartmentId,
+                                     i_ProvinceId = a.i_ProvinceId,
+                                     i_DistrictId = a.i_DistrictId,
+                                     i_ResidenceInWorkplaceId = a.i_ResidenceInWorkplaceId,
+                                     v_ResidenceTimeInWorkplace = a.v_ResidenceTimeInWorkplace,
+                                     i_TypeOfInsuranceId = a.i_TypeOfInsuranceId,
+                                     i_NumberLivingChildren = a.i_NumberLivingChildren,
+                                     i_NumberDependentChildren = a.i_NumberDependentChildren,
+                                     i_OccupationTypeId = a.i_OccupationTypeId,
+                                     v_OwnerName = a.v_OwnerName,
+                                     i_NumberLiveChildren = a.i_NumberLiveChildren,
+                                     i_NumberDeadChildren = a.i_NumberDeadChildren,
+                                     i_IsDeleted = a.i_IsDeleted,
+                                     i_InsertUserId = a.i_InsertUserId,
+                                     d_InsertDate = a.d_InsertDate,
+                                     i_UpdateUserId = a.i_UpdateUserId,
+                                     d_UpdateDate = a.d_UpdateDate
+                                 }).ToList();
 
-            //    return objEntity;
-            //}
-            //catch (Exception ex)
-            //{
-            //    return null;
-            //}
+                return objEntity;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
 
             return null;
         }
@@ -243,5 +243,6 @@ namespace BL.Common
             return true;
         }
         #endregion
+   
     }
 }

@@ -33,22 +33,22 @@ namespace BE.Common
         public int? i_BloodGroupId{get; set;}
         public int? i_BloodFactorId{get; set;}
         public string v_FingerPrintTemplate{get; set;}
-        public string v_RubricImage{get; set;}
-        public string v_FingerPrintImage{get; set;}
+        public byte[]  b_RubricImage {get; set;}
+        public byte[] b_FingerPrintImage{get; set;}
         public string v_RubricImageText{get; set;}
         public string v_CurrentOccupation{get; set;}
         public int? i_DepartmentId{get; set;}
         public int? i_ProvinceId {get; set;}
         public int? i_DistrictId {get; set;}
-        public int? v_ResidenceInWorkplaceId {get; set;}
+        public int? i_ResidenceInWorkplaceId {get; set;}
         public string v_ResidenceTimeInWorkplace{get; set;}
         public int? i_TypeOfInsuranceId {get; set;}
-        public string v_NumberLivingChildren{get; set;}
-        public string v_NumberDependentChildren{get; set;}
+        public int? i_NumberLivingChildren {get; set;}
+        public int? i_NumberDependentChildren {get; set;}
         public int? i_OccupationTypeId {get; set;}
-        public string V_OwnerName{get; set;}
-        public string v_NumberLiveChildren{get; set;}
-        public string v_NumberDeadChildren{get; set;}
+        public string v_OwnerName{get; set;}
+        public int? i_NumberLiveChildren{get; set;}
+        public int? i_NumberDeadChildren {get; set;}
         public int i_IsDeleted {get; set;}
         public int? i_InsertUserId {get; set;}
         public DateTime? d_InsertDate {get; set;}

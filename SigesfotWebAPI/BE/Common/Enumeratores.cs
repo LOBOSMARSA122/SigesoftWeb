@@ -20,5 +20,10 @@ namespace BE.Common
             No = 0,
             Si = 1
         }
+
+        public enum Parameters
+        {
+            TypeDocument = 100
+        }
     }
 }

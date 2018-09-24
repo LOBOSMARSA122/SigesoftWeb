@@ -12,9 +12,9 @@ namespace BE.Common
     public class SystemParameterBE
     {
         [Key, Column(Order = 1)]
-        public int? i_GroupId { get; set; }
+        public int i_GroupId { get; set; }
         [Key, Column(Order = 2)]
-        public int? i_ParameterId { get; set; }
+        public int i_ParameterId { get; set; }
         public string v_Value1 { get; set; }
         public string v_Value2 { get; set; }
         public string v_Field { get; set; }

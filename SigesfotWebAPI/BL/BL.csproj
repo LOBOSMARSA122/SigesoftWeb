@@ -58,10 +58,12 @@
     <Compile Include="Common\MultimediaFileBL.cs" />
     <Compile Include="Common\NodeBL.cs" />
     <Compile Include="Common\NodeServiceProfileBL.cs" />
+    <Compile Include="Common\PacientBL.cs" />
     <Compile Include="Common\PersonBL.cs" />
     <Compile Include="Common\RecommendationBL.cs" />
     <Compile Include="Common\RestrictionBL.cs" />
     <Compile Include="Common\RoleNodeComponentProfileBL.cs" />
+    <Compile Include="Common\SystemParameterBL.cs" />
     <Compile Include="Component\ComponentBL.cs" />
     <Compile Include="Component\ComponentFieldBL.cs" />
     <Compile Include="Component\ComponentFieldsBL.cs" />

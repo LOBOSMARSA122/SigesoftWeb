@@ -45,9 +45,11 @@
     <Compile Include="Common\AplicationHierarchyBE.cs" />
     <Compile Include="Common\AttentionInAreaBE.cs" />
     <Compile Include="Common\AttentionInAreaComponentBE.cs" />
+    <Compile Include="Common\Boards.cs" />
     <Compile Include="Common\Cie10BE.cs" />
     <Compile Include="Common\CIIUIBE.cs" />
     <Compile Include="Common\DataHierarchyBE.cs" />
+    <Compile Include="Common\Dropdownlist.cs" />
     <Compile Include="Common\EmailBE.cs" />
     <Compile Include="Common\Enumeratores.cs" />
     <Compile Include="Common\LogBE.cs" />
