@@ -64,7 +64,7 @@ namespace BL.Common
             }
         }
 
-        public Pacients GetPersonById(string pacientId)
+        public Pacients GetPacientById(string pacientId)
         {
             try
             {
