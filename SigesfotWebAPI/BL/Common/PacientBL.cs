@@ -33,7 +33,7 @@ namespace BL.Common
 
                 var list = (from a in ctx.Pacient
                             join b in ctx.Person on a.v_PersonId equals b.v_PersonId
-                            join c in ctx.SystemParameter on new { a = b.i_DocTypeId.Value, b = groupDocTypeId } equals new { a = c.i_ParameterId, b = c.i_GroupId }
+                            join c in ctx.DataHierarchy on new { a = b.i_DocTypeId.Value, b = groupDocTypeId } equals new { a = c.i_ItemId, b = c.i_GroupId }
                             where a.i_IsDeleted == isDeleted 
                                     && (b.v_FirstName.Contains(filterPacient) || b.v_FirstLastName.Contains(filterPacient) || b.v_SecondLastName.Contains(filterPacient) )
                                     && (b.v_DocNumber.Contains(filterDocNumber))

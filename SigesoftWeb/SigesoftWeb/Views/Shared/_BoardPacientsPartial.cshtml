@@ -5,11 +5,11 @@
     int Ultimo = 0;
     int Index = 0;
 
-    if (ViewBag.Pacientes != null)
+    if (ViewBag.Pacients != null)
     {
         Take = ViewBag.Pacients.Take;
         Index = ViewBag.Pacients.Index;
-        Total = ViewBag.Pacients.TotalRegistros;
+        Total = ViewBag.Pacients.TotalRecords;
         Primer = ((Index - 1) * Take) + 1;
         Ultimo = Primer + (ViewBag.Pacients.List.Count - 1);
 
