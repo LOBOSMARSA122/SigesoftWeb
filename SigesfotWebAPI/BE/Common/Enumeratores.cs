@@ -25,5 +25,10 @@ namespace BE.Common
         {
             TypeDocument = 100
         }
+
+        public enum DataHierarchy
+        {
+            TypeDoc = 106
+        }
     }
 }

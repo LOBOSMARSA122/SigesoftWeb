@@ -24,7 +24,7 @@ namespace BL.Common
             try
             {
                 var isDeleted = (int)Enumeratores.SiNo.No;
-                int groupDocTypeId = (int)Enumeratores.Parameters.TypeDocument;
+                int groupDocTypeId = (int)Enumeratores.DataHierarchy.TypeDoc;
                 int skip = (data.Index - 1) * data.Take;
 
                 //filters
