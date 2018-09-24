@@ -5,7 +5,7 @@ using System.Web;
 
 namespace SigesoftWeb.Models.Common
 {
-    public class DropdownlistModel
+    public class Dropdownlist
     {
         public string Id { get; set; }        
         public string Value { get; set; }
