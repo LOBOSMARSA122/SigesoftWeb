@@ -96,58 +96,60 @@ namespace BL.Common
         {
             try
             {
-                //PersonBE oPersonBE = new PersonBE()
-                //{
-                //    PersonId = BE.Utils.GetPrimaryKey(1,1,"PE"),
-                //    FirstName = person.FirstName,
-                //    FirstLastName = person.FirstLastName,
-                //    SecondLastName = person.SecondLastName,
-                //    DocTypeId = person.DocTypeId,
-                //    DocNumber = person.DocNumber,
-                //    Birthdate = person.Birthdate,
-                //    BirthPlace = person.BirthPlace,
-                //    SexTypeId = person.SexTypeId,
-                //    MaritalStatusId = person.MaritalStatusId,
-                //    LevelOfId = person.LevelOfId,
-                //    TelephoneNumber = person.TelephoneNumber,
-                //    AdressLocation = person.AdressLocation,
-                //    GeografyLocationId = person.GeografyLocationId,
-                //    ContactName = person.ContactName,
-                //    EmergencyPhone = person.EmergencyPhone,
-                //    PersonImage = person.PersonImage,
-                //    Mail = person.Mail,
-                //    BloodGroupId = person.BloodGroupId,
-                //    BloodFactorId = person.BloodFactorId,
-                //    FingerPrintTemplate = person.FingerPrintTemplate,
-                //    RubricImage = person.RubricImage,
-                //    FingerPrintImage = person.FingerPrintImage,
-                //    RubricImageText = person.RubricImageText,
-                //    CurrentOccupation = person.CurrentOccupation,
-                //    DepartmentId = person.DepartmentId,
-                //    ProvinceId = person.ProvinceId,
-                //    DistrictId = person.DistrictId,
-                //    ResidenceInWorkplaceId = person.ResidenceInWorkplaceId,
-                //    ResidenceTimeInWorkplace = person.ResidenceTimeInWorkplace,
-                //    TypeOfInsuranceId = person.TypeOfInsuranceId,
-                //    NumberLivingChildren = person.NumberLivingChildren,
-                //    NumberDependentChildren = person.NumberDependentChildren,
-                //    OccupationTypeId = person.OccupationTypeId,
-                //    OwnerName = person.OwnerName,
-                //    NumberLiveChildren = person.NumberLiveChildren,
-                //    NumberDeadChildren = person.NumberDeadChildren,
+                PersonBE oPersonBE = new PersonBE()
+                {
+                    v_PersonId = BE.Utils.GetPrimaryKey(1, 1, "PE"),
+                    v_FirstName = person.v_FirstName,
+                    v_FirstLastName = person.v_FirstLastName,
+                    v_SecondLastName = person.v_SecondLastName,
+                    i_DocTypeId = person.i_DocTypeId,
+                    v_DocNumber = person.v_DocNumber,
+                    d_Birthdate = person.d_Birthdate,
+                    v_BirthPlace = person.v_BirthPlace,
+                    i_SexTypeId = person.i_SexTypeId,
+                    i_MaritalStatusId = person.i_MaritalStatusId,
+                    i_LevelOfId = person.i_LevelOfId,
+                    v_TelephoneNumber = person.v_TelephoneNumber,
+                    v_AdressLocation = person.v_AdressLocation,
+                    v_GeografyLocationId = person.v_GeografyLocationId,
+                    v_ContactName = person.v_ContactName,
+                    v_EmergencyPhone = person.v_EmergencyPhone,
+                    b_PersonImage = person.b_PersonImage,
+                    v_Mail = person.v_Mail,
+                    i_BloodGroupId = person.i_BloodGroupId,
+                    i_BloodFactorId = person.i_BloodFactorId,
+                    v_FingerPrintTemplate = person.v_FingerPrintTemplate,
+                    b_RubricImage = person.b_RubricImage,
+                    b_FingerPrintImage = person.b_FingerPrintImage,
+                    v_RubricImageText = person.v_RubricImageText,
+                    v_CurrentOccupation = person.v_CurrentOccupation,
+                    i_DepartmentId = person.i_DepartmentId,
+                    i_ProvinceId = person.i_ProvinceId,
+                    i_DistrictId = person.i_DistrictId,
+                    i_ResidenceInWorkplaceId = person.i_ResidenceInWorkplaceId,
+                    v_ResidenceTimeInWorkplace = person.v_ResidenceTimeInWorkplace,
+                    i_TypeOfInsuranceId = person.i_TypeOfInsuranceId,
+                    i_NumberLivingChildren = person.i_NumberLivingChildren,
+                    i_NumberDependentChildren = person.i_NumberDependentChildren,
+                    i_OccupationTypeId = person.i_OccupationTypeId,
+                    v_OwnerName = person.v_OwnerName,
+                    i_NumberLiveChildren = person.i_NumberLiveChildren,
+                    i_NumberDeadChildren = person.i_NumberDeadChildren,
 
-                //    //Auditoria
-                //    IsDeleted = (int)Enumeratores.SiNo.No,
-                //    InsertDate = DateTime.UtcNow,
-                //    InsertUserId = systemUserId
-                //};
+                    //Auditoria
+                    i_IsDeleted = (int)Enumeratores.SiNo.No,
+                    d_InsertDate = DateTime.UtcNow,
+                    i_InsertUserId = systemUserId
+                };
 
-                //ctx.Person.Add(oPersonBE);
+                ctx.Person.Add(oPersonBE);
 
-                //int rows = ctx.SaveChanges();
+                int rows = ctx.SaveChanges();
 
-                //return rows > 0;
+                if (rows > 0)
                 return true;
+
+                return false;
             }
             catch (Exception ex)
             {

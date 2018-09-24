@@ -1,5 +1,6 @@
 ﻿using BE.Common;
 using BL.Common;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,5 +20,30 @@ namespace SigesoftWebAPI.Controllers.Common
             var result = oPacientBL.GetAllPacients(data);
             return Ok(result);
         }
+
+        [HttpPost]
+        public IHttpActionResult AddPacient(MultiDataModel data)
+        {
+            Pacients empresa = JsonConvert.DeserializeObject<Pacients>(data.String1);
+            bool result = oPacientBL.AddPacient(empresa, data.Int1);
+            return Ok(result);
+        }
+
+        [HttpPost]
+        public IHttpActionResult EditPacient(MultiDataModel data)
+        {
+            Pacients pacient = JsonConvert.DeserializeObject<Pacients>(data.String1);
+            bool result = oPacientBL.EditPacient(pacient, data.Int1);
+            return Ok(result);
+        }
+
+        [HttpPost]
+        public IHttpActionResult DeletePacient(MultiDataModel data)
+        {
+            bool result = oPacientBL.DeletePacient(data.String1, data.Int2);
+            return Ok(result);
+        }
+
+
     }
 }

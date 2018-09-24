@@ -55,6 +55,7 @@
     <Compile Include="Common\EmailBL.cs" />
     <Compile Include="Common\LogBL.cs" />
     <Compile Include="Common\MasterRecommendationRestricctionBL.cs" />
+    <Compile Include="Common\MultiDataModel.cs" />
     <Compile Include="Common\MultimediaFileBL.cs" />
     <Compile Include="Common\NodeBL.cs" />
     <Compile Include="Common\NodeServiceProfileBL.cs" />
