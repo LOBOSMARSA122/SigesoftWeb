@@ -11,9 +11,9 @@ namespace BE.Security
     public class RoleNodeBE
     {
         [Key, Column(Order = 1)]
-        public int? NodeId { get; set; }
+        public int? i_NodeId { get; set; }
         [Key, Column(Order = 2)]
-        public int? RoleId { get; set; }
-        public int? IsDeleted { get; set; }
+        public int? i_RoleId { get; set; }
+        public int? i_IsDeleted { get; set; }
     }
 }

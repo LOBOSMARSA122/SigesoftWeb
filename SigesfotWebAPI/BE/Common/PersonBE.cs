@@ -12,48 +12,48 @@ namespace BE.Common
     public class PersonBE
     {
         [Key]
-        public string PersonId{get; set;}
-        public string FirstName{get; set;}
-        public string FirstLastName{get; set;}
-        public string SecondLastName{get; set;}
-        public int? DocTypeId {get; set;}
-        public string DocNumber{get; set;}
-        public DateTime? Birthdate{get; set;}
-        public string BirthPlace{get; set;}
-        public int? SexTypeId {get; set;}
-        public int? MaritalStatusId {get; set;}
-        public int? LevelOfId {get; set;}
-        public string TelephoneNumber{get; set;}
-        public string AdressLocation{get; set;}
-        public string GeografyLocationId{get; set;}
-        public string ContactName{get; set;}
-        public string EmergencyPhone{get; set;}
-        public byte[] PersonImage{get; set;}
-        public string Mail{get; set;}
-        public int? BloodGroupId{get; set;}
-        public int? BloodFactorId{get; set;}
-        public string FingerPrintTemplate{get; set;}
-        public string RubricImage{get; set;}
-        public string FingerPrintImage{get; set;}
-        public string RubricImageText{get; set;}
-        public string CurrentOccupation{get; set;}
-        public int? DepartmentId{get; set;}
-        public int? ProvinceId {get; set;}
-        public int? DistrictId {get; set;}
-        public int? ResidenceInWorkplaceId {get; set;}
-        public string ResidenceTimeInWorkplace{get; set;}
-        public int? TypeOfInsuranceId {get; set;}
-        public string NumberLivingChildren{get; set;}
-        public string NumberDependentChildren{get; set;}
-        public int? OccupationTypeId {get; set;}
-        public string OwnerName{get; set;}
-        public string NumberLiveChildren{get; set;}
-        public string NumberDeadChildren{get; set;}
-        public int IsDeleted {get; set;}
-        public int? InsertUserId {get; set;}
-        public DateTime? InsertDate {get; set;}
-        public int? UpdateUserId{get; set;}
-        public DateTime? UpdateDate {get; set;}
+        public string v_PersonId{get; set;}
+        public string v_FirstName{get; set;}
+        public string v_FirstLastName{get; set;}
+        public string v_SecondLastName{get; set;}
+        public int? i_DocTypeId {get; set;}
+        public string v_DocNumber{get; set;}
+        public DateTime? d_Birthdate{get; set;}
+        public string v_BirthPlace{get; set;}
+        public int? i_SexTypeId {get; set;}
+        public int? i_MaritalStatusId {get; set;}
+        public int? i_LevelOfId {get; set;}
+        public string v_TelephoneNumber{get; set;}
+        public string v_AdressLocation{get; set;}
+        public string v_GeografyLocationId{get; set;}
+        public string v_ContactName{get; set;}
+        public string v_EmergencyPhone{get; set;}
+        public byte[] b_PersonImage{get; set;}
+        public string v_Mail{get; set;}
+        public int? i_BloodGroupId{get; set;}
+        public int? i_BloodFactorId{get; set;}
+        public string v_FingerPrintTemplate{get; set;}
+        public string v_RubricImage{get; set;}
+        public string v_FingerPrintImage{get; set;}
+        public string v_RubricImageText{get; set;}
+        public string v_CurrentOccupation{get; set;}
+        public int? i_DepartmentId{get; set;}
+        public int? i_ProvinceId {get; set;}
+        public int? i_DistrictId {get; set;}
+        public int? v_ResidenceInWorkplaceId {get; set;}
+        public string v_ResidenceTimeInWorkplace{get; set;}
+        public int? i_TypeOfInsuranceId {get; set;}
+        public string v_NumberLivingChildren{get; set;}
+        public string v_NumberDependentChildren{get; set;}
+        public int? i_OccupationTypeId {get; set;}
+        public string V_OwnerName{get; set;}
+        public string v_NumberLiveChildren{get; set;}
+        public string v_NumberDeadChildren{get; set;}
+        public int i_IsDeleted {get; set;}
+        public int? i_InsertUserId {get; set;}
+        public DateTime? d_InsertDate {get; set;}
+        public int? i_UpdateUserId{get; set;}
+        public DateTime? d_UpdateDate {get; set;}
 
     }
 }

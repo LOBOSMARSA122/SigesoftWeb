@@ -8,10 +8,11 @@ namespace SigesoftWeb.Utils
 {
     public class ClientSession
     {
-        public string SystemUserId { get; set; }
+        public int SystemUserId { get; set; }
         public string PersonId { get; set; }       
         public string UserName { get; set; }
-        public string FullName { get; set; }       
+        public string FullName { get; set; }    
+        public byte[] PersonImage { get; set; }
         public List<AuthorizationModel> Authorizations { get; set; }
         
     }

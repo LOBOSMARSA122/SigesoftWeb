@@ -20,31 +20,31 @@ namespace BL.Security
             {
                 var isDeleted = (int)Enumeratores.SiNo.No;
                 var user = (from sys in ctx.SystemUser
-                                join per in ctx.Person on sys.PersonId equals per.PersonId
-                                join pro in ctx.Professional on per.PersonId equals pro.PersonId
-                                where sys.UserName == userName &&
-                                   sys.Password == password &&
-                                   sys.IsDeleted == isDeleted
+                                join per in ctx.Person on sys.v_PersonId equals per.v_PersonId
+                                join pro in ctx.Professional on per.v_PersonId equals pro.v_PersonId
+                            where sys.v_UserName == userName &&
+                                   sys.v_Password == password &&
+                                   sys.i_IsDeleted == isDeleted
                                 select new AuthorizationModel
                                 {
-                                    PersonId = sys.PersonId,
-                                    FullName = per.FirstName + " " + per.FirstLastName,
-                                    PersonImage = per.PersonImage,
-                                    UserName = sys.UserName,
-                                    SystemUserId = sys.SystemUserId.Value
+                                    PersonId = sys.v_PersonId,
+                                    FullName = per.v_FirstName + " " + per.v_FirstLastName,
+                                    PersonImage = per.b_PersonImage,
+                                    UserName = sys.v_UserName,
+                                    SystemUserId = sys.i_SystemUserId.Value
 
                                 }).FirstOrDefault();
                 if (user != null)
                 {
-                    var permissions = GetPermissions(nodeId, user.SystemUserId);
-                    user.Permissions = permissions;
+                    //var permissions = GetPermissions(nodeId, user.SystemUserId);
+                    //user.Permissions = permissions;
                 }
                 else
                 {
                     return null;
                 }
 
-                return null;
+                return user;
             }
             catch (Exception ex)
             {
@@ -56,48 +56,48 @@ namespace BL.Security
         {
             var isDeleted = (int)Enumeratores.SiNo.No;
             var query = (from rnp in ctx.RoleNodeProfile
-                         join rn in ctx.RoleNode on new { a = rnp.NodeId, b = rnp.RoleId }
-                                                 equals new { a = rn.NodeId, b = rn.RoleId } into rn_join
+                         join rn in ctx.RoleNode on new { a = rnp.i_NodeId, b = rnp.i_RoleId }
+                                                 equals new { a = rn.i_NodeId, b = rn.i_RoleId } into rn_join
                          from rnj in rn_join.DefaultIfEmpty()
 
-                         join surn in ctx.SystemUserRoleNode on new { a = rnp.NodeId, b = rnp.RoleId }
-                                                equals new { a = surn.NodeId, b = surn.RoleId } into surn_join
+                         join surn in ctx.SystemUserRoleNode on new { a = rnp.i_NodeId, b = rnp.i_RoleId }
+                                                equals new { a = surn.i_NodeId, b = surn.i_RoleId } into surn_join
                          from surnj in surn_join.DefaultIfEmpty()
 
-                         join ah in ctx.ApplicationHierarchy on rnp.ApplicationHierarchyId equals ah.ApplicationHierarchyId
+                         join ah in ctx.ApplicationHierarchy on rnp.i_ApplicationHierarchyId equals ah.i_ApplicationHierarchyId
 
-                         join fff in ctx.SystemParameter on new { a = surnj.RoleId.Value, b = 115 } // ROLES DEL SISTEMA
+                         join fff in ctx.SystemParameter on new { a = surnj.i_RoleId.Value, b = 115 } // ROLES DEL SISTEMA
                                                                equals new { a = fff.i_ParameterId.Value, b = fff.i_GroupId.Value } into J5_join
                          from fff in J5_join.DefaultIfEmpty()
 
-                         where (surnj.NodeId == nodeId) &&
-                               (surnj.SystemUserId == systemUserId) &&
-                               (ah.ApplicationHierarchyTypeId == 2 || ah.ApplicationHierarchyTypeId == 1) &&
-                               (surnj.IsDeleted == isDeleted) && (rnp.IsDeleted == isDeleted) &&
-                               (ah.TypeFormId == (int)TypeForm.Windows) && (ah.IsDeleted == 0)
+                         where (surnj.i_NodeId == nodeId) &&
+                               (surnj.i_SystemUserId == systemUserId) &&
+                               (ah.i_ApplicationHierarchyTypeId == 2 || ah.i_ApplicationHierarchyTypeId == 1) &&
+                               (surnj.i_IsDeleted == isDeleted) && (rnp.i_IsDeleted == isDeleted) &&
+                               (ah.i_TypeFormId == (int)TypeForm.Windows) && (ah.i_IsDeleted == 0)
                          select new Permission
                          {
-                             ApplicationHierarchyId = rnp.ApplicationHierarchyId.Value,
-                             ApplicationHierarchyTypeId = ah.ApplicationHierarchyTypeId.Value,
-                             Description = ah.Description,
-                             ParentId = ah.ParentId.Value,
-                             Form = ah.Form == null ? string.Empty : ah.Form,
+                             ApplicationHierarchyId = rnp.i_ApplicationHierarchyId.Value,
+                             ApplicationHierarchyTypeId = ah.i_ApplicationHierarchyTypeId.Value,
+                             Description = ah.v_Description,
+                             ParentId = ah.i_ParentId.Value,
+                             Form = ah.v_Form == null ? string.Empty : ah.v_Form,
                              RoleName = fff.v_Value1,
                              RoleId = fff.i_ParameterId.Value
                          }
                           ).Concat(from a in ctx.SystemUserGobalProfile
-                                   join b in ctx.ApplicationHierarchy on a.ApplicationHierarchyId equals b.ApplicationHierarchyId
+                                   join b in ctx.ApplicationHierarchy on a.ApplicationHierarchyId equals b.i_ApplicationHierarchyId
                                    where (a.SystemUserId == systemUserId) &&
-                                         (b.ApplicationHierarchyTypeId == 1 || b.ApplicationHierarchyTypeId == 2) &&
-                                         (b.IsDeleted == 0) && (a.IsDeleted == 0) &&
-                                         (b.TypeFormId == (int)TypeForm.Windows)
+                                         (b.i_ApplicationHierarchyTypeId == 1 || b.i_ApplicationHierarchyTypeId == 2) &&
+                                         (b.i_IsDeleted == 0) && (a.IsDeleted == 0) &&
+                                         (b.i_TypeFormId == (int)TypeForm.Windows)
                                    select new Permission
                                    {
                                        ApplicationHierarchyId = a.ApplicationHierarchyId.Value,
-                                       ApplicationHierarchyTypeId = b.ApplicationHierarchyTypeId.Value,
-                                       Description = b.Description,
-                                       ParentId = b.ParentId.Value,
-                                       Form = b.Form == null ? string.Empty : b.Form,
+                                       ApplicationHierarchyTypeId = b.i_ApplicationHierarchyTypeId.Value,
+                                       Description = b.v_Description,
+                                       ParentId = b.i_ParentId.Value,
+                                       Form = b.v_Form == null ? string.Empty : b.v_Form,
                                        RoleName = "",
                                        //RoleId = null
                                    });

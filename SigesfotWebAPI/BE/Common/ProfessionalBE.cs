@@ -12,7 +12,7 @@ namespace BE.Common
     public class ProfessionalBE
     {
         [Key]
-        public string PersonId { get; set; }
-        public int? ProfesionId { get; set; }
+        public string v_PersonId { get; set; }
+        public int? i_ProfesionId { get; set; }
     }
 }

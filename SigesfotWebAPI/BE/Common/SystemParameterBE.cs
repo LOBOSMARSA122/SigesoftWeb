@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace BE.Common
 {
+    [Table("SystemParameter")]
     public class SystemParameterBE
     {
         [Key, Column(Order = 1)]

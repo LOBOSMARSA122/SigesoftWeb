@@ -89,10 +89,11 @@ namespace SigesoftWeb.Controllers
             ViewBag.USUARIO = usuario;
             ClientSession oclientSession = new ClientSession
             {
-                SystemUserId = ViewBag.USUARIO.UsuarioId,
-                PersonId = ViewBag.USUARIO.PersonaId,
-                FullName = ViewBag.USUARIO.NombreCompleto,
-                Authorizations = ViewBag.USUARIO.Autorizacion
+                SystemUserId = ViewBag.USUARIO.SystemUserId,
+                PersonId = ViewBag.USUARIO.PersonId,
+                FullName = ViewBag.USUARIO.FullName,
+                PersonImage = ViewBag.USUARIO.PersonImage
+                //Authorizations = ViewBag.USUARIO.Permissions
             };
             return oclientSession;
         }

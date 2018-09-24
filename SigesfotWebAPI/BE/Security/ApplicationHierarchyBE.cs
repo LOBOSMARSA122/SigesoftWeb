@@ -10,17 +10,17 @@ namespace BE.Security
     public class ApplicationHierarchyBE
     {
         [Key]
-        public int? ApplicationHierarchyId { get; set; }
+        public int? i_ApplicationHierarchyId { get; set; }
 
-        public int? ApplicationHierarchyTypeId { get; set; }
-        public int? Level { get; set; }
-        public string Description { get; set; }
-        public string Form { get; set; }
-        public string Code { get; set; }
-        public int? ParentId { get; set; }
-        public int? ScopeId { get; set; }
-        public int? TypeFormId { get; set; }
-        public int? ExternalUserFunctionalityTypeId { get; set; }
-        public int? IsDeleted { get; set; }
+        public int? i_ApplicationHierarchyTypeId { get; set; }
+        public int? i_Level { get; set; }
+        public string v_Description { get; set; }
+        public string v_Form { get; set; }
+        public string v_Code { get; set; }
+        public int? i_ParentId { get; set; }
+        public int? i_ScopeId { get; set; }
+        public int? i_TypeFormId { get; set; }
+        public int? i_ExternalUserFunctionalityTypeId { get; set; }
+        public int? i_IsDeleted { get; set; }
     }
 }
