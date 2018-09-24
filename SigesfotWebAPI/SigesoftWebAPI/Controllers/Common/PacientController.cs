@@ -21,6 +21,13 @@ namespace SigesoftWebAPI.Controllers.Common
             return Ok(result);
         }
 
+        [HttpGet]
+        public IHttpActionResult GetPacientById (string pacientId)
+        {
+            var result = oPacientBL.GetPacientById(pacientId);
+            return Ok(result);
+        }
+
         [HttpPost]
         public IHttpActionResult AddPacient(MultiDataModel data)
         {
