@@ -12,6 +12,12 @@ namespace BL.Common
     {
         private DatabaseContext ctx = new DatabaseContext();
 
+        #region CRUD
+
+
+
+        #endregion
+
         #region Bussiness Logic
         public BoardPacient GetAllPacients(BoardPacient data)
         {

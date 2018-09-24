@@ -18,9 +18,9 @@ namespace SigesoftWeb.Utils
             return Convert.ToBase64String(_encrypt);
         }
 
-        public static List<DropdownlistModel> LoadDropDownList(List<DropdownlistModel> list, string action)
+        public static List<Dropdownlist> LoadDropDownList(List<Dropdownlist> list, string action)
         {
-            DropdownlistModel oDropdownlistModel = new DropdownlistModel
+            Dropdownlist oDropdownlistModel = new Dropdownlist
             {
                 Id = "-1"
             };
