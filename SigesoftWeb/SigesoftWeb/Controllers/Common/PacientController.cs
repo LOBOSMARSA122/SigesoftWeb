@@ -40,7 +40,7 @@ namespace SigesoftWeb.Controllers.Common
         }
 
         //[GeneralSecurity(Rol = "Administracion-Proveedores")]
-        public ActionResult CreatePacient(int? id)
+        public ActionResult CreatePacient(string id)
         {
             Api API = new Api();
             Dictionary<string, string> arg = new Dictionary<string, string>()
