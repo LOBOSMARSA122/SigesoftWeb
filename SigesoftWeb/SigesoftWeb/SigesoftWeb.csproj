@@ -166,11 +166,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\API.cs" />
+    <Compile Include="Models\Common\Boards.cs" />
     <Compile Include="Models\Common\Dropdownlist.cs" />
     <Compile Include="Models\Security\AuthorizationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\ClientSession.cs" />
     <Compile Include="Utils\Constants.cs" />
+    <Compile Include="Utils\Enums.cs" />
     <Compile Include="Utils\Utils.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -416,7 +418,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_HeaderPartial.cshtml" />
     <Content Include="Views\Pacient\Index.cshtml" />
-    <Content Include="Views\Shared\_BandejaPacientesPartial.cshtml" />
+    <Content Include="Views\Shared\_BoardPacientsPartial.cshtml" />
     <Content Include="Views\Pacient\CrearPaciente.cshtml" />
   </ItemGroup>
   <ItemGroup>

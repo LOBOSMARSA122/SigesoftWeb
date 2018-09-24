@@ -18,7 +18,7 @@ namespace BL.Common
             try
             {
                 var objEntity = (from a in ctx.DataHierarchy
-                                 where a.GroupId == groupId && a.ItemId == itemId
+                                 where a.i_GroupId == groupId && a.i_ItemId == itemId
                                  select a).FirstOrDefault();
 
                 return objEntity;
@@ -36,21 +36,21 @@ namespace BL.Common
             {
                 var isDelete = (int)Enumeratores.SiNo.No;
                 var objEntity = (from a in ctx.DataHierarchy
-                                 where a.IsDeleted == isDelete
+                                 where a.i_IsDeleted == isDelete
                                  select new DataHierarchyBE()
                                  {
-                                     GroupId = a.GroupId,
-                                     ItemId = a.ItemId,
-                                     Value1 = a.Value1,
-                                     Value2 = a.Value2,
-                                     Field = a.Field,
-                                     ParentItemId = a.ParentItemId,
-                                     Sort = a.Sort,
-                                     IsDeleted = a.IsDeleted,
-                                     InsertUserId = a.InsertUserId,
-                                     InsertDate = a.InsertDate,
-                                     UpdateDate = a.UpdateDate,
-                                     UpdateUserId = a.UpdateUserId
+                                     i_GroupId = a.i_GroupId,
+                                     i_ItemId = a.i_ItemId,
+                                     v_Value1 = a.v_Value1,
+                                     v_Value2 = a.v_Value2,
+                                     v_Field = a.v_Field,
+                                     i_ParentItemId = a.i_ParentItemId,
+                                     i_Sort = a.i_Sort,
+                                     i_IsDeleted = a.i_IsDeleted,
+                                     i_InsertUserId = a.i_InsertUserId,
+                                     d_InsertDate = a.d_InsertDate,
+                                     d_UpdateDate = a.d_UpdateDate,
+                                     i_UpdateUserId = a.i_UpdateUserId
                                  }).ToList();
 
                 return objEntity;
@@ -69,16 +69,16 @@ namespace BL.Common
                 {
                     //GroupId = BE.Utils.GetPrimaryKey("no usa"),
 
-                    Value1 = dataHierarchy.Value1,
-                    Value2 = dataHierarchy.Value2,
-                    Field = dataHierarchy.Field,
-                    ParentItemId = dataHierarchy.ParentItemId,
-                    Sort = dataHierarchy.Sort,
+                    v_Value1 = dataHierarchy.v_Value1,
+                    v_Value2 = dataHierarchy.v_Value2,
+                    v_Field = dataHierarchy.v_Field,
+                    i_ParentItemId = dataHierarchy.i_ParentItemId,
+                    i_Sort = dataHierarchy.i_Sort,
 
                     //Auditoria
-                    IsDeleted = (int)Enumeratores.SiNo.No,
-                    InsertDate = DateTime.UtcNow,
-                    InsertUserId = systemUserId,
+                    i_IsDeleted = (int)Enumeratores.SiNo.No,
+                    d_InsertDate = DateTime.UtcNow,
+                    i_InsertUserId = systemUserId,
                 };
 
                 ctx.DataHierarchy.Add(oDataHierarchyBE);
@@ -98,22 +98,22 @@ namespace BL.Common
             try
             {
                 var oDataHierarchy = (from a in ctx.DataHierarchy
-                                      where a.GroupId == dataHierarchy.GroupId && a.ItemId == dataHierarchy.ItemId
+                                      where a.i_GroupId == dataHierarchy.i_GroupId && a.i_ItemId == dataHierarchy.i_ItemId
                                       select a).FirstOrDefault();
 
                 if (oDataHierarchy == null)
                     return false;
 
-                oDataHierarchy.Value1 = dataHierarchy.Value1;
-                oDataHierarchy.Value2 = dataHierarchy.Value2;
-                oDataHierarchy.Field = dataHierarchy.Field;
-                oDataHierarchy.ParentItemId = dataHierarchy.ParentItemId;
-                oDataHierarchy.Sort = dataHierarchy.Sort;
+                oDataHierarchy.v_Value1 = dataHierarchy.v_Value1;
+                oDataHierarchy.v_Value2 = dataHierarchy.v_Value2;
+                oDataHierarchy.v_Field = dataHierarchy.v_Field;
+                oDataHierarchy.i_ParentItemId = dataHierarchy.i_ParentItemId;
+                oDataHierarchy.i_Sort = dataHierarchy.i_Sort;
 
                 //Auditoria
 
-                oDataHierarchy.UpdateDate = DateTime.UtcNow;
-                oDataHierarchy.UpdateUserId = systemUserId;
+                oDataHierarchy.d_UpdateDate = DateTime.UtcNow;
+                oDataHierarchy.i_UpdateUserId = systemUserId;
 
                 int rows = ctx.SaveChanges();
 
@@ -130,15 +130,15 @@ namespace BL.Common
             try
             {
                 var oDataHierarchy = (from a in ctx.DataHierarchy
-                            where a.GroupId == groupId && a.ItemId == itemId
+                            where a.i_GroupId == groupId && a.i_ItemId == itemId
                             select a).FirstOrDefault();
 
                 if (oDataHierarchy == null)
                     return false;
 
-                oDataHierarchy.UpdateUserId = systemUserId;
-                oDataHierarchy.UpdateDate = DateTime.UtcNow;
-                oDataHierarchy.IsDeleted = (int)Enumeratores.SiNo.Si;
+                oDataHierarchy.i_UpdateUserId = systemUserId;
+                oDataHierarchy.d_UpdateDate = DateTime.UtcNow;
+                oDataHierarchy.i_IsDeleted = (int)Enumeratores.SiNo.Si;
 
                 int rows = ctx.SaveChanges();
 
@@ -149,6 +149,23 @@ namespace BL.Common
             {
                 return false;
             }
+        }
+        #endregion
+
+        #region Bussines Logic
+
+        public List<Dropdownlist> GetDatahierarchyByGrupoId(int grupoId)
+        {
+            var isDeleted = (int)Enumeratores.SiNo.No;
+            List<Dropdownlist> result = (from a in ctx.DataHierarchy
+                                         where a.i_IsDeleted == isDeleted && a.i_GroupId == grupoId
+                                         orderby a.i_Sort ascending
+                                         select new Dropdownlist
+                                         {
+                                             Id = a.i_ItemId,
+                                             Value = a.v_Value1
+                                         }).ToList();
+            return result;
         }
         #endregion
     }

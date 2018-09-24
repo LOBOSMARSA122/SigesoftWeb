@@ -185,6 +185,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\Common\DataHierarchyController.cs" />
     <Compile Include="Controllers\Common\PacientController.cs" />
     <Compile Include="Controllers\Common\SystemParameterController.cs" />
     <Compile Include="Controllers\Security\AuthorizationController.cs" />
