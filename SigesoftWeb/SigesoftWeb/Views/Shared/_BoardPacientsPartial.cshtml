@@ -86,10 +86,7 @@
                 <ul class="pagination">
                     @{
                         if (Index > 1)
-                        {
-                            <li class="page-item" onclick="Filtrar(1)">
-                                <span class="page-link" aria-hidden="true">Primero</span>
-                            </li>
+                        {                           
                             <li class="page-item" onclick="Filtrar(@(Index - 1))">
                                 <span class="page-link" aria-hidden="true">Anterior</span>
                             </li>
@@ -111,10 +108,7 @@
                         {
                             <li class="page-item" onclick="Filtrar(@(Index + 1))">
                                 <span class="page-link" aria-hidden="true">Siguiente</span>
-                            </li>
-                            <li class="page-item" onclick="Filtrar(@(pagina))">
-                                <span class="page-link" aria-hidden="true">Ultimo</span>
-                            </li>
+                            </li>                          
                         }
                     }
                 </ul>
