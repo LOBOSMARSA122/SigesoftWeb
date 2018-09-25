@@ -208,6 +208,7 @@ header .menu .nombre-usuario {
 
     .barra-lateral .datos-usuario img {
         height: 100px;
+        width: 100px;
         border-radius: 100%;
     }
 
@@ -236,9 +237,9 @@ header .menu .nombre-usuario {
 }
 
 .barra-lateral .menu a:hover {
-    background: #BDBDBD;
+    background: #E2E4E9;
     text-decoration: none;
-    color:white;
+    color: #263C3E;
 }
 
 .barra-lateral .menu a i {
@@ -258,9 +259,9 @@ header .menu .nombre-usuario {
     padding-left: 40px;
 }
 
-.barra-lateral .submenu_ {
-    background:#dd4b39;
-    font-size:10px;
+.barra-lateral .submenu_ li a {
+    font-size: 12px;
+    padding-left: 40px;
 }
 
 .submenu-ebene2 {
@@ -727,7 +728,8 @@ textarea {
         }
 
     .barra-lateral .datos-usuario img {
-        height: 50px;
+        height: 100px;
+        width: 100px;
         border-radius: 100%;
     }
 
