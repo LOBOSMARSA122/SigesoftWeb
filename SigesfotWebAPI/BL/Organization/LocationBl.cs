@@ -64,7 +64,7 @@ namespace BL.Organization
             {
                 LocationBE oLocationBE = new LocationBE()
                 {
-                    LocationId = BE.Utils.GetPrimaryKey(1, 14, "OL"),
+                    LocationId =  new Common.PersonBL().GetPrimaryKey(1, 14, "OL"),
                     OrganizationId = location.OrganizationId,
                     Name = location.Name,
 

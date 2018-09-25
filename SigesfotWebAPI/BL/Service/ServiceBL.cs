@@ -145,7 +145,7 @@ namespace BL.Service
             {
                 ServiceBE oServiceBE = new ServiceBE()
                 {
-                    ServiceId = BE.Utils.GetPrimaryKey(1, 23, "SR"),
+                    ServiceId =  new Common.PersonBL().GetPrimaryKey(1, 23, "SR"),
                     ProtocolId = service.ProtocolId,
                     PersonId = service.PersonId,
                     MasterServiceId = service.MasterServiceId,

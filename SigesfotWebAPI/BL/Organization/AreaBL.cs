@@ -65,7 +65,7 @@ namespace BL.Organization
                 AreaBE oAreaBE = new AreaBE()
                 {
                     //PK
-                    AreaId =  BE.Utils.GetPrimaryKey(1, 11, "OA"),
+                    AreaId =   new Common.PersonBL().GetPrimaryKey(1, 11, "OA"),
                     LocationId = area.LocationId,
                     Name = area.Name,
 

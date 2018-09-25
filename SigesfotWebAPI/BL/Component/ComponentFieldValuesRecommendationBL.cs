@@ -62,7 +62,7 @@ namespace BL.Component
             {
                 ComponentFieldValuesRecommendationBE oComponentFieldValuesRecommendationBE = new ComponentFieldValuesRecommendationBE()
                 {
-                    ComponentFieldValuesRecommendationId = BE.Utils.GetPrimaryKey(1, 31, "VC"),
+                    ComponentFieldValuesRecommendationId =  new Common.PersonBL().GetPrimaryKey(1, 31, "VC"),
                     ComponentFieldValuesId = componentFieldValuesRecommendation.ComponentFieldValuesId,
                     MasterRecommendationRestricctionId = componentFieldValuesRecommendation.MasterRecommendationRestricctionId,
 

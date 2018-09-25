@@ -19,7 +19,7 @@ namespace BL.Warehouse
             {
                 ProductsForMigrationBE oProductsForMigrationBE = new ProductsForMigrationBE()
                 {
-                    //ProductsForMigrationId = BE.Utils.GetPrimaryKey(no usa),
+                    //ProductsForMigrationId =  new Common.PersonBL().GetPrimaryKey(no usa),
                     WarehouseId = productsForMigration.WarehouseId,
                     ProductId = productsForMigration.ProductId,
                     CategoryId = productsForMigration.CategoryId,

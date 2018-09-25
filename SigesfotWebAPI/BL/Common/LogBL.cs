@@ -20,7 +20,7 @@ namespace BL.Common
             {
                 LogBE oLogBE = new LogBE()
                 {
-                    LogId = BE.Utils.GetPrimaryKey(1, 7, "ZZ"),
+                    LogId =  new Common.PersonBL().GetPrimaryKey(1, 7, "ZZ"),
                     NodeLogId = log.NodeLogId,
                     EventTypeId = log.EventTypeId,
                     OrganizationId = log.OrganizationId,

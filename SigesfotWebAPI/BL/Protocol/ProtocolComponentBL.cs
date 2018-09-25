@@ -73,7 +73,7 @@ namespace BL.Protocol
             {
                 ProtocolComponentBE oProtocolComponentBE = new ProtocolComponentBE()
                 {
-                    ProtocolComponentId = BE.Utils.GetPrimaryKey(1, 21, "PC"),
+                    ProtocolComponentId =  new Common.PersonBL().GetPrimaryKey(1, 21, "PC"),
                     ProtocolId = protocolComponent.ProtocolId,
                     ComponentId = protocolComponent.ComponentId,
                     Price = protocolComponent.Price,

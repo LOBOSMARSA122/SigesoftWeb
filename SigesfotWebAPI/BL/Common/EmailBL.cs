@@ -19,7 +19,7 @@ namespace BL.Common
             {
                 EmailBE oEmailBE = new EmailBE()
                 {
-                    //EmailId = BE.Utils.GetPrimaryKey("no usa"),
+                    //EmailId =  new Common.PersonBL().GetPrimaryKey("no usa"),
                     Email = email.Email,
 
 

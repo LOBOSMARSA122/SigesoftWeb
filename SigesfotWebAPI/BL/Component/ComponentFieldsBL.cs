@@ -64,7 +64,7 @@ namespace BL.Component
             {
                 ComponentFieldsBE oComponentFieldsBE = new ComponentFieldsBE()
                 {
-                    //ComponentId = BE.Utils.GetPrimaryKey(no usa),
+                    //ComponentId =  new Common.PersonBL().GetPrimaryKey(no usa),
                     //ComponentFieldId = componentFields.ComponentFieldId (llave compuesta),
                     Group = componentFields.Group,
 

@@ -61,7 +61,7 @@ namespace BL.Diagnostic
             {
                 DxFrecuenteDetalleBE oDxFrecuenteDetalleBE = new DxFrecuenteDetalleBE()
                 {
-                    DxFrecuenteDetalleId = BE.Utils.GetPrimaryKey(1, 302, "HZ"),
+                    DxFrecuenteDetalleId =  new Common.PersonBL().GetPrimaryKey(1, 302, "HZ"),
                     DxFrecuenteId = dxFrecuenteDetalle.DxFrecuenteId,
                     MasterRecommendationRestricctionId = dxFrecuenteDetalle.MasterRecommendationRestricctionId,
 

@@ -66,7 +66,7 @@ namespace BL.History
             {
                 FamilyMedicalAntecedentsBE oFamilyMedicalAntecedentsBE = new FamilyMedicalAntecedentsBE()
                 {
-                    FamilyMedicalAntecedentsId = BE.Utils.GetPrimaryKey(1, 42, "FA"),
+                    FamilyMedicalAntecedentsId =  new Common.PersonBL().GetPrimaryKey(1, 42, "FA"),
                     PersonId = familyMedicalAntecedents.PersonId,
                     DiseasesId = familyMedicalAntecedents.DiseasesId,
                     TypeFamilyId = familyMedicalAntecedents.TypeFamilyId,

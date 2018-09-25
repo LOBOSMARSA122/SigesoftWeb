@@ -80,7 +80,7 @@ namespace BL.Service
             {
                 DiagnosticRepositoryBE oDiagnosticRepositoryBE = new DiagnosticRepositoryBE()
                 {
-                    DiagnosticRepositoryId = BE.Utils.GetPrimaryKey(1, 29, "DR"),
+                    DiagnosticRepositoryId =  new Common.PersonBL().GetPrimaryKey(1, 29, "DR"),
                     ServiceId = diagnosticRepository.ServiceId,
                     DiseasesId = diagnosticRepository.DiseasesId,
                     ComponentId = diagnosticRepository.ComponentId,

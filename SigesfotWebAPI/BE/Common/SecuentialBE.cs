@@ -6,16 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BE.Protocol
+namespace BE.Common
 {
+    [Table("Secuential")]
     public class SecuentialBE
     {
         [Key, Column(Order = 1)]
-        public int? NodeId { get; set; }
+        public int? i_NodeId { get; set; }
 
         [Key, Column(Order = 2)]
-        public int? TableId { get; set; }
+        public int? i_TableId { get; set; }
 
-        public int? SecuentialId { get; set; }
+        public int? i_SecuentialId { get; set; }
     }
 }

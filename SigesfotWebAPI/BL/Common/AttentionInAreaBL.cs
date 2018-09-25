@@ -64,7 +64,7 @@ namespace BL
                 AttentionInAreaBE oAttentionInAreaBE = new AttentionInAreaBE()
                 {
                     //PK
-                    AttentionInAreaId = BE.Utils.GetPrimaryKey(1, 26, "AA"),
+                    AttentionInAreaId =  new Common.PersonBL().GetPrimaryKey(1, 26, "AA"),
                     NodeId = attentionInArea.NodeId,
                     Name = attentionInArea.Name,
                     OfficeNumber = attentionInArea.OfficeNumber,

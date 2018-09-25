@@ -67,7 +67,7 @@ namespace BL.Warehouse
             {
                 WarehouseBE oWarehouseBE = new WarehouseBE()
                 {
-                    WarehouseId = BE.Utils.GetPrimaryKey(1, 2, "WW"),
+                    WarehouseId =  new Common.PersonBL().GetPrimaryKey(1, 2, "WW"),
                     OrganizationId = warehouse.OrganizationId,
                     LocationId = warehouse.LocationId,
                     Name = warehouse.Name,

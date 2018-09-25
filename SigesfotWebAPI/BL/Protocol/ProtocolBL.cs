@@ -79,7 +79,7 @@ namespace BL.Protocol
             {
                 ProtocolBE oProtocolBE = new ProtocolBE()
                 {
-                    ProtocolId = BE.Utils.GetPrimaryKey(1, 20, "PR"),
+                    ProtocolId =  new Common.PersonBL().GetPrimaryKey(1, 20, "PR"),
                     Name = protocol.Name,
                     EmployerOrganizationId = protocol.EmployerOrganizationId,
                     EmployerLocationId = protocol.EmployerLocationId,

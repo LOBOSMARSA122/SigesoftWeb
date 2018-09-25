@@ -66,7 +66,7 @@ namespace BL.Common
             {
                 MultimediaFileBE oMultimediaFileBE = new MultimediaFileBE()
                 {
-                    MultimediaFileId = BE.Utils.GetPrimaryKey(1, 45, "FU"),
+                    MultimediaFileId =  new Common.PersonBL().GetPrimaryKey(1, 45, "FU"),
                     PersonId = multimediaFile.PersonId,
                     FileName = multimediaFile.FileName,
                     File = multimediaFile.File,

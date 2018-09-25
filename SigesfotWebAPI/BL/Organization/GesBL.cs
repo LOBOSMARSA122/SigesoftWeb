@@ -64,7 +64,7 @@ namespace BL.Organization
             {
                 GesBE oGesBE = new GesBE()
                 {
-                    GesId = BE.Utils.GetPrimaryKey(1, 12, "OE"),
+                    GesId =  new Common.PersonBL().GetPrimaryKey(1, 12, "OE"),
                     AreaId = ges.AreaId,
                     Name = ges.Name,
 

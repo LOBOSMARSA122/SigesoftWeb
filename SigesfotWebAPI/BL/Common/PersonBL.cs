@@ -92,13 +92,13 @@ namespace BL.Common
             return null;
         }
 
-        public bool AddPerson(PersonBE person, int systemUserId)
+        public string AddPerson(PersonBE person, int systemUserId)
         {
             try
             {
                 PersonBE oPersonBE = new PersonBE()
                 {
-                    v_PersonId = BE.Utils.GetPrimaryKey(1, 1, "PE"),
+                    v_PersonId =  new Common.PersonBL().GetPrimaryKey(1, 8, "PP"),                   
                     v_FirstName = person.v_FirstName,
                     v_FirstLastName = person.v_FirstLastName,
                     v_SecondLastName = person.v_SecondLastName,
@@ -147,6 +147,69 @@ namespace BL.Common
                 int rows = ctx.SaveChanges();
 
                 if (rows > 0)
+                return oPersonBE.v_PersonId;
+
+                return "";
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
+        }
+
+        public bool UpdatePerson(PersonBE person, int systemUserId)
+        {
+            try
+            {
+                var oPerson = (from a in ctx.Person where a.v_PersonId == person.v_PersonId select a).FirstOrDefault();
+
+                if (oPerson == null)
+                    return false;
+
+                oPerson.v_FirstName = person.v_FirstName;
+                oPerson.v_FirstLastName = person.v_FirstLastName;
+                oPerson.v_SecondLastName = person.v_SecondLastName;
+                oPerson.i_DocTypeId = person.i_DocTypeId;
+                oPerson.v_DocNumber = person.v_DocNumber;
+                //oPerson.Birthdate = person.Birthdate;
+                //oPerson.BirthPlace = person.BirthPlace;
+                //oPerson.SexTypeId = person.SexTypeId;
+                //oPerson.MaritalStatusId = person.MaritalStatusId;
+                //oPerson.LevelOfId = person.LevelOfId;
+                oPerson.v_TelephoneNumber = person.v_TelephoneNumber;
+                //oPerson.AdressLocation = person.AdressLocation;
+                //oPerson.GeografyLocationId = person.GeografyLocationId;
+                //oPerson.ContactName = person.ContactName;
+                //oPerson.EmergencyPhone = person.EmergencyPhone;
+                //oPerson.PersonImage = person.PersonImage;
+                //oPerson.Mail = person.Mail;
+                //oPerson.BloodGroupId = person.BloodGroupId;
+                //oPerson.BloodFactorId = person.BloodFactorId;
+                //oPerson.FingerPrintTemplate = person.FingerPrintTemplate;
+                //oPerson.RubricImage = person.RubricImage;
+                //oPerson.FingerPrintImage = person.FingerPrintImage;
+                //oPerson.RubricImageText = person.RubricImageText;
+                //oPerson.CurrentOccupation = person.CurrentOccupation;
+                //oPerson.DepartmentId = person.DepartmentId;
+                //oPerson.ProvinceId = person.ProvinceId;
+                //oPerson.DistrictId = person.DistrictId;
+                //oPerson.ResidenceInWorkplaceId = person.ResidenceInWorkplaceId;
+                //oPerson.ResidenceTimeInWorkplace = person.ResidenceTimeInWorkplace;
+                //oPerson.TypeOfInsuranceId = person.TypeOfInsuranceId;
+                //oPerson.NumberLivingChildren = person.NumberLivingChildren;
+                //oPerson.NumberDependentChildren = person.NumberDependentChildren;
+                //oPerson.OccupationTypeId = person.OccupationTypeId;
+                //oPerson.OwnerName = person.OwnerName;
+                //oPerson.NumberLiveChildren = person.NumberLiveChildren;
+                //oPerson.NumberDeadChildren = person.NumberDeadChildren;
+
+                //Auditoria
+                oPerson.d_UpdateDate = DateTime.UtcNow;
+                oPerson.i_UpdateUserId = systemUserId;
+
+                int rows = ctx.SaveChanges();
+
+                if( rows > 0)
                 return true;
 
                 return false;
@@ -154,70 +217,10 @@ namespace BL.Common
             catch (Exception ex)
             {
                 return false;
+                throw;
             }
-        }
 
-        public bool UpdatePerson(PersonBE person, int systemUserId)
-        {
-            //try
-            //{
-            //    var oPerson = (from a in ctx.Person where a.PersonId == person.PersonId select a).FirstOrDefault();
-
-            //    if (oPerson == null)
-            //        return false;
-
-            //        oPerson.FirstName = person.FirstName;
-            //        oPerson.FirstLastName = person.FirstLastName;
-            //        oPerson.SecondLastName = person.SecondLastName;
-            //        oPerson.DocTypeId = person.DocTypeId;
-            //        oPerson.DocNumber = person.DocNumber;
-            //        oPerson.Birthdate = person.Birthdate;
-            //        oPerson.BirthPlace = person.BirthPlace;
-            //        oPerson.SexTypeId = person.SexTypeId;
-            //        oPerson.MaritalStatusId = person.MaritalStatusId;
-            //        oPerson.LevelOfId = person.LevelOfId;
-            //        oPerson.TelephoneNumber = person.TelephoneNumber;
-            //        oPerson.AdressLocation = person.AdressLocation;
-            //        oPerson.GeografyLocationId = person.GeografyLocationId;
-            //        oPerson.ContactName = person.ContactName;
-            //        oPerson.EmergencyPhone = person.EmergencyPhone;
-            //        oPerson.PersonImage = person.PersonImage;
-            //        oPerson.Mail = person.Mail;
-            //        oPerson.BloodGroupId = person.BloodGroupId;
-            //        oPerson.BloodFactorId = person.BloodFactorId;
-            //        oPerson.FingerPrintTemplate = person.FingerPrintTemplate;
-            //        oPerson.RubricImage = person.RubricImage;
-            //        oPerson.FingerPrintImage = person.FingerPrintImage;
-            //        oPerson.RubricImageText = person.RubricImageText;
-            //        oPerson.CurrentOccupation = person.CurrentOccupation;
-            //        oPerson.DepartmentId = person.DepartmentId;
-            //        oPerson.ProvinceId = person.ProvinceId;
-            //        oPerson.DistrictId = person.DistrictId;
-            //        oPerson.ResidenceInWorkplaceId = person.ResidenceInWorkplaceId;
-            //        oPerson.ResidenceTimeInWorkplace = person.ResidenceTimeInWorkplace;
-            //        oPerson.TypeOfInsuranceId = person.TypeOfInsuranceId;
-            //        oPerson.NumberLivingChildren = person.NumberLivingChildren;
-            //        oPerson.NumberDependentChildren = person.NumberDependentChildren;
-            //        oPerson.OccupationTypeId = person.OccupationTypeId;
-            //        oPerson.OwnerName = person.OwnerName;
-            //        oPerson.NumberLiveChildren = person.NumberLiveChildren;
-            //        oPerson.NumberDeadChildren = person.NumberDeadChildren;
-
-            //        //Auditoria
-            //        oPerson.UpdateDate = DateTime.UtcNow;
-            //        oPerson.UpdateUserId = systemUserId;
-
-            //    int rows = ctx.SaveChanges();
-
-            //    return rows > 0;
-            //}
-            //catch (Exception ex)
-            //{
-            //    return false;
-            //    throw;
-            //}
-
-            return true;
+            
         }
 
         public bool DeletePerson(string personId, int systemUserId)
@@ -245,6 +248,39 @@ namespace BL.Common
             return true;
         }
         #endregion
-   
+
+        #region Bussines Logic
+
+        public string GetPrimaryKey(int nodeId, int tableId, string pre)
+        {
+           var secuentialId = GetNextSecuentialId(nodeId, tableId);
+            return string.Format("N{0}-{1}{2}", nodeId.ToString("000"), pre, secuentialId.ToString("000000000"));
+        }
+
+        public int GetNextSecuentialId(int pintNodeId, int pintTableId)
+        {
+
+            var objSecuential = (from a in ctx.Secuential
+                                 where a.i_TableId == pintTableId && a.i_NodeId == pintNodeId
+                                 select a).SingleOrDefault();
+
+            // Actualizar el campo con el nuevo valor a efectos de reservar el ID autogenerado para evitar colisiones entre otros nodos
+            if (objSecuential != null)
+            {
+                objSecuential.i_SecuentialId = objSecuential.i_SecuentialId + 1;
+            }
+            else
+            {
+                objSecuential = new SecuentialBE();
+                objSecuential.i_NodeId = pintNodeId;
+                objSecuential.i_TableId = pintTableId;
+                objSecuential.i_SecuentialId = 0;
+                ctx.Secuential.Add(objSecuential);
+            }
+
+            return objSecuential.i_SecuentialId.Value;
+        }
+        #endregion
+
     }
 }

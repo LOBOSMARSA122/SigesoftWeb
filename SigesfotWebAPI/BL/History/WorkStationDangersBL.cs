@@ -67,7 +67,7 @@ namespace BL.History
             {
                 WorkStationDangersBE oWorkStationDangersBE = new WorkStationDangersBE()
                 {
-                    WorkstationDangersId = BE.Utils.GetPrimaryKey(1, 39, "HW"),
+                    WorkstationDangersId =  new Common.PersonBL().GetPrimaryKey(1, 39, "HW"),
                     HistoryId = workStationDangers.HistoryId,
                     DangerId = workStationDangers.DangerId,
                     NoiseSource = workStationDangers.NoiseSource,

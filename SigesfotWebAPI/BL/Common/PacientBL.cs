@@ -33,7 +33,8 @@ namespace BL.Common
 
                 var list = (from a in ctx.Pacient
                             join b in ctx.Person on a.v_PersonId equals b.v_PersonId
-                            join c in ctx.DataHierarchy on new { a = b.i_DocTypeId.Value, b = groupDocTypeId } equals new { a = c.i_ItemId, b = c.i_GroupId }
+                            join c in ctx.DataHierarchy on new { a = b.i_DocTypeId.Value, b = groupDocTypeId } equals new { a = c.i_ItemId, b = c.i_GroupId } into c_join
+                            from c in c_join.DefaultIfEmpty()
                             where a.i_IsDeleted == isDeleted 
                                     && (b.v_FirstName.Contains(filterPacient) || b.v_FirstLastName.Contains(filterPacient) || b.v_SecondLastName.Contains(filterPacient) )
                                     && (b.v_DocNumber.Contains(filterDocNumber))
@@ -85,34 +86,34 @@ namespace BL.Common
                                 SecondLastName = a.v_SecondLastName,
                                 Birthdate = a.d_Birthdate,
                                 BirthPlace = a.v_BirthPlace,
-                                SexTypeId = a.i_SexTypeId.Value,
-                                MaritalStatusId = a.i_MaritalStatusId.Value,
-                                LevelOfId = a.i_LevelOfId.Value,
+                                //SexTypeId = a.i_SexTypeId.Value,
+                                //MaritalStatusId = a.i_MaritalStatusId.Value,
+                                //LevelOfId = a.i_LevelOfId.Value,
                                 AdressLocation = a.v_AdressLocation,
                                 GeografyLocationId = a.v_GeografyLocationId,
                                 ContactName = a.v_ContactName,
                                 EmergencyPhone = a.v_EmergencyPhone,
-                                PersonImage = a.b_PersonImage,
+                                //PersonImage = a.b_PersonImage,
                                 Mail = a.v_Mail,
-                                BloodGroupId = a.i_BloodGroupId.Value,
-                                BloodFactorId = a.i_BloodFactorId.Value,
-                                FingerPrintTemplate = a.b_FingerPrintTemplate,
-                                RubricImage = a.b_RubricImage,
-                                FingerPrintImage = a.b_FingerPrintImage,
-                                RubricImageText = a.t_RubricImageText,
-                                CurrentOccupation = a.v_CurrentOccupation,
-                                DepartmentId = a.i_DepartmentId.Value,
-                                ProvinceId = a.i_ProvinceId.Value,
-                                DistrictId = a.i_DistrictId.Value,
-                                ResidenceInWorkplaceId = a.i_ResidenceInWorkplaceId.Value,
-                                ResidenceTimeInWorkplace = a.v_ResidenceTimeInWorkplace,
+                                //BloodGroupId = a.i_BloodGroupId.Value,
+                                //BloodFactorId = a.i_BloodFactorId.Value,
+                                //FingerPrintTemplate = a.b_FingerPrintTemplate,
+                                //RubricImage = a.b_RubricImage,
+                                //FingerPrintImage = a.b_FingerPrintImage,
+                                //RubricImageText = a.t_RubricImageText,
+                                //CurrentOccupation = a.v_CurrentOccupation,
+                                //DepartmentId = a.i_DepartmentId.Value,
+                                //ProvinceId = a.i_ProvinceId.Value,
+                                //DistrictId = a.i_DistrictId.Value,
+                                //ResidenceInWorkplaceId = a.i_ResidenceInWorkplaceId.Value,
+                                //ResidenceTimeInWorkplace = a.v_ResidenceTimeInWorkplace,
                                 TypeOfInsuranceId = a.i_TypeOfInsuranceId.Value,
-                                NumberLivingChildren = a.i_NumberLivingChildren.Value,
-                                NumberDependentChildren = a.i_NumberDependentChildren.Value,
+                                //NumberLivingChildren = a.i_NumberLivingChildren.Value,
+                                //NumberDependentChildren = a.i_NumberDependentChildren.Value,
                                 //OccupationTypeId = a.i_OccupationTypeId.Value,
-                                OwnerName = a.v_OwnerName,
+                                //OwnerName = a.v_OwnerName,
                                 //NumberLiveChildren = a.i_NumberLiveChildren.Value,
-                                NumberDeadChildren = a.i_NumberDeadChildren.Value,
+                                //NumberDeadChildren = a.i_NumberDeadChildren.Value,
                             }).FirstOrDefault();
 
                 return data;
@@ -170,9 +171,33 @@ namespace BL.Common
                     i_NumberDeadChildren = pacient.NumberDeadChildren
                 };
 
-                var result = oPersonBL.AddPerson(oPersonBE, systemUserId);
+                var personId = oPersonBL.AddPerson(oPersonBE, systemUserId);
 
-                return result;
+                if (personId != "")
+                {
+                    var oPacient = new PacientBE
+                    {
+                        v_PersonId = personId,
+                        i_IsDeleted = (int)Enumeratores.SiNo.No,
+                        d_InsertDate = DateTime.UtcNow,
+                        i_InsertUserId = systemUserId
+                    };
+
+
+                    ctx.Pacient.Add(oPacient);
+
+                    int rows = ctx.SaveChanges();
+
+                    if (rows > 0)
+                        return true;
+
+                    return false;
+                }
+                else
+                {
+                    return false;
+                }
+               
             }
             catch (Exception ex)
             {

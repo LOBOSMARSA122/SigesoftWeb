@@ -66,7 +66,7 @@ namespace BL.Warehouse
             {
                 ProductWarehouseBE oProductWarehouseBE = new ProductWarehouseBE()
                 {
-                    //ProductWarehouseId = BE.Utils.GetPrimaryKey(no usa),
+                    //ProductWarehouseId =  new Common.PersonBL().GetPrimaryKey(no usa),
                     //ProductId = productWarehouse.ProductId (llave compuesta),
                     StockMin = productWarehouse.StockMin,
                     StockMax = productWarehouse.StockMax,

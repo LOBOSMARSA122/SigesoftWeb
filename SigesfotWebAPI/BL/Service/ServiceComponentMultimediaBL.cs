@@ -65,7 +65,7 @@ namespace BL.Service
             {
                 ServiceComponentMultimediaBE oServiceComponentMultimediaBE = new ServiceComponentMultimediaBE()
                 {
-                    ServiceComponentMultimediaId = BE.Utils.GetPrimaryKey(1, 46, "FC"),
+                    ServiceComponentMultimediaId =  new Common.PersonBL().GetPrimaryKey(1, 46, "FC"),
                     ServiceComponentId = serviceComponentMultimedia.ServiceComponentId,
                     MultimediaFileId = serviceComponentMultimedia.MultimediaFileId,
                     Comment = serviceComponentMultimedia.Comment,

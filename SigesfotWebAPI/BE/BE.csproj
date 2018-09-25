@@ -93,7 +93,7 @@
     <Compile Include="Protocol\ProtocolBE.cs" />
     <Compile Include="Protocol\ProtocolComponentBE.cs" />
     <Compile Include="Protocol\ProtocolSystemUserBE.cs" />
-    <Compile Include="Protocol\SecuentialBE.cs" />
+    <Compile Include="Common\SecuentialBE.cs" />
     <Compile Include="Security\ApplicationHierarchyBE.cs" />
     <Compile Include="Security\AuthorizationModel.cs" />
     <Compile Include="Security\RoleNodeBE.cs" />
@@ -109,7 +109,6 @@
     <Compile Include="Service\ServiceComponentFieldValuesBE.cs" />
     <Compile Include="Service\ServiceComponentMultimediaBE.cs" />
     <Compile Include="Service\ServiceMultimediaBE.cs" />
-    <Compile Include="Utils.cs" />
     <Compile Include="Warehouse\MovementBE.cs" />
     <Compile Include="Warehouse\MovementDetailBE.cs" />
     <Compile Include="Warehouse\ProductBE.cs" />

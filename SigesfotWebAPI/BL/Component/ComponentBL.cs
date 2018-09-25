@@ -68,7 +68,7 @@ namespace BL.Component
             {
                 ComponentBE oComponentBE = new ComponentBE()
                 {
-                    ComponentId = BE.Utils.GetPrimaryKey(1, 17, "ME"),
+                    ComponentId =  new Common.PersonBL().GetPrimaryKey(1, 17, "ME"),
                     Name = component.Name,
                     CategoryId = component.CategoryId,
                     BasePrice = component.BasePrice,

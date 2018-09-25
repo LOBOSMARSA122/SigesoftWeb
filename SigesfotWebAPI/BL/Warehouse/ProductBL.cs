@@ -77,7 +77,7 @@ namespace BL.Warehouse
             {
                 ProductBE oProductBE = new ProductBE()
                 {
-                    ProductId = BE.Utils.GetPrimaryKey(1, 6, "PI"),
+                    ProductId =  new Common.PersonBL().GetPrimaryKey(1, 6, "PI"),
                     CategoryId = product.CategoryId,
                     Name = product.Name,
                     GenericName = product.GenericName,

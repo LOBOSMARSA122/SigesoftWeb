@@ -80,7 +80,7 @@ namespace BL.History
             {
                 HistoryBE oHistoryBE = new HistoryBE()
                 {
-                    HistoryId = BE.Utils.GetPrimaryKey(1, 37, "HH"),
+                    HistoryId =  new Common.PersonBL().GetPrimaryKey(1, 37, "HH"),
                     PersonId = history.PersonId,
                     StartDate = history.StartDate,
                     EndDate = history.EndDate,

@@ -61,7 +61,7 @@ namespace BL.Diagnostic
             {
                 DxFrecuenteBE oDxFrecuenteBE = new DxFrecuenteBE()
                 {
-                    DxFrecuenteId = BE.Utils.GetPrimaryKey(1, 301, "HG"),
+                    DxFrecuenteId =  new Common.PersonBL().GetPrimaryKey(1, 301, "HG"),
                     DiseasesId = dxFrecuente.DiseasesId,
                     CIE10Id = dxFrecuente.CIE10Id,
                     

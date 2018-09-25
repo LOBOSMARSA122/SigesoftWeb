@@ -68,7 +68,7 @@ namespace BL.History
             {
                 NoxiousHabitsBE oNoxiousHabitsBE = new NoxiousHabitsBE()
                 {
-                    NoxiousHabitsId = BE.Utils.GetPrimaryKey(1, 41, "NX"),
+                    NoxiousHabitsId =  new Common.PersonBL().GetPrimaryKey(1, 41, "NX"),
                     PersonId = noxiousHabits.PersonId,
                     TypeHabitsId = noxiousHabits.TypeHabitsId,
                     Frequency = noxiousHabits.Frequency,

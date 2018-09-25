@@ -5,11 +5,14 @@ using System.Net.Mail;
 using System.Net;
 using System.Collections.Generic;
 using System.IO;
+using DAL;
+using BE.Common;
 
 namespace BE
 {
     public class Utils
     {
+        private DatabaseContext ctx = new DatabaseContext();
         #region Encription
         public static string Encrypt(string pData)
         {
@@ -91,10 +94,7 @@ namespace BE
         #endregion
 
         #region PK
-        public static string GetPrimaryKey(int nodeId, int tableId, string pre)
-        {
-            return "";
-        }
+      
         #endregion
     }
 }

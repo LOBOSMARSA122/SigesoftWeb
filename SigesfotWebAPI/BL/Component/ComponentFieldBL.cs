@@ -82,7 +82,7 @@ namespace BL.Component
             {
                 ComponentFieldBE oComponentField = new ComponentFieldBE()
                 {
-                    ComponentFieldId = BE.Utils.GetPrimaryKey(1, 18, "MF"),
+                    ComponentFieldId =  new Common.PersonBL().GetPrimaryKey(1, 18, "MF"),
                     TextLabel = componentField.TextLabel,
                     LabelWidth = componentField.LabelWidth,
                     abbreviation = componentField.abbreviation,
