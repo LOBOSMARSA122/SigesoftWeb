@@ -169,9 +169,33 @@ namespace BL.Common
                     i_NumberDeadChildren = pacient.NumberDeadChildren
                 };
 
-                var result = oPersonBL.AddPerson(oPersonBE, systemUserId);
+                var personId = oPersonBL.AddPerson(oPersonBE, systemUserId);
+                //aaa
+                if (personId != "")
+                {
+                    var oPacient = new PacientBE
+                    {
+                        v_PersonId = personId,
+                        i_IsDeleted = (int)Enumeratores.SiNo.No,
+                        d_InsertDate = DateTime.UtcNow,
+                        i_InsertUserId = systemUserId
+                    };
 
-                return result;
+
+                    ctx.Pacient.Add(oPacient);
+
+                    int rows = ctx.SaveChanges();
+
+                    if (rows > 0)
+                        return true;
+
+                    return false;
+                }
+                else
+                {
+                    return false;
+                }
+               
             }
             catch (Exception ex)
             {
