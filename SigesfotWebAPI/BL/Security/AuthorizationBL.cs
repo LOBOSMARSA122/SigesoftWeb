@@ -72,11 +72,11 @@ namespace BL.Security
                                                                    equals new { a = fff.i_ParameterId, b = fff.i_GroupId } into J5_join
                              from fff in J5_join.DefaultIfEmpty()
 
-                             where (surnj.i_NodeId == nodeId) &&
-                                   (surnj.i_SystemUserId == systemUserId) &&
-                                   (ah.i_ApplicationHierarchyTypeId == 2 || ah.i_ApplicationHierarchyTypeId == 1) &&
-                                   (surnj.i_IsDeleted == isDeleted) && (rnp.i_IsDeleted == isDeleted) &&
-                                   (ah.i_TypeFormId == (int)TypeForm.Web) && (ah.i_IsDeleted == 0)
+                             where (surnj.i_NodeId == nodeId)
+                                   && (surnj.i_SystemUserId == systemUserId)
+                                   && (ah.i_ApplicationHierarchyTypeId == 2 || ah.i_ApplicationHierarchyTypeId == 1)
+                                    && (surnj.i_IsDeleted == isDeleted) && (rnp.i_IsDeleted == isDeleted)
+                                   && (ah.i_TypeFormId == (int)TypeForm.Asistencial) && (ah.i_IsDeleted == 0)
                              select new Permission
                              {
                                  ApplicationHierarchyId = rnp.i_ApplicationHierarchyId.Value,
@@ -90,10 +90,10 @@ namespace BL.Security
                           )
                   .Concat(from a in ctx.SystemUserGobalProfile
                           join b in ctx.ApplicationHierarchy on a.i_ApplicationHierarchyId equals b.i_ApplicationHierarchyId
-                          where (a.i_SystemUserId == systemUserId) &&
-                                (b.i_ApplicationHierarchyTypeId == 1 || b.i_ApplicationHierarchyTypeId == 2) &&
-                                (b.i_IsDeleted == 0) && (a.i_IsDeleted == 0) &&
-                                (b.i_TypeFormId == (int)TypeForm.Web)
+                          where (a.i_SystemUserId == systemUserId)
+                               && (b.i_ApplicationHierarchyTypeId == 1 || b.i_ApplicationHierarchyTypeId == 2)
+                                && (b.i_IsDeleted == 0) && (a.i_IsDeleted == 0)
+                               && (b.i_TypeFormId == (int)TypeForm.Asistencial)
                           select new Permission
                           {
                               ApplicationHierarchyId = a.i_ApplicationHierarchyId.Value,

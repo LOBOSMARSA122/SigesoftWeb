@@ -12,7 +12,8 @@ namespace BE.Common
         public enum TypeForm
         {
             Windows = 1,
-            Web = 2
+            Web = 2,
+            Asistencial = 3
         }
 
         public enum SiNo
