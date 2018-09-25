@@ -84,6 +84,12 @@
                     <div class="row">
                         <div class="col-12 Titulo">Datos del Paciente</div>
                     </div>
+                    <div class="row d-none">
+                        <div class="col-12">
+                            <div class="SubTitulo">Nombres: </div>
+                            <div><input type="text" id="PacientId" value="@PacientId" @*data-validation="length" data-validation-length="5-50" data-validation-error-msg="La Razón Social debe de tener entre 5 y 50 caracteres"*@ /></div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-12">
                             <div class="SubTitulo">Nombres: </div>
@@ -133,7 +139,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 p-0 mt-2 d-flex justify-content-center">
+                <div class="col-12 p-0 m-2 d-flex justify-content-center">
                     <div class="row">
                         <div class="col">
                             <button class="btn mt-2 mt-sm-0 pl-lg-5 pr-lg-5 btn-info boton form-control ">
@@ -178,16 +184,16 @@
             EnviarFormulario();
         });
 
-    function EnviarFormulario() {
 
-        var data = {
+    function EnviarFormulario() {
+        var data = {           
             FirstName: $("#FirstName").val(),
             FirstLastName: $("#FirstLastName").val(),
             SecondLastName: $("#SecondLastName").val(),
             DocType: $("#DocType").val(),
             DocNumber: $("#DocNumber").val(),
             TelephoneNumber: $("#TelephoneNumber").val(),
-            PacientId: @PacientId,
+            PacientId: $("#PacientId").val()
 
         };
 
@@ -202,13 +208,13 @@
             dataType: 'json',
             method: 'POST',
             data: data,
-            url: '@(ViewBag.Empresa != null  ? "/Pacient/EditPacient" : "/Pacient/InsertNewPacient")',
+            url: '@(ViewBag.Pacient != null  ? "/Pacient/EditPacient" : "/Pacient/AddPacient")',
             success: function (json) {
                 $("#Loading").hide();
                 if (json) {
-                    location.href = '@Url.Action("Proveedores", "Administracion")';
+                    location.href = '@Url.Action("Index", "Pacient")';
                 } else{
-                    alerta("No se pudo guardar el proveedor", "rojo");
+                    alerta("No se pudo guardar el paciente", "rojo");
                 }
             },
             error: function (error) {

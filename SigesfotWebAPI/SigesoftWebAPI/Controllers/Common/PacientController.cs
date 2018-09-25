@@ -31,8 +31,8 @@ namespace SigesoftWebAPI.Controllers.Common
         [HttpPost]
         public IHttpActionResult AddPacient(MultiDataModel data)
         {
-            Pacients empresa = JsonConvert.DeserializeObject<Pacients>(data.String1);
-            bool result = oPacientBL.AddPacient(empresa, data.Int1);
+            Pacients pacient = JsonConvert.DeserializeObject<Pacients>(data.String1);
+            bool result = oPacientBL.AddPacient(pacient, data.Int1);
             return Ok(result);
         }
 

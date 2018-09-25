@@ -32,10 +32,10 @@ namespace BE.Common
         public string v_Mail{get; set;}
         public int? i_BloodGroupId{get; set;}
         public int? i_BloodFactorId{get; set;}
-        public string v_FingerPrintTemplate{get; set;}
+        public byte[]  b_FingerPrintTemplate{get; set;}
         public byte[]  b_RubricImage {get; set;}
         public byte[] b_FingerPrintImage{get; set;}
-        public string v_RubricImageText{get; set;}
+        public string t_RubricImageText{get; set;}
         public string v_CurrentOccupation{get; set;}
         public int? i_DepartmentId{get; set;}
         public int? i_ProvinceId {get; set;}
@@ -49,7 +49,7 @@ namespace BE.Common
         public string v_OwnerName{get; set;}
         public int? i_NumberLiveChildren{get; set;}
         public int? i_NumberDeadChildren {get; set;}
-        public int i_IsDeleted {get; set;}
+        public int? i_IsDeleted {get; set;}
         public int? i_InsertUserId {get; set;}
         public DateTime? d_InsertDate {get; set;}
         public int? i_UpdateUserId{get; set;}

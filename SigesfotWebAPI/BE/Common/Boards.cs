@@ -48,7 +48,7 @@ namespace BE.Common
         public string Mail { get; set; }
         public int BloodGroupId  { get; set; }
         public int BloodFactorId { get; set; }
-        public string FingerPrintTemplate { get; set; }
+        public byte[] FingerPrintTemplate { get; set; }
         public byte[] RubricImage { get; set; }
         public byte[] FingerPrintImage { get; set; }
         public string RubricImageText { get; set; }

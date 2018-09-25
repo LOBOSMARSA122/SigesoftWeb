@@ -96,10 +96,10 @@ namespace BL.Common
                                 Mail = a.v_Mail,
                                 BloodGroupId = a.i_BloodGroupId.Value,
                                 BloodFactorId = a.i_BloodFactorId.Value,
-                                FingerPrintTemplate = a.v_FingerPrintTemplate,
+                                FingerPrintTemplate = a.b_FingerPrintTemplate,
                                 RubricImage = a.b_RubricImage,
                                 FingerPrintImage = a.b_FingerPrintImage,
-                                RubricImageText = a.v_RubricImageText,
+                                RubricImageText = a.t_RubricImageText,
                                 CurrentOccupation = a.v_CurrentOccupation,
                                 DepartmentId = a.i_DepartmentId.Value,
                                 ProvinceId = a.i_ProvinceId.Value,
@@ -109,9 +109,9 @@ namespace BL.Common
                                 TypeOfInsuranceId = a.i_TypeOfInsuranceId.Value,
                                 NumberLivingChildren = a.i_NumberLivingChildren.Value,
                                 NumberDependentChildren = a.i_NumberDependentChildren.Value,
-                                OccupationTypeId = a.i_OccupationTypeId.Value,
+                                //OccupationTypeId = a.i_OccupationTypeId.Value,
                                 OwnerName = a.v_OwnerName,
-                                NumberLiveChildren = a.i_NumberLiveChildren.Value,
+                                //NumberLiveChildren = a.i_NumberLiveChildren.Value,
                                 NumberDeadChildren = a.i_NumberDeadChildren.Value,
                             }).FirstOrDefault();
 
@@ -150,10 +150,10 @@ namespace BL.Common
                     v_Mail = pacient.Mail,
                     i_BloodGroupId = pacient.BloodGroupId,
                     i_BloodFactorId = pacient.BloodFactorId,
-                    v_FingerPrintTemplate = pacient.FingerPrintTemplate,
+                    b_FingerPrintTemplate = pacient.FingerPrintTemplate,
                     b_RubricImage = pacient.RubricImage,
                     b_FingerPrintImage = pacient.FingerPrintImage,
-                    v_RubricImageText = pacient.RubricImageText,
+                    t_RubricImageText = pacient.RubricImageText,
                     v_CurrentOccupation = pacient.CurrentOccupation,
                     i_DepartmentId = pacient.DepartmentId,
                     i_ProvinceId = pacient.ProvinceId,
@@ -163,9 +163,9 @@ namespace BL.Common
                     i_TypeOfInsuranceId = pacient.TypeOfInsuranceId,
                     i_NumberLivingChildren = pacient.NumberLivingChildren,
                     i_NumberDependentChildren = pacient.NumberDependentChildren,
-                    i_OccupationTypeId = pacient.OccupationTypeId,
+                    //i_OccupationTypeId = pacient.OccupationTypeId,
                     v_OwnerName = pacient.OwnerName,
-                    i_NumberLiveChildren = pacient.NumberLiveChildren,
+                    //i_NumberLiveChildren = pacient.NumberLiveChildren,
                     i_NumberDeadChildren = pacient.NumberDeadChildren
                 };
 
@@ -211,10 +211,10 @@ namespace BL.Common
                     opacient.v_Mail = pacient.Mail;
                     opacient.i_BloodGroupId = pacient.BloodGroupId;
                     opacient.i_BloodFactorId = pacient.BloodFactorId;
-                    opacient.v_FingerPrintTemplate = pacient.FingerPrintTemplate;
+                    opacient.b_FingerPrintTemplate = pacient.FingerPrintTemplate;
                     opacient.b_RubricImage = pacient.RubricImage;
                     opacient.b_FingerPrintImage = pacient.FingerPrintImage;
-                    opacient.v_RubricImageText = pacient.RubricImageText;
+                    opacient.t_RubricImageText = pacient.RubricImageText;
                     opacient.v_CurrentOccupation = pacient.CurrentOccupation;
                     opacient.i_DepartmentId = pacient.DepartmentId;
                     opacient.i_ProvinceId = pacient.ProvinceId;
@@ -222,9 +222,9 @@ namespace BL.Common
                     opacient.i_ResidenceInWorkplaceId = pacient.ResidenceInWorkplaceId;
                     opacient.v_ResidenceTimeInWorkplace = pacient.ResidenceTimeInWorkplace;
                     opacient.i_TypeOfInsuranceId = pacient.TypeOfInsuranceId;
-                    opacient.i_NumberLivingChildren = pacient.NumberLivingChildren;
+                    //opacient.i_NumberLivingChildren = pacient.NumberLivingChildren;
                     opacient.i_NumberDependentChildren = pacient.NumberDependentChildren;
-                    opacient.i_OccupationTypeId = pacient.OccupationTypeId;
+                    //opacient.i_OccupationTypeId = pacient.OccupationTypeId;
                     opacient.v_OwnerName = pacient.OwnerName;
                     opacient.i_NumberLiveChildren = pacient.NumberLiveChildren;
                     opacient.i_NumberDeadChildren = pacient.NumberDeadChildren;
