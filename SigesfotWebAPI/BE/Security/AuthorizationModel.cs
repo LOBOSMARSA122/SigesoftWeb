@@ -26,5 +26,15 @@ namespace BE.Security
         public int ApplicationHierarchyTypeId { get; set; }
         public string RoleName { get; set; }
         public int RoleId { get; set; }
+        public List<Permission> SubMenus { get; set; }
     }
+
+    //public class SubMenu
+    //{
+    //    public int MenuId { get; set; }
+    //    public string Description { get; set; }
+    //    public int PadreId { get; set; }
+    //    public string Icono { get; set; }
+    //    public string Uri { get; set; }
+    //}
 }

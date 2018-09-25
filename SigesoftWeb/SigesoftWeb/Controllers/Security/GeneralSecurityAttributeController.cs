@@ -9,12 +9,12 @@ using System.Web.Routing;
 
 namespace SigesoftWeb.Controllers.Security
 {
-    public class GeneralSecurityAttributeController : ActionFilterAttribute
+    public class GeneralSecurityAttribute : ActionFilterAttribute
     {
         public string Rol { get; set; }
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            ClientSession Usuario = (ClientSession)filterContext.HttpContext.Session.Contents["AutBackoffice"];
+            ClientSession Usuario = (ClientSession)filterContext.HttpContext.Session.Contents["AutSigesoftWeb"];
             if (Usuario == null)
             {
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary{
@@ -23,7 +23,7 @@ namespace SigesoftWeb.Controllers.Security
                 return;
             }
 
-            filterContext.Controller.ViewBag.USUARIO = Usuario;
+            filterContext.Controller.ViewBag.USER = Usuario;
 
 
             if (string.IsNullOrWhiteSpace(Rol))

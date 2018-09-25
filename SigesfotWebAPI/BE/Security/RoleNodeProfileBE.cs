@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace BE.Security
 {
+    [Table("RoleNodeProfile")]
     public class RoleNodeProfileBE
     {
         [Key, Column(Order = 1)]

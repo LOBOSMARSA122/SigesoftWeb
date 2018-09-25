@@ -1,0 +1,54 @@
+﻿@{
+    var base64 = @ViewBag.USER.PersonImage == null ? "" : Convert.ToBase64String(@ViewBag.USER.PersonImage);
+    var imgSrc = base64 != "" ? String.Format("data:image/jpeg;base64,{0}", base64) : "/Content/static/images/foto@default.png";
+}
+<div id="sidebar-wrapper" class="barra-lateral">
+    <div class="datos-usuario d-flex justify-content-around align-items-center">
+        <img src="@imgSrc" />
+        <a href="#" class="nombre-usuario dropdown-toggle" data-toggle="dropdown">@*(@ViewBag.USER.Rol)*@ (Administrador)@ViewBag.USER.FullName</a>
+        <ul class="dropdown-menu">
+            <li class="user-header ">
+                <div class="text-center">
+                    <a href="@Url.Content("~/salir")" class="btn btn-danger">Salir</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <nav class="menu d-flex d-sm-block">
+        <ul>
+            @foreach (var menu in ViewBag.USER.Permissions)
+            {
+                <li class="submenu">
+                    <a href="#">@*<i class="@menu.Icono"></i>*@<span>@menu.Description<span class="caret icon-down-dir"></span></span></a>
+                    <ul class="children">
+                        @foreach (var submenu in menu.SubMenus)
+                        {
+                            <li class="children"><a href="@Url.Content("~/")@submenu.Form">@*<i class="@submenu.Icono"></i>*@ @submenu.Description</a></li>
+                            if (submenu.SubMenus.Count > 0)
+                            {
+                                @*<ul class="children">*@
+                                foreach (var submenu_ in submenu.SubMenus)
+                                {
+                                    <li><a href="@Url.Content("~/")@submenu_.Form">@*<i class="@submenu.Icono"></i>*@ @submenu_.Description</a></li>
+                                }
+                                @*</ul>*@
+
+                            }
+                        }
+                    </ul>
+                </li>
+            }
+            <li>
+                <a href="@Url.Content("~/salir")"><i class="icon-logout"></i><span>Salir del Sistema</span></a>
+            </li>
+        </ul>
+
+        <ul>
+            <li>sss
+                <ul>
+                    <li>dddd</li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</div>

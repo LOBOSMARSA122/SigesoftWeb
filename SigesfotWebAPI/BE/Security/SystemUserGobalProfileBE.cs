@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 
 namespace BE.Security
 {
+    [Table("SystemUserGobalProfile")]
     public class SystemUserGobalProfileBE
     {
         [Key, Column(Order = 1)]
-        public int? SystemUserId { get; set; }
+        public int? i_SystemUserId { get; set; }
         [Key, Column(Order = 2)]
-        public int? ApplicationHierarchyId { get; set; }
-        public int? IsDeleted { get; set; }
+        public int? i_ApplicationHierarchyId { get; set; }
+        public int? i_IsDeleted { get; set; }
     }
 }

@@ -462,14 +462,14 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Shared\_HeaderPartial.cshtml" />
     <Content Include="Views\Pacient\Index.cshtml" />
     <Content Include="Views\Shared\_BoardPacientsPartial.cshtml" />
     <Content Include="Views\Pacient\CreatePacient.cshtml" />
+    <Content Include="Views\Shared\_HeaderPartial.cshtml" />
+    <Content Include="Views\Shared\_SideBarPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\GeneralSecurityAttribute\" />
     <Folder Include="Views\Security\" />
   </ItemGroup>
   <ItemGroup>

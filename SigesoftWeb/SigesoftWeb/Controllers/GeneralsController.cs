@@ -1,10 +1,8 @@
-﻿using SigesoftWeb.Models;
+﻿using SigesoftWeb.Controllers.Security;
+using SigesoftWeb.Models;
 using SigesoftWeb.Models.Security;
 using SigesoftWeb.Utils;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SigesoftWeb.Controllers
@@ -16,7 +14,7 @@ namespace SigesoftWeb.Controllers
             return RedirectToRoute("General_login");
         }
 
-        //[GeneralSecurity(Rol = "")]
+        [GeneralSecurity(Rol = "")]
         public ActionResult Home()
         {
             return View("~/Views/Generals/Index.cshtml", ViewBag.MENU);
@@ -33,7 +31,7 @@ namespace SigesoftWeb.Controllers
 
         public ActionResult Logout()
         {
-            Session.Remove("AutBackoffice");
+            Session.Remove("AutSigesoftWeb");
             Session.RemoveAll();
             return RedirectToRoute("General_login");
         }
@@ -66,7 +64,7 @@ namespace SigesoftWeb.Controllers
             var systemUser = API.Get<UserLogin>(relativePath: "Authorization/ValidateSystemUser", args: Arguments(collection));
             if (systemUser != null)
             {
-                Session.Add("AutBackoffice", PopulateClientSession(systemUser));
+                Session.Add("AutSigesoftWeb", PopulateClientSession(systemUser));
                 return true;
             }
             else
@@ -86,14 +84,14 @@ namespace SigesoftWeb.Controllers
 
         private ClientSession PopulateClientSession(dynamic usuario)
         {
-            ViewBag.USUARIO = usuario;
+            ViewBag.USER = usuario;
             ClientSession oclientSession = new ClientSession
             {
-                SystemUserId = ViewBag.USUARIO.SystemUserId,
-                PersonId = ViewBag.USUARIO.PersonId,
-                FullName = ViewBag.USUARIO.FullName,
-                PersonImage = ViewBag.USUARIO.PersonImage
-                //Authorizations = ViewBag.USUARIO.Permissions
+                SystemUserId = ViewBag.USER.SystemUserId,
+                PersonId = ViewBag.USER.PersonId,
+                FullName = ViewBag.USER.FullName,
+                PersonImage = ViewBag.USER.PersonImage,
+                Permissions = ViewBag.USER.Permissions
             };
             return oclientSession;
         }
@@ -112,7 +110,7 @@ namespace SigesoftWeb.Controllers
 
         public ActionResult SessionExpired()
         {
-            Session.Remove("AutBackoffice");
+            Session.Remove("AutSigesoftWeb");
             Session.RemoveAll();
             return RedirectToRoute("General_login");
         }

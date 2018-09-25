@@ -13,7 +13,7 @@ namespace SigesoftWeb.Utils
         public string UserName { get; set; }
         public string FullName { get; set; }    
         public byte[] PersonImage { get; set; }
-        public List<AuthorizationModel> Authorizations { get; set; }
+        public List<Permission> Permissions { get; set; }
         
     }
 }

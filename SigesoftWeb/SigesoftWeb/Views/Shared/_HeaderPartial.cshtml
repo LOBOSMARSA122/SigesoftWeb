@@ -1,7 +1,7 @@
-﻿@*@{
-    var base64 = @ViewBag.USUARIO.PersonImage == null ? "" : Convert.ToBase64String(@ViewBag.USUARIO.PersonImage);
+﻿@{
+    var base64 = @ViewBag.USER.PersonImage == null ? "" : Convert.ToBase64String(@ViewBag.USER.PersonImage);
     var imgSrc = base64 != "" ? String.Format("data:image/jpeg;base64,{0}", base64) : "/Content/static/images/foto@default.png";
-}*@
+}
 <style>
     .dropdown-menu {
         top: 30px !important;
@@ -20,8 +20,8 @@
         </div>
         <div class="d-none d-md-block">
             <nav class="col ">
-                <a href="#" class="imagen">  @*<img src="@imgSrc" width="35" height="35" />*@</a>
-                <a href="#" class="nombre-usuario dropdown-toggle" data-toggle="dropdown"> @*@ViewBag.USUARIO.FullName*@</a>
+                <a href="#" class="imagen">  <img src="@imgSrc" width="35" height="35" /></a>
+                <a href="#" class="nombre-usuario dropdown-toggle" data-toggle="dropdown">(Administrador) @ViewBag.USER.FullName</a>
                 <ul class="dropdown-menu">
                     <li class="user-header ">
                         <div class="text-center">
