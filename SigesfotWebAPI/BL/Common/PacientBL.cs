@@ -131,6 +131,7 @@ namespace BL.Common
             {
                 var oPersonBE = new PersonBE
                 {
+                    v_PersonId = pacient.PacientId,
                     v_FirstName = pacient.FirstName,
                     v_FirstLastName = pacient.FirstLastName,
                     v_SecondLastName = pacient.SecondLastName,

@@ -24,7 +24,6 @@ namespace SigesoftWeb.Controllers.Common
             return View();
         }
 
-        //[GeneralSecurity(Rol = "Administracion-Proveedores")]
         public ActionResult FilterPacient(BoardPacient data)
         {
             Api API = new Api();
@@ -53,7 +52,7 @@ namespace SigesoftWeb.Controllers.Common
             //if (id.HasValue)
             //{
                 ViewBag.Pacient = API.Get<Pacients>("Pacient/GetPacientById", new Dictionary<string, string> { { "pacientId", id } });
-            //}
+           // }
 
             return View();
         }
@@ -64,6 +63,7 @@ namespace SigesoftWeb.Controllers.Common
             ViewBag.Pacient = new BoardPacient() { List = new List<Pacients>(), Take = 10 };
             return View();
         }
+
         [GeneralSecurity(Rol = "Pacient-CreatePacient")]
         public JsonResult DeletePacient(string id)
         {
@@ -71,11 +71,12 @@ namespace SigesoftWeb.Controllers.Common
             Dictionary<string, string> args = new Dictionary<string, string>
             {
                 { "String1", id.ToString() },
-                { "Int2", ViewBag.USUARIO.UsuarioId.ToString() }
+                { "Int2", ViewBag.USER.SystemUserId.ToString() }
             };
             bool response = API.Post<bool>("Pacient/DeletePacient", args);
             return Json(response);
         }
+
         [GeneralSecurity(Rol = "Pacient-CreatePacient")]
         public JsonResult EditPacient(Pacients data)
         {
@@ -83,7 +84,7 @@ namespace SigesoftWeb.Controllers.Common
             Dictionary<string, string> args = new Dictionary<string, string>
             {
                 { "String1", JsonConvert.SerializeObject(data) },
-                { "Int1", ViewBag.USUARIO.UsuarioId.ToString() }
+                { "Int1", ViewBag.USER.SystemUserId.ToString() }
             };
             bool response = API.Post<bool>("Pacient/EditPacient", args);
             return Json(response);
@@ -96,7 +97,7 @@ namespace SigesoftWeb.Controllers.Common
             Dictionary<string, string> args = new Dictionary<string, string>
             {
                 { "String1", JsonConvert.SerializeObject(pacient) },
-                { "Int1", ViewBag.USUARIO.UsuarioId.ToString() }
+                { "Int1", ViewBag.USER.SystemUserId.ToString() }
             };
             bool response = API.Post<bool>("Pacient/AddPacient", args);
             return Json(response);

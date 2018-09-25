@@ -1,12 +1,12 @@
 ﻿
 @{
-    string PacientId = "";
     string FirstName = "";
     string FirstLastName = "";
     string SecondLastName = "";
     string DocType = "";
     string DocNumber = "";
     string TelephoneNumber = "";
+    string PacientId = "";
 
     if (ViewBag.Pacient != null)
     {
@@ -84,12 +84,12 @@
                     <div class="row">
                         <div class="col-12 Titulo">Datos del Paciente</div>
                     </div>
-                    <div class="row d-none">
+                    @*<div class="row ">
                         <div class="col-12">
-                            <div class="SubTitulo">Nombres: </div>
-                            <div><input type="text" id="PacientId" value="@PacientId" @*data-validation="length" data-validation-length="5-50" data-validation-error-msg="La Razón Social debe de tener entre 5 y 50 caracteres"*@ /></div>
+                            <div class="SubTitulo">id paciente: </div>
+                            <div><input type="text" id="PacientId" value="@PacientId" data-validation="length" data-validation-length="5-50" data-validation-error-msg="La Razón Social debe de tener entre 5 y 50 caracteres" /></div>
                         </div>
-                    </div>
+                    </div>*@
                     <div class="row">
                         <div class="col-12">
                             <div class="SubTitulo">Nombres: </div>
@@ -193,7 +193,7 @@
             DocType: $("#DocType").val(),
             DocNumber: $("#DocNumber").val(),
             TelephoneNumber: $("#TelephoneNumber").val(),
-            PacientId: $("#PacientId").val()
+            PacientId: '@PacientId'
 
         };
 
@@ -224,7 +224,6 @@
             }
         });
     }
-
     function updateAccordionHeight() {
         setTimeout(function () {
             $("#Accordion-Container").animate({

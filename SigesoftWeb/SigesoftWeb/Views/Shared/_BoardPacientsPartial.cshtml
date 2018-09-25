@@ -50,7 +50,6 @@
                     <th>Tipo de documento</th>
                     <th>N° de documento</th>
                     <th>Telefono</th>
-                    <th>PacientId</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
@@ -75,7 +74,7 @@
                                 <td>@item.DocNumber</td>
                                 <td>@item.TelephoneNumber</td>
                                 <td><a href="@Url.Action("CreatePacient","Pacient",new {id = item.PacientId })"><span class="icon-edit"></span></a></td>
-                                <td><a onclick="Delete(@item.PacientId)"><span class="icon-trash"></span></a></td>
+                                <td><a onclick='Delete("@item.PacientId")'><span class="icon-trash"></span></a></td>
                             </tr>
                         }
                     }
@@ -119,6 +118,8 @@
 </div>
 <script>
     function Delete(id) {
+
+        console.log(id);
         var width = $(window).width();
         var height = $(window).height();
         $("#Loading").show().css("width", width + "px").css("height", height + "px");
