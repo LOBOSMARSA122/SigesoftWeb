@@ -172,7 +172,7 @@ namespace BL.Common
                 };
 
                 var personId = oPersonBL.AddPerson(oPersonBE, systemUserId);
-
+                //aaa
                 if (personId != "")
                 {
                     var oPacient = new PacientBE
