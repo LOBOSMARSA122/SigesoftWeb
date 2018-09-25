@@ -15,25 +15,23 @@
         </ul>
     </div>
     <nav class="menu d-flex d-sm-block">
-        <ul>
+        <ul class="firstUl">
             @foreach (var menu in ViewBag.USER.Permissions)
             {
-                <li class="submenu">
-                    <a href="#">@*<i class="@menu.Icono"></i>*@<span>@menu.Description<span class="caret icon-down-dir"></span></span></a>
-                    <ul class="children">
+                <li>
+                    @*<a href="#"><span>@menu.Description<span class="caret icon-down-dir"></span></span></a>*@
+                    <ul >
                         @foreach (var submenu in menu.SubMenus)
                         {
-                            <li class="children"><a href="@Url.Content("~/")@submenu.Form">@*<i class="@submenu.Icono"></i>*@ @submenu.Description</a></li>
-                            if (submenu.SubMenus.Count > 0)
+                        <li>
+                            <a href="#">@submenu.Description<span class="caret icon-down-dir"></span></a>
+                            @foreach (var submenu_ in submenu.SubMenus)
                             {
-                                @*<ul class="children">*@
-                                foreach (var submenu_ in submenu.SubMenus)
-                                {
-                                    <li><a href="@Url.Content("~/")@submenu_.Form">@*<i class="@submenu.Icono"></i>*@ @submenu_.Description</a></li>
-                                }
-                                @*</ul>*@
-
+                                <ul class="submenu-ebene2 submenu_">
+                                    <li><a href="@Url.Content("~/")@submenu_.Form">@submenu_.Description</a></li>
+                                </ul>
                             }
+                        </li>
                         }
                     </ul>
                 </li>
@@ -43,12 +41,6 @@
             </li>
         </ul>
 
-        <ul>
-            <li>sss
-                <ul>
-                    <li>dddd</li>
-                </ul>
-            </li>
-        </ul>
+       
     </nav>
 </div>

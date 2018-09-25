@@ -254,9 +254,19 @@ header .menu .nombre-usuario {
     display: none;
 }
 
-    .barra-lateral .menu ul li .children li a {
-        padding-left: 40px;
-    }
+.barra-lateral .menu ul li .children li a {
+    padding-left: 40px;
+}
+
+.barra-lateral .submenu_ {
+    background:#dd4b39;
+    font-size:10px;
+}
+
+.submenu-ebene2 {
+    display: none;
+}
+
 
 .barra-lateral .menu ul li .caret {
     /*position: relative;*/

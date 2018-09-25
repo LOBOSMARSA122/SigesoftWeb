@@ -73,9 +73,22 @@ function formatDate(date) {
 
 function main() {
 
-    //Mostramos y ocultamos submenus
-    $('.submenu').click(function () {
-        $(this).children('.children').slideToggle();
+    ////Mostramos y ocultamos submenus
+    //$('.submenu').click(function () {
+    //    $(this).children('.children').slideToggle();
+    //});
+
+    //$('.children_').click(function () {
+    //    $(this).children('.submenu_').slideToggle();
+    //});    
+
+    $(".firstUl li").click(function (e) {
+        console.log("ssssdddd");
+        //$(this).children(".submenu-ebene2").stop().slideToggle();
+    });
+
+    $(".firstUl li li").click(function (e) {
+        $(this).children(".submenu-ebene2").stop().slideToggle();
     });
 
     $(".bt-menu").on('click', function (e) {
