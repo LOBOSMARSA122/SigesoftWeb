@@ -278,6 +278,8 @@ namespace BL.Common
                 ctx.Secuential.Add(objSecuential);
             }
 
+            int rows = ctx.SaveChanges();
+
             return objSecuential.i_SecuentialId.Value;
         }
         #endregion
