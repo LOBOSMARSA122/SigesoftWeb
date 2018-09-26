@@ -109,6 +109,7 @@
     <Compile Include="Service\ServiceComponentFieldValuesBE.cs" />
     <Compile Include="Service\ServiceComponentMultimediaBE.cs" />
     <Compile Include="Service\ServiceMultimediaBE.cs" />
+    <Compile Include="Warehouse\Boards.cs" />
     <Compile Include="Warehouse\MovementBE.cs" />
     <Compile Include="Warehouse\MovementDetailBE.cs" />
     <Compile Include="Warehouse\ProductBE.cs" />

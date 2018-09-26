@@ -253,7 +253,7 @@ namespace BL.Common
                     opacient.i_NumberLiveChildren = pacient.NumberLiveChildren;
                     opacient.i_NumberDeadChildren = pacient.NumberDeadChildren;
              
-                return oPersonBL.UpdatePerson(opacient, systemUserId); ;
+                return oPersonBL.UpdatePerson(opacient, systemUserId); 
             }
             catch (Exception ex)
             {

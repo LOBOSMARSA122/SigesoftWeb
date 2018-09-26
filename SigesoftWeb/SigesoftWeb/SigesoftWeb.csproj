@@ -162,6 +162,7 @@
     <Compile Include="Controllers\Common\PacientController.cs" />
     <Compile Include="Controllers\GeneralsController.cs" />
     <Compile Include="Controllers\Security\GeneralSecurityAttributeController.cs" />
+    <Compile Include="Controllers\Warehouse\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -169,6 +170,7 @@
     <Compile Include="Models\Common\Boards.cs" />
     <Compile Include="Models\Common\Dropdownlist.cs" />
     <Compile Include="Models\Security\AuthorizationModel.cs" />
+    <Compile Include="Models\Warehouse\Boards.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\ClientSession.cs" />
     <Compile Include="Utils\Constants.cs" />
@@ -453,6 +455,9 @@
     <Content Include="Views\Pacient\CreatePacient.cshtml" />
     <Content Include="Views\Shared\_HeaderPartial.cshtml" />
     <Content Include="Views\Shared\_SideBarPartial.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Shared\_BoardProductsPartial.cshtml" />
+    <Content Include="Views\Product\CreateProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
