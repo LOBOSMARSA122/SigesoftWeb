@@ -277,7 +277,7 @@ namespace BL.Common
                 objSecuential.i_SecuentialId = 0;
                 ctx.Secuential.Add(objSecuential);
             }
-            //Nuevo
+            //Nuevo8888
             int rows = ctx.SaveChanges();
 
             return objSecuential.i_SecuentialId.Value;
