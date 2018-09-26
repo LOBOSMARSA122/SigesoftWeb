@@ -24,7 +24,7 @@ namespace SigesoftWebAPI.Controllers.Warehouse
         [HttpGet]
         public IHttpActionResult GetProductById(string productId)
         {
-            var result = oProductBL.GetProduct(productId);
+            var result = oProductBL.GetProductById(productId);
             return Ok(result);
         }
 

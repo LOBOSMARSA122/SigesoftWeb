@@ -84,28 +84,22 @@
                     <div class="row">
                         <div class="col-12 Titulo">Datos del Paciente</div>
                     </div>
-                    @*<div class="row ">
-                        <div class="col-12">
-                            <div class="SubTitulo">id paciente: </div>
-                            <div><input type="text" id="PacientId" value="@PacientId" data-validation="length" data-validation-length="5-50" data-validation-error-msg="La Razón Social debe de tener entre 5 y 50 caracteres" /></div>
-                        </div>
-                    </div>*@
                     <div class="row">
                         <div class="col-12">
                             <div class="SubTitulo">Nombres: </div>
-                            <div><input type="text" id="FirstName" value="@FirstName" @*data-validation="length" data-validation-length="5-50" data-validation-error-msg="La Razón Social debe de tener entre 5 y 50 caracteres"*@ /></div>
+                            <div><input type="text" id="FirstName" value="@FirstName" data-validation="length" data-validation-length="3-50" data-validation-error-msg="El nombre debe de tener entre 3 y 50 caracteres" /></div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
                             <div class="SubTitulo">Apellido Paterno: </div>
-                            <div><input type="text" id="FirstLastName" value="@FirstLastName" @*data-validation="length" data-validation-length="8-50" data-validation-error-msg="El RUC debe de tener más de 8 caracteres"*@ /></div>
+                            <div><input type="text" id="FirstLastName" value="@FirstLastName" data-validation="length" data-validation-length="3-50" data-validation-error-msg="El Apellido debe de tener más de 3 caracteres" /></div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
                             <div class="SubTitulo">Apellido Materno: </div>
-                            <div><input type="text" id="SecondLastName" value="@SecondLastName" @*data-validation="length" data-validation-length="8-50" data-validation-error-msg="El RUC debe de tener más de 8 caracteres"*@ /></div>
+                            <div><input type="text" id="SecondLastName" value="@SecondLastName" data-validation="length" data-validation-length="3-50" data-validation-error-msg="El Apellido debe de tener más de 3 caracteres" /></div>
                         </div>
                     </div>
                     <div class="row">

@@ -5,12 +5,12 @@
     string Presentation = "";
     string ProductId = "";
 
-    if (ViewBag.Pacient != null)
+    if (ViewBag.Product != null)
     {
         ProductCode = ViewBag.Product.ProductCode;
         Name = ViewBag.Product.Name;
         Presentation = ViewBag.Product.Presentation;
-        ProductId = ViewBag.Pacient.ProductId;
+        ProductId = ViewBag.Product.ProductId;
 
     }
 }
@@ -81,19 +81,19 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="SubTitulo">Codigo del producto: </div>
-                            <div><input type="text" id="ProductCode" value="@ProductCode" @*data-validation="length" data-validation-length="5-50" data-validation-error-msg="La Razón Social debe de tener entre 5 y 50 caracteres"*@ /></div>
+                            <div><input type="text" id="ProductCode" value="@ProductCode" data-validation="length" data-validation-length="5-50" data-validation-error-msg="El codigo del producto debe de tener entre 5 y 50 caracteres" /></div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
                             <div class="SubTitulo">Nombre del producto: </div>
-                            <div><input type="text" id="ProductName" value="@Name" @*data-validation="length" data-validation-length="8-50" data-validation-error-msg="El RUC debe de tener más de 8 caracteres"*@ /></div>
+                            <div><input type="text" id="ProductName" value="@Name" data-validation="length" data-validation-length="3-50" data-validation-error-msg="El nombre del producto debe de tener más de 3 caracteres" /></div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
                             <div class="SubTitulo">Presentación del producto: </div>
-                            <div><input type="text" id="Presentation" value="@Presentation" @*data-validation="length" data-validation-length="8-50" data-validation-error-msg="El RUC debe de tener más de 8 caracteres"*@ /></div>
+                            <div><input type="text" id="Presentation" value="@Presentation" data-validation="length" data-validation-length="3-50" data-validation-error-msg="La presentacion debe de tener más de 3 caracteres" /></div>
                         </div>
                     </div>
 
@@ -101,12 +101,12 @@
                 <div class="col-12 p-0 m-2 d-flex justify-content-center">
                     <div class="row">
                         <div class="col">
-                            <button class="btn mt-2 mt-sm-0 pl-lg-5 pr-lg-5 btn-info boton form-control ">
+                            <button  class="btn mt-2 mt-sm-0 pl-lg-5 pr-lg-5 btn-info boton form-control ">
                                 <i class="fa fa-search"></i> Guardar
                             </button>
                         </div>
                         <div class="col">
-                            <button class="btn mt-2 mt-sm-0  pl-lg-5 pr-lg-5 btn-info boton form-control" onclick="location.href='@Url.Action("Index","Product")'">
+                            <button type="button" class="btn mt-2 mt-sm-0  pl-lg-5 pr-lg-5 btn-info boton form-control" onclick="location.href='@Url.Action("Index","Product")'">
                                 <i class="fa fa-search"></i> Cancelar
                             </button>
                         </div>
@@ -164,12 +164,13 @@
             dataType: 'json',
             method: 'POST',
             data: data,
-            url: '@(ViewBag.Pacient != null  ? "/Product/EditProduct" : "/Product/AddProduct")',
+            url: '@(ViewBag.Product != null  ? "/Product/EditProduct" : "/Product/AddProduct")',
             success: function (json) {
-                $("#Loading").hide();
+                $("#Loading").hide();      
                 if (json) {
                     location.href = '@Url.Action("Index", "Product")';
-                } else{
+                } else {
+                    
                     alerta("No se pudo guardar el producto", "rojo");
                 }
             },

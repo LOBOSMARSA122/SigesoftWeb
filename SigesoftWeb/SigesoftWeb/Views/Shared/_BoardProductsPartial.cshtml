@@ -69,7 +69,7 @@
                                 <td>@item.ProductCode</td>
                                 <td>@item.Name</td>
                                 <td>@item.Presentation</td>
-                                <td><a href="@Url.Action("CreateParoduct","Product",new {id = item.ProductId })"><span class="icon-edit"></span></a></td>
+                                <td><a href="@Url.Action("CreateProduct","Product",new {id = item.ProductId })"><span class="icon-edit"></span></a></td>
                                 <td><a onclick='Delete("@item.ProductId")'><span class="icon-trash"></span></a></td>
                             </tr>
                         }

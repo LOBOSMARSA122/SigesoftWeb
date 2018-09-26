@@ -269,7 +269,7 @@ namespace BL.Warehouse
             {
                 ProductBE oProductBE = new ProductBE()
                 {
-                    v_ProductId = new Warehouse.ProductBL().GetPrimaryKey(1, 6, "PI"),
+                    v_ProductId = new Common.PersonBL().GetPrimaryKey(1, 6, "PI"),
                     i_CategoryId = product.i_CategoryId,
                     v_Name = product.v_Name,
                     v_GenericName = product.v_GenericName,
@@ -350,38 +350,7 @@ namespace BL.Warehouse
 
 
         #endregion
-        #region Bussines Logic
-
-        public string GetPrimaryKey(int nodeId, int tableId, string pre)
-        {
-            var secuentialId = GetNextSecuentialId(nodeId, tableId);
-            return string.Format("N{0}-{1}{2}", nodeId.ToString("000"), pre, secuentialId.ToString("000000000"));
-        }
-
-        public int GetNextSecuentialId(int pintNodeId, int pintTableId)
-        {
-
-            var objSecuential = (from a in ctx.Secuential
-                                 where a.i_TableId == pintTableId && a.i_NodeId == pintNodeId
-                                 select a).SingleOrDefault();
-
-            // Actualizar el campo con el nuevo valor a efectos de reservar el ID autogenerado para evitar colisiones entre otros nodos
-            if (objSecuential != null)
-            {
-                objSecuential.i_SecuentialId = objSecuential.i_SecuentialId + 1;
-            }
-            else
-            {
-                objSecuential = new SecuentialBE();
-                objSecuential.i_NodeId = pintNodeId;
-                objSecuential.i_TableId = pintTableId;
-                objSecuential.i_SecuentialId = 0;
-                ctx.Secuential.Add(objSecuential);
-            }
-
-            return objSecuential.i_SecuentialId.Value;
-        }
-        #endregion
+       
     }
 
 }

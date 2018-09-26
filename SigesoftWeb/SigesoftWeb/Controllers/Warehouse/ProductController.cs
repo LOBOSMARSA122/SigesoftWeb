@@ -25,8 +25,8 @@ namespace SigesoftWeb.Controllers.Warehouse
             Api API = new Api();
             Dictionary<string, string> arg = new Dictionary<string, string>()
             {
-                { "ProductCode",data.ProductCode.ToString()},
-                { "Name", data.Name.ToString()},
+                { "ProductCode",data.ProductCode},
+                { "Name", data.Name},
                 { "Index", data.Index.ToString()},
                 { "Take", data.Take.ToString()}
             };
@@ -42,12 +42,12 @@ namespace SigesoftWeb.Controllers.Warehouse
             return View();
         }
 
-        [GeneralSecurity(Rol = "Product-CreateProduct")]
-        public ActionResult Product()
-        {
-            ViewBag.Product = new BoardProduct() { List = new List<Products>(), Take = 10 };
-            return View();
-        }
+        //[GeneralSecurity(Rol = "Product-CreateProduct")]
+        //public ActionResult Product()
+        //{
+        //    ViewBag.Product = new BoardProduct() { List = new List<Products>(), Take = 10 };
+        //    return View();
+        //}
 
         [GeneralSecurity(Rol = "Product-CreateProduct")]
         public JsonResult DeleteProduct(string id)
