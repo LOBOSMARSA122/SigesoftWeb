@@ -143,7 +143,7 @@ namespace BL.Warehouse
             }
             catch (Exception ex)
             {
-
+                return false;
                 throw;
             }
 
