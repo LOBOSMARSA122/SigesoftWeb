@@ -188,6 +188,7 @@
     <Content Include="Content\bootstrap-treeview.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\Alert.css" />
     <Content Include="Content\css\animation.css" />
     <Content Include="Content\css\bootstrap-treeview.css" />
     <Content Include="Content\css\bootstrap-treeview.min.css" />
@@ -200,6 +201,7 @@
     <Content Include="Content\css\FullCalendar-custom.css" />
     <Content Include="Content\css\highcharts.css" />
     <Content Include="Content\css\jquery.contextMenu.css" />
+    <Content Include="Content\fontello.css" />
     <Content Include="Content\fonts\gijgo-material.svg" />
     <Content Include="Content\font\fontello.svg" />
     <Content Include="Content\font\user-plus.svg" />
@@ -261,6 +263,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\Alert.js" />
     <Content Include="Scripts\bootstrap-treeview.js" />
     <Content Include="Scripts\bootstrap-treeview.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -423,6 +426,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\TweenMax.min.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
