@@ -32,7 +32,7 @@ namespace SigesoftWebAPI.Controllers.Warehouse
         public IHttpActionResult AddProduct(MultiDataModel data)
         {
             Products product = JsonConvert.DeserializeObject<Products>(data.String1);
-            bool result = oProductBL.AddProducts(product, data.Int1);
+            bool result = oProductBL.AddProduct(product, data.Int1);
             return Ok(result);
         }
 

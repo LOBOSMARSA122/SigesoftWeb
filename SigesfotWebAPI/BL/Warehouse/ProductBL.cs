@@ -34,7 +34,7 @@ namespace BL.Warehouse
                             {
                                 ProductId = a.v_ProductId,
                                 Name = a.v_Name,
-                                ProductCode = a.v_ProductCode,                             
+                                ProductCode = a.v_ProductCode,
                                 Presentation = a.v_Presentation,
 
                             }).ToList();
@@ -91,13 +91,14 @@ namespace BL.Warehouse
             }
         }
 
-        public bool AddProducts(Products product, int systemUserId)
+        public bool AddProduct(Products product, int systemUserId)
         {
             ProductBL oProductBL = new ProductBL();
             try
             {
                 var oProductBE = new ProductBE
                 {
+                    v_ProductId = new Utils().GetPrimaryKey(1, 6, "PI"),
                     i_CategoryId = product.CategoryId,
                     v_Name = product.Name,
                     v_GenericName = product.GenericName,
@@ -113,33 +114,21 @@ namespace BL.Warehouse
                     v_Presentation = product.Presentation,
                     v_AdditionalInformation = product.AdditionalInformation,
                     b_Image = product.Image,
+
+                    //Auditoria
+                    i_IsDeleted = (int)Enumeratores.SiNo.No,
+                    d_InsertDate = DateTime.UtcNow,
+                    i_InsertUserId = systemUserId,
                 };
-                var productId = oProductBL.AddProduct(oProductBE, systemUserId);
-                //aaa
-                if (productId != "")
-                {
-                    var oProduct = new ProductBE
-                    {
-                        v_ProductId = productId,
-                        i_IsDeleted = (int)Enumeratores.SiNo.No,
-                        d_InsertDate = DateTime.UtcNow,
-                        i_InsertUserId = systemUserId
-                    };
 
+                ctx.Product.Add(oProductBE);
 
-                    ctx.Product.Add(oProduct);
+                int rows = ctx.SaveChanges();
+                if (rows > 0)
+                    return true;
 
-                    int rows = ctx.SaveChanges();
+                return false;
 
-                    if (rows > 0)
-                        return true;
-
-                    return false;
-                }
-                else
-                {
-                    return false;
-                }
             }
             catch (Exception ex)
             {
@@ -262,7 +251,7 @@ namespace BL.Warehouse
                 return null;
             }
         }
-        
+
         public string AddProduct(ProductBE product, int systemUserId)
         {
             try
@@ -294,24 +283,22 @@ namespace BL.Warehouse
 
                 ctx.Product.Add(oProductBE);
 
-                int rows = ctx.SaveChanges();
-                if(rows > 0)
-                return oProductBE.v_ProductId;
-
                 return "";
             }
             catch (Exception ex)
             {
-                return null;
+                return "";
             }
+
+
         }
-    
+
         public bool UpdateProduct(ProductBE product, int systemUserId)
         {
             try
             {
                 var oProduct = (from a in ctx.Product
-                            where a.v_ProductId == product.v_ProductId
+                                where a.v_ProductId == product.v_ProductId
                                 select a).FirstOrDefault();
 
                 if (oProduct == null)
@@ -347,10 +334,8 @@ namespace BL.Warehouse
                 return false;
             }
         }
-
+    }
 
         #endregion
-       
-    }
 
 }
