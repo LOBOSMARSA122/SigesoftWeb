@@ -269,7 +269,7 @@ namespace BL.Warehouse
             {
                 ProductBE oProductBE = new ProductBE()
                 {
-                    v_ProductId = new Common.PersonBL().GetPrimaryKey(1, 6, "PI"),
+                    v_ProductId = new Utils().GetPrimaryKey(1, 6, "PI"),
                     i_CategoryId = product.i_CategoryId,
                     v_Name = product.v_Name,
                     v_GenericName = product.v_GenericName,

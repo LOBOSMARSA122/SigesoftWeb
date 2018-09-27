@@ -65,7 +65,7 @@ namespace BL.Service
             {
                 ServiceComponentFieldsBE oServiceComponentFieldsBE = new ServiceComponentFieldsBE()
                 {
-                    ServiceComponentFieldsId =  new Common.PersonBL().GetPrimaryKey(1, 35, "CF"),
+                    ServiceComponentFieldsId =  new Utils().GetPrimaryKey(1, 35, "CF"),
                     ServiceComponentId = serviceComponentFields.ServiceComponentId,
                     ComponentId = serviceComponentFields.ComponentId,
                     ComponentFieldId = serviceComponentFields.ComponentFieldId,

@@ -61,7 +61,7 @@ namespace BL.Common
             {
                 AttentionInAreaComponentBE oAttentionInAreaComponentBE = new AttentionInAreaComponentBE()
                 {
-                    AttentioninAreaComponentId =   new Common.PersonBL().GetPrimaryKey(1, 47, "AC"),
+                    AttentioninAreaComponentId =   new Utils().GetPrimaryKey(1, 47, "AC"),
                     AttentionInAreaId = attentionInAreaComponent.AttentionInAreaId,
                     ComponentId = attentionInAreaComponent.ComponentId,
 

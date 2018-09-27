@@ -68,7 +68,7 @@ namespace BL.Common
             {
                 RoleNodeComponentProfileBE oRoleNodeComponentProfileBE = new RoleNodeComponentProfileBE()
                 {
-                    RoleNodeComponentId =  new Common.PersonBL().GetPrimaryKey(1, 26, "RC"),
+                    RoleNodeComponentId =  new Utils().GetPrimaryKey(1, 26, "RC"),
                     NodeId = roleNodeComponentProfile.NodeId,
                     RoleId = roleNodeComponentProfile.RoleId,
                     ComponentId = roleNodeComponentProfile.ComponentId,

@@ -64,7 +64,7 @@ namespace BL.Organization
             {
                 GroupOccupationBE oGroupOccupationBE = new GroupOccupationBE()
                 {
-                    GroupOccupationId =  new Common.PersonBL().GetPrimaryKey(1, 13, "OG"),
+                    GroupOccupationId =  new Utils().GetPrimaryKey(1, 13, "OG"),
                     LocationId = groupOccupation.LocationId,
                     Name = groupOccupation.Name,
 

@@ -63,7 +63,7 @@ namespace BL.Component
             {
                 ComponentFieldValuesRestrictionBE oComponentFieldValuesRestriction = new ComponentFieldValuesRestrictionBE()
                 {
-                    ComponentFieldValuesRestrictionId =  new Common.PersonBL().GetPrimaryKey(1, 28, "VR"),
+                    ComponentFieldValuesRestrictionId =  new Utils().GetPrimaryKey(1, 28, "VR"),
                     ComponentFieldValuesId = componentFieldValuesRestriction.ComponentFieldValuesId,
                     MasterRecommendationRestricctionId = componentFieldValuesRestriction.MasterRecommendationRestricctionId,
 

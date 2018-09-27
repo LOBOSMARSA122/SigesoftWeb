@@ -63,7 +63,7 @@ namespace BL.Common
             {
                 MasterRecommendationRestricctionBE oMasterRecommendationRestricctionBE = new MasterRecommendationRestricctionBE()
                 {
-                    MasterRecommendationRestricctionId =  new Common.PersonBL().GetPrimaryKey(1, 43, "MR"),
+                    MasterRecommendationRestricctionId =  new Utils().GetPrimaryKey(1, 43, "MR"),
                     Name = masterRecommendationRestricction.Name,
                     TypifyingId = masterRecommendationRestricction.TypifyingId,
 

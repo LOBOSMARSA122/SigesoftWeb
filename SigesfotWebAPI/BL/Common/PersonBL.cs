@@ -98,7 +98,7 @@ namespace BL.Common
             {
                 PersonBE oPersonBE = new PersonBE()
                 {
-                    v_PersonId =  new Common.PersonBL().GetPrimaryKey(1, 8, "PP"),                   
+                    v_PersonId = new Utils().GetPrimaryKey(1, 8, "PP"),                   
                     v_FirstName = person.v_FirstName,
                     v_FirstLastName = person.v_FirstLastName,
                     v_SecondLastName = person.v_SecondLastName,
@@ -251,37 +251,7 @@ namespace BL.Common
 
         #region Bussines Logic
 
-        public string GetPrimaryKey(int nodeId, int tableId, string pre)
-        {
-           var secuentialId = GetNextSecuentialId(nodeId, tableId);
-            return string.Format("N{0}-{1}{2}", nodeId.ToString("000"), pre, secuentialId.ToString("000000000"));
-        }
-
-        public int GetNextSecuentialId(int pintNodeId, int pintTableId)
-        {
-
-            var objSecuential = (from a in ctx.Secuential
-                                 where a.i_TableId == pintTableId && a.i_NodeId == pintNodeId
-                                 select a).SingleOrDefault();
-
-            // Actualizar el campo con el nuevo valor a efectos de reservar el ID autogenerado para evitar colisiones entre otros nodos
-            if (objSecuential != null)
-            {
-                objSecuential.i_SecuentialId = objSecuential.i_SecuentialId + 1;
-            }
-            else
-            {
-                objSecuential = new SecuentialBE();
-                objSecuential.i_NodeId = pintNodeId;
-                objSecuential.i_TableId = pintTableId;
-                objSecuential.i_SecuentialId = 0;
-                ctx.Secuential.Add(objSecuential);
-            }
-            //Nuevo8888
-            int rows = ctx.SaveChanges();
-
-            return objSecuential.i_SecuentialId.Value;
-        }
+      
         #endregion
 
     }
