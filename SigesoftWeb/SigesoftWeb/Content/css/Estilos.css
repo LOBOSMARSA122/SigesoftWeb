@@ -106,8 +106,10 @@ body {
 /*HEADER*/
 body header {
     /*border: 2px solid blue;*/
-    background: #28ADBF;
+    background: #f8f8f8;
     height: 85px;
+    /*border-lñ : 1px ridge;*/
+    border-color: #c8cfd2;
     /*z-index:1000;*/
 }
 
@@ -115,10 +117,12 @@ header .menu {
     height: 85px;
     padding: 0;
     margin: 0;
+    border-bottom: 1px solid;
+    border-color: #ececec;
 }
 
 header .boton-menu {
-    background: #217782;
+    background: #e1e4e5;
     width: 80px;
     text-align: center;
     /*--FLEX--*/
@@ -137,8 +141,12 @@ header .boton-menu {
         color: #fff;
     }
 
-header .logo img {
+header .logo a {
     height: 50px;
+    color: #a4b1b6;
+    font-family:Arial;
+    font-size:larger;
+    font-weight:400;
 }
 
 header .menu .imagen img {
@@ -147,7 +155,7 @@ header .menu .imagen img {
 
 header .menu .nombre-usuario {
     min-width: 250px;
-    color: #fff;
+    color: #5e95b9;
 }
 
 
@@ -190,10 +198,14 @@ header .menu .nombre-usuario {
 
     #wrapper.active #sidebar-wrapper {
         left: 330px;
+        border-right: 2px double;
+        border-color: #ececec;
+        background: #f9f9f9;
     }
 
 .barra-lateral .datos-usuario {
-    background: url(../img/fondo-datos-usuario.jpg);
+    /*background: url(../img/fondo-datos-usuario.jpg);*/
+    background-color: #f8f8f8;
     height: 175px;
 }
 
@@ -201,10 +213,6 @@ header .menu .nombre-usuario {
     color: black;
 }
 
-.barra-lateral .datos-usuario {
-    background: url(../img/fondo-datos-usuario.jpg);
-    height: 175px;
-}
 
     .barra-lateral .datos-usuario img {
         height: 100px;
@@ -226,6 +234,11 @@ header .menu .nombre-usuario {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     border-bottom: 1px solid rgba(255,255,255,.1);
+    color: #4674ba;
+    font-family:'Times New Roman', Times, serif;
+    background: #f8f8f8;
+    border-bottom: 1px solid;
+    border-bottom-color: #ececec;
 }
 
     .barra-lateral .menu a span span {
@@ -237,9 +250,8 @@ header .menu .nombre-usuario {
 }
 
 .barra-lateral .menu a:hover {
-    background: #E2E4E9;
     text-decoration: none;
-    color: #263C3E;
+    color: #4674ba;
 }
 
 .barra-lateral .menu a i {
@@ -289,7 +301,7 @@ body .contenido {
     min-height: calc(100vh - 140px);
     /*border:1px solid red;*/
     width: 100%;
-    background-color:#E8EDE9;
+    background-color:#fff;
 }
 
 .contenido2{

@@ -3,16 +3,9 @@
     var imgSrc = base64 != "" ? String.Format("data:image/jpeg;base64,{0}", base64) : "/Content/static/images/foto@default.png";
 }
 <div id="sidebar-wrapper" class="barra-lateral">
-    <div class="datos-usuario d-flex justify-content-around align-items-center">
-        <img src="@imgSrc" />
-        <a href="#" class="nombre-usuario dropdown-toggle" data-toggle="dropdown">@*(@ViewBag.USER.Rol)*@ (Administrador)@ViewBag.USER.FullName</a>
-        <ul class="dropdown-menu">
-            <li class="user-header ">
-                <div class="text-center">
-                    <a href="@Url.Content("~/salir")" class="btn btn-danger">Salir</a>
-                </div>
-            </li>
-        </ul>
+    <div class="d-flex justify-content-around align-items-center">
+      
+       
     </div>
     <nav class="menu d-flex d-sm-block">
         <ul class="firstUl">

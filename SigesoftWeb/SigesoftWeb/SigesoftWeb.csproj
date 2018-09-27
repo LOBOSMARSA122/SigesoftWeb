@@ -161,7 +161,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\Common\PacientController.cs" />
     <Compile Include="Controllers\GeneralsController.cs" />
+    <Compile Include="Controllers\MedicalAssistance\PatientsAssistanceController.cs" />
     <Compile Include="Controllers\Security\GeneralSecurityAttributeController.cs" />
+    <Compile Include="Controllers\Warehouse\MovementProductsController.cs" />
     <Compile Include="Controllers\Warehouse\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -458,9 +460,12 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Shared\_BoardProductsPartial.cshtml" />
     <Content Include="Views\Product\CreateProduct.cshtml" />
+    <Content Include="Views\PatientsAssistance\Index.cshtml" />
+    <Content Include="Views\MovementProducts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\OccupationalHealth\" />
     <Folder Include="Scripts\treeview\" />
     <Folder Include="Views\Security\" />
   </ItemGroup>
