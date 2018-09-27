@@ -29,13 +29,13 @@
 										</div>
 										<div class="row justify-content-center m-0 p-0">
 											<div class="`+ opciones.mostrarBtnOk + ` col-6">
-												<button class="btn  btn-success bigBox-Ok"><i class="icon-ok"></i>`+ opciones.btnOk + `</button>
+												<button class="btn btn-success bigBox-Ok"><i class="icon-ok"></i>`+ opciones.btnOk + `</button>
 											</div>
 											<div class="`+ opciones.mostrarBtnAceptar + ` col-6">
-												<button class="btn  btn-primary bigBox-Aceptar"><i class=" m-0 p-0 icon-pencil"></i>`+ opciones.btnAceptar + `</button>
+												<button class="btn bigBox-Aceptar">`+ opciones.btnAceptar + `</button>
 											</div>	
 											<div class="`+ opciones.mostrarBtnCancelar + ` col-6">
-												<button class="btn btn-danger bigBox-Cancelar"><i class="fa fa-times"></i>`+ opciones.btnCancelar + `</button>	
+												<button class="btn bigBox-Cancelar">`+ opciones.btnCancelar + `</button>	
 											</div>										
 										</div>
 									</div>															
@@ -44,7 +44,7 @@
         $("body").append(contenido);
         animar_entrada();
         centrarContenedor();
-
+        controlTeclas();
         //Funcion de cancelar
         $("body").on("click", ".bigBox-Cancelar", function () {
             animar_salida();
@@ -111,14 +111,8 @@
         }
 
         function centrarContenedor() {
-            //$(document).ready(function () {
-            //    $('.pluginContenedor').css({
-            //        'left': ($(window).width() / 2) - ($('.pluginContenedor').width() / 2),
-            //        'top': ($(window).width() / 2) - ($('.pluginContenedor').height() / 2)
-            //    });
-            //});
+
             $(document).ready(function () {
-                 //aquí le pasamos la clase o id de nuestro div a centrar (en este caso "bigBox-contenedor")
                 $('.bigBox-contenedor').css({
                     position: 'absolute',
                     left: ($(window).width() - $('.bigBox-contenedor').width()) / 2,
@@ -127,13 +121,29 @@
 
             });
             $(window).resize(function () {
-                //aquí le pasamos la clase o id de nuestro div a centrar (en este caso "bigBox-contenedor")
                 $('.bigBox-contenedor').css({
                     position: 'absolute',
                     left: ($(window).width() - $('.bigBox-contenedor').width()) / 2,
                     top: ($(window).height() - $('.bigBox-contenedor').height()) / 2
                 });
 
+            });
+        }
+        function controlTeclas() {
+            $(document).keypress(function (e) {
+                if (e.keyCode == 13) {
+                    $(".bigBox-Aceptar").click();
+                }
+            });
+            $(document).keyup(function (e) {
+                if (e.which == 27) {
+                    $(".bigBox-Cancelar").click();
+                }
+            });
+            $(document).keypress(function (e) {
+                if (e.keyCode == 13) {
+                    $(".bigBox-Ok").click();
+                }
             });
         }
     };
