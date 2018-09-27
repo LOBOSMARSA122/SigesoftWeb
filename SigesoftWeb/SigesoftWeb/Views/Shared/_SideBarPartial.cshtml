@@ -12,8 +12,7 @@
             @foreach (var menu in ViewBag.USER.Permissions)
             {
                 <li>
-                    @*<a href="#"><span>@menu.Description<span class="caret icon-down-dir"></span></span></a>*@
-                    <ul >
+                     <ul >
                         @foreach (var submenu in menu.SubMenus)
                         {
                         <li>

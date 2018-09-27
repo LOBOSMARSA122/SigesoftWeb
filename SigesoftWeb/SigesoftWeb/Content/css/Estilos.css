@@ -235,24 +235,44 @@ header .menu .nombre-usuario {
     font-weight: 500;
     border-bottom: 1px solid rgba(255,255,255,.1);
     color: #4674ba;
-    font-family:'Times New Roman', Times, serif;
+    font-family: 'Times New Roman', Times, serif;
     background: #f8f8f8;
     border-bottom: 1px solid;
     border-bottom-color: #ececec;
+    text-decoration: none;
 }
 
-    .barra-lateral .menu a span span {
-        float: right;
-    }
+.barra-lateral .menu a span span {
+    float: right;
+}
 
 .barra-lateral .menu ul {
     list-style: none;
 }
 
-.barra-lateral .menu a:hover {
-    text-decoration: none;
-    color: #4674ba;
+.barra-lateral .menu a {
+    position: relative;
 }
+
+    .barra-lateral .menu a:after {
+        content: '';
+        position: absolute;
+        border-bottom: 3px solid #c7d2d2;
+        bottom: 0;
+        left: 0;
+        right: 100%;
+        transition: 900ms;
+    }
+
+
+.barra-lateral .menu a:hover:after{
+    right: 0;
+        
+}
+
+
+
+
 
 .barra-lateral .menu a i {
     margin-right: 20px;
@@ -721,9 +741,12 @@ textarea {
     z-index: 9999;
 }
 
-    #Loading > img {
-        width: 200px;
-    }
+#Loading > img {
+    width: 200px;
+}
+
+
+
 
 /*MEDIA QUERYS*/
 @media (max-width: 480px) {
