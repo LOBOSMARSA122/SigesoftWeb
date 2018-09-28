@@ -35,13 +35,13 @@
                 </div>
                 <div class="col-12 col-lg-4 col-xl-3">
                     <div class="form-group">
-                        <label for="">Tipo de documento</label>
+                        <label class="m-0" for="">Tipo de documento</label>
                         <div class="row w-100 m-0 p-0">
-                            <div class="col-12 m-2 p-0 ">
+                            <div class="col-12 m-0 p-0 ">
                                 @{
                                     if (ViewBag.DocType != null)
                                     {
-                                        <select id="DocType" @*data-validation="number" data-validation-allowing="range[1;100]" data-validation-error-msg="Debe seleccionar una opción"*@>
+                                        <select class="mt-2 p-0 m-0 form-control" id="DocType" @*data-validation="number" data-validation-allowing="range[1;100]" data-validation-error-msg="Debe seleccionar una opción"*@>
                                             @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.DocType)
                                             {
                                                 <option value="@G.Id">@G.Value</option>
