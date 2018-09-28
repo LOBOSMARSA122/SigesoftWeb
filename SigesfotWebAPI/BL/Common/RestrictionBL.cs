@@ -67,7 +67,7 @@ namespace BL.Common
             {
                 RestrictionBE oRestrictionBE = new RestrictionBE()
                 {
-                    RestrictionId =  new Common.PersonBL().GetPrimaryKey(1, 30, "RD"),
+                    RestrictionId =  new Utils().GetPrimaryKey(1, 30, "RD"),
                     DiagnosticRepositoryId = restriction.DiagnosticRepositoryId,
                     ServiceId = restriction.ServiceId,
                     ComponentId = restriction.ComponentId,

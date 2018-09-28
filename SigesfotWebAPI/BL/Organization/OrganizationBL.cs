@@ -84,7 +84,7 @@ namespace BL.Organization
             {
                 OrganizationBE oOrganizationBE = new OrganizationBE()
                 {
-                    OrganizationId =  new Common.PersonBL().GetPrimaryKey(1, 5, "OO"),
+                    OrganizationId =  new Utils().GetPrimaryKey(1, 5, "OO"),
                     OrganizationTypeId = organization.OrganizationTypeId,
                     SectorTypeId = organization.SectorTypeId,
                     SectorName = organization.SectorName,

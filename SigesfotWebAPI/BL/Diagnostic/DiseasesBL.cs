@@ -61,7 +61,7 @@ namespace BL.Diagnostic
             {
                 DiseasesBE oDiseasesBE = new DiseasesBE()
                 {
-                    DiseasesId =  new Common.PersonBL().GetPrimaryKey(1, 27, "DD"),
+                    DiseasesId =  new Utils().GetPrimaryKey(1, 27, "DD"),
                     CIE10Id = diseases.CIE10Id,
                     Name = diseases.Name,              
 

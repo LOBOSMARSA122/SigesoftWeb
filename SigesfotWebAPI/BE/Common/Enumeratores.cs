@@ -24,7 +24,7 @@ namespace BE.Common
 
         public enum Parameters
         {
-            TypeDocument = 100
+            Gender = 100
         }
 
         public enum DataHierarchy

@@ -106,7 +106,7 @@ namespace BL.Service
             {
                 ServiceComponentBE oServiceComponentBE = new ServiceComponentBE()
                 {
-                    ServiceComponentId =  new Common.PersonBL().GetPrimaryKey(1, 24, "SC"),
+                    ServiceComponentId =  new Utils().GetPrimaryKey(1, 24, "SC"),
                     ServiceId = serviceComponent.ServiceId,
                     ComponentId = serviceComponent.ComponentId,
                     ServiceComponentStatusId = serviceComponent.ServiceComponentStatusId,

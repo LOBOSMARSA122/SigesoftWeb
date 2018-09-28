@@ -65,7 +65,7 @@ namespace BL.Protocol
             {
                 ProtocolSystemUserBE oProtocolSystemUserBE = new ProtocolSystemUserBE()
                 {
-                    ProtocolSystemUserId =  new Common.PersonBL().GetPrimaryKey(1, 44, "PU"),
+                    ProtocolSystemUserId =  new Utils().GetPrimaryKey(1, 44, "PU"),
                     SystemUserId = protocolSystemUser.SystemUserId,
                     ProtocolId = protocolSystemUser.ProtocolId,
                     ApplicationHierarchyId = protocolSystemUser.ApplicationHierarchyId,

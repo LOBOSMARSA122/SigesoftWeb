@@ -73,7 +73,7 @@ namespace BL.Service
             {
                 CalendarBE oCalendarBE = new CalendarBE()
                 {
-                    CalendarId =  new Common.PersonBL().GetPrimaryKey(1, 22, "CA"),
+                    CalendarId =  new Utils().GetPrimaryKey(1, 22, "CA"),
                     PersonId = calendar.PersonId,
                     ServiceId = calendar.ServiceId,
                     DateTimeCalendar = calendar.DateTimeCalendar,

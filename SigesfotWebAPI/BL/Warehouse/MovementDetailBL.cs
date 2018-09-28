@@ -21,7 +21,7 @@ namespace BL.Warehouse
             {
                 MovementDetailBE oMovementDetailBE = new MovementDetailBE()
                 {
-                    //GesId =  new Common.PersonBL().GetPrimaryKey(node usa),
+                    //GesId =  new Utils().GetPrimaryKey(node usa),
                     StockMax = movementDetail.StockMax,
                     StockMin = movementDetail.StockMin,
                     MovementTypeId = movementDetail.MovementTypeId,

@@ -65,7 +65,7 @@ namespace BL.Common
             {
                 RecommendationBE oRecommendationBE = new RecommendationBE()
                 {
-                    RecommendationId =  new Common.PersonBL().GetPrimaryKey(1, 32, "RR"),
+                    RecommendationId =  new Utils().GetPrimaryKey(1, 32, "RR"),
                     ServiceId = recommendation.ServiceId,
                     DiagnosticRepositoryId = recommendation.DiagnosticRepositoryId,
                     ComponentId = recommendation.ComponentId,

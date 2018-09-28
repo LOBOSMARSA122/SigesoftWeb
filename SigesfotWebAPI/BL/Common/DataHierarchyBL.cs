@@ -67,7 +67,7 @@ namespace BL.Common
             {
                 DataHierarchyBE oDataHierarchyBE = new DataHierarchyBE()
                 {
-                    //GroupId =  new Common.PersonBL().GetPrimaryKey("no usa"),
+                    //GroupId =  new Utils().GetPrimaryKey("no usa"),
 
                     v_Value1 = dataHierarchy.v_Value1,
                     v_Value2 = dataHierarchy.v_Value2,

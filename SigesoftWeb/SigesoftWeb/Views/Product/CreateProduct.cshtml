@@ -143,11 +143,11 @@
                     {
                         <select class="dropdown" id="MeasurementUnitId" data-validation="number" data-validation-allowing="range[1;100]" data-validation-error-msg="Debe seleccionar una opción">
                             @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.MeasurementUnit)
-            {
-                <option value="@G.Id" @(MeasurementUnitId == int.Parse(G.Id.ToString()) ? "selected" : "")>@G.Value</option>
-}
-                        </select>
-    }
+                                {
+                                    <option value="@G.Id" @(MeasurementUnitId == int.Parse(G.Id.ToString()) ? "selected" : "")>@G.Value</option>
+                                }
+                         </select>
+                    }
                                 }
                             </div>
                         </div>
@@ -156,7 +156,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="SubTitulo">Precio referencial: </div>
-                            <div><input type="number" step="any" id="ReferentialCostPrice" value="@ReferentialCostPrice" data-validation="length" data-validation-length="1-10" data-validation-error-msg="Debe poner un precio referencial" /></div>
+                            <div><input type="number" step="any" id="ReferentialCostPrice" value="@ReferentialCostPrice" data-validation="number" data-validation- data-validation-length="2-10" data-validation-error-msg="Debe poner un precio referencial" /></div>
                         </div>
                     </div>
                 </div>

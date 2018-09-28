@@ -68,7 +68,7 @@ namespace BL.Component
             {
                 ComponentFieldValuesBE oComponentFieldValuesBE = new ComponentFieldValuesBE()
                 {
-                    ComponentFieldValuesId =  new Common.PersonBL().GetPrimaryKey(1, 19, "MV"),
+                    ComponentFieldValuesId =  new Utils().GetPrimaryKey(1, 19, "MV"),
                     Diseases = componentFieldValues.Diseases,
                     ComponentFieldId = componentFieldValues.ComponentFieldId,
                     AnalyzingValue1 = componentFieldValues.AnalyzingValue1,

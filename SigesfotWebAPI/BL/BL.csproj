@@ -78,6 +78,7 @@
     <Compile Include="History\HistoryBL.cs" />
     <Compile Include="History\NoxiousHabitsBL.cs" />
     <Compile Include="History\WorkStationDangersBL.cs" />
+    <Compile Include="MedicalAssistance\PatientsAssistanceBL.cs" />
     <Compile Include="Organization\AreaBL.cs" />
     <Compile Include="Organization\GesBL.cs" />
     <Compile Include="Organization\GroupOccupationBL.cs" />

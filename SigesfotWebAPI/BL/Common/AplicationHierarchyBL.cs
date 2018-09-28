@@ -70,7 +70,7 @@ namespace BL.Common
             {
                 AplicationHierarchyBE oAplicationHierarchyBE = new AplicationHierarchyBE()
                 {
-                    //AplicationHierarchyId =  new Common.PersonBL().GetPrimaryKey(1, 12, "OE"),
+                    //AplicationHierarchyId =  new Utils().GetPrimaryKey(1, 12, "OE"),
 
                     ApplicationHierarchyTypeId = aplicationHierarchy.ApplicationHierarchyTypeId,
                     Level = aplicationHierarchy.Level,

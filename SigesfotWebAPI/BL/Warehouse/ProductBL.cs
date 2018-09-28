@@ -39,7 +39,11 @@ namespace BL.Warehouse
                                 CategoryId = a.i_CategoryId,                        
                                 Name = a.v_Name,
                                 ProductCode = a.v_ProductCode,
+
                                 ReferentialCostPrice = a.r_ReferentialCostPrice,
+
+                                Presentation = a.v_Presentation,
+
 
                             }).ToList();
 
@@ -102,7 +106,7 @@ namespace BL.Warehouse
             {
                 var oProductBE = new ProductBE
                 {
-                    v_ProductId = new Common.PersonBL().GetPrimaryKey(1, 6, "PI"),
+                    v_ProductId = new Utils().GetPrimaryKey(1, 6, "PI"),
                     i_CategoryId = product.CategoryId,
                     v_Name = product.Name,
                     v_GenericName = product.GenericName,
@@ -255,15 +259,54 @@ namespace BL.Warehouse
                 return null;
             }
         }
-        
 
-    
+        public string AddProduct(ProductBE product, int systemUserId)
+        {
+            try
+            {
+                ProductBE oProductBE = new ProductBE()
+                {
+                    v_ProductId = new Utils().GetPrimaryKey(1, 6, "PI"),
+                    i_CategoryId = product.i_CategoryId,
+                    v_Name = product.v_Name,
+                    v_GenericName = product.v_GenericName,
+                    v_BarCode = product.v_BarCode,
+                    v_ProductCode = product.v_ProductCode,
+                    v_Brand = product.v_Brand,
+                    v_Model = product.v_Model,
+                    v_SerialNumber = product.v_SerialNumber,
+                    d_ExpirationDate = product.d_ExpirationDate,
+                    i_MeasurementUnitId = product.i_MeasurementUnitId,
+                    r_ReferentialCostPrice = product.r_ReferentialCostPrice,
+                    r_ReferentialSalesPrice = product.r_ReferentialSalesPrice,
+                    v_Presentation = product.v_Presentation,
+                    v_AdditionalInformation = product.v_AdditionalInformation,
+                    b_Image = product.b_Image,
+
+                    //Auditoria
+                    i_IsDeleted = (int)Enumeratores.SiNo.No,
+                    d_InsertDate = DateTime.UtcNow,
+                    i_InsertUserId = systemUserId,
+                };
+
+                ctx.Product.Add(oProductBE);
+
+                return "";
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
+
+
+        }
+
         public bool UpdateProduct(ProductBE product, int systemUserId)
         {
             try
             {
                 var oProduct = (from a in ctx.Product
-                            where a.v_ProductId == product.v_ProductId
+                                where a.v_ProductId == product.v_ProductId
                                 select a).FirstOrDefault();
 
                 if (oProduct == null)
@@ -299,10 +342,8 @@ namespace BL.Warehouse
                 return false;
             }
         }
-
+    }
 
         #endregion
-       
-    }
 
 }

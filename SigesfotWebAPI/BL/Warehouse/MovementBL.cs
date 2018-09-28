@@ -81,7 +81,7 @@ namespace BL.Warehouse
             {
                 MovementBE oMovementBE = new MovementBE()
                 {
-                    MovementId =  new Common.PersonBL().GetPrimaryKey(1, 3, "MM"),
+                    MovementId = new Utils().GetPrimaryKey(1, 3, "MM"),
                     WarehouseId = movement.WarehouseId,
                     SupplierId = movement.SupplierId,
                     ProcessTypeId = movement.ProcessTypeId,

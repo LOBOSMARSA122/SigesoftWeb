@@ -171,6 +171,7 @@
     <Compile Include="Models\API.cs" />
     <Compile Include="Models\Common\Boards.cs" />
     <Compile Include="Models\Common\Dropdownlist.cs" />
+    <Compile Include="Models\MedicalAssistance\Boards.cs" />
     <Compile Include="Models\Security\AuthorizationModel.cs" />
     <Compile Include="Models\Warehouse\Boards.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -466,6 +467,7 @@
     <Content Include="Views\Product\CreateProduct.cshtml" />
     <Content Include="Views\PatientsAssistance\Index.cshtml" />
     <Content Include="Views\MovementProducts\Index.cshtml" />
+    <Content Include="Views\MovementProducts\_BoardPatientsAssistancePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

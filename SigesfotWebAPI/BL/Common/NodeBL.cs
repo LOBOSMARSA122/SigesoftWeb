@@ -68,7 +68,7 @@ namespace BL.Common
             {
                 NodeBE oNodeBE = new NodeBE()
                 {
-                    //NodeId =  new Common.PersonBL().GetPrimaryKey(no usa),
+                    //NodeId =  new Utils().GetPrimaryKey(no usa),
                     Description = node.Description,
                     GeografyLocationId = node.GeografyLocationId,
                     GeografyLocationDescription = node.GeografyLocationDescription,

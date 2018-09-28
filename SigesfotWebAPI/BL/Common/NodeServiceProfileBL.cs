@@ -64,7 +64,7 @@ namespace BL.Common
             {
                 NodeServiceProfileBE oNodeServiceProfileBE = new NodeServiceProfileBE()
                 {
-                    NodeServiceProfileId =  new Common.PersonBL().GetPrimaryKey(1, 25, "NS"),
+                    NodeServiceProfileId =  new Utils().GetPrimaryKey(1, 25, "NS"),
                     NodeId = nodeServiceProfile.NodeId,
                     ServiceTypeId = nodeServiceProfile.ServiceTypeId,
                     MasterServiceId = nodeServiceProfile.MasterServiceId,
