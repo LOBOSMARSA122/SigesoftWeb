@@ -10,7 +10,8 @@ namespace SigesoftWeb.Utils
         public enum DataHierarchy
         {
             DocType = 106,
-           
+            CategoryProd = 103,
+            MeasurementUnit = 150,
         }
 
         public enum SystemParameter
