@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace BE.Common
     [Table("Supplier")]
     public class SupplierBE
     {
+        [Key]
         public string v_SupplierId { get; set; }
         public int? i_SectorTypeId { get; set; }
         public string v_IdentificationNumber { get; set; }

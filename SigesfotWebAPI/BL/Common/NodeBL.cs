@@ -18,7 +18,7 @@ namespace BL.Common
             try
             {
                 var objEntity = (from a in ctx.Node
-                                 where a.NodeId == nodeId
+                                 where a.i_NodeId == nodeId
                                  select a).FirstOrDefault();
 
                 return objEntity;
@@ -36,22 +36,22 @@ namespace BL.Common
             {
                 var isDelete = (int)Enumeratores.SiNo.No;
                 var objEntity = (from a in ctx.Node
-                                 where a.IsDeleted == isDelete
+                                 where a.i_IsDeleted == isDelete
                                  select new NodeBE()
                                  {
-                                     NodeId = a.NodeId,
-                                     Description = a.Description,
-                                     GeografyLocationId = a.GeografyLocationId,
-                                     GeografyLocationDescription = a.GeografyLocationDescription,
-                                     NodeTypeId = a.NodeTypeId,
-                                     BeginDate = a.BeginDate,
-                                     EndDate = a.EndDate,
-                                     PharmacyWarehouseId = a.PharmacyWarehouseId,
-                                     IsDeleted = a.IsDeleted,
-                                     InsertUserId = a.InsertUserId,
-                                     InsertDate = a.InsertDate,
-                                     UpdateDate = a.UpdateDate,
-                                     UpdateUserId = a.UpdateUserId
+                                     i_NodeId = a.i_NodeId,
+                                     v_Description = a.v_Description,
+                                     v_GeografyLocationId = a.v_GeografyLocationId,
+                                     v_GeografyLocationDescription = a.v_GeografyLocationDescription,
+                                     i_NodeTypeId = a.i_NodeTypeId,
+                                     d_BeginDate = a.d_BeginDate,
+                                     d_EndDate = a.d_EndDate,
+                                     v_PharmacyWarehouseId = a.v_PharmacyWarehouseId,
+                                     i_IsDeleted = a.i_IsDeleted,
+                                     i_InsertUserId = a.i_InsertUserId,
+                                     d_InsertDate = a.d_InsertDate,
+                                     d_UpdateDate = a.d_UpdateDate,
+                                     i_UpdateUserId = a.i_UpdateUserId
                                  }).ToList();
 
                 return objEntity;
@@ -69,18 +69,18 @@ namespace BL.Common
                 NodeBE oNodeBE = new NodeBE()
                 {
                     //NodeId =  new Utils().GetPrimaryKey(no usa),
-                    Description = node.Description,
-                    GeografyLocationId = node.GeografyLocationId,
-                    GeografyLocationDescription = node.GeografyLocationDescription,
-                    NodeTypeId = node.NodeTypeId,
-                    BeginDate = node.BeginDate,
-                    EndDate = node.EndDate,
-                    PharmacyWarehouseId = node.PharmacyWarehouseId,
+                    v_Description = node.v_Description,
+                    v_GeografyLocationId = node.v_GeografyLocationId,
+                    v_GeografyLocationDescription = node.v_GeografyLocationDescription,
+                    i_NodeTypeId = node.i_NodeTypeId,
+                    d_BeginDate = node.d_BeginDate,
+                    d_EndDate = node.d_EndDate,
+                    v_PharmacyWarehouseId = node.v_PharmacyWarehouseId,
 
                     //Auditoria
-                    IsDeleted = (int)Enumeratores.SiNo.No,
-                    InsertDate = DateTime.UtcNow,
-                    InsertUserId = systemUserId,
+                    i_IsDeleted = (int)Enumeratores.SiNo.No,
+                    d_InsertDate = DateTime.UtcNow,
+                    i_InsertUserId = systemUserId,
                 };
 
                 ctx.Node.Add(oNodeBE);
@@ -100,24 +100,24 @@ namespace BL.Common
             try
             {
                 var oNode = (from a in ctx.Node
-                            where a.NodeId == node.NodeId
+                            where a.i_NodeId == node.i_NodeId
                              select a).FirstOrDefault();
 
                 if (oNode == null)
                     return false;
 
-                oNode.Description = node.Description;
-                oNode.GeografyLocationId = node.GeografyLocationId;
-                oNode.GeografyLocationDescription = node.GeografyLocationDescription;
-                oNode.NodeTypeId = node.NodeTypeId;
-                oNode.BeginDate = node.BeginDate;
-                oNode.EndDate = node.EndDate;
-                oNode.PharmacyWarehouseId = node.PharmacyWarehouseId;
+                oNode.v_Description = node.v_Description;
+                oNode.v_GeografyLocationId = node.v_GeografyLocationId;
+                oNode.v_GeografyLocationDescription = node.v_GeografyLocationDescription;
+                oNode.i_NodeTypeId = node.i_NodeTypeId;
+                oNode.d_BeginDate = node.d_BeginDate;
+                oNode.d_EndDate = node.d_EndDate;
+                oNode.v_PharmacyWarehouseId = node.v_PharmacyWarehouseId;
 
                 //Auditoria
 
-                oNode.UpdateDate = DateTime.UtcNow;
-                oNode.UpdateUserId = systemUserId;
+                oNode.d_UpdateDate = DateTime.UtcNow;
+                oNode.i_UpdateUserId = systemUserId;
 
                 int rows = ctx.SaveChanges();
 
@@ -134,15 +134,15 @@ namespace BL.Common
             try
             {
                 var oNode = (from a in ctx.Node
-                            where a.NodeId == nodeId
+                            where a.i_NodeId == nodeId
                             select a).FirstOrDefault();
 
                 if (oNode == null)
                     return false;
 
-                oNode.UpdateUserId = systemUserId;
-                oNode.UpdateDate = DateTime.UtcNow;
-                oNode.IsDeleted = (int)Enumeratores.SiNo.Si;
+                oNode.i_UpdateUserId = systemUserId;
+                oNode.d_UpdateDate = DateTime.UtcNow;
+                oNode.i_IsDeleted = (int)Enumeratores.SiNo.Si;
 
                 int rows = ctx.SaveChanges();
 

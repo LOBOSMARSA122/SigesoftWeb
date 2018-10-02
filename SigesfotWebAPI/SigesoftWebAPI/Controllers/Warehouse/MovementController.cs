@@ -1,4 +1,5 @@
-﻿using BE.Warehouse;
+﻿using BE.Common;
+using BE.Warehouse;
 using BL.Warehouse;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,18 @@ namespace SigesoftWebAPI.Controllers.Warehouse
         public IHttpActionResult GetMovementsListByWarehouseId(BoardMovement data)
         {
             var result = oMovementBL.GetMovementsListByWarehouseId(data);
+            return Ok(result);
+        }
+
+        public IHttpActionResult GetJoinOrganizationAndLocationNotInRestricted(int nodeId)
+        {
+            List<KeyValueDTO> result = oMovementBL.GetJoinOrganizationAndLocationNotInRestricted(nodeId);
+            return Ok(result);
+        }
+
+        public IHttpActionResult GetWarehouseNotInRestricted(int nodeId, string OrganizationId, string LocationId)
+        {
+            List<KeyValueDTO> result = oMovementBL.GetWarehouseNotInRestricted(nodeId, OrganizationId, LocationId);
             return Ok(result);
         }
     }

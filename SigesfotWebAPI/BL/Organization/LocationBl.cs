@@ -19,7 +19,7 @@ namespace BL.Organization
             try
             {
                 var objEntity = (from a in ctx.Location
-                                 where a.LocationId == locationId
+                                 where a.v_LocationId == locationId
                                  select a).FirstOrDefault();
 
                 return objEntity;
@@ -37,17 +37,17 @@ namespace BL.Organization
             {
                 var isDelete = (int)Enumeratores.SiNo.No;
                 var objEntity = (from a in ctx.Location
-                                 where a.IsDeleted == isDelete
+                                 where a.i_IsDeleted == isDelete
                                  select new LocationBE()
                                  {
-                                     LocationId = a.LocationId,
-                                     OrganizationId = a.OrganizationId,
-                                     Name = a.Name,
-                                     IsDeleted = a.IsDeleted,
-                                     InsertUserId = a.InsertUserId,
-                                     InsertDate = a.InsertDate,
-                                     UpdateDate = a.UpdateDate,
-                                     UpdateUserId = a.UpdateUserId
+                                     v_LocationId = a.v_LocationId,
+                                     v_OrganizationId = a.v_OrganizationId,
+                                     v_Name = a.v_Name,
+                                     i_IsDeleted = a.i_IsDeleted,
+                                     i_InsertUserId = a.i_InsertUserId,
+                                     d_InsertDate = a.d_InsertDate,
+                                     d_UpdateDate = a.d_UpdateDate,
+                                     i_UpdateUserId = a.i_UpdateUserId
                                  }).ToList();
 
                 return objEntity;
@@ -64,14 +64,14 @@ namespace BL.Organization
             {
                 LocationBE oLocationBE = new LocationBE()
                 {
-                    LocationId =  new Utils().GetPrimaryKey(1, 14, "OL"),
-                    OrganizationId = location.OrganizationId,
-                    Name = location.Name,
+                    v_LocationId =  new Utils().GetPrimaryKey(1, 14, "OL"),
+                    v_OrganizationId = location.v_OrganizationId,
+                    v_Name = location.v_Name,
 
                     //Auditoria
-                    IsDeleted = (int)Enumeratores.SiNo.No,
-                    InsertDate = DateTime.UtcNow,
-                    InsertUserId = systemUserId,
+                    i_IsDeleted = (int)Enumeratores.SiNo.No,
+                    d_InsertDate = DateTime.UtcNow,
+                    i_InsertUserId = systemUserId,
                 };
 
                 ctx.Location.Add(oLocationBE);
@@ -91,19 +91,19 @@ namespace BL.Organization
             try
             {
                 var oLocation = (from a in ctx.Location
-                                 where a.LocationId == location.LocationId
+                                 where a.v_LocationId == location.v_LocationId
                                  select a).FirstOrDefault();
 
                 if (oLocation == null)
                     return false;
 
-                oLocation.OrganizationId = location.OrganizationId;
-                oLocation.Name = location.Name;
+                oLocation.v_OrganizationId = location.v_OrganizationId;
+                oLocation.v_Name = location.v_Name;
 
                 //Auditoria
 
-                oLocation.UpdateDate = DateTime.UtcNow;
-                oLocation.UpdateUserId = systemUserId;
+                oLocation.d_UpdateDate = DateTime.UtcNow;
+                oLocation.i_UpdateUserId = systemUserId;
 
                 int rows = ctx.SaveChanges();
 
@@ -120,15 +120,15 @@ namespace BL.Organization
             try
             {
                 var oLocation = (from a in ctx.Location
-                                 where a.LocationId == locationId
+                                 where a.v_LocationId == locationId
                                  select a).FirstOrDefault();
 
                 if (oLocation == null)
                     return false;
 
-                oLocation.UpdateUserId = systemUserId;
-                oLocation.UpdateDate = DateTime.UtcNow;
-                oLocation.IsDeleted = (int)Enumeratores.SiNo.Si;
+                oLocation.i_UpdateUserId = systemUserId;
+                oLocation.d_UpdateDate = DateTime.UtcNow;
+                oLocation.i_IsDeleted = (int)Enumeratores.SiNo.Si;
 
                 int rows = ctx.SaveChanges();
 

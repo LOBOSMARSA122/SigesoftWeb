@@ -8,19 +8,20 @@ using System.Threading.Tasks;
 
 namespace BE.Warehouse
 {
+    [Table("RestrictedWarehouseProfile")]
     public class RestrictedWarehouseProfileBE
     {
         [Key, Column(Order = 1)]
-        public int? SystemUserId { get; set; }
+        public int? i_SystemUserId { get; set; }
         [Key, Column(Order = 2)]
-        public string WarehouseId { get; set; }
+        public string v_WarehouseId { get; set; }
         [Key, Column(Order = 3)]
-        public int? NodeId { get; set; }
+        public int? i_NodeId { get; set; }
 
-        public int? IsDeleted { get; set; }
-        public int? InsertUserId { get; set; }
-        public DateTime? InsertDate { get; set; }
-        public int? UpdateUserId { get; set; }
-        public DateTime? UpdateDate { get; set; }
+        public int? i_IsDeleted { get; set; }
+        public int? i_InsertUserId { get; set; }
+        public DateTime? d_InsertDate { get; set; }
+        public int? i_UpdateUserId { get; set; }
+        public DateTime? d_UpdateDate { get; set; }
     }
 }

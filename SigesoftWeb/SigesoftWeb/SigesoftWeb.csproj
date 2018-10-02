@@ -467,7 +467,8 @@
     <Content Include="Views\Product\CreateProduct.cshtml" />
     <Content Include="Views\PatientsAssistance\Index.cshtml" />
     <Content Include="Views\MovementProducts\Index.cshtml" />
-    <Content Include="Views\MovementProducts\_BoardPatientsAssistancePartial.cshtml" />
+    <Content Include="Views\PatientsAssistance\_BoardPatientsAssistancePartial.cshtml" />
+    <Content Include="Views\MovementProducts\_BoardMovementPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

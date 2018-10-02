@@ -19,7 +19,7 @@ namespace BL.Warehouse
             try
             {
                 var objEntity = (from a in ctx.Warehouse
-                                 where a.WarehouseId == warehouseId
+                                 where a.v_WarehouseId == warehouseId
                                  select a).FirstOrDefault();
 
                 return objEntity;
@@ -37,20 +37,20 @@ namespace BL.Warehouse
             {
                 var isDelete = (int)Enumeratores.SiNo.No;
                 var objEntity = (from a in ctx.Warehouse
-                                 where a.IsDeleted == isDelete
+                                 where a.i_IsDeleted == isDelete
                                  select new WarehouseBE()
                                  {
-                                     WarehouseId = a.WarehouseId,
-                                     OrganizationId = a.OrganizationId,
-                                     LocationId = a.LocationId,
-                                     Name = a.Name,
-                                     AdditionalInformation = a.AdditionalInformation,
-                                     CostCenterId = a.CostCenterId,
-                                     IsDeleted = a.IsDeleted,
-                                     InsertUserId = a.InsertUserId,
-                                     InsertDate = a.InsertDate,
-                                     UpdateDate = a.UpdateDate,
-                                     UpdateUserId = a.UpdateUserId
+                                     v_WarehouseId = a.v_WarehouseId,
+                                     v_OrganizationId = a.v_OrganizationId,
+                                     v_LocationId = a.v_LocationId,
+                                     v_Name = a.v_Name,
+                                     v_AdditionalInformation = a.v_AdditionalInformation,
+                                     i_CostCenterId = a.i_CostCenterId,
+                                     i_IsDeleted = a.i_IsDeleted,
+                                     i_InsertUserId = a.i_InsertUserId,
+                                     d_InsertDate = a.d_InsertDate,
+                                     d_UpdateDate = a.d_UpdateDate,
+                                     i_UpdateUserId = a.i_UpdateUserId
                                  }).ToList();
 
                 return objEntity;
@@ -67,17 +67,17 @@ namespace BL.Warehouse
             {
                 WarehouseBE oWarehouseBE = new WarehouseBE()
                 {
-                    WarehouseId =  new Utils().GetPrimaryKey(1, 2, "WW"),
-                    OrganizationId = warehouse.OrganizationId,
-                    LocationId = warehouse.LocationId,
-                    Name = warehouse.Name,
-                    AdditionalInformation = warehouse.AdditionalInformation,
-                    CostCenterId = warehouse.CostCenterId,
+                    v_WarehouseId =  new Utils().GetPrimaryKey(1, 2, "WW"),
+                    v_OrganizationId = warehouse.v_OrganizationId,
+                    v_LocationId = warehouse.v_LocationId,
+                    v_Name = warehouse.v_Name,
+                    v_AdditionalInformation = warehouse.v_AdditionalInformation,
+                    i_CostCenterId = warehouse.i_CostCenterId,
 
                     //Auditoria
-                    IsDeleted = (int)Enumeratores.SiNo.No,
-                    InsertDate = DateTime.UtcNow,
-                    InsertUserId = systemUserId,
+                    i_IsDeleted = (int)Enumeratores.SiNo.No,
+                    d_InsertDate = DateTime.UtcNow,
+                    i_InsertUserId = systemUserId,
                 };
 
                 ctx.Warehouse.Add(oWarehouseBE);
@@ -97,22 +97,22 @@ namespace BL.Warehouse
             try
             {
                 var oWarehouse = (from a in ctx.Warehouse
-                                  where a.WarehouseId == warehouse.WarehouseId
+                                  where a.v_WarehouseId == warehouse.v_WarehouseId
                                   select a).FirstOrDefault();
 
                 if (oWarehouse == null)
                     return false;
 
-                oWarehouse.OrganizationId = warehouse.OrganizationId;
-                oWarehouse.LocationId = warehouse.LocationId;
-                oWarehouse.Name = warehouse.Name;
-                oWarehouse.AdditionalInformation = warehouse.AdditionalInformation;
-                oWarehouse.CostCenterId = warehouse.CostCenterId;
+                oWarehouse.v_OrganizationId = warehouse.v_OrganizationId;
+                oWarehouse.v_LocationId = warehouse.v_LocationId;
+                oWarehouse.v_Name = warehouse.v_Name;
+                oWarehouse.v_AdditionalInformation = warehouse.v_AdditionalInformation;
+                oWarehouse.i_CostCenterId = warehouse.i_CostCenterId;
 
                 //Auditoria
 
-                oWarehouse.UpdateDate = DateTime.UtcNow;
-                oWarehouse.UpdateUserId = systemUserId;
+                oWarehouse.d_UpdateDate = DateTime.UtcNow;
+                oWarehouse.i_UpdateUserId = systemUserId;
 
                 int rows = ctx.SaveChanges();
 
@@ -129,15 +129,15 @@ namespace BL.Warehouse
             try
             {
                 var oWarehouse = (from a in ctx.Warehouse
-                                  where a.WarehouseId == warehouseId
+                                  where a.v_WarehouseId == warehouseId
                                   select a).FirstOrDefault();
 
                 if (oWarehouse == null)
                     return false;
 
-                oWarehouse.UpdateUserId = systemUserId;
-                oWarehouse.UpdateDate = DateTime.UtcNow;
-                oWarehouse.IsDeleted = (int)Enumeratores.SiNo.Si;
+                oWarehouse.i_UpdateUserId = systemUserId;
+                oWarehouse.d_UpdateDate = DateTime.UtcNow;
+                oWarehouse.i_IsDeleted = (int)Enumeratores.SiNo.Si;
 
                 int rows = ctx.SaveChanges();
 

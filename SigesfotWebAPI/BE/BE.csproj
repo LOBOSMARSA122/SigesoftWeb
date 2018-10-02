@@ -52,6 +52,7 @@
     <Compile Include="Common\Dropdownlist.cs" />
     <Compile Include="Common\EmailBE.cs" />
     <Compile Include="Common\Enumeratores.cs" />
+    <Compile Include="Common\KeyValueDTO.cs" />
     <Compile Include="Common\LogBE.cs" />
     <Compile Include="Common\MasterRecommendationRestricctionBE.cs" />
     <Compile Include="Common\MultimediaFileBE.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="Warehouse\ProductsForMigrationBE.cs" />
     <Compile Include="Warehouse\ProductWarehouseBE.cs" />
     <Compile Include="Warehouse\RestrictedWarehouseProfileBE.cs" />
+    <Compile Include="Warehouse\RestrictedWarehouseProfileListBE.cs" />
     <Compile Include="Warehouse\WarehouseBE.cs" />
   </ItemGroup>
   <ItemGroup />

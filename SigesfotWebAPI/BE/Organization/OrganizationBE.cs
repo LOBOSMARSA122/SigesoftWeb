@@ -1,43 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BE.Organization
 {
+    [Table("Organization")]
     public class OrganizationBE
     {
         [Key]
-        public string OrganizationId { get; set; }
+        public string v_OrganizationId { get; set; }
 
-        public int? OrganizationTypeId { get; set; }
-        public int? SectorTypeId { get; set; }
-        public string SectorName { get; set; }
-        public string SectorCodigo { get; set; }
-        public string IdentificationNumber { get; set; }
-        public string Name { get; set; }
-        public string Address { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Mail { get; set; }
-        public string ContacName { get; set; }
-        public string Contacto { get; set; }
-        public string EmailContacto { get; set; }
-        public string Observation { get; set; }
-        public int? NumberQuotasOrganization { get; set; }
-        public int? NumberQuotasMen { get; set; }
-        public int? NumberQuotasWomen { get; set; }
-        public int? DepartmentId { get; set; }
-        public int? ProvinceId { get; set; }
-        public int? DistrictId { get; set; }
-        public int? IsDeleted { get; set; }
-        public int? InsertUserId { get; set; }
-        public DateTime? InsertDate { get; set; }
-        public int? UpdateUserId { get; set; }
-        public DateTime? UpdateDate { get; set; }
-        public byte [] Image { get; set; }
-        public string ContactoMedico { get; set; }
-        public string EmailMedico { get; set; }
+        public int? i_OrganizationTypeId { get; set; }
+        public int? i_SectorTypeId { get; set; }
+        public string v_SectorName { get; set; }
+        public string v_SectorCodigo { get; set; }
+        public string v_IdentificationNumber { get; set; }
+        public string v_Name { get; set; }
+        public string v_Address { get; set; }
+        public string v_PhoneNumber { get; set; }
+        public string v_Mail { get; set; }
+        public string v_ContacName { get; set; }
+        public string v_Contacto { get; set; }
+        public string v_EmailContacto { get; set; }
+        public string v_Observation { get; set; }
+        public int? i_NumberQuotasOrganization { get; set; }
+        public int? i_NumberQuotasMen { get; set; }
+        public int? i_NumberQuotasWomen { get; set; }
+        public int? i_DepartmentId { get; set; }
+        public int? i_ProvinceId { get; set; }
+        public int? i_DistrictId { get; set; }
+        public int? i_IsDeleted { get; set; }
+        public int? i_InsertUserId { get; set; }
+        public DateTime? d_InsertDate { get; set; }
+        public int? i_UpdateUserId { get; set; }
+        public DateTime? d_UpdateDate { get; set; }
+        public byte [] b_Image { get; set; }
+        public string v_ContactoMedico { get; set; }
+        public string v_EmailMedico { get; set; }
     }
 }
