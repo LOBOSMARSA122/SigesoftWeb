@@ -93,6 +93,7 @@ namespace DAL
         public DbSet<RestrictedWarehouseProfileBE> RestrictedWarehouseProfile { get; set; }
         public DbSet<WarehouseBE> Warehouse { get; set; }
 
+        public DbSet<SupplierBE> Supplier { get; set; }
         public DbSet<ApplicationHierarchyBE> ApplicationHierarchy { get; set; }
     }
 }

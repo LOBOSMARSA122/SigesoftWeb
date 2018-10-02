@@ -67,6 +67,7 @@
     <Compile Include="Common\RecommendationBE.cs" />
     <Compile Include="Common\RestrictionBE.cs" />
     <Compile Include="Common\RoleNodeComponentProfileBE.cs" />
+    <Compile Include="Common\SupplierBE.cs" />
     <Compile Include="Common\SystemParameterBE.cs" />
     <Compile Include="Component\ComponentBE.cs" />
     <Compile Include="Component\ComponentFieldBE.cs" />

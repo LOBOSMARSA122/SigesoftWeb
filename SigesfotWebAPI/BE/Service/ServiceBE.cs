@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BE.Service
 {
-    [Table("person")]
+    [Table("service")]
     public class ServiceBE
     {
         [Key]

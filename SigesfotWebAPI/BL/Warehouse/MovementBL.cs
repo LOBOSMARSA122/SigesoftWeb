@@ -190,5 +190,79 @@ namespace BL.Warehouse
             }
         }
         #endregion
+
+        #region Logic
+
+        public BoardMovement GetMovementsListByWarehouseId(BoardMovement data)
+        {
+            try
+            {
+                var isDeleted = (int)Enumeratores.SiNo.No;
+                int skip = (data.Index - 1) * data.Take;
+
+                #region Query
+                var list = (from A in ctx.Movement
+                           
+                        join J1 in ctx.SystemUser on new { i_InsertUserId = A.InsertUserId.Value }
+                                                equals new { i_InsertUserId = J1.i_SystemUserId.Value } into J1_join
+                        from J1 in J1_join.DefaultIfEmpty()
+
+                        join J2 in ctx.SystemUser on new { i_UpdateUserId = A.UpdateUserId.Value }
+                                                equals new { i_UpdateUserId = J2.i_SystemUserId.Value } into J2_join
+                        from J2 in J2_join.DefaultIfEmpty()
+
+                        join J3 in ctx.Node on new { i_UpdateNodeId = A.UpdateNodeId.Value }
+                            equals new { i_UpdateNodeId = J3.NodeId.Value } into J3_join
+                        from J3 in J3_join.DefaultIfEmpty()
+
+                        join J5 in ctx.SystemParameter on new { a = 111, b = A.IsLocallyProcessed.Value }
+                                                            equals new { a = J5.i_GroupId, b = J5.i_ParameterId }
+
+                        join J6 in ctx.Supplier on new { a = A.SupplierId } equals new { a = J6.v_SupplierId } into J6_join
+                        from J6 in J6_join.DefaultIfEmpty()
+
+
+                        join J7 in ctx.SystemParameter on new { a = 109, b = A.MovementTypeId.Value }
+                                                            equals new { a = J7.i_GroupId, b = J7.i_ParameterId }
+
+                        join J8 in ctx.SystemParameter on new { a = 110, b = A.MotiveTypeId.Value }
+                                                            equals new { a = J8.i_GroupId, b = J8.i_ParameterId }
+
+                        where A.WarehouseId == data.WarehouseId 
+                            &&(data.StartDate.Value < A.Date && data.EndDate > A.Date)
+                            &&(A.IsDeleted == isDeleted)
+
+                        orderby A.Date descending
+
+                        select new Movements
+                        {
+                            MovementId = A.MovementId,
+                            MovementType = J7.v_Value1,
+                            Date = A.Date,
+                            ProcessTypeId = J5.v_Value1,
+                            MotiveTypeId = J8.v_Value1,
+                            Supplier = J6.v_Name
+                            
+                        }).ToList();
+
+                #endregion
+
+                int totalRecords = list.Count;
+
+                if (data.Take > 0)
+                    list = list.Skip(skip).Take(data.Take).ToList();
+
+                data.TotalRecords = totalRecords;
+                data.List = list;
+
+                return data;
+            }
+            catch (Exception ex)
+            {               
+                return null;
+            }
+        }
+
+        #endregion
     }
 }

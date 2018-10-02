@@ -50,4 +50,31 @@ namespace BE.Warehouse
         public int? UpdateUserId { get; set; }
         public DateTime? UpdateDate { get; set; }
     }
+
+
+    public class BoardMovement : Boards
+    {
+        public string OrganizationLocationId { get; set; }
+        public string WarehouseId { get; set; }
+        public int MovementTypeId { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        public List<Movements> List { get; set; }
+    }
+
+    public class Movements
+    {
+        public string MovementId { get; set; }
+        public string MovementType { get; set; }
+        public DateTime? Date { get; set; }
+        public string ProcessTypeId { get; set; }
+        public string MotiveTypeId { get; set; }
+        public string Supplier { get; set; }
+
+        public int? IsDeleted { get; set; }
+        public int? InsertUserId { get; set; }
+        public DateTime? InsertDate { get; set; }
+        public int? UpdateUserId { get; set; }
+        public DateTime? UpdateDate { get; set; }
+    }
 }
