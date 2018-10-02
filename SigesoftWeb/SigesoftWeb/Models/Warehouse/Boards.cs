@@ -15,7 +15,7 @@ namespace SigesoftWeb.Models.Warehouse
 
         public class BoardProduct : Boards
         {
-
+            public int CategoryId { get; set; }
             public string ProductCode { get; set; }
             public string Name { get; set; }
             public List<Products> List { get; set; }

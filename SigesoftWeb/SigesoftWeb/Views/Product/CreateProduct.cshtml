@@ -1,15 +1,23 @@
 ﻿
 @{
+    int CategoryId = -1;
+    int MeasurementUnitId = -1;
+    string GenericName = "";
     string ProductCode = "";
     string Name = "";
     string Presentation = "";
+    float ReferentialCostPrice = 0;
     string ProductId = "";
 
     if (ViewBag.Product != null)
     {
         ProductCode = ViewBag.Product.ProductCode;
+        CategoryId = ViewBag.Product.CategoryId;
+        GenericName = ViewBag.Product.GenericName;
         Name = ViewBag.Product.Name;
         Presentation = ViewBag.Product.Presentation;
+        MeasurementUnitId = ViewBag.Product.MeasurementUnitId;
+        ReferentialCostPrice = ViewBag.Product.ReferentialCostPrice;
         ProductId = ViewBag.Product.ProductId;
 
     }
@@ -78,25 +86,79 @@
                     <div class="row">
                         <div class="col-12 Titulo">Datos del Paciente</div>
                     </div>
+                    @*combo categoria*@
                     <div class="row">
                         <div class="col-12">
-                            <div class="SubTitulo">Codigo del producto: </div>
-                            <div><input type="text" id="ProductCode" value="@ProductCode" data-validation="length" data-validation-length="5-50" data-validation-error-msg="El codigo del producto debe de tener entre 5 y 50 caracteres" /></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="SubTitulo">Nombre del producto: </div>
-                            <div><input type="text" id="ProductName" value="@Name" data-validation="length" data-validation-length="3-50" data-validation-error-msg="El nombre del producto debe de tener más de 3 caracteres" /></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="SubTitulo">Presentación del producto: </div>
-                            <div><input type="text" id="Presentation" value="@Presentation" data-validation="length" data-validation-length="3-50" data-validation-error-msg="La presentacion debe de tener más de 3 caracteres" /></div>
+                            <div class="SubTitulo">Tipo producto: </div>
+                            <div>
+                                @{
+                    if (ViewBag.CategoryProd != null)
+                    {
+                        <select class="dropdown" id="CategoryProd" data-validation="number" data-validation-allowing="range[1;100]" data-validation-error-msg="Debe seleccionar una opción">
+                            @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.CategoryProd)
+            {
+                <option value="@G.Id" @(CategoryId == int.Parse(G.Id.ToString()) ? "selected" : "")>@G.Value</option>
+}
+                        </select>
+    }
+                                }
+                            </div>
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="SubTitulo">Nombre Genérico: </div>
+                            <div><input type="text" id="GenericName" value="@GenericName" data-validation="length" data-validation-length="3-50" data-validation-error-msg="El nombre del producto debe de tener más de 3 caracteres" /></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="SubTitulo">Nombre Comercial: </div>
+                            <div><input type="text" id="ProductName" value="@Name" /></div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="SubTitulo">Presentación del producto: </div>
+                            <div><input type="text" id="Presentation" value="@Presentation" /></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="SubTitulo">Codigo de Producto: </div>
+                            <div><input type="text" id="ProductCode" value="@ProductCode" /></div>
+                        </div>
+                    </div>
+                    @*Comobo unidad*@
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="SubTitulo">Tipo de Unidad: </div>
+                            <div>
+                                @{
+                    if (ViewBag.MeasurementUnit != null)
+                    {
+                        <select class="dropdown" id="MeasurementUnitId" data-validation="number" data-validation-allowing="range[1;100]" data-validation-error-msg="Debe seleccionar una opción">
+                            @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.MeasurementUnit)
+                                {
+                                    <option value="@G.Id" @(MeasurementUnitId == int.Parse(G.Id.ToString()) ? "selected" : "")>@G.Value</option>
+                                }
+                         </select>
+                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="SubTitulo">Precio referencial: </div>
+                            <div><input type="number" step="any" id="ReferentialCostPrice" value="@ReferentialCostPrice" data-validation="number" data-validation- data-validation-length="2-10" data-validation-error-msg="Debe poner un precio referencial" /></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-12 p-0 m-2 d-flex justify-content-center">
                     <div class="row">
@@ -146,6 +208,10 @@
 
     function EnviarFormulario() {
         var data = {
+            CategoryId: $("#CategoryProd").val(),
+            GenericName: $("#GenericName").val(),
+            MeasurementUnitId: $("#MeasurementUnitId").val(),
+            ReferentialCostPrice: $("#ReferentialCostPrice").val(),
             ProductCode: $("#ProductCode").val(),
             Name: $("#ProductName").val(),
             Presentation: $("#Presentation").val(),

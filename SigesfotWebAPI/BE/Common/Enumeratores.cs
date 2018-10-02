@@ -29,7 +29,9 @@ namespace BE.Common
 
         public enum DataHierarchy
         {
-            TypeDoc = 106
+            TypeDoc = 106,
+            CategoryProd = 103,
+            MeasurementUnit = 150,
         }
     }
 }

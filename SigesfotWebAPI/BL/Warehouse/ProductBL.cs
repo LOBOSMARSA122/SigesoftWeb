@@ -20,22 +20,30 @@ namespace BL.Warehouse
             try
             {
                 var isDeleted = (int)Enumeratores.SiNo.No;
+                int groupCategoryId = (int)Enumeratores.DataHierarchy.CategoryProd;
                 int skip = (data.Index - 1) * data.Take;
 
                 //filters
                 string filterProductCode = string.IsNullOrWhiteSpace(data.ProductCode) ? "" : data.ProductCode;
                 string filterName = string.IsNullOrWhiteSpace(data.Name) ? "" : data.Name;
 
-                var list = (from a in ctx.Product
-                            join b in ctx.Product on a.v_ProductId equals b.v_ProductId
-                            where a.i_IsDeleted == isDeleted && (b.v_ProductCode.Contains(filterProductCode))
-                                    && (b.v_Name.Contains(filterName))
+                var list = (from a in ctx.Product  
+                            join b in ctx.DataHierarchy on new { a = a.i_CategoryId.Value, b = groupCategoryId } equals new { a = b.i_ItemId, b = b.i_GroupId }
+                            where a.i_IsDeleted == isDeleted 
+                                    && (a.v_ProductCode.Contains(filterProductCode))
+                                    && (a.v_Name.Contains(filterName)
+                                    && (data.CategoryId == -1 || a.i_CategoryId == data.CategoryId ))
                             select new Products
                             {
                                 ProductId = a.v_ProductId,
+                                CategoryId = a.i_CategoryId,                        
                                 Name = a.v_Name,
                                 ProductCode = a.v_ProductCode,
+
+                                ReferentialCostPrice = a.r_ReferentialCostPrice,
+
                                 Presentation = a.v_Presentation,
+
 
                             }).ToList();
 

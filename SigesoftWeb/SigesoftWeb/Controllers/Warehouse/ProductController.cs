@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using SigesoftWeb.Controllers.Security;
 using SigesoftWeb.Models;
+using SigesoftWeb.Models.Common;
 using SigesoftWeb.Models.Warehouse;
 using SigesoftWeb.Utils;
 using System;
@@ -16,7 +17,12 @@ namespace SigesoftWeb.Controllers.Warehouse
         [GeneralSecurity(Rol = "Product-BoardProduct")]
         public ActionResult Index()
         {
-            
+            Api API = new Api();
+            Dictionary<string, string> argCategoryProd = new Dictionary<string, string>()
+            {
+                { "grupoId" , ((int)Enums.DataHierarchy.CategoryProd).ToString() },
+            };
+            ViewBag.CategoryProd = Utils.Utils.LoadDropDownList(API.Get<List<Dropdownlist>>("DataHierarchy/GetDataHierarchyByGrupoId", argCategoryProd), Constants.Select);
             return View();
         }
 
@@ -25,8 +31,10 @@ namespace SigesoftWeb.Controllers.Warehouse
             Api API = new Api();
             Dictionary<string, string> arg = new Dictionary<string, string>()
             {
-                { "ProductCode",data.ProductCode},
+                { "CategoryId", data.CategoryId.ToString()},
+                { "ProductCode",data.ProductCode},             
                 { "Name", data.Name},
+
                 { "Index", data.Index.ToString()},
                 { "Take", data.Take.ToString()}
             };
@@ -38,16 +46,21 @@ namespace SigesoftWeb.Controllers.Warehouse
         public ActionResult CreateProduct(string id)
         {
             Api API = new Api();
+            Dictionary<string, string> argCategoryProd = new Dictionary<string, string>()
+            {
+                { "grupoId" , ((int)Enums.DataHierarchy.CategoryProd).ToString() },
+            };
+            Dictionary<string, string> argMeasurementUnit = new Dictionary<string, string>()
+            {
+                { "grupoId" , ((int)Enums.DataHierarchy.MeasurementUnit).ToString() },
+            };
+            ViewBag.CategoryProd = Utils.Utils.LoadDropDownList(API.Get<List<Dropdownlist>>("DataHierarchy/GetDataHierarchyByGrupoId", argCategoryProd), Constants.Select);
+            ViewBag.MeasurementUnit = Utils.Utils.LoadDropDownList(API.Get<List<Dropdownlist>>("DataHierarchy/GetDataHierarchyByGrupoId", argMeasurementUnit), Constants.Select);
+
+
             ViewBag.Product = API.Get<Products>("Product/GetProductById", new Dictionary<string, string> { { "productId", id } });
             return View();
         }
-
-        //[GeneralSecurity(Rol = "Product-CreateProduct")]
-        //public ActionResult Product()
-        //{
-        //    ViewBag.Product = new BoardProduct() { List = new List<Products>(), Take = 10 };
-        //    return View();
-        //}
 
         [GeneralSecurity(Rol = "Product-CreateProduct")]
         public JsonResult DeleteProduct(string id)
