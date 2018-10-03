@@ -232,7 +232,7 @@ namespace BL.Warehouse
                         select new Movements
                         {
                             MovementId = A.v_MovementId,
-                            MovementType = J7.v_Value1,
+                            MovementTypeId = J7.v_Value1,
                             Date = A.d_Date,
                             ProcessTypeId = J5.v_Value1,
                             MotiveTypeId = J8.v_Value1,

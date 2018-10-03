@@ -19,15 +19,15 @@ namespace SigesoftWeb.Controllers.Warehouse
             Api API = new Api();
             Dictionary<string, string> argTypeMovement = new Dictionary<string, string>()
             {
-                { "grupoId" , ((int)Enums.DataHierarchy.TypeMovement).ToString() },
+                { "grupoId" , ((int)Enums.SystemParameter.TypeMovement).ToString() },
             };
-            ViewBag.TypeMovement = Utils.Utils.LoadDropDownList(API.Get<List<Dropdownlist>>("DataHierarchy/GetDataHierarchyByGrupoId", argTypeMovement), Constants.Select);
+            ViewBag.TypeMovement = Utils.Utils.LoadDropDownList(API.Get<List<Dropdownlist>>("SystemParameter/GetParametroByGrupoId", argTypeMovement), Constants.All);
 
             Dictionary<string, string> argOrgLoc = new Dictionary<string, string>()
             {
                 { "nodeId" , "9" },
             };
-            ViewBag.OrganizationIdLocationId = Utils.Utils.LoadDropDownList(API.Get<List<Dropdownlist>>("Movement/GetJoinOrganizationAndLocationNotInRestricted", argOrgLoc), Constants.Select);
+            ViewBag.OrganizationIdLocationId = Utils.Utils.LoadDropDownList(API.Get<List<Dropdownlist>>("Movement/GetJoinOrganizationAndLocationNotInRestricted", argOrgLoc), Constants.All);
 
             Dictionary<string, string> argWarehouseMovement = new Dictionary<string, string>()
             {
@@ -35,7 +35,7 @@ namespace SigesoftWeb.Controllers.Warehouse
                 { "OrganizationId" , "" },
                 { "LocationId" , "" },
             };
-            ViewBag.WarehouseMovement = Utils.Utils.LoadDropDownList(API.Get<List<Dropdownlist>>("Movement/GetWarehouseNotInRestricted", argWarehouseMovement), Constants.Select);
+            ViewBag.WarehouseMovement = Utils.Utils.LoadDropDownList(API.Get<List<Dropdownlist>>("Movement/GetWarehouseNotInRestricted", argWarehouseMovement), Constants.All);
 
             return View();
         }
@@ -47,9 +47,9 @@ namespace SigesoftWeb.Controllers.Warehouse
             {           
                 { "OrganizationLocationId", data.OrganizationLocationId},
                 { "WarehouseId",data.WarehouseId},
-                { "MovementTypeId", data.MovementTypeId.ToString()},
-                { "StartDate",data.StartDate.ToString()},
-                { "EndDate", data.EndDate.ToString()},
+                { "MovementType", data.MovementType.ToString()},
+                { "StartDate",data.StartDate.Value.ToString("yyyy/MM/dd")},
+                { "EndDate", data.EndDate.Value.ToString("yyyy/MM/dd")},
 
                 { "Index", data.Index.ToString()},
                 { "Take", data.Take.ToString()}
