@@ -56,6 +56,7 @@
             </thead>
             <tbody>
                 @{
+                    
                     if (ViewBag.Movement == null)
                     {
                         <tr><td colspan="7" class="text-center">Error al conectarse al servidor</td></tr>
@@ -70,8 +71,8 @@
                         {
                             <tr>
                                 <td>@item.MovementId</td>
-                                <td>@item.MovementType</td>
-                                <td>@item.Date</td>
+                                <td>@item.MovementTypeId</td>
+                                <td>@item.Date.ToShortDateString()</td>
                                 <td>@item.ProcessTypeId</td>
                                 <td>@item.MotiveTypeId</td>
                                 <td>@item.Supplier</td>

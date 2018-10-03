@@ -19,7 +19,7 @@ namespace SigesoftWeb.Controllers.Warehouse
             Api API = new Api();
             Dictionary<string, string> argTypeMovement = new Dictionary<string, string>()
             {
-                { "grupoId" , ((int)Enums.DataHierarchy.TypeMovement).ToString() },
+                { "grupoId" , ((int)Enums.SystemParameter.TypeMovement).ToString() },
             };
             ViewBag.TypeMovement = Utils.Utils.LoadDropDownList(API.Get<List<Dropdownlist>>("DataHierarchy/GetDataHierarchyByGrupoId", argTypeMovement), Constants.All);
 
@@ -47,9 +47,9 @@ namespace SigesoftWeb.Controllers.Warehouse
             {           
                 { "OrganizationLocationId", data.OrganizationLocationId},
                 { "WarehouseId",data.WarehouseId},
-                { "MovementTypeId", data.MovementTypeId.ToString()},
-                { "StartDate",data.StartDate.ToString()},
-                { "EndDate", data.EndDate.ToString()},
+                { "MovementType", data.MovementType.ToString()},
+                { "StartDate",data.StartDate == null ? "" :data.StartDate.Value.ToString("yyyy/MM/dd")},
+                { "EndDate", data.EndDate== null ? "" :data.EndDate.Value.ToString("yyyy/MM/dd")},
 
                 { "Index", data.Index.ToString()},
                 { "Take", data.Take.ToString()}

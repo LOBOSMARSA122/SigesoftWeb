@@ -12,12 +12,13 @@ namespace SigesoftWeb.Utils
             DocType = 106,
             CategoryProd = 103,
             MeasurementUnit = 150,
-            TypeMovement = 109,
+            
         }
 
         public enum SystemParameter
         {
-            Gender = 100
+            Gender = 100,
+            TypeMovement = 109
         }
     }
 }

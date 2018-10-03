@@ -56,7 +56,7 @@ namespace SigesoftWeb.Models.Warehouse
 
         public string OrganizationLocationId { get; set; }
         public string WarehouseId { get; set; }
-        public int MovementTypeId { get; set; }
+        public int MovementType { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public List<Movements> List { get; set; }
@@ -65,7 +65,7 @@ namespace SigesoftWeb.Models.Warehouse
     public class Movements
     {
         public string MovementId { get; set; }
-        public string MovementType { get; set; }
+        public string MovementTypeId { get; set; }
         public DateTime? Date { get; set; }
         public string ProcessTypeId { get; set; }
         public string MotiveTypeId { get; set; }
