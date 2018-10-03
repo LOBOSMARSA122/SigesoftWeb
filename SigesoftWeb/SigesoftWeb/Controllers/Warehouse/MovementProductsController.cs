@@ -21,13 +21,13 @@ namespace SigesoftWeb.Controllers.Warehouse
             {
                 { "grupoId" , ((int)Enums.DataHierarchy.TypeMovement).ToString() },
             };
-            ViewBag.TypeMovement = Utils.Utils.LoadDropDownList(API.Get<List<Dropdownlist>>("DataHierarchy/GetDataHierarchyByGrupoId", argTypeMovement), Constants.Select);
+            ViewBag.TypeMovement = Utils.Utils.LoadDropDownList(API.Get<List<Dropdownlist>>("DataHierarchy/GetDataHierarchyByGrupoId", argTypeMovement), Constants.All);
 
             Dictionary<string, string> argOrgLoc = new Dictionary<string, string>()
             {
                 { "nodeId" , "9" },
             };
-            ViewBag.OrganizationIdLocationId = Utils.Utils.LoadDropDownList(API.Get<List<Dropdownlist>>("Movement/GetJoinOrganizationAndLocationNotInRestricted", argOrgLoc), Constants.Select);
+            ViewBag.OrganizationIdLocationId = Utils.Utils.LoadDropDownList(API.Get<List<Dropdownlist>>("Movement/GetJoinOrganizationAndLocationNotInRestricted", argOrgLoc), Constants.All);
 
             Dictionary<string, string> argWarehouseMovement = new Dictionary<string, string>()
             {
@@ -35,7 +35,7 @@ namespace SigesoftWeb.Controllers.Warehouse
                 { "OrganizationId" , "" },
                 { "LocationId" , "" },
             };
-            ViewBag.WarehouseMovement = Utils.Utils.LoadDropDownList(API.Get<List<Dropdownlist>>("Movement/GetWarehouseNotInRestricted", argWarehouseMovement), Constants.Select);
+            ViewBag.WarehouseMovement = Utils.Utils.LoadDropDownList(API.Get<List<Dropdownlist>>("Movement/GetWarehouseNotInRestricted", argWarehouseMovement), Constants.All);
 
             return View();
         }
