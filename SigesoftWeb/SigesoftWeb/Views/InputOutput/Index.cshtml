@@ -307,9 +307,10 @@
             method: 'GET',
             url: '/InputOutput/GetDataProduct?data=' + $("#nameProduct-" + movNumber).val(),
             success: function (json) {
-                JSON.stringify(json);
-                console.log(json);        
-                //$("#ProductId-" + movNumber).val() = datos.ProductId;
+                var datos = JSON.stringify(json);
+                console.log(json);   
+                console.log(datos);   
+                $("#ProductId-" + movNumber).val() = datos[0];
             },
             //error: function () {
             //    alert('Error');
