@@ -243,12 +243,22 @@
         $("#containerMovement").append($("#movementsBase").html());
         movNumber++;
         $("#containerMovement #movement-0").attr("id", "movement-" + movNumber);
-        $("#nameProduct-0").attr("id", "nameProduct-" + movNumber);
         $($("#movement-" + movNumber + " tbody tr td")[8]).attr("onclick", "DeletedMovement('" + movNumber + "')");
+        $($("#movement-" + movNumber + " tbody tr td input")[1]).attr("onblur", "DataProduct('" + movNumber + "')");
+        $($("#movement-" + movNumber + " tbody tr td input")[1]).attr("onkeyup", "AutoComplete('" + movNumber + "')");
+        $("#ProductId-0").attr("id", "ProductId-" + movNumber);
+        $("#nameProduct-0").attr("id", "nameProduct-" + movNumber);
+        $("#categoryId-0").attr("id", "categoryId-" + movNumber);
+        $("#quantity-0").attr("id", "quantity-" + movNumber);
+        $("#priceReferential-0").attr("id", "priceReferential-" + movNumber);
+        $("#brand-0").attr("id", "brand-" + movNumber);
+        $("#model-0").attr("id", "model-" + movNumber);
+
+        
     }
 
     function DeletedMovement(movNumber) {
-        //var movements = $("#containerMovement .movements");
+
         var maxMovement = $("#containerMovement .movements").length;
         for (var i = 1; i <= maxMovement; i++) {
             if (i == movNumber) {
@@ -260,15 +270,16 @@
             }
         }
     }
+
     $(document).ready(function () {
         $('#OrganizationLocationId').on('change', loadMovement);
         $(document).ready();
     });
    
-    function AutoComplete() {
+    function AutoComplete(movNumber) {
         $.ajax(
             {
-                url: '/InputOutput/GetProductName?value=' + $('#nameProduct').val(),
+                url: '/InputOutput/GetProductName?value=' + $('#nameProduct-' + movNumber).val(),
                 type: 'GET',
                 success: function (availableTags) {
                     var list = [];
@@ -277,7 +288,7 @@
                         list.push(availableTags[i]);
                     }
                     console.log(list);
-                    $("#nameProduct").autocomplete({
+                    $("#nameProduct-" + movNumber).autocomplete({
                         source: list
                     });
 
@@ -286,6 +297,24 @@
                     alert('error');
                 }
             })
+    }
+    function DataProduct(movNumber) {
+        
+
+        $.ajax({
+            cache: false,
+            dataType: 'json',
+            method: 'GET',
+            url: '/InputOutput/GetDataProduct?data=' + $("#nameProduct-" + movNumber).val(),
+            success: function (json) {
+                JSON.stringify(json);
+                console.log(json);        
+                //$("#ProductId-" + movNumber).val() = datos.ProductId;
+            },
+            //error: function () {
+            //    alert('Error');
+            //}
+        });
     }
 </script>
 

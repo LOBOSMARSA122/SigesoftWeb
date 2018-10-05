@@ -73,11 +73,7 @@ namespace BL.Warehouse
                             where a.i_IsDeleted == 0 && a.v_Name.Contains(value)
                             select new 
                             {
-                                v_ProductId = a.v_ProductId,
                                 v_Name = a.v_Name.ToUpper(),
-                                i_CategoryId = a.i_CategoryId,
-                                v_Brand = a.v_Brand,
-                                v_Model = a.v_Model,
 
                             }).ToList();
                 
@@ -91,20 +87,23 @@ namespace BL.Warehouse
                 throw;
             }
         }
-        public ProductBE GetDataProducts(string data)
+        public Products GetDataProduct(string ProductName)
         {
             try
             {
+                //int groupCategoryId = (int)Enumeratores.DataHierarchy.CategoryProd;
                 var isDeleted = (int)Enumeratores.SiNo.No;
                 var oDataProduct = (from a in ctx.Product
-                            where a.i_IsDeleted == isDeleted
-                                  && (a.v_Name == data)
-                            select new ProductBE
+                                    //join b in ctx.DataHierarchy on new { a = a.i_CategoryId.Value, b = groupCategoryId } equals new { a = b.i_ItemId, b = b.i_GroupId }
+                                    where a.i_IsDeleted == isDeleted
+                                  && (a.v_Name == ProductName) 
+                            select new Products
                             {
-                                v_ProductId = a.v_ProductId,
-                                i_CategoryId = a.i_CategoryId,
-                                v_Brand = a.v_Brand,
-                                v_Model = a.v_Model,
+                                ProductId = a.v_ProductId,
+                                CategoryId = a.i_CategoryId,
+                                Brand = a.v_Brand,
+                                Model = a.v_Model,
+                                ReferentialCostPrice = a.r_ReferentialCostPrice,
                             }).FirstOrDefault();
 
 
