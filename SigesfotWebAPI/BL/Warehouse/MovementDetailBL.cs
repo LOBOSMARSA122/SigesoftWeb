@@ -91,20 +91,20 @@ namespace BL.Warehouse
                 throw;
             }
         }
-        public ProductBE GetDataProducts(string data)
+        public Products GetDataProduct(string ProductName)
         {
             try
             {
                 var isDeleted = (int)Enumeratores.SiNo.No;
                 var oDataProduct = (from a in ctx.Product
                             where a.i_IsDeleted == isDeleted
-                                  && (a.v_Name == data)
-                            select new ProductBE
+                                  && (a.v_Name == ProductName)
+                            select new Products
                             {
-                                v_ProductId = a.v_ProductId,
-                                i_CategoryId = a.i_CategoryId,
-                                v_Brand = a.v_Brand,
-                                v_Model = a.v_Model,
+                                ProductId = a.v_ProductId,
+                                CategoryId = a.i_CategoryId,
+                                Brand = a.v_Brand,
+                                Model = a.v_Model,
                             }).FirstOrDefault();
 
 

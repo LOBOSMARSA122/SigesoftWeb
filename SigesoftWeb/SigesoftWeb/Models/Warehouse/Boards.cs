@@ -79,5 +79,4 @@ namespace SigesoftWeb.Models.Warehouse
         public DateTime? UpdateDate { get; set; }
     }
 
-
 }

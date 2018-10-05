@@ -87,15 +87,18 @@
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script>
     function DataProduct() {
-        //console.log("salió");
-        //var data = {
-        //    ProductName: "Paracetamol",
-        //}
         $.ajax({
             cache: false,
             dataType: 'json',
             method: 'GET',
             url: '/InputOutput/GetDataProduct?data=' + $("#nameProduct").val(),
+            success: function (json) {
+                console.log(json);
+                $('#price-1') = json
+            },
+            error: function () {
+                alert('Error');
+            }
         });
     }
 </script>

@@ -26,11 +26,10 @@ namespace SigesoftWebAPI.Controllers.Warehouse
             return Ok(result);
         }
 
-        [HttpPost]
-        public IHttpActionResult GetDataProduct(string data)
+        [HttpGet]
+        public IHttpActionResult GetDataProduct(string ProductName)
         {
-
-            var result = oMovementBL.GetDataProducts(data);
+            var result = oMovementBL.GetDataProduct(ProductName);
             return Ok(result);
         }
     }
