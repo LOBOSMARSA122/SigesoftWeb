@@ -70,7 +70,7 @@
                 <tbody>
                     <tr>
                         <td><input type="text" id="ProductId" class="form-control" value="@ProductId" disabled /></td>
-                        <td><input id="nameProduct" type="text" onblur="DataProduct()" onkeyup="AutoComplete()" class="form-control" value="" /></td>
+                        <td><input class="nameProduct" id="nameProduct-0" type="text" onblur="DataProduct()" onkeyup="AutoComplete()" class="form-control" value="" /></td>
                         <td><input type="text" class="form-control" value="@CategoryId" disabled /></td>
                         <td><input type="number"  class="form-control" value="" /></td>
                         <td><input type="number" step="any" id="priceReferential" class="form-control" value="" /></td>
@@ -87,6 +87,9 @@
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script>
     function DataProduct() {
+        if (true) {
+
+        }
         //console.log("salió");
         //var data = {
         //    ProductName: "Paracetamol",

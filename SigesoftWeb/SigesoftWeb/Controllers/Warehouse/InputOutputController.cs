@@ -48,7 +48,7 @@ namespace SigesoftWeb.Controllers.Warehouse
             {
                 { "ProductName", data },
             };
-            //Product = JsonConvert.DeserializeObject<>("InputOutput/GetDataProduct");
+            //Products Product = JsonConvert.DeserializeObject<Products>("InputOutput/GetDataProduct");
             //ViewBag.DataProduct = API.Post<BoardProduct>("InputOutput/GetDataProduct", arg);
             return null;/*new JsonResult { Data = Product, JsonRequestBehavior = JsonRequestBehavior.AllowGet }*/;
         }

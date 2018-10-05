@@ -243,6 +243,7 @@
         $("#containerMovement").append($("#movementsBase").html());
         movNumber++;
         $("#containerMovement #movement-0").attr("id", "movement-" + movNumber);
+        $("#nameProduct-0").attr("id", "nameProduct-" + movNumber);
         $($("#movement-" + movNumber + " tbody tr td")[8]).attr("onclick", "DeletedMovement('" + movNumber + "')");
     }
 

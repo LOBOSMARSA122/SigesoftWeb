@@ -30,7 +30,7 @@ namespace SigesoftWebAPI.Controllers.Warehouse
         public IHttpActionResult GetDataProduct(string data)
         {
 
-            var result = oMovementBL.GetDataProducts(data);
+            var result = oMovementBL.GetDataProducts( data);
             return Ok(result);
         }
     }
