@@ -18,7 +18,8 @@ namespace SigesoftWeb.Utils
         public enum SystemParameter
         {
             Gender = 100,
-            TypeMovement = 109
+            TypeMovement = 109,
+            MotiveMovement = 110,
         }
     }
 }

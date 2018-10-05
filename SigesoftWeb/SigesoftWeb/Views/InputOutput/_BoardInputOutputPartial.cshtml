@@ -1,0 +1,101 @@
+﻿@{
+    int Take = 0;
+    int Total = 0;
+    int Primer = 0;
+    int Ultimo = 0;
+    int Index = 0;
+    string ProductName = "";
+    string ProductId = "";
+    int CategoryId = 0;
+    string Brand = "";
+    string Model = "";
+
+    if (ViewBag.DataProduct != null)
+    {
+        ProductName = ViewBag.DataProduct.ProductName;
+        ProductId = ViewBag.DataProduct.ProductId;
+        CategoryId = ViewBag.DataProduct.CategoryId;
+        Brand = ViewBag.DataProduct.Brand;
+        Model = ViewBag.DataProduct.Model;
+    }
+
+
+
+}
+
+<div class="container-fluid" style="padding:0px;">
+    <div class="box box-default mt-2" id="acordion">
+        <div class="box-header with-border" id="heading1">
+            <h3 class="box-title" style="cursor:pointer;" onclick="ColapsarTabla('table-responsive')"><i class="icon-list-numbered"></i> Listado de Movimientos </h3>
+        </div>
+    </div>
+</div>
+<div>
+    <span class="informacion">Mostrando desde N° @Primer hasta @Ultimo de un total de @Total entradas</span>
+    <div class="float-lg-right">
+        Total de registros:
+        <select id="take" onchange="Filtrar(1)">
+            <option value="10" @(Take == 10 ? "selected" : "")>10</option>
+            <option value="25" @(Take == 25 ? "selected" : "")>25</option>
+            <option value="50" @(Take == 50 ? "selected" : "")>50</option>
+            <option value="0" @(Take == 0 ? "selected" : "")>TODOS</option>
+        </select>
+    </div>
+</div>
+<div class="box box-info mt-2">
+    <div class="col-12" id="containerMovement">
+
+    </div>
+</div>
+
+
+
+<div id="movementsBase" style="display:none;">
+    <div class="row movements">
+        <div class="col-12">
+            <table id="movement-0" class="table" m-0>
+                <thead>
+                    <tr>
+                        <th>ID Producto</th>
+                        <th>Producto</th>
+                        <th>Categoria</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" id="ProductId" class="form-control" value="@ProductId" disabled /></td>
+                        <td><input id="nameProduct" type="text" onblur="DataProduct()" onkeyup="AutoComplete()" class="form-control" value="" /></td>
+                        <td><input type="text" class="form-control" value="@CategoryId" disabled /></td>
+                        <td><input type="number"  class="form-control" value="" /></td>
+                        <td><input type="number" step="any" id="priceReferential" class="form-control" value="" /></td>
+                        <td><input type="text" class="form-control" value="@Brand" disabled /></td>
+                        <td><input type="text" class="form-control" value="@Model" disabled /></td>
+                        <td>Editar</td>
+                        <td>Eliminar</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    function DataProduct() {
+        //console.log("salió");
+        //var data = {
+        //    ProductName: "Paracetamol",
+        //}
+        $.ajax({
+            cache: false,
+            dataType: 'json',
+            method: 'GET',
+            url: '/InputOutput/GetDataProduct?data=' + $("#nameProduct").val(),
+        });
+    }
+</script>

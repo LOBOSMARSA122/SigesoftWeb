@@ -78,4 +78,7 @@ namespace BE.Warehouse
         public int? UpdateUserId { get; set; }
         public DateTime? UpdateDate { get; set; }
     }
+
+
+
 }

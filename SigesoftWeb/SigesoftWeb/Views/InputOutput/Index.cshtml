@@ -26,16 +26,16 @@
         </div>
         <div id="collapse1" class="box-body collapse show" aria-labelledby="heading1" style="overflow:hidden;">
             <div class="row">
-                <div class="col-12 col-lg-4 col-xl-3">
+                <div class="col-12 col-lg-3 col-xl-2">
                     <div class="form-group">
-                        <label class="m-0" for="">Empresa/Sede: </label>
+                        <label class="m-0" for="">Motivo: </label>
                         <div class="row w-100 m-0 p-0">
                             <div class="col-12 m-0 p-0 ">
                                 @{
-                                    if (ViewBag.OrganizationIdLocationId != null)
+                                    if (ViewBag.MotiveMovement != null)
                                     {
-                                        <select class="mt-2 p-0 m-0 form-control" id="OrganizationLocationId">
-                                            @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.OrganizationIdLocationId)
+                                        <select class="mt-2 p-0 m-0 form-control" id="MotiveMovement">
+                                            @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.MotiveMovement)
                                             {
                                                 <option value="@G.Id">@G.Value</option>
                                             }
@@ -46,37 +46,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4 col-xl-2">
+                <div class="col-12 col-lg-3 col-xl-2">
                     <div class="form-group">
-                        <label class="m-0" for="">Almacén: </label>
+                        <label class="m-0" for="">Proveedor: </label>
                         <div class="row w-100 m-0 p-0">
                             <div class="col-12 m-0 p-0 ">
                                 @{
-                                    if (ViewBag.WarehouseMovement != null)
+                                    if (ViewBag.SupplierId != null)
                                     {
-                                        <select class="mt-2 p-0 m-0 form-control" id="WarehouseMovement">
-                                            @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.WarehouseMovement)
-                                            {
-                                                <option value="@G.Id">@G.Value</option>
-                                            }
-                                        </select>
-                                    }
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-lg-4 col-xl-2">
-                    <div class="form-group">
-                        <label class="m-0" for="">Tipo: </label>
-                        <div class="row w-100 m-0 p-0">
-                            <div class="col-12 m-0 p-0 ">
-                                @{
-                                    if (ViewBag.TypeMovement != null)
-                                    {
-                                        <select class="mt-2 p-0 m-0 form-control" id="MovementTypeId">
-                                            @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.TypeMovement)
+                                        <select class="mt-2 p-0 m-0 form-control" id="SupplierId">
+                                            @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.SupplierId)
                                             {
                                                 <option value="@G.Id">@G.Value</option>
                                             }
@@ -90,17 +69,18 @@
 
                 <div class="col-12 col-lg-3 col-xl-2">
                     <div class="form-group">
-                        <label for="">Desde: </label>
-                        <input type="date"  id="StartDate" class="form-control" />
+                        <label for="">Fecha: </label>
+                        <input type="date" id="date" class="form-control" />
                     </div>
                 </div>
+
                 <div class="col-12 col-lg-3 col-xl-2">
                     <div class="form-group">
-                        <label for="">Hasta:</label>
-                        <input type="date" id="EndDate" class="form-control" />
+                        <label for="">Doc Referencia: </label>
+                        <input type="text" id="docReferencia" class="form-control" />
                     </div>
                 </div>
-              
+
             </div>
             <div class="row justify-content-end">
                 <div class="col-12 col-lg-2 col-xl-2">
@@ -116,27 +96,36 @@
 
     </div>
     <div id="RenderBandeja">
-        @Html.Partial("_BoardMovementPartial")
+        @Html.Partial("_BoardInputOutputPartial")
     </div>
     <nav class="row justify-content-end">
-        <div class="col-12 col-md-auto">
-            <button class="btn-info boton form-control" onclick="" style="cursor:pointer;margin-bottom:20px;">
-                <i class=""></i> Ingreso
-            </button>
+        <div class="col-12 d-flex justify-content-between">
+            <div class="row m-0 p-0">
+                <div class="col-12 col-md-auto">
+                    <button class="btn-info boton form-control" onclick="" style="cursor:pointer;margin-bottom:20px;">
+                        <i class=""></i> Guardar
+                    </button>
+                </div>
+                <div class="col-12 col-md-auto">
+                    <button class="btn-info boton form-control" onclick="" style="cursor:pointer;margin-bottom:20px;">
+                        <i class=""></i>Procesar
+                    </button>
+                </div>
+            </div>
+            <div class="row m-0 p-0">
+                <div class="col-12 col-md-auto">
+                    <button class="btn-info boton btnAdd form-control" onclick="AddMovement()" style="cursor:pointer;margin-bottom:20px;">
+                        <i class=""></i>Agregar Movimiento
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="col-12 col-md-auto">
-            <button class="btn-info boton form-control" onclick="" style="cursor:pointer;margin-bottom:20px;">
-                <i class=""></i>Salida
-            </button>
-        </div>
-        <div class="col-12 col-md-auto">
-            <button class="btn-info boton form-control" onclick="" style="cursor:pointer;margin-bottom:20px;">
-                <i class=""></i>Transf. entre almacenes
-            </button>
-        </div>
+
+
+
     </nav>
 
-    
+
 
 </div>
 
@@ -177,7 +166,7 @@
             $("." + id).animate({ "height": "0px" }, 400);
         }
     }
-    
+
     function Filtrar(index) {
 
         var data = {
@@ -226,7 +215,7 @@
 
         $.ajax(
             {
-                url: '/MovementProducts/GetWarehouseNotInRestricted?OrganizationId=' + organizationId + ' &LocationId=' + locationId +'',
+                url: '/MovementProducts/GetWarehouseNotInRestricted?OrganizationId=' + organizationId + ' &LocationId=' + locationId + '',
                 type: 'GET',
                 success: function (json) {
                     var listItems = '';
@@ -246,9 +235,57 @@
     function clearddl() {
         $('#WarehouseMovement').val('-1');
     }
+
+    function AddMovement() {
+        console.log("click")
+        var movNumber = $("#containerMovement .movements").length;
+
+        $("#containerMovement").append($("#movementsBase").html());
+        movNumber++;
+        $("#containerMovement #movement-0").attr("id", "movement-" + movNumber);
+        $($("#movement-" + movNumber + " tbody tr td")[8]).attr("onclick", "DeletedMovement('" + movNumber + "')");
+    }
+
+    function DeletedMovement(movNumber) {
+        //var movements = $("#containerMovement .movements");
+        var maxMovement = $("#containerMovement .movements").length;
+        for (var i = 1; i <= maxMovement; i++) {
+            if (i == movNumber) {
+                $($("#containerMovement .movements")[i - 1]).remove();
+            }
+            if (i > movNumber) {
+                $($("#movement-" + i + " tbody tr td")[8]).attr("onclick", "DeletedMovement('" + (i - 1) + "')");
+                $("#containerMovement #movement-" + i).attr("id", "movement-" + (i - 1));
+            }
+        }
+    }
     $(document).ready(function () {
         $('#OrganizationLocationId').on('change', loadMovement);
         $(document).ready();
     });
+   
+    function AutoComplete() {
+        $.ajax(
+            {
+                url: '/InputOutput/GetProductName?value=' + $('#nameProduct').val(),
+                type: 'GET',
+                success: function (availableTags) {
+                    var list = [];
+
+                    for (var i = 0; i < availableTags.length; i++) {
+                        list.push(availableTags[i]);
+                    }
+                    console.log(list);
+                    $("#nameProduct").autocomplete({
+                        source: list
+                    });
+
+                },
+                error: function () {
+                    alert('error');
+                }
+            })
+    }
 </script>
+
 

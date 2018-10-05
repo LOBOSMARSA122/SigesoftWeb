@@ -8,21 +8,22 @@ using System.Threading.Tasks;
 
 namespace BE.Warehouse
 {
+    [Table("MovementDetail")]
     public class MovementDetailBE
     {
         [Key, Column(Order = 1)]
-        public string MovementId { get; set; }
+        public string v_MovementId { get; set; }
         [Key, Column(Order = 2)]
-        public string ProductId { get; set; }
+        public string v_ProductId { get; set; }
         [Key, Column(Order = 3)]
-        public string WarehouseId { get; set; }
+        public string v_WarehouseId { get; set; }
 
-        public float StockMax { get; set; }
-        public float StockMin { get; set; }
-        public int? MovementTypeId { get; set; }
-        public float Quantity { get; set; }
-        public float Price { get; set; }
-        public float SubTotal { get; set; }
-        public DateTime? UpdateDate { get; set; }
+        public float r_StockMax { get; set; }
+        public float r_StockMin { get; set; }
+        public int? i_MovementTypeId { get; set; }
+        public float r_Quantity { get; set; }
+        public float r_Price { get; set; }
+        public float r_SubTotal { get; set; }
+        public DateTime? d_UpdateDate { get; set; }
     }
 }

@@ -13,6 +13,7 @@ namespace SigesoftWeb.Models.Warehouse
         public int Take { get; set; }
     }
 
+
     public class BoardProduct : Boards
     {
         public int CategoryId { get; set; }
@@ -77,5 +78,6 @@ namespace SigesoftWeb.Models.Warehouse
         public int? UpdateUserId { get; set; }
         public DateTime? UpdateDate { get; set; }
     }
+
 
 }
