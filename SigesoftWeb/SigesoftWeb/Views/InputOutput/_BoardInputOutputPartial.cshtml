@@ -69,13 +69,13 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><input type="text" id="ProductId" class="form-control" value="@ProductId" disabled /></td>
-                        <td><input id="nameProduct" type="text" onblur="DataProduct()" onkeyup="AutoComplete()" class="form-control" value="" /></td>
-                        <td><input type="text" class="form-control" value="@CategoryId" disabled /></td>
-                        <td><input type="number"  class="form-control" value="" /></td>
-                        <td><input type="number" step="any" id="priceReferential" class="form-control" value="" /></td>
-                        <td><input type="text" class="form-control" value="@Brand" disabled /></td>
-                        <td><input type="text" class="form-control" value="@Model" disabled /></td>
+                        <td><input type="text" id="ProductId-0" class="form-control" value="" disabled /></td>
+                        <td><input id="nameProduct-0"  type="text" class="form-control" value="" /></td>
+                        <td><input id="categoryId-0" type="text" class="form-control" value="" disabled /></td>
+                        <td><input id="quantity-0" type="number"  class="form-control" value="" /></td>
+                        <td><input id="priceReferential-0" type="number" step="any"  class="form-control" value="" /></td>
+                        <td><input id="brand-0" type="text" class="form-control" value="" disabled /></td>
+                        <td><input id="model-0" type="text" class="form-control" value="" disabled /></td>
                         <td>Editar</td>
                         <td>Eliminar</td>
                     </tr>
@@ -84,21 +84,4 @@
         </div>
     </div>
 </div>
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script>
-    function DataProduct() {
-        $.ajax({
-            cache: false,
-            dataType: 'json',
-            method: 'GET',
-            url: '/InputOutput/GetDataProduct?data=' + $("#nameProduct").val(),
-            success: function (json) {
-                console.log(json);
-                $('#price-1') = json
-            },
-            error: function () {
-                alert('Error');
-            }
-        });
-    }
-</script>
+

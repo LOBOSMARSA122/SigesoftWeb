@@ -29,7 +29,9 @@ namespace SigesoftWebAPI.Controllers.Warehouse
         [HttpGet]
         public IHttpActionResult GetDataProduct(string ProductName)
         {
+
             var result = oMovementBL.GetDataProduct(ProductName);
+
             return Ok(result);
         }
     }
