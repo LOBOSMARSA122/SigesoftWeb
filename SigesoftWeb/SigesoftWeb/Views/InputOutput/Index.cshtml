@@ -308,8 +308,9 @@
             url: '/InputOutput/GetDataProduct?data=' + $("#nameProduct-" + movNumber).val(),
             success: function (json) {
                 JSON.stringify(json);
-                console.log(json);        
-                //$("#ProductId-" + movNumber).val() = datos.ProductId;
+                console.log('a:', json.ProductId);   
+                console.log('id', movNumber);
+                $("#ProductId-" + movNumber).val(json.ProductId);
             },
             //error: function () {
             //    alert('Error');
