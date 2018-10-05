@@ -91,16 +91,17 @@ namespace BL.Warehouse
         {
             try
             {
-                //int groupCategoryId = (int)Enumeratores.DataHierarchy.CategoryProd;
+                int groupCategoryId = (int)Enumeratores.DataHierarchy.CategoryProd;
                 var isDeleted = (int)Enumeratores.SiNo.No;
                 var oDataProduct = (from a in ctx.Product
-                                    //join b in ctx.DataHierarchy on new { a = a.i_CategoryId.Value, b = groupCategoryId } equals new { a = b.i_ItemId, b = b.i_GroupId }
+                                    join b in ctx.DataHierarchy on new { a = a.i_CategoryId.Value, b = groupCategoryId } equals new { a = b.i_ItemId, b = b.i_GroupId }
                                     where a.i_IsDeleted == isDeleted
                                   && (a.v_Name == ProductName) 
                             select new Products
                             {
                                 ProductId = a.v_ProductId,
                                 CategoryId = a.i_CategoryId,
+                                Category = b.v_Value1,
                                 Brand = a.v_Brand,
                                 Model = a.v_Model,
                                 ReferentialCostPrice = a.r_ReferentialCostPrice,

@@ -248,7 +248,7 @@
         $($("#movement-" + movNumber + " tbody tr td input")[1]).attr("onkeyup", "AutoComplete('" + movNumber + "')");
         $("#ProductId-0").attr("id", "ProductId-" + movNumber);
         $("#nameProduct-0").attr("id", "nameProduct-" + movNumber);
-        $("#categoryId-0").attr("id", "categoryId-" + movNumber);
+        $("#category-0").attr("id", "category-" + movNumber);
         $("#quantity-0").attr("id", "quantity-" + movNumber);
         $("#priceReferential-0").attr("id", "priceReferential-" + movNumber);
         $("#brand-0").attr("id", "brand-" + movNumber);
@@ -266,7 +266,10 @@
             }
             if (i > movNumber) {
                 $($("#movement-" + i + " tbody tr td")[8]).attr("onclick", "DeletedMovement('" + (i - 1) + "')");
+                $($("#movement-" + i + " tbody tr td input")[1]).attr("onblur", "DataProduct('" + (i - 1) + "')");
+                $($("#movement-" + i + " tbody tr td input")[1]).attr("onkeyup", "AutoComplete('" + (i - 1) + "')");
                 $("#containerMovement #movement-" + i).attr("id", "movement-" + (i - 1));
+                
             }
         }
     }
@@ -307,14 +310,18 @@
             method: 'GET',
             url: '/InputOutput/GetDataProduct?data=' + $("#nameProduct-" + movNumber).val(),
             success: function (json) {
-                var datos = JSON.stringify(json);
-                console.log(json);   
-                console.log(datos);   
-                $("#ProductId-" + movNumber).val() = datos[0];
+                JSON.stringify(json);
+                console.log('a:', json.ProductId);   
+                console.log('id', movNumber);
+                $("#ProductId-" + movNumber).val(json.ProductId);
+                $("#category-" + movNumber).val(json.Category);
+                $("#priceReferential-" + movNumber).val(json.ReferentialCostPrice);
+                $("#brand-" + movNumber).val(json.Model);
+                $("#model-" + movNumber).val(json.Brand);
             },
-            //error: function () {
-            //    alert('Error');
-            //}
+            error: function () {
+                alert('Error');
+            }
         });
     }
 </script>

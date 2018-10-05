@@ -50,7 +50,7 @@ namespace SigesoftWeb.Controllers.Warehouse
             };
 
             var product = API.Get<Products>("InputOutput/GetDataProduct", arg);
-            ViewBag.DataProduct = product;
+
             return new JsonResult { Data = product, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
     }
