@@ -71,12 +71,37 @@ namespace SigesoftWeb.Models.Warehouse
         public string ProcessTypeId { get; set; }
         public string MotiveTypeId { get; set; }
         public string Supplier { get; set; }
-
+        public float TotalQuantity { get; set; }
+        public string ReferenceDocument { get; set; }
         public int? IsDeleted { get; set; }
         public int? InsertUserId { get; set; }
         public DateTime? InsertDate { get; set; }
         public int? UpdateUserId { get; set; }
         public DateTime? UpdateDate { get; set; }
+    }
+
+    public class BoardMovementDataProcess : Boards
+    {
+        //public string ProductId { get; set; }
+        //public string TotalQuantity { get; set; }
+        //public float Price { get; set; }
+        public int RecordStatus { get; set; }
+        //public string ReferenceDocument { get; set; }
+        public List<MovementsDetails> MovementDetailProduct { get; set; }
+        public List<Movements> MovementProduct { get; set; }
+
+    }
+    public class MovementsDetails
+    {
+        public string MovementId { get; set; }
+        public string ProductId { get; set; }
+        public string WarehouseId { get; set; }
+        public float Price { get; set; }
+        public string StockMax { get; set; }
+        public string StockMin { get; set; }
+        public string MovementTypeId { get; set; }
+        public string SubTotal { get; set; }
+        public string UpdateDate { get; set; }
     }
 
 }

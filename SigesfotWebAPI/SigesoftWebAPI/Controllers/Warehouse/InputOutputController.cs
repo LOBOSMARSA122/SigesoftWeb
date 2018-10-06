@@ -1,6 +1,8 @@
 ﻿using BE.Common;
 using BE.Warehouse;
+using BL.Common;
 using BL.Warehouse;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +35,19 @@ namespace SigesoftWebAPI.Controllers.Warehouse
             var result = oMovementBL.GetDataProduct(ProductName);
 
             return Ok(result);
+        }
+        [HttpPost]
+        public IHttpActionResult SaveMovementProducts (MultiDataModel data)
+        {
+            try
+            {
+                BoardMovementDataProcess movProduct = JsonConvert.DeserializeObject<BoardMovementDataProcess>(data.String1);
+                return Ok(oMovementBL.MovementProductDataProcess(movProduct));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Parámetros Incorrectos");
+            }
         }
     }
 }

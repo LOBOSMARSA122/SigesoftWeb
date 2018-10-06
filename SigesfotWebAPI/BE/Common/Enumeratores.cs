@@ -33,5 +33,13 @@ namespace BE.Common
             CategoryProd = 103,
             MeasurementUnit = 150,
         }
+        public enum RecordStatus
+        {
+            Grabado = 1,
+            Agregar = 2,
+            Editar = 3,
+            Eliminar = 4
+        }
+
     }
 }

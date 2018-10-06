@@ -53,5 +53,22 @@ namespace SigesoftWeb.Controllers.Warehouse
 
             return new JsonResult { Data = product, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
+
+        public JsonResult SaveMovementProduct(string data)
+        {
+            Api API = new Api();
+            BoardMovementDataProcess movProduct = JsonConvert.DeserializeObject<BoardMovementDataProcess>(data);
+
+            Dictionary<string, string> args = new Dictionary<string, string>
+            {
+                { "String1", JsonConvert.SerializeObject(movProduct) },
+            };
+            bool saved = API.Post<bool>("/InputOutput/SaveMovementProducts", args);
+            if (saved)
+                return Json(saved);
+            else
+                return Json(null);
+            
+        }
     }
 }
