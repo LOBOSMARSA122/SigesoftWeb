@@ -87,6 +87,7 @@ namespace BL.Warehouse
                 throw;
             }
         }
+
         public Products GetDataProduct(string ProductName)
         {
             try
@@ -109,6 +110,71 @@ namespace BL.Warehouse
 
 
                 return oDataProduct;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        public bool MovementProductDataProcess(BoardMovementDataProcess data)
+        {
+            try
+            {
+                switch (data.RecordStatus)
+                {
+                    case (int)Enumeratores.RecordStatus.Agregar:
+                        {
+                            return SaveNewMovementProduct(data);
+                        }
+                        
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        public bool SaveNewMovementProduct(BoardMovementDataProcess data)
+        {
+            
+            try
+            {
+                foreach (var a in data.MovementProduct.FindAll(p => p.TotalQuantity.ToString() != null))
+                {
+                    MovementBE Movement = new MovementBE()
+                    {
+
+                        //v_Motive = a.MotiveTypeId,
+                        //v_SupplierId = a.Supplier,
+                        //d_Date = a.Date,
+                        //v_ReferenceDocument = a.ReferenceDocument,
+                        r_TotalQuantity = a.TotalQuantity,
+                        d_UpdateDate = DateTime.UtcNow,
+
+                    };
+                    ctx.Movement.Add(Movement);
+                    ctx.SaveChanges();
+                };
+                foreach (var b in data.MovementDetailProduct.FindAll(p => p.Price.ToString() != null))
+                {
+                    MovementDetailBE MovementDetail = new MovementDetailBE()
+                    {
+                        
+                        d_UpdateDate= DateTime.UtcNow,
+                        v_ProductId = b.ProductId,
+                        r_Price = b.Price,
+                    };
+                    ctx.MovementDetail.Add(MovementDetail);
+                }
+                ctx.SaveChanges();
+
+                ctx.Database.CurrentTransaction.Rollback();
+                return false;
             }
             catch (Exception ex)
             {
