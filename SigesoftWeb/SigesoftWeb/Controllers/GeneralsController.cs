@@ -44,7 +44,8 @@ namespace SigesoftWeb.Controllers
             if (ValidateEmptyFields(collection))
             {
                 if (ValidateSystemUser(collection))
-                    return RedirectToRoute("SigesoftWeb");
+                    //return RedirectToRoute("SigesoftWeb");
+                    return RedirectToAction("Index", "PatientsAssistance");
                 else
                     return RedirectToRoute("General_Login");
             }
