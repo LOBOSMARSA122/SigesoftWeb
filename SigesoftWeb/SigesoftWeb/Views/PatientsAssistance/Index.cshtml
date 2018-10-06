@@ -20,12 +20,34 @@
     }
 
     .Chart {
-        background: #dbdbdb;
-        border: 1px solid;
-        height: 250px;
+        border-radius: 5px;
+        border: 1px solid #55a4d6;
+        height: 270px;
         margin: 10px;
         min-width: 300px;
         /*max-width: 250px;*/
+    }
+
+    .Chart .title {
+        /*background: #55a4d6;*/
+        text-align: center;
+        padding: 2px;
+        justify-content: center;
+        color: #fff;
+        /*font-weight: 300;*/
+    }
+
+    .Chart .info {
+        color: #3c3c3b;
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        padding: 10px;
+        margin:1px;
+        border-bottom:1px solid #cfc8c8;
+    }
+
+    .Chart .info .result{
+        margin-left:10px;
     }
 
     .contenedor-main {
@@ -34,6 +56,14 @@
 
     aside {
         color: #0d47a1;
+    }
+
+    .label-danger,
+    .label-info,
+    .label-warning,
+    .label-success {
+        border-radius: 2px;
+        padding: 2px;
     }
 </style>
 <div class="container-fluid">
@@ -82,10 +112,30 @@
                 @Html.Partial("_BoardPatientsAssistancePartial")
             </div>
         </main>
-        <aside class="col-md-4 align-self-center">
+        <aside class="col-md-4  ">
             <div class="row">
-                <div class="col Chart">sss</div>
-                <div class="col Chart">dd</div>
+                <div class="col Chart">
+                    <div class="row title label-info">
+                        Avisos Diarios
+                    </div>
+                    <div class="row info ">
+                        Completar Datos de Empresas:  <span class="label label-warning result">10</span>
+                    </div>
+                    <div class="row info">
+                        Empresas con  deudas: <span class="label label-danger result">02</span>
+                    </div>
+                    <div class="row info">
+                        Controles para el día de hoy: <span class="label label-info result">18</span>
+                    </div>
+                </div>
+                <div class="col Chart">
+                    <div class="row title label-info">
+                        Top Diagnósticos
+                    </div>
+                    <div class="row info ">
+                        <img class="img-fluid" src="~/Content/Images/Boceto.png" />
+                    </div>
+                </div>
             </div>
         </aside>
 
