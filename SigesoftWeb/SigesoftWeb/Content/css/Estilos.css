@@ -198,12 +198,12 @@ header .menu .nombre-usuario {
     padding-left: 230px;
 }
 
-    #wrapper.active #sidebar-wrapper {
-        left: 330px;
-        border-right: 2px double;
-        border-color: #ececec;
-        background: #f9f9f9;
-    }
+#wrapper.active #sidebar-wrapper {
+    left: 330px;
+    border-right: 2px double;
+    border-color: #ececec;
+    background: #f9f9f9;
+}
 
 .barra-lateral .datos-usuario {
     /*background: url(../img/fondo-datos-usuario.jpg);*/
