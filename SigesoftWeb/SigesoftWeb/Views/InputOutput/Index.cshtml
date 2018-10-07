@@ -32,15 +32,15 @@
                         <div class="row w-100 m-0 p-0">
                             <div class="col-12 m-0 p-0 ">
                                 @{
-                                    if (ViewBag.MotiveMovement != null)
-                                    {
-                                        <select class="mt-2 p-0 m-0 form-control" id="MotiveMovement">
-                                            @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.MotiveMovement)
-                                            {
-                                                <option value="@G.Id">@G.Value</option>
-                                            }
-                                        </select>
-                                    }
+                        if (ViewBag.MotiveMovement != null)
+                        {
+                            <select class="mt-2 p-0 m-0 form-control" id="MotiveMovement">
+                                @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.MotiveMovement)
+                    {
+                        <option value="@G.Id">@G.Value</option>
+        }
+                            </select>
+            }
                                 }
                             </div>
                         </div>
@@ -52,15 +52,15 @@
                         <div class="row w-100 m-0 p-0">
                             <div class="col-12 m-0 p-0 ">
                                 @{
-                                    if (ViewBag.SupplierId != null)
-                                    {
-                                        <select class="mt-2 p-0 m-0 form-control" id="SupplierId">
-                                            @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.SupplierId)
-                                            {
-                                                <option value="@G.Id">@G.Value</option>
-                                            }
-                                        </select>
-                                    }
+                        if (ViewBag.SupplierId != null)
+                        {
+                            <select class="mt-2 p-0 m-0 form-control" id="SupplierId">
+                                @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.SupplierId)
+                    {
+                        <option value="@G.Id">@G.Value</option>
+        }
+                            </select>
+            }
                                 }
                             </div>
                         </div>
@@ -80,9 +80,6 @@
                         <input type="text" id="docReference" class="form-control" />
                     </div>
                 </div>
-
-            </div>
-            <div class="row justify-content-end">
                 <div class="col-12 col-lg-2 col-xl-2">
                     <div class="form-group">
                         <label for="" id="filtProduct" class="d-none d-lg-block">Filtrar</label>
@@ -233,11 +230,20 @@
             })
     }
 
+    $(".btnAdd").on("click", function () {
+        var distancia = $(".btnAdd").offset()
+        $("html, body").animate({
+            scrollTop: distancia.top
+        },0);
+        console.log(distancia.top)
+    });
+
     function clearddl() {
         $('#WarehouseMovement').val('-1');
     }
 
     function AddMovement() {
+
         console.log("click")
         var movNumber = $("#containerMovement .movements").length;
 
