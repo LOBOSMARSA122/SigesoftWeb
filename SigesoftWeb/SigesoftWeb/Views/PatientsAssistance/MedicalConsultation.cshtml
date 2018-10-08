@@ -1,0 +1,98 @@
+﻿
+<div class="container-fluid">
+    <section class="contenedor-main  row">
+        <main class="col-md-8">
+            <div class="box box-info mb-1" id="acordion">
+                <div class="box-header with-border" id="heading1">
+                    <h3 class="box-title" style="cursor:pointer;" onclick="ColapsTableSumary('table-sumary')"><i class="icon-calendar"></i>Resumen EMO</h3>
+                </div>
+            </div>
+            <input id="heightBoardMedicalSummaryPartial" type="hidden" value="">
+            <div id="RenderBoardMedicalSummaryPartial">
+                @Html.Partial("_BoardMedicalSummaryPartial")
+            </div>
+            <div class="box box-info mb-1" id="acordion">
+                <div class="box-header with-border" id="heading1">
+                    <h3 class="box-title" style="cursor:pointer;" onclick="ColapsTableDataPacient('table-dataPacient')"><i class="icon-calendar"></i>Datos del Paciente</h3>
+                </div>
+            </div>
+            <input id="heightTableDataPacient" type="hidden" value="">
+            <div id="RenderDataPacientPartial">
+                <div class="table-responsive table-dataPacient">
+                    <table class="table table-hover" id="TableDataPacient" style="text-align:center">
+                        <thead>
+                            <tr>
+                                <th>Dx</th>
+                                <th>Aptitud</th>
+                                <th>Recomendaciones</th>
+                                <th>Restricciones</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+        <aside class="col-md-4 ">
+            <div class="row notice ">
+                <div class="col Chart">
+                    <div class="row title">
+                        Top Diagnósticos
+                    </div>
+                    <div class="row info">
+                        <img class="img-fluid" src="~/Content/Images/Boceto.png" />
+                    </div>
+                </div>
+                <div class="col prescription">
+                    <div class="row">
+                        <div class="col-12 col-sm-5">
+                            <img src="~/Content/Images/logoSalusLaboris.jpg" width="100" />
+                        </div>
+                        <div class="col-12 col-sm-7 page_header">
+                            <div class="row">
+                                CLÍNICA SALUS LABORIS
+                            </div>
+                            <div class="row address">
+                                Av. Santa Catalina Nro. 159
+                            </div>
+                            <div class="row address">
+                                La Victoria -Lima, Perú
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </section>
+</div>
+<script src="~/Scripts/JqueryFormValidate.js"></script>
+<script src="~/Scripts/FormValidateSecurity.js"></script>
+<link href="~/Content/Themes/FormValidatorTheme.css" rel="stylesheet" type="text/css" />
+<script>
+    function ColapsTableSumary(id) {
+        var Altura = $("#RenderBoardMedicalSummaryPartial").height();
+        if ($("." + id).height() == 0) {         
+            $("." + id).animate({ "height": $('#heightBoardMedicalSummaryPartial').val() + "px" }, 400);
+        } else {        
+            $('#heightBoardMedicalSummaryPartial').val(Altura);
+            alturaTabla = $("." + id).height();
+            $("." + id).animate({ "height": "0px" }, 400);
+        }
+    }
+
+    function ColapsTableDataPacient(id) {
+        
+        var Altura = $("#RenderDataPacientPartial").height() + 10;
+       
+        if ($("." + id).height() == 0) {
+            $("." + id).animate({ "height": $('#heightTableDataPacient').val() + "px" }, 400);
+            console.log('hi1');
+        } else {
+            $('#heightTableDataPacient').val(Altura);
+            alturaTabla = $("." + id).height();
+            $("." + id).animate({ "height": "0px" }, 400);
+            console.log('hi2');
+        }
+    }
+
+</script>

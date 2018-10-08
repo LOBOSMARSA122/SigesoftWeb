@@ -44,6 +44,7 @@ namespace SigesoftWeb
                       "~/Content/site.css",
                       "~/Content/css/fontello.css",
                       "~/Content/css/estilos.css",
+                       "~/Content/css/PatientsAssistance.css",
                       "~/Content/themes/base/jquery-ui.css"));
 
 
