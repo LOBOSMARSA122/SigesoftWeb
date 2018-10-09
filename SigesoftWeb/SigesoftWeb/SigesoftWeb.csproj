@@ -213,6 +213,7 @@
     <Content Include="Content\css\FullCalendar-custom.css" />
     <Content Include="Content\css\highcharts.css" />
     <Content Include="Content\css\jquery.contextMenu.css" />
+    <Content Include="Content\css\PatientsAssistance.css" />
     <Content Include="Content\fontello.css" />
     <Content Include="Content\fonts\gijgo-material.svg" />
     <Content Include="Content\font\fontello.svg" />
@@ -224,6 +225,7 @@
     <Content Include="Content\Images\Boceto.png" />
     <Content Include="Content\Images\ImageLogo.jpeg" />
     <Content Include="Content\Images\loading.gif" />
+    <Content Include="Content\Images\logoSalusLaboris.jpg" />
     <Content Include="Content\static\images\foto%40default.png" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -486,6 +488,8 @@
     <Content Include="Views\MovementProducts\_BoardMovementPartial.cshtml" />
     <Content Include="Views\InputOutput\Index.cshtml" />
     <Content Include="Views\InputOutput\_BoardInputOutputPartial.cshtml" />
+    <Content Include="Views\PatientsAssistance\MedicalConsultation.cshtml" />
+    <Content Include="Views\PatientsAssistance\_BoardMedicalSummaryPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

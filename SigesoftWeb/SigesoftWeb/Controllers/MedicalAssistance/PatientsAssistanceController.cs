@@ -32,5 +32,11 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
             ViewBag.Pacients = API.Post<BoardPatient>("PatientsAssistance/GetAllPatientsAssistance", arg);
             return PartialView("_BoardPatientsAssistancePartial");
         }
+
+        [GeneralSecurity(Rol = "PatientsAssistance-MedicalConsultation")]
+        public ActionResult MedicalConsultation(string id)
+        {
+            return View();
+        }
     }
 }

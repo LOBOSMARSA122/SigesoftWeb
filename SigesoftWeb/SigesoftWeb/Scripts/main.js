@@ -103,3 +103,14 @@ function validateNumber(evt) {
     }
 }
 
+
+function ColapseTable(divColapse, inputHidden) {
+    var Altura = $("#" + divColapse).height();
+    if ($("#" + divColapse).height() == 0) {
+        $("#" + divColapse).animate({ "height": $('#' + inputHidden).val() + "px" }, 400);
+    } else {
+        $('#' + inputHidden).val(Altura);
+        alturaTabla = $("#" + divColapse).height();
+        $("#" + divColapse).animate({ "height": "0px" }, 400);
+    }
+}
