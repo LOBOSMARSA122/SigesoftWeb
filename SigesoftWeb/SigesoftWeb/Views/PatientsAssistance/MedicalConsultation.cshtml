@@ -4,7 +4,7 @@
         <main class="col-md-8">
             <div class="box box-info mb-1" id="acordion">
                 <div class="box-header with-border" id="heading1">
-                    <h3 class="box-title" style="cursor:pointer;" onclick="ColapsTableSumary('table-sumary')"><i class="icon-calendar"></i>Resumen EMO</h3>
+                    <h3 class="box-title" style="cursor:pointer;" onclick="ColapseTable('TableSummary','heightBoardMedicalSummaryPartial')"><i class="icon-calendar"></i>Resumen EMO</h3>
                 </div>
             </div>
             <input id="heightBoardMedicalSummaryPartial" type="hidden" value="">
@@ -13,12 +13,12 @@
             </div>
             <div class="box box-info mb-1" id="acordion">
                 <div class="box-header with-border" id="heading1">
-                    <h3 class="box-title" style="cursor:pointer;" onclick="ColapsTableDataPacient('table-dataPacient')"><i class="icon-calendar"></i>Datos del Paciente</h3>
+                    <h3 class="box-title" style="cursor:pointer;" onclick="ColapseTable('tableDataPacient','heightTopDx')"><i class="icon-calendar"></i>Datos del Paciente</h3>
                 </div>
             </div>
             <input id="heightTableDataPacient" type="hidden" value="">
             <div id="RenderDataPacientPartial">
-                <div class="table-responsive table-dataPacient">
+                <div class="table-responsive " id="tableDataPacient">
                     <table class="table table-hover" id="TableDataPacient" style="text-align:center">
                         <thead>
                             <tr>
@@ -36,10 +36,11 @@
         <aside class="col-md-4 ">
             <div class="row notice ">
                 <div class="col Chart">
-                    <div class="row title">
+                    <div class="row title" onclick="ColapseTable('TopDx','heightTopDx')">
                         Top Diagnósticos
                     </div>
-                    <div class="row info">
+                    <input id="heightTopDx" type="hidden" value="">
+                    <div class="row info" id="TopDx">
                         <img class="img-fluid" src="~/Content/Images/Boceto.png" />
                     </div>
                 </div>
@@ -58,6 +59,40 @@
                             <div class="row address">
                                 La Victoria -Lima, Perú
                             </div>
+                            <div class="row mt-2 title">
+                                RECETA MÉDICA
+                            </div>
+                        </div>
+                        <div class="row page_detail" >
+                            <div class="col-12">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="3">
+                                                PRESCRIPCIONES
+                                            </th>
+                                            <th rowspan="2">
+                                                DURACIÓN DE TTO
+                                            </th>
+                                            <th rowspan="2">
+                                                FECHA FIN DEL TTO
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                MEDICAMENTO
+                                            </th>
+                                            <th>
+                                                CANT
+                                            </th>
+                                            <th>
+                                                DOSIS Y TIEMPO
+                                            </th>
+                                           
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>                         
                         </div>
                     </div>
                 </div>
@@ -69,30 +104,6 @@
 <script src="~/Scripts/FormValidateSecurity.js"></script>
 <link href="~/Content/Themes/FormValidatorTheme.css" rel="stylesheet" type="text/css" />
 <script>
-    function ColapsTableSumary(id) {
-        var Altura = $("#RenderBoardMedicalSummaryPartial").height();
-        if ($("." + id).height() == 0) {         
-            $("." + id).animate({ "height": $('#heightBoardMedicalSummaryPartial').val() + "px" }, 400);
-        } else {        
-            $('#heightBoardMedicalSummaryPartial').val(Altura);
-            alturaTabla = $("." + id).height();
-            $("." + id).animate({ "height": "0px" }, 400);
-        }
-    }
-
-    function ColapsTableDataPacient(id) {
-        
-        var Altura = $("#RenderDataPacientPartial").height() + 10;
-       
-        if ($("." + id).height() == 0) {
-            $("." + id).animate({ "height": $('#heightTableDataPacient').val() + "px" }, 400);
-            console.log('hi1');
-        } else {
-            $('#heightTableDataPacient').val(Altura);
-            alturaTabla = $("." + id).height();
-            $("." + id).animate({ "height": "0px" }, 400);
-            console.log('hi2');
-        }
-    }
+    
 
 </script>

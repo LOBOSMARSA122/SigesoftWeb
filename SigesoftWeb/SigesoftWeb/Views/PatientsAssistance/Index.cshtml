@@ -27,9 +27,10 @@
         <main class="col-md-8">
             <div class="box box-default mt-2" id="acordion">
                 <div class="box-header with-border" id="heading1">
-                    <h3 class="box-title" style="cursor:pointer;" onclick="ColapsarFiltro('collapse1')"><i class="icon-calendar"></i> Banjeda de Pacientes</h3>
+                    <h3 class="box-title" style="cursor:pointer;" onclick="ColapseFilter('divFilter')"><i class="icon-calendar"></i> Banjeda de Pacientes</h3>
                 </div>
-                <div id="collapse1" class="box-body collapse show" aria-labelledby="heading1" style="overflow:hidden;">
+                <input id="heightFilter" type="hidden" value="">
+                <div id="divFilter" class="box-body collapse show" aria-labelledby="heading1" style="overflow:hidden;">
                     <div class="row">
                         <div class="col-12 col-lg-3 col-xl-3">
                             <div class="form-group">
@@ -64,7 +65,8 @@
                 </div>
 
             </div>
-            <div id="RenderBandeja">
+            <input id="heightTablePatientsAssistancePartial" type="hidden" value="">
+            <div id="RenderBoardPatientsAssistancePartial">
                 @Html.Partial("_BoardPatientsAssistancePartial")
             </div>
             <div class="row">
@@ -130,7 +132,7 @@
 </div>
 
 <script>
-    function ColapsarFiltro(id) {
+    function ColpaseFilter(id) {
         setTimeout(function () {
             var height = 10;
 
@@ -144,6 +146,17 @@
                 $("#" + id).animate({ "height": "0px", "padding": "0px 10px" }, 400);
             }
         }, 200);
+    
+
+    function ColapseDiv(id) {
+        var Altura = $("#divFilter").height();
+        if ($("." + id).height() == 0) {
+            $("." + id).animate({ "height": $('#heightFilter').val() + "px" }, 400);
+        } else {
+            $('#heightFilter').val(Altura);
+            alturaTabla = $("." + id).height();
+            $("." + id).animate({ "height": "0px" }, 400);
+        }
     }
 
     function ColapsarTabla(id) {

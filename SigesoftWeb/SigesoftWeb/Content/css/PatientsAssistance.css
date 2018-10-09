@@ -13,6 +13,10 @@
         text-align: left;
         border-bottom: 1px rgba(173, 173,173, 0.5) inset;
         font-weight: 500;
+        cursor: pointer;
+    }
+    .Chart .title:hover {
+        background:rgba(173, 173,173, 0.1);
     }
 
     .Chart .info {
@@ -23,7 +27,7 @@
         padding-left: 0px;
         margin: 1px;
         border-bottom: 1px rgba(173, 173,173, 0.5) inset;
-        text-align: left;
+        text-align: left;        
     }
 
         .Chart .info div {
@@ -76,9 +80,23 @@ aside {
         font-size: 13px;
         
     }
+        .prescription .page_header .title {
+            text-decoration:underline;
+        }
         .prescription .page_header .address {
             font-size: 10px;
             text-align:right;
+        }
+
+    .prescription .page_detail{
+        width:100%;
+        padding:0;
+        margin-left:0px;
+        margin-right:0px;
+        border:1px solid red;
+    }
+        .prescription .page_detail .table-bordered th {
+            font-size:8px;
         }
 
 
@@ -87,10 +105,12 @@ aside {
 }
     .table-sumary th {
         color: #3c3c3b;
-        font-size: 8px;
+        font-size: 10px;
+        text-transform:uppercase;
     }
 
     .table-sumary td {
+        text-transform: uppercase;
         color: #3c3c3b;
         font-size: 8px;
     }
