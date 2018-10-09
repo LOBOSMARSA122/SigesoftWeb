@@ -193,6 +193,7 @@ namespace BL.Warehouse
             {
                 int skip = (data.Index - 1) * data.Take;
                 var warehouseId = data.WarehouseId == null ? "-1" : data.WarehouseId;
+                var movementType = data.MovementType.ToString() == "" ? "-1" : data.MovementType.ToString();
                 var startDate = data.StartDate.ToString() == "" ? DateTime.Parse("01/01/2000") : data.StartDate;
                 var endDate = data.EndDate.ToString() == "" ? DateTime.Parse("01/01/2020") : data.EndDate;
                 #region Query
@@ -223,8 +224,8 @@ namespace BL.Warehouse
                         join J8 in ctx.SystemParameter on new { a = 110, b = A.i_MotiveTypeId.Value }
                                                             equals new { a = J8.i_GroupId, b = J8.i_ParameterId }
 
-                        where (warehouseId == "-1" || A.v_WarehouseId == warehouseId)
-                            &&(startDate < A.d_Date && endDate > A.d_Date)
+                        where (warehouseId == "-1" || A.v_WarehouseId == warehouseId) && (movementType == "-1" || A.i_MovementTypeId.ToString() == movementType)
+                            && (startDate < A.d_Date && endDate > A.d_Date)
                             
 
                         orderby A.d_Date descending

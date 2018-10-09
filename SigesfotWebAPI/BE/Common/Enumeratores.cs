@@ -24,6 +24,7 @@ namespace BE.Common
 
         public enum Parameters
         {
+            TypeMovement = 109,
             Gender = 100
         }
 
@@ -32,6 +33,7 @@ namespace BE.Common
             TypeDoc = 106,
             CategoryProd = 103,
             MeasurementUnit = 150,
+            
         }
         public enum RecordStatus
         {

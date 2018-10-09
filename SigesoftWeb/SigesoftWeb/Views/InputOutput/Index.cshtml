@@ -22,7 +22,7 @@
 <div class="container-fluid">
     <div class="box box-default mt-2" id="acordion">
         <div class="box-header with-border" id="heading1">
-            <h3 class="box-title" style="cursor:pointer;" onclick="ColapsarFiltro('collapse1')"><i class="icon-calendar"></i>Bandeja Movimientos</h3>
+            <h3 class="box-title" style="cursor:pointer;" onclick="ColapsarFiltro('collapse1')"><i class="icon-calendar"></i>Datos del Movimientos</h3>
         </div>
         <div id="collapse1" class="box-body collapse show" aria-labelledby="heading1" style="overflow:hidden;">
             <div class="row">
@@ -70,7 +70,7 @@
                 <div class="col-12 col-lg-3 col-xl-2">
                     <div class="form-group">
                         <label for="">Fecha: </label>
-                        <input type="date" id="date" class="form-control" />
+                        <input type="date" id="date"  class="form-control" />
                     </div>
                 </div>
 
@@ -78,14 +78,6 @@
                     <div class="form-group">
                         <label for="">Doc Referencia: </label>
                         <input type="text" id="docReference" class="form-control" />
-                    </div>
-                </div>
-                <div class="col-12 col-lg-2 col-xl-2">
-                    <div class="form-group">
-                        <label for="" id="filtProduct" class="d-none d-lg-block">Filtrar</label>
-                        <button class="btn btn-info boton form-control" onclick="Filtrar(1)">
-                            <i class="fa fa-search"></i> Filtrar
-                        </button>
                     </div>
                 </div>
             </div>
@@ -137,6 +129,19 @@
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script>
+
+    window.onload = function () {
+        var fecha = new Date(); 
+        var m = fecha.getMonth() + 1; 
+        var d = fecha.getDate(); 
+        var y = fecha.getFullYear(); 
+        if (d < 10)
+            d = '0' + d; 
+        if (m < 10)
+            m = '0' + m 
+        document.getElementById('date').value = y + "-" + m + "-" + d;
+     
+    }
     function ColapsarFiltro(id) {
         setTimeout(function () {
             var height = 10;

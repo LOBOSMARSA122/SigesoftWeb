@@ -26,6 +26,7 @@ namespace SigesoftWeb.Models.Warehouse
     {
         public string ProductId { get; set; }
         public int? CategoryId { get; set; }
+        public string CategoryProd { get; set; }
         public string Category { get; set; }
         public string Name { get; set; }
 

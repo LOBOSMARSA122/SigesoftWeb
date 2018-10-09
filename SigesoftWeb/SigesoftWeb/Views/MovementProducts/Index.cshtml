@@ -18,11 +18,13 @@
     #filtProduct {
         opacity: 0;
     }
+
+
 </style>
 <div class="container-fluid">
     <div class="box box-default mt-2" id="acordion">
         <div class="box-header with-border" id="heading1">
-            <h3 class="box-title" style="cursor:pointer;" onclick="ColapsarFiltro('collapse1')"><i class="icon-calendar"></i>Bandeja Movimientos</h3>
+            <h3 class="box-title" style="cursor:pointer;" onclick="ColapsarFiltro('collapse1')"><i class="icon-calendar"></i>Bandeja de Movimientos</h3>
         </div>
         <div id="collapse1" class="box-body collapse show" aria-labelledby="heading1" style="overflow:hidden;">
             <div class="row">
@@ -32,15 +34,15 @@
                         <div class="row w-100 m-0 p-0">
                             <div class="col-12 m-0 p-0 ">
                                 @{
-                                    if (ViewBag.OrganizationIdLocationId != null)
-                                    {
-                                        <select class="mt-2 p-0 m-0 form-control" id="OrganizationLocationId">
-                                            @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.OrganizationIdLocationId)
-                                            {
-                                                <option value="@G.Id">@G.Value</option>
-                                            }
-                                        </select>
-                                    }
+                            if (ViewBag.OrganizationIdLocationId != null)
+                            {
+                                <select class="mt-2 p-0 m-0 form-control" id="OrganizationLocationId">
+                                    @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.OrganizationIdLocationId)
+                            {
+                                <option value="@G.Id">@G.Value</option>
+                    }
+                                </select>
+                    }
                                 }
                             </div>
                         </div>
@@ -52,15 +54,15 @@
                         <div class="row w-100 m-0 p-0">
                             <div class="col-12 m-0 p-0 ">
                                 @{
-                                    if (ViewBag.WarehouseMovement != null)
-                                    {
-                                        <select class="mt-2 p-0 m-0 form-control" id="WarehouseMovement">
-                                            @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.WarehouseMovement)
-                                            {
-                                                <option value="@G.Id">@G.Value</option>
-                                            }
-                                        </select>
-                                    }
+                            if (ViewBag.WarehouseMovement != null)
+                            {
+                                <select class="mt-2 p-0 m-0 form-control" id="WarehouseMovement">
+                                    @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.WarehouseMovement)
+                            {
+                                <option value="@G.Id">@G.Value</option>
+                    }
+                                </select>
+                    }
                                 }
                             </div>
                         </div>
@@ -73,15 +75,15 @@
                         <div class="row w-100 m-0 p-0">
                             <div class="col-12 m-0 p-0 ">
                                 @{
-                                    if (ViewBag.TypeMovement != null)
-                                    {
-                                        <select class="mt-2 p-0 m-0 form-control" id="MovementTypeId">
-                                            @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.TypeMovement)
-                                            {
-                                                <option value="@G.Id">@G.Value</option>
-                                            }
-                                        </select>
-                                    }
+                            if (ViewBag.TypeMovement != null)
+                            {
+                                <select class="mt-2 p-0 m-0 form-control" id="MovementTypeId">
+                                    @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.TypeMovement)
+                            {
+                                <option value="@G.Id">@G.Value</option>
+                    }
+                                </select>
+                    }
                                 }
                             </div>
                         </div>
@@ -91,7 +93,7 @@
                 <div class="col-12 col-lg-3 col-xl-2">
                     <div class="form-group">
                         <label for="">Desde: </label>
-                        <input type="date"  id="StartDate" class="form-control" />
+                        <input type="date" id="StartDate" class="form-control" />
                     </div>
                 </div>
                 <div class="col-12 col-lg-3 col-xl-2">
@@ -100,18 +102,17 @@
                         <input type="date" id="EndDate" class="form-control" />
                     </div>
                 </div>
-              
+
             </div>
-            <div class="row justify-content-end">
+            <nav class="row justify-content-end">
                 <div class="col-12 col-lg-2 col-xl-2">
                     <div class="form-group">
-                        <label for="" id="filtProduct" class="d-none d-lg-block">Filtrar</label>
                         <button class="btn btn-info boton form-control" onclick="Filtrar(1)">
                             <i class="fa fa-search"></i> Filtrar
                         </button>
                     </div>
                 </div>
-            </div>
+            </nav>
         </div>
 
     </div>
@@ -135,8 +136,9 @@
             </button>
         </div>
     </nav>
-
     
+
+
 
 </div>
 
@@ -151,6 +153,19 @@
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script>
+    window.onload = function () {
+        var fecha = new Date();
+        var m = fecha.getMonth() + 1;
+        var d = fecha.getDate();
+        var y = fecha.getFullYear();
+        if (d < 10)
+            d = '0' + d;
+        if (m < 10)
+            m = '0' + m
+        document.getElementById('EndDate').value = y + "-" + m + "-" + d;
+        document.getElementById('StartDate').value = y + "-" + m + "-" + (d - d) + 1;
+    }
+
     function ColapsarFiltro(id) {
         setTimeout(function () {
             var height = 10;

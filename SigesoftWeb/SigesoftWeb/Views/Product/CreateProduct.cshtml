@@ -108,8 +108,8 @@
 
                     <div class="row">
                         <div class="col-12">
-                            <div class="SubTitulo">Nombre Genérico: </div>
-                            <div><input type="text" id="GenericName" value="@GenericName" data-validation="length" data-validation-length="3-50" data-validation-error-msg="El nombre del producto debe de tener más de 3 caracteres" /></div>
+                            <div class="SubTitulo">Nombre Producto / Genérico: </div>
+                            <div><input type="text" id="GenericName" value="@GenericName" data-validation="length" data-validation-length="3-50" data-validation-error-msg="El nombre del producto / genérico debe de tener más de 3 caracteres" /></div>
                         </div>
                     </div>
 
@@ -129,8 +129,8 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <div class="SubTitulo">Codigo de Producto: </div>
-                            <div><input type="text" id="ProductCode" value="@ProductCode" /></div>
+                            <div class="SubTitulo">Código de Producto: </div>
+                            <div><input type="text" id="ProductCode" value="@ProductCode" data-validation="length" data-validation-length="3-50" data-validation-error-msg="Debe ingresar el código del producto" /></div>
                         </div>
                     </div>
                     @*Comobo unidad*@
@@ -156,7 +156,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="SubTitulo">Precio referencial: </div>
-                            <div><input type="number" step="any" id="ReferentialCostPrice" value="@ReferentialCostPrice" data-validation="number" data-validation- data-validation-length="2-10" data-validation-error-msg="Debe poner un precio referencial" /></div>
+                            <div><input type="number" step="any" id="ReferentialCostPrice" value="@ReferentialCostPrice" data-validation="number" data-validation- data-validation-length="2-10" data-validation-allowing="range[0;1000000]" data-validation-error-msg="Debe ingresar un precio" /></div>
                         </div>
                     </div>
                 </div>

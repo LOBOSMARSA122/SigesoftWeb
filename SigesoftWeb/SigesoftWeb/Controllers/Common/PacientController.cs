@@ -20,7 +20,7 @@ namespace SigesoftWeb.Controllers.Common
                 { "grupoId" , ((int)Enums.DataHierarchy.DocType).ToString() }
             };
 
-            ViewBag.DocType = Utils.Utils.LoadDropDownList(API.Get<List<Dropdownlist>>("DataHierarchy/GetDataHierarchyByGrupoId", arg), Constants.Select);
+            ViewBag.DocType = Utils.Utils.LoadDropDownList(API.Get<List<Dropdownlist>>("DataHierarchy/GetDataHierarchyByGrupoId", arg), Constants.All);
             return View();
         }
 

@@ -13,12 +13,13 @@ namespace SigesoftWeb.Utils
             CategoryProd = 103,
             MeasurementUnit = 150,
             
+
         }
 
         public enum SystemParameter
         {
-            Gender = 100,
             TypeMovement = 109,
+            Gender = 100,         
             MotiveMovement = 110,
         }
     }
