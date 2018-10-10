@@ -32,10 +32,18 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
                 { "Index", data.Index.ToString()},
                 { "Take", data.Take.ToString()}
             };
-            await ViewBag.Services = API.Post<BoardPatient>("PatientsAssistance/GetAllPatientsAssistance", arg);
-      
+            await Task.Run(() =>
+            {
+                ViewBag.Services = API.Post<BoardPatient>("PatientsAssistance/GetAllPatientsAssistance", arg);
+            });
                
             return PartialView("_BoardPatientsAssistancePartial");
+        }
+
+        [GeneralSecurity(Rol = "PatientsAssistance-MedicalConsultation")]
+        public ActionResult MedicalConsultation(string id)
+        {
+            return View();
         }
 
         [GeneralSecurity(Rol = "PatientsAssistance-Test")]
@@ -47,16 +55,8 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
             {
                 response = API.Get<int>("PatientsAssistance/GetTest");
             });
-
+               
             return Json(response);
         }
-
-        [GeneralSecurity(Rol = "PatientsAssistance-MedicalConsultation")]
-        public ActionResult MedicalConsultation(string id)
-        {
-            return View();
-        }
-
-       
     }
 }
