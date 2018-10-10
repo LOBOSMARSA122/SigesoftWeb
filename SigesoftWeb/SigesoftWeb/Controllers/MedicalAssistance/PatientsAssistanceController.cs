@@ -26,10 +26,12 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
             Dictionary<string, string> arg = new Dictionary<string, string>()
             {
                 { "Patient",data.Patient},
+                { "StartDate",data.StartDate == null ? "" :data.StartDate.Value.ToString("yyyy/MM/dd")},
+                { "EndDate", data.EndDate== null ? "" :data.EndDate.Value.ToString("yyyy/MM/dd")},
                 { "Index", data.Index.ToString()},
                 { "Take", data.Take.ToString()}
             };
-            ViewBag.Pacients = API.Post<BoardPatient>("PatientsAssistance/GetAllPatientsAssistance", arg);
+            ViewBag.Services = API.Post<BoardPatient>("PatientsAssistance/GetAllPatientsAssistance", arg);
             return PartialView("_BoardPatientsAssistancePartial");
         }
 

@@ -6,13 +6,13 @@
     int Ultimo = 0;
     int Index = 0;
 
-    if (ViewBag.Pacients != null)
+    if (ViewBag.Services != null)
     {
-        Take = ViewBag.Pacients.Take;
-        Index = ViewBag.Pacients.Index;
-        Total = ViewBag.Pacients.TotalRecords;
+        Take = ViewBag.Services.Take;
+        Index = ViewBag.Services.Index;
+        Total = ViewBag.Services.TotalRecords;
         Primer = ((Index - 1) * Take) + 1;
-        Ultimo = Primer + (ViewBag.Pacients.List.Count - 1);
+        Ultimo = Primer + (ViewBag.Services.List.Count - 1);
 
         Primer = Primer < 0 ? 0 : Primer;
         Ultimo = Ultimo < 0 ? 0 : Ultimo;
@@ -26,180 +26,105 @@
 <div class="container-fluid" style="padding:0px;">
     <div class="box box-default mt-2" id="acordion">
         <div class="box-header with-border" id="heading1">
-            <h3 class="box-title" style="cursor:pointer;" onclick="ColapsarTabla('table-responsive')"><i class="icon-list-numbered"></i> Listado de Pacientes </h3>
+            <h3 class="box-title" style="cursor:pointer;" onclick="ColapseTable('Table','heightTable')"><i class="icon-list-numbered"></i> Listado de Pacientes </h3>
         </div>
     </div>
 </div>
-<div>
-    <span class="informacion">Mostrando desde N° @Primer hasta @Ultimo de un total de @Total entradas</span>
-    <div class="float-lg-right informacion">
-        Total de registros:
-        <select id="take" onchange="Filtrar(1)">
-            <option value="10" @(Take == 10 ? "selected" : "")>10</option>
-            <option value="25" @(Take == 25 ? "selected" : "")>25</option>
-            <option value="50" @(Take == 50 ? "selected" : "")>50</option>
-            <option value="0" @(Take == 0 ? "selected" : "")>TODOS</option>
-        </select>
+<input id="heightTable" type="hidden" value="">
+<div id="Table" style="overflow:hidden">
+    <div>
+        <span class="informacion">Mostrando desde N° @Primer hasta @Ultimo de un total de @Total entradas</span>
+        <div class="float-lg-right informacion">
+            Total de registros:
+            <select id="take" onchange="Filter(1)">
+                <option value="10" @(Take == 10 ? "selected" : "")>10</option>
+                <option value="25" @(Take == 25 ? "selected" : "")>25</option>
+                <option value="50" @(Take == 50 ? "selected" : "")>50</option>
+                <option value="0" @(Take == 0 ? "selected" : "")>TODOS</option>
+            </select>
+        </div>
     </div>
-</div>
-<div class="box box-info mt-2">
-    <div class="table-responsive">
-        <table class="table table-hover" id="TablaAExportar" style="text-align:center">
-            <thead>
-                <tr>
-                    <th>Paciente</th>
-                    <th>Género</th>
-                    <th>Sede</th>
-                    <th>Área</th>
-                    <th>Puesto</th>
-                    <th>Ges</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>ALberto Merchan Cosme</td>
-                    <td>Masculino</td>
-                    <td>Sede 1</td>
-                    <td>Área 1</td>
-                    <td>Programador</td>
-                    <td>GES 1</td>
-                    <td style="text-align:center"><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = "" })"><span class="icon-edit"></span></a></td>
-                </tr>
-                <tr>
-                    <td>ALberto Merchan Cosme</td>
-                    <td>Masculino</td>
-                    <td>Sede 1</td>
-                    <td>Área 1</td>
-                    <td>Programador</td>
-                    <td>GES 1</td>
-                    <td style="text-align:center"><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = "" })"><span class="icon-edit"></span></a></td>
-                </tr>
-                <tr style="background:rgba(169, 168, 168,0.7); color:#fff">
-                    <td>ALberto Merchan Cosme</td>
-                    <td>Masculino</td>
-                    <td>Sede 1</td>
-                    <td>Área 1</td>
-                    <td>Programador</td>
-                    <td>GES 1</td>
-                    <td style="text-align:center"><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = "" })"><span class="icon-edit"></span></a></td>
-                </tr>
-                <tr>
-                    <td>ALberto Merchan Cosme</td>
-                    <td>Masculino</td>
-                    <td>Sede 1</td>
-                    <td>Área 1</td>
-                    <td>Programador</td>
-                    <td>GES 1</td>
-                    <td style="text-align:center"><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = "" })"><span class="icon-edit"></span></a></td>
-                </tr>
-                <tr>
-                    <td>ALberto Merchan Cosme</td>
-                    <td>Masculino</td>
-                    <td>Sede 1</td>
-                    <td>Área 1</td>
-                    <td>Programador</td>
-                    <td>GES 1</td>
-                    <td style="text-align:center"><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = "" })"><span class="icon-edit"></span></a></td>
 
-                </tr>
-                <tr>
-                    <td>ALberto Merchan Cosme</td>
-                    <td>Masculino</td>
-                    <td>Sede 1</td>
-                    <td>Área 1</td>
-                    <td>Programador</td>
-                    <td>GES 1</td>
-                    <td style="text-align:center"><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = "" })"><span class="icon-edit"></span></a></td>
-                </tr>
-                <tr>
-                    <td>ALberto Merchan Cosme</td>
-                    <td>Masculino</td>
-                    <td>Sede 1</td>
-                    <td>Área 1</td>
-                    <td>Programador</td>
-                    <td>GES 1</td>
-                    <td style="text-align:center"><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = "" })"><span class="icon-edit"></span></a></td>
-                </tr>
-                <tr>
-                    <td>ALberto Merchan Cosme</td>
-                    <td>Masculino</td>
-                    <td>Sede 1</td>
-                    <td>Área 1</td>
-                    <td>Programador</td>
-                    <td>GES 1</td>
-                    <td style="text-align:center"><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = "" })"><span class="icon-edit"></span></a></td>
-                </tr>
-                <tr>
-                    <td>ALberto Merchan Cosme</td>
-                    <td>Masculino</td>
-                    <td>Sede 1</td>
-                    <td>Área 1</td>
-                    <td>Programador</td>
-                    <td>GES 1</td>
-                    <td style="text-align:center"><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = "" })"><span class="icon-edit"></span></a></td>
-                </tr>
-                @*@{
-            if (ViewBag.Pacients == null)
-            {
-                <tr><td colspan="7" class="text-center">Error al conectarse al servidor</td></tr>
-            }
-            else if (ViewBag.Pacients.List.Count == 0)
-            {
-                <tr><td colspan="7" class="text-center">No hay resultados</td></tr>
-            }
-            else
-            {
-                foreach (var item in ViewBag.Pacients.List)
-                {
+    <div class="box box-info mt-2">
+        <div class="table-responsive">
+            <table class="table table-hover" id="TablaAExportar" style="text-align:center">
+                <thead>
                     <tr>
-                        <td>ALberto Merchan Cosme</td>
-                        <td>Masculino</td>
-                        <td>Sede 1</td>
-                        <td>Área 1</td>
-                        <td>Programador</td>
-                        <td>GES 1</td>
+                        <th>Paciente</th>
+                        <th>Empresa-Sede</th>
+                        <th>Protocolo</th>
+                        <th>Ges</th>
+                        <th>Puesto</th>
+                        <th>Género</th>
+                        <th>Acciones</th>
                     </tr>
-                }
-            }
-        }*@
-            </tbody>
-        </table>
-        <div class="paginacion-tabla d-flex justify-content-center">
-            <div>
-                <ul class="pagination">
+                </thead>
+                <tbody>
                     @{
-                        if (Index > 1)
+                        if (ViewBag.Services == null)
                         {
-                            <li class="page-item" onclick="Filtrar(@(Index - 1))">
-                                <span class="page-link" aria-hidden="true">Anterior</span>
-                            </li>
+                            <tr><td colspan="7" class="text-center">Error al conectarse al servidor</td></tr>
                         }
-                        int pagina = 0;
-                        if (Take > 0)
+                        else if (ViewBag.Services.List.Count == 0)
                         {
-                            for (int i = 0; i < Total; i = i + Take)
+                            <tr><td colspan="7" class="text-center">No hay resultados</td></tr>
+                        }
+                        else
+                        {
+                            foreach (var item in ViewBag.Services.List)
                             {
-                                pagina++;
-                                if ((pagina > (Index - 5)) && pagina < (Index + 5))
-                                {
-                                    <li @(pagina == Index ? "class=pagination-active" : "onclick=Filtrar(" + pagina + ")")><span class="page-link" aria-hidden="true">@pagina</span></li>
-                                }
-
+                            <tr>
+                                <td class="xxxxx">@item.PatientFullName</td>
+                                <td class="xxxxx">@item.OrganizationLocation</td>
+                                <td class="xxxxx">@item.ProtocolName</td>
+                                <td class="xxxxx">@item.Geso</td>
+                                <td class="xxxxx">@item.Occupation</td>
+                                <td class="xxxxx">@item.Gender</td>
+                                <td><a href="@Url.Action("", "", new { id = item.PatientFullName })"><span class="icon-edit"></span></a></td>
+                            </tr>
                             }
                         }
-                        if (pagina > Index)
-                        {
-                            <li class="page-item" onclick="Filtrar(@(Index + 1))">
-                                <span class="page-link" aria-hidden="true">Siguiente</span>
-                            </li>
-                        }
                     }
-                </ul>
+                </tbody>
+            </table>
+            <div class="paginacion-tabla d-flex justify-content-center">
+                <div>
+                    <ul class="pagination">
+                        @{
+                            if (Index > 1)
+                            {
+                                <li class="page-item" onclick="Filter(@(Index - 1))">
+                                    <span class="page-link" aria-hidden="true">Anterior</span>
+                                </li>
+                            }
+                            int pagina = 0;
+                            if (Take > 0)
+                            {
+                                for (int i = 0; i < Total; i = i + Take)
+                                {
+                                    pagina++;
+                                    if ((pagina > (Index - 5)) && pagina < (Index + 5))
+                                    {
+                                        <li @(pagina == Index ? "class=pagination-active" : "onclick=Filter(" + pagina + ")")><span class="page-link" aria-hidden="true">@pagina</span></li>
+                                    }
+
+                                }
+                            }
+                            if (pagina > Index)
+                            {
+                                <li class="page-item" onclick="Filter(@(Index + 1))">
+                                    <span class="page-link" aria-hidden="true">Siguiente</span>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/Alert.js"></script>
 <script src="~/Scripts/TweenMax.min.js"></script>

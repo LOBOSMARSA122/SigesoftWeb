@@ -13,35 +13,170 @@
             </div>
             <div class="box box-info mb-1" id="acordion">
                 <div class="box-header with-border" id="heading1">
-                    <h3 class="box-title" style="cursor:pointer;" onclick="ColapseTable('tableDataPacient','heightTopDx')"><i class="icon-calendar"></i>Datos del Paciente</h3>
+                    <h3 class="box-title" style="cursor:pointer;" onclick="ColapseTable('DivDataPacient','heightDivDataPacient')"><i class="icon-calendar"></i>Datos del Paciente</h3>
                 </div>
             </div>
-            <input id="heightTableDataPacient" type="hidden" value="">
-            <div id="RenderDataPacientPartial">
-                <div class="table-responsive " id="tableDataPacient">
-                    <table class="table table-hover" id="TableDataPacient" style="text-align:center">
-                        <thead>
-                            <tr>
-                                <th>Dx</th>
-                                <th>Aptitud</th>
-                                <th>Recomendaciones</th>
-                                <th>Restricciones</th>
-                            </tr>
-                        </thead>
-                    </table>
+            <input id="heightDivDataPacient" type="hidden" value="">
+            <div class="table-responsive " id="DivDataPacient">
+                <div class="row" style="margin:0px; padding:0px;">
+                    <div class="col-12">
+                        <form action="/">
+                            <div class="form-group row">
+                                <div class="col-12 col-md-4">
+                                    <label for="nombre">Paciente</label>
+                                    <input type="text" class="form-control" placeholder="Paciente" name="pacient" id="pacient" />
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <label for="nombre">Empresa/Sede/Área</label>
+                                    <input type="text" class="form-control" placeholder="Empresa/Sede/Área" name="pass" id="pass" />
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <label for="nombre">Puesto</label>
+                                    <input type="text" class="form-control" placeholder="Puesto" name="pacient" id="pacient" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
+            <div class="box box-info mb-1" id="acordion">
+                <div class="box-header with-border" id="heading1">
+                    <h3 class="box-title" style="cursor:pointer;" onclick="ColapseTable('DivMedicalConsultation','heightDivMedicalConsultation')"><i class="icon-calendar"></i>Consulta Médica</h3>
+                </div>
+            </div>
+            <input id="heightDivMedicalConsultation" type="hidden" value="">
+            <div class="table-responsive " id="DivMedicalConsultation">
+                <div class="row" style="margin:0px; padding:0px;">
+                    <div class="col-12">
+                        <form action="/">
+                            <div class="form-group row">
+                                <div class="col-12 col-md-2">
+                                    <label for="nombre">Peso</label>
+                                    <input type="text" class="form-control" placeholder="Paciente" name="pacient" id="pacient" />
+                                </div>
+                                <div class="col-12 col-md-2">
+                                    <label for="nombre">Talla</label>
+                                    <input type="text" class="form-control" placeholder="Empresa/Sede/Área" name="pass" id="pass" />
+                                </div>
+                                <div class="col-12 col-md-2">
+                                    <label for="nombre">IMC</label>
+                                    <input type="text" class="form-control" placeholder="IMC" name="pacient" id="pacient" />
+                                </div>
+                                <div class="col-12 col-md-2">
+                                    <label for="nombre">P. Abdom.</label>
+                                    <input type="text" class="form-control" placeholder="Paciente" name="pacient" id="pacient" />
+                                </div>
+                                <div class="col-12 col-md-2">
+                                    <label for="nombre">P. Cad.</label>
+                                    <input type="text" class="form-control" placeholder="Empresa/Sede/Área" name="pass" id="pass" />
+                                </div>
+                                <div class="col-12 col-md-2">
+                                    <label for="nombre">I. C.</label>
+                                    <input type="text" class="form-control" placeholder="IMC" name="pacient" id="pacient" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12 col-md-2">
+                                    <label for="nombre">PS-PD</label>
+                                    <input type="text" class="form-control" placeholder="IMC" name="pacient" id="pacient" />
+                                </div>
+                                <div class="col-12 col-md-2">
+                                    <label for="nombre">F. Respi.</label>
+                                    <input type="text" class="form-control" placeholder="IMC" name="pacient" id="pacient" />
+                                </div>
+                                <div class="col-12 col-md-2">
+                                    <label for="nombre">F. Cardi.</label>
+                                    <input type="text" class="form-control" placeholder="IMC" name="pacient" id="pacient" />
+                                </div>
+                                <div class="col-12 col-md-2">
+                                    <label for="nombre">Temp.</label>
+                                    <input type="text" class="form-control" placeholder="IMC" name="pacient" id="pacient" />
+                                </div>
+                                <div class="col-12 col-md-2">
+                                    <label for="nombre">Sat. O.</label>
+                                    <input type="text" class="form-control" placeholder="IMC" name="pacient" id="pacient" />
+                                </div>
+                            </div>
+                            <div class="form-group row" style="margin-left:0px; margin-right:0px;">
+                                <div class="col-12" style="border: 1px rgba(173, 173,173, 0.3) solid;">
+                                    <label for="nombre">Motivo de Consulta</label>
+                                    <div class="row" style="padding-left:10px; padding-right:10px">
+                                        <div class="col-12 col-md-4">
+                                            <label class="xxxx">
+                                                Ambulatoria
+                                                <input type="radio" checked="checked" name="radio">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-4">
+                                            <label class="xxxx">
+                                                Urgencia
+                                                <input type="radio" name="radio">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-4">
+                                            <label class="xxxx">
+                                                Emergencia
+                                                <input type="radio" name="radio">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
 
         </main>
         <aside class="col-md-4 ">
             <div class="row notice ">
                 <div class="col Chart">
-                    <div class="row title" onclick="ColapseTable('TopDx','heightTopDx')">
+                    <div class="row title" onclick="ColapseTable('DivTopDx','heightDivTopDx')">
                         Top Diagnósticos
                     </div>
-                    <input id="heightTopDx" type="hidden" value="">
-                    <div class="row info" id="TopDx">
-                        <img class="img-fluid" src="~/Content/Images/Boceto.png" />
+                    <input id="heightDivTopDx" type="hidden" value="">
+                    <div id="DivTopDx" style="overflow:hidden">
+                        <div class="row info">
+                            <img class="img-fluid" src="~/Content/Images/Boceto.png" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col Chart">
+                    <div class="row title" onclick="ColapseTable('DivAntece','heightDivAntece')">
+                        Antecedentes
+                    </div>
+                    <input id="heightDivAntece" type="hidden" value="">
+                    <div id="DivAntece" style="overflow:hidden">
+                        <div class="row info ">
+                            <div class="col-10">
+                                Completar datos de empresa:
+                            </div>
+                            <div class="col-2">
+                                <span class="label label-warning result">10</span>
+                            </div>
+                        </div>
+                        <div class="row info">
+                            <div class="col-10">
+                                Empresas con  deudas:
+                            </div>
+                            <div class="col-2">
+                                <span class="label label-warning result">02</span>
+                            </div>
+                        </div>
+                        <div class="row info">
+                            <div class="col-10 ">
+                                Controles para el día de hoy:
+                            </div>
+                            <div class="col-2">
+                                <span class="label label-warning result">18</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col prescription">
@@ -63,7 +198,7 @@
                                 RECETA MÉDICA
                             </div>
                         </div>
-                        <div class="row page_detail" >
+                        <div class="row page_detail">
                             <div class="col-12">
                                 <table class="table table-bordered">
                                     <thead>
@@ -88,11 +223,11 @@
                                             <th>
                                                 DOSIS Y TIEMPO
                                             </th>
-                                           
+
                                         </tr>
                                     </thead>
                                 </table>
-                            </div>                         
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -104,6 +239,6 @@
 <script src="~/Scripts/FormValidateSecurity.js"></script>
 <link href="~/Content/Themes/FormValidatorTheme.css" rel="stylesheet" type="text/css" />
 <script>
-    
+
 
 </script>

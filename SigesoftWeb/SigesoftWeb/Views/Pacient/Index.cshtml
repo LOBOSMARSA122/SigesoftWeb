@@ -23,9 +23,10 @@
 <div class="container-fluid">
     <div class="box box-default mt-2" id="acordion">
         <div class="box-header with-border" id="heading1">
-            <h3 class="box-title" style="cursor:pointer;" onclick="ColapsarFiltro('collapse1')"><i class="icon-calendar"></i> Banjeda de Pacientes</h3>
+            <h3 class="box-title" style="cursor:pointer;" onclick="ColapseTable('Filter','heighFilter')"><i class="icon-calendar"></i> Banjeda de Pacientes</h3>
         </div>
-        <div id="collapse1" class="box-body collapse show" aria-labelledby="heading1" style="overflow:hidden;">
+        <input id="heighFilter" type="hidden" value="">
+        <div id="Filter" class="box-body collapse show" aria-labelledby="heading1" style="overflow:hidden;">
             <div class="row">
                 <div class="col-12 col-lg-3 col-xl-3">
                     <div class="form-group">
@@ -93,34 +94,7 @@
 </div>
 
 
-<script>
-    function ColapsarFiltro(id) {
-        setTimeout(function () {
-            var height = 10;
-
-            for (i = 0; i < $("#" + id + " .row").length; i++) {
-                height = height + $($("#" + id + " .row")[i]).height();
-            }
-
-            if ($("#" + id).height() == 0) {
-                $("#" + id).animate({ "height": height + "px", "padding": "10px" }, 400);
-            } else {
-                $("#" + id).animate({ "height": "0px", "padding": "0px 10px" }, 400);
-            }
-        }, 200);
-    }
-
-    function ColapsarTabla(id) {
-        var Altura = $("#TablaAExportar").height() + 60;
-
-        if ($("." + id).height() == 0) {
-            $("." + id).animate({ "height": Altura + "px" }, 400);
-        } else {
-            alturaTabla = $("." + id).height();
-            $("." + id).animate({ "height": "0px" }, 400);
-        }
-    }
-
+<script>  
     function Filtrar(index) {
         var data = {
             Pacient: $("#PacientFullName").val(),
