@@ -36,7 +36,7 @@ namespace BL.Warehouse
                             select new Products
                             {
                                 ProductId = a.v_ProductId,
-                                CategoryId = a.i_CategoryId,                        
+                                CategoryProd = b.v_Value1,                        
                                 Name = a.v_Name,
                                 ProductCode = a.v_ProductCode,
 

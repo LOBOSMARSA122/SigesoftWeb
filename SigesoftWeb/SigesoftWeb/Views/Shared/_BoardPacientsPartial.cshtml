@@ -21,7 +21,13 @@
         Take = 0;
     }
 }
+<style>
+    th {
+        text-align: center;
+    }
 
+
+</style>
 <div class="container-fluid" style="padding:0px;">
     <div class="box box-default mt-2" id="acordion">
         <div class="box-header with-border" id="heading1">
@@ -71,10 +77,10 @@
                             <tr>
                                 <td>@item.PacientFullName</td>
                                 <td>@item.DocType</td>
-                                <td>@item.DocNumber</td>
-                                <td>@item.TelephoneNumber</td>
-                                <td><a href="@Url.Action("CreatePacient", "Pacient", new { id = item.PacientId })"><span class="icon-edit"></span></a></td>
-                                <td><a class="eliminar" onclick='Delete("@item.PacientId")'><span class="icon-trash"></span></a></td>
+                                <td class="text-center">@item.DocNumber</td>
+                                <td class="text-center">@item.TelephoneNumber</td>
+                                <td><a class="iconEdit"  href="@Url.Action("CreatePacient", "Pacient", new { id = item.PacientId })"><span class="d-flex justify-content-center iconEdit align-items-center icon-edit"></span></a></td>
+                                <td><a class="eliminar" onclick='Delete("@item.PacientId")'><span class="d-flex justify-content-center align-items-center iconEdit icon-trash"></span></a></td>
                             </tr>
                         }
                     }
@@ -124,20 +130,39 @@
 <link href="~/Content/css/Alert.css" rel="stylesheet" type="text/css" />
 
 <script>
-
+    $("tbody tr").on("click", function () {
+        console.log("click fila");
+        $("tbody tr").removeClass("classRowsClick");
+        $(this).toggleClass("classRowsClick");
+    });
     function Delete(id) {
        
         var width = $(window).width();
         var height = $(window).height();
 
+        //Nombre de Clases de notificaciones
+
+        //Encabezado y Botones Danger = "dangerTitleAndButtons"
+        //Texto Danger = "dangerMessage"
+
+        //Encabezado y Botones Success = "successTitleAndButtons"
+        //Texto Success = "successMessage"
+
+        //Encabezado y Botones Warning = "waningTitleAndButtons"
+        //Texto Warning = "warningMessage"
+
+        //Encabezado y Botones Info = "infoTitleAndButtons"
+        //Texto Info = "infoMessage"
         $.notificacion({
-            icono: "icon-trash",
+            classTitleAndButtons: "dangerTitleAndButtons",
+            classMessage: "dangerMessage",
+            title: "¡ Advertencia !",
+            icono: "",
             contenido: "¿Seguro de eliminar el registro? ",
             btnAceptar: "Aceptar",
             btnCancelar: "Cancelar",
             btnOk: "OK",
-            mostrarBtnAceptar: "",
-            mostrarBtnCancelar: "",
+            mostrarBtnAceptarAndCancelar: "",
             mostrarBtnOk: "no",
         })
 
@@ -159,26 +184,30 @@
                     $("#Loading").hide();
                     if (json) {
                         $.notificacion({
-                            icono: "icon-trash",
+                            classTitleAndButtons: "successTitleAndButtons",
+                            classMessage: "successMessage",
+                            title: "Hecho",
+                            icono: "",
                             contenido: "Registro Eliminado",
                             btnAceptar: "Aceptar",
                             btnCancelar: "Cancelar",
                             btnOk: "OK",
-                            mostrarBtnAceptar: "no",
-                            mostrarBtnCancelar: "no",
+                            mostrarBtnAceptarAndCancelar: "no",
                             mostrarBtnOk: "",
                         })
                         
                         Filtrar(1);
                     } else {
                         $.notificacion({
+                            classTitleAndButtons: "infoTitleAndButtons",
+                            classMessage: "infoMessage",
+                            title: "Error",
                             icono: "",
                             contenido: "No se pudo eliminar el registro",
                             btnAceptar: "Aceptar",
                             btnCancelar: "Cancelar",
                             btnOk: "OK",
-                            mostrarBtnAceptar: "no",
-                            mostrarBtnCancelar: "no",
+                            mostrarBtnAceptarAndCancelar: "no",
                             mostrarBtnOk: "",
                         })
                         //alerta("No se pudo eliminar el proveedor", "rojo");
@@ -187,13 +216,15 @@
                 error: function (error) {
                     //alerta("Sucedió un error al conectarse al servidor", "rojo");
                     $.notificacion({
+                        classTitleAndButtons: "infoTitleAndButtons",
+                        classMessage: "infoMessage",
+                        title: "Error",
                         icono: "",
                         contenido: "Sucedió un error al conectarse al servidor",
                         btnAceptar: "Aceptar",
                         btnCancelar: "Cancelar",
                         btnOk: "OK",
-                        mostrarBtnAceptar: "no",
-                        mostrarBtnCancelar: "no",
+                        mostrarBtnAceptarAndCancelar: "no",
                         mostrarBtnOk: "",
                     })
                     $("#Loading").hide();

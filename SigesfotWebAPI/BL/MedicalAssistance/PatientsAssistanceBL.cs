@@ -27,7 +27,6 @@ namespace BL.MedicalAssistance
                 var startDate = data.StartDate.ToString() == "" ? DateTime.Parse("01/01/2000") : data.StartDate;
                 var endDate = data.EndDate.ToString() == "" ? DateTime.Parse("01/01/2020") : data.EndDate;
 
-                Thread.Sleep(10000);
                 var preList = (from a in ctx.Service
                             join b in ctx.Person on a.v_PersonId equals b.v_PersonId
                             join c in ctx.DataHierarchy on new { a = b.i_DocTypeId.Value, b = groupDocTypeId } equals new { a = c.i_ItemId, b = c.i_GroupId }

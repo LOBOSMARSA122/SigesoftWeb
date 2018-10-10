@@ -31,7 +31,7 @@
 </div>
 <div>
     <span class="informacion">Mostrando desde N° @Primer hasta @Ultimo de un total de @Total entradas</span>
-    <div class="float-lg-right">
+    <div class="float-lg-right informacion">
         Total de registros:
         <select id="take" onchange="Filtrar(1)">
             <option value="10" @(Take == 10 ? "selected" : "")>10</option>
@@ -46,7 +46,7 @@
         <table class="table table-hover" id="TablaAExportar">
             <thead>
                 <tr>
-                    <th>Codigo Producto</th>
+                    <th>Código Producto</th>
                     <th>Tipo Producto</th>
                     <th>Nombre</th>
                     <th>Precio Referencial</th>
@@ -68,13 +68,13 @@
                     {
                         foreach (var item in ViewBag.Products.List)
                         {
-                            <tr>
+                            <tr class="classRowsHover">
                                 <td>@item.ProductCode</td>
-                                <td>@item.CategoryId</td>
+                                <td>@item.CategoryProd</td>
                                 <td>@item.Name</td>
-                                <td>@item.ReferentialCostPrice</td>
-                                <td><a href="@Url.Action("CreateProduct","Product",new {id = item.ProductId })"><span class="icon-edit"></span></a></td>
-                                <td><a onclick='Delete("@item.ProductId")'><span class="icon-trash"></span></a></td>
+                                <td class="text-center">@item.ReferentialCostPrice</td>
+                                <td><a href="@Url.Action("CreateProduct","Product",new {id = item.ProductId })"><span class="d-flex justify-content-center align-items-center iconEdit icon-edit"></span></a></td>
+                                <td><a onclick='Delete("@item.ProductId")'><span class="d-flex justify-content-center align-items-center iconEdit icon-trash"></span></a></td>
                             </tr>
                         }
                     }
@@ -124,20 +124,39 @@
 <link href="~/Content/css/Alert.css" rel="stylesheet" type="text/css" />
 
 <script>
-
+    $("tbody tr").on("click", function () {
+        console.log("click fila");
+        $("tbody tr").removeClass("classRowsClick");
+        $(this).toggleClass("classRowsClick");
+    });
     function Delete(id) {
 
         var width = $(window).width();
         var height = $(window).height();
 
+        //Nombre de Clases de notificaciones
+
+        //Encabezado y Botones Danger = "dangerTitleAndButtons"
+        //Texto Danger = "dangerMessage"
+
+        //Encabezado y Botones Success = "successTitleAndButtons"
+        //Texto Success = "successMessage"
+
+        //Encabezado y Botones Warning = "waningTitleAndButtons"
+        //Texto Warning = "warningMessage"
+
+        //Encabezado y Botones Info = "infoTitleAndButtons"
+        //Texto Info = "infoMessage"
         $.notificacion({
-            icono: "icon-trash",
+            classTitleAndButtons: "dangerTitleAndButtons",
+            classMessage: "dangerMessage",
+            title: "¡ Advertencia !",
+            icono: "",
             contenido: "¿Seguro de eliminar el registro? ",
             btnAceptar: "Aceptar",
             btnCancelar: "Cancelar",
             btnOk: "OK",
-            mostrarBtnAceptar: "",
-            mostrarBtnCancelar: "",
+            mostrarBtnAceptarAndCancelar: "si",
             mostrarBtnOk: "no",
         })
 
@@ -157,39 +176,45 @@
                     $("#Loading").hide();
                     if (json) {
                         $.notificacion({
-                            icono: "icon-trash",
+                            classTitleAndButtons: "successTitleAndButtons",
+                            classMessage: "successMessage",
+                            title: "Hecho",
+                            icono: "",
                             contenido: "Producto eliminado!",
                             btnAceptar: "Aceptar",
                             btnCancelar: "Cancelar",
                             btnOk: "OK",
-                            mostrarBtnAceptar: "no",
-                            mostrarBtnCancelar: "no",
+                            mostrarBtnAceptarAndCancelar: "no",
                             mostrarBtnOk: "",
                         })
 
                         Filtrar(1);
                     } else {
                         $.notificacion({
+                            classTitleAndButtons: "successTitleAndButtons",
+                            classMessage: "successMessage",
+                            title: "Error",
                             icono: "",
                             contenido: "No se pudo eliminar el producto",
                             btnAceptar: "Aceptar",
                             btnCancelar: "Cancelar",
                             btnOk: "OK",
-                            mostrarBtnAceptar: "no",
-                            mostrarBtnCancelar: "no",
+                            mostrarBtnAceptarAndCancelar: "no",
                             mostrarBtnOk: "",
                         })
                     }
                 },
                 error: function (error) {
                     $.notificacion({
+                        classTitleAndButtons: "successTitleAndButtons",
+                        classMessage: "successMessage",
+                        title: "Error",
                         icono: "",
                         contenido: "Sucedió un error al conectarse al servidor",
                         btnAceptar: "Aceptar",
                         btnCancelar: "Cancelar",
                         btnOk: "OK",
-                        mostrarBtnAceptar: "no",
-                        mostrarBtnCancelar: "no",
+                        mostrarBtnAceptarAndCancelar: "no",
                         mostrarBtnOk: "",
                     })
                     $("#Loading").hide();

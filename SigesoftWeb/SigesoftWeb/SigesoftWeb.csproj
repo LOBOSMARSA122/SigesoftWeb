@@ -225,6 +225,7 @@
     <Content Include="Content\Images\Boceto.png" />
     <Content Include="Content\Images\ImageLogo.jpeg" />
     <Content Include="Content\Images\loading.gif" />
+    <Content Include="Content\Images\loadingGrid.gif" />
     <Content Include="Content\Images\logoSalusLaboris.jpg" />
     <Content Include="Content\static\images\foto%40default.png" />
     <Content Include="Content\themes\base\accordion.css" />

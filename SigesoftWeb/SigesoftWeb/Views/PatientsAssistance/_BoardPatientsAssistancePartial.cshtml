@@ -44,7 +44,6 @@
             </select>
         </div>
     </div>
-
     <div class="box box-info mt-2">
         <div class="table-responsive">
             <table class="table table-hover" id="TablaAExportar" style="text-align:center">
@@ -132,6 +131,10 @@
 <link href="~/Content/css/fontello.css" rel="stylesheet" type="text/css" />
 <link href="~/Content/css/Alert.css" rel="stylesheet" type="text/css" />
 <script>
-     
+    $("tbody tr").on("click", function () {
+        console.log("click fila");
+        $("tbody tr").removeClass("classRowsClick");
+        $(this).toggleClass("classRowsClick");
+    }); 
 
 </script>

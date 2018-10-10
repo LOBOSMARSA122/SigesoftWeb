@@ -21,7 +21,7 @@ namespace SigesoftWeb.Controllers.Warehouse
             {
                 { "grupoId" , ((int)Enums.SystemParameter.TypeMovement).ToString() },
             };
-            ViewBag.TypeMovement = Utils.Utils.LoadDropDownList(API.Get<List<Dropdownlist>>("DataHierarchy/GetDataHierarchyByGrupoId", argTypeMovement), Constants.All);
+            ViewBag.TypeMovement = Utils.Utils.LoadDropDownList(API.Get<List<Dropdownlist>>("SystemParameter/GetParametroByGrupoId", argTypeMovement), Constants.All);
 
             Dictionary<string, string> argOrgLoc = new Dictionary<string, string>()
             {
