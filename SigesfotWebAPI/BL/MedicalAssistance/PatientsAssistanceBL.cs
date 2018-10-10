@@ -18,6 +18,7 @@ namespace BL.MedicalAssistance
         {
             try
             {
+                Thread.Sleep(10000);
                 var isDeleted = (int)Enumeratores.SiNo.No;
                 int groupDocTypeId = (int)Enumeratores.DataHierarchy.TypeDoc;
                 int genderId = (int)Enumeratores.Parameters.Gender;
@@ -80,6 +81,28 @@ namespace BL.MedicalAssistance
                 data.List = list;
 
                 return data;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public int Test()
+        {
+            try
+            {              
+                var preList = (from a in ctx.Diseases
+                               select new Patients
+                               {
+                                   PatientId = a.v_DiseasesId,
+                                  
+                               }).ToList();
+
+                int totalRecords = preList.Count;
+
+                return totalRecords;
 
             }
             catch (Exception ex)

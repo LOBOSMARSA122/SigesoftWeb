@@ -5,6 +5,7 @@ using SigesoftWeb.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -20,7 +21,7 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
         }
 
         [GeneralSecurity(Rol = "PatientsAssistance-BoardPatientsAssistance")]
-        public ActionResult FilterPacient(BoardPatient data)
+        public async Task<ActionResult> FilterPacient(BoardPatient data)
         {
             Api API = new Api();
             Dictionary<string, string> arg = new Dictionary<string, string>()
@@ -31,8 +32,23 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
                 { "Index", data.Index.ToString()},
                 { "Take", data.Take.ToString()}
             };
-            ViewBag.Services = API.Post<BoardPatient>("PatientsAssistance/GetAllPatientsAssistance", arg);
+            await ViewBag.Services = API.Post<BoardPatient>("PatientsAssistance/GetAllPatientsAssistance", arg);
+      
+               
             return PartialView("_BoardPatientsAssistancePartial");
+        }
+
+        [GeneralSecurity(Rol = "PatientsAssistance-Test")]
+        public async Task<JsonResult> Test()
+        {
+            Api API = new Api();
+            int response = 0;
+            await Task.Run(() =>
+            {
+                response = API.Get<int>("PatientsAssistance/GetTest");
+            });
+
+            return Json(response);
         }
 
         [GeneralSecurity(Rol = "PatientsAssistance-MedicalConsultation")]
@@ -40,5 +56,7 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
         {
             return View();
         }
+
+       
     }
 }
