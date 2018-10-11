@@ -1,0 +1,156 @@
+﻿@{
+    Dictionary<string, float> Chart1 = new Dictionary<string, float>();
+
+    List<string> CategoryProduct = new List<string>();
+    List<string> TotalCategoryProduct = new List<string>();
+    List<string> NameCategoryProduct = new List<string>();
+
+}
+
+<style>
+    .BigData {
+        color: #e85b13;
+        font-size: 56px;
+        font-weight: bolder;
+    }
+
+    .SmallData {
+        font-size: 28px;
+        font-weight: bold;
+        margin: 0px 20px;
+    }
+</style>
+
+<div class="box box-info mt-2">
+
+    <div class="col-6" id="reporte1" style="display:inline-block;max-width:49%">
+        <div id="chart1" class="chart"></div>
+    </div>
+
+</div>
+
+
+<div class="box box-info mt-2">
+    <div class="table-responsive">
+        <table class="table table-hover" id="TablaAExportar">
+            <thead>
+                <tr>
+                    <th>Productos</th>
+                    <th>Categorias</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @{
+
+                    for (int i = 0; i < ViewBag.REGISTROSPROD.List.Count; i++)
+                    {
+                        var a = ViewBag.REGISTROSPROD.List[i].Name;
+                        var b = ViewBag.REGISTROSPROD.List[i].CategoryProd;
+                        var caracter = "";
+                        var c = 0;
+                        for (int z = 0; z < ViewBag.REGISTROSPROD.List.Count; z++)
+                        {
+                            caracter = b;
+                            if (ViewBag.REGISTROSPROD.List[z].CategoryProd == caracter)
+                            {
+                                c = 1 + c;
+                            }
+                        }
+
+
+                        var d = ViewBag.REGISTROSPROD.List.Count;
+                        var xCiento = (c * 100) / d;
+                        Chart1.Add(ViewBag.REGISTROSPROD.List[i].Name, xCiento);
+
+                        <tr>
+                            <td>@a</td>
+                            <td>@b</td>
+                        </tr>
+                    }
+                    TotalCategoryProduct = Chart1.OrderByDescending(x => x.Value).Select(x => x.Key).ToList();
+                    CategoryProduct = Chart1.OrderByDescending(x => x.Value).Select(x => x.Value.ToString()).ToList();
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+@{
+    <script>
+
+        function Load() {
+
+            Highcharts.getOptions().plotOptions.column.colors = (function () {
+                var colors = [],
+                    //base = '#e85b13',
+                    base = '#00a7d0',
+                    i;
+
+                for (var i = 0; i < 50; i += 1) {
+                    colors.push(Highcharts.Color(base).brighten((i - 3) / @(ViewBag.REGISTROSPROD.CategoryId < 4 ? 20 : ViewBag.REGISTROSPROD.List)).get());
+                }
+                return colors;
+            }());
+
+            Highcharts.chart('chart1', {
+                chart: {
+                    type: 'column',
+                    options3d: {
+                        enabled: true,
+                        alpha: 10,
+                        beta: 15,
+                        depth: 100
+                    }
+                },
+                title: {
+                    text: 'Gráfico de Productos por Categoria'
+                },
+                subtitle: {
+                    text: ''
+                },
+                plotOptions: {
+                    column: {
+                        depth: 100,
+                        colorByPoint: true
+                    },
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.1f}%'
+                        }
+                    }
+                },
+                tooltip: {
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span><b>{point.y:.2f}%</b><br/>'
+                },
+                xAxis: {
+
+                    categories: ['@Html.Raw(string.Join("','", TotalCategoryProduct))'],
+                    labels: {
+                        skew3d: true,
+                        style: {
+                            fontSize: '16px'
+                        }
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: '% Insumos'
+                    }
+                },
+                series: [{
+                    name: 'Mostrar',
+                    data: [@Html.Raw(string.Join(",", CategoryProduct))]
+                }]
+            });
+        };
+
+    </script>
+}
+
+

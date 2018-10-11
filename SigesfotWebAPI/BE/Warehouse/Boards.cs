@@ -15,7 +15,6 @@ namespace BE.Warehouse
 
     public class BoardProduct : Boards
     {
-
         public int CategoryId { get; set; }
         public string ProductCode { get; set; }
         public string Name { get; set; }

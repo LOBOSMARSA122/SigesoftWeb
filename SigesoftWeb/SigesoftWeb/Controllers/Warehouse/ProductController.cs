@@ -21,11 +21,11 @@ namespace SigesoftWeb.Controllers.Warehouse
             Dictionary<string, string> argCategoryProd = new Dictionary<string, string>()
             {
                 { "grupoId" , ((int)Enums.DataHierarchy.CategoryProd).ToString() },
-            };
+            };         
             ViewBag.CategoryProd = Utils.Utils.LoadDropDownList(API.Get<List<Dropdownlist>>("DataHierarchy/GetDataHierarchyByGrupoId", argCategoryProd), Constants.Select);
             return View();
         }
-
+        
         public ActionResult FilterProduct(BoardProduct data)
         {
             Api API = new Api();
@@ -40,7 +40,7 @@ namespace SigesoftWeb.Controllers.Warehouse
             };
             ViewBag.Products = API.Post<BoardProduct>("Product/GetBoardProduct", arg);
             return PartialView("_BoardProductsPartial");
-        }
+        }   
 
         [GeneralSecurity(Rol = "Product-CreateProduct")]
         public ActionResult CreateProduct(string id)
@@ -100,6 +100,8 @@ namespace SigesoftWeb.Controllers.Warehouse
             bool response = API.Post<bool>("Product/AddProduct", args);
             return Json(response);
         }
+
+        
     }
 
 }

@@ -36,7 +36,7 @@
 <div class="container-fluid">
     <div class="box box-default mt-2" id="acordion">
         <div class="box-header with-border" id="heading1">
-            <h3 class="box-title" style="cursor:pointer;" onclick="ColapsarFiltro('collapse1')"><i class="icon-calendar"></i> Banjeda de Productos</h3>
+            <h3 class="box-title" style="cursor:pointer;" onclick="ColapsarFiltro('collapse1')"><i class="icon-calendar"></i> Bandeja de Reporte</h3>
         </div>
         <div id="collapse1" class="box-body collapse show" aria-labelledby="heading1" style="overflow:hidden;">
             <div class="row">
@@ -85,15 +85,8 @@
 
     </div>
     <div id="RenderBandeja">
-            @Html.Partial("_BoardProductsPartial")
+        @*@Html.Partial("_ReportProductsPartial")*@
     </div>
-    <nav class="d-flex justify-content-end align-items-center flex-wrap">
-        <div>
-            <button class="btn-info boton form-control" onclick="location.href='@Url.Action("CreateProduct","Product")'" style="cursor:pointer;margin-bottom:20px;">
-                <i class="fa fa-search"></i> Nuevo Producto
-            </button>
-        </div>
-    </nav>
 </div>
 
 <div class="alert" role="alert" style="display:none;">
@@ -113,7 +106,9 @@
 
 
 <script>
-    
+    $(document).ready(function () {
+        Filtrar(1);
+    });
     function ColapsarFiltro(id) {
         setTimeout(function () {
             var height = 10;
@@ -160,11 +155,12 @@
             dataType: 'html',
             method: 'POST',
             data: data,
-            url: '/Product/FilterProduct',
+            url: '/Report/FilterReportProduct',
             success: function (html) {
                 if (html.indexOf("IniciarSesion") == -1) {
                     $("#Loading").hide();
                     $("#RenderBandeja").html(html);
+                    Load();
                 } else {
                     location.href = "/";
                 }
@@ -179,3 +175,6 @@
     }
 
 </script>
+
+
+
