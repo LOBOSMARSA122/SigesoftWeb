@@ -65,19 +65,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-12 col-lg-3 col-xl-2">
-                                <div class="form-group">
-                                    <label for="" id="filtPaciente" class="d-none d-lg-block">Filtrar</label>
-                                    <button class="btn btn-info boton form-control" onclick="Test(1)">
-                                        <i class="fa fa-search"></i> Test
-                                    </button>
-                                </div>
-                            </div>
-                            <div id="Valuetest" style="background:#f39c12; width:20px; height:20px;">
-
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
 
@@ -104,9 +92,23 @@
                 </div>
             </div>
         </main>
-        <aside class="col-md-4 ">
-            <div class="row notice ">
-                <div class="col Chart wrapperGrid loadingGrid">
+        <aside class="col-md-4 " style="padding-right: 0px;">
+            <div class="row notice" style="margin-right:0px;">
+                <div class="col Chart wrapperTopDx loadingGrid">
+                    <div class="row title" onclick="ColapseTable('divTopDx','heightdivTopDx')">
+                        Top 10 Diagnósticos
+                    </div>
+                    <input id="heightdivTopDx" type="hidden" value="">
+                    <div id="divTopDx" style="overflow:hidden">
+                        <div class="row info id=" RenderTopDiagnostic"">
+                            @*<img class="img-fluid" src="~/Content/Images/Boceto.png" />*@
+                            @Html.Partial("_TopDiagnosticPartial")
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col Chart">
                     <div class="row title" onclick="ColapseTable('DivNotices','heightDivNotices')">
                         Avisos Diarios
                     </div>
@@ -137,19 +139,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col Chart wrapperGrid loadingGrid">
-                    <div class="row title" onclick="ColapseTable('divTopDx','heightdivTopDx')">
-                        Top Diagnósticos
-                    </div>
-                    <input id="heightdivTopDx" type="hidden" value="">
-                    <div id="divTopDx" style="overflow:hidden">
-                        <div class="row info id=" RenderTopDiagnostic"">
-                            @*<img class="img-fluid" src="~/Content/Images/Boceto.png" />*@
-                            @Html.Partial("_TopDiagnosticPartial")
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </aside>
@@ -185,28 +174,14 @@
     <script>
 
         $(document).ready(function () {
-            $('.wrapperGrid').removeClass('loadingGrid');
             LoadSchedule();
             LoadTopDiagnostic();
-            //$('#calendar').fullCalendar({
-            //    lang: 'es',
-            //    contentHeight: 600,
-            //    defaultDate: new Date(),
-            //    timeFormat: 'h(:mm)a',
-            //    header: {
-            //        left: 'prev,next today',
-            //        center: 'title',
-            //        right: 'month,basicWeek,basicDay,agenda'
-            //    },
-            //    eventLimit: true,
-            //    dayClick: function (date, jsEvent, view) {
-            //        OpenCursoPannel();
-            //        NewCalendar(date);
-            //    }
-            //});
+            Filter(1);
+            
+            
         });
-        function LoadTopDiagnostic() {
-
+        function LoadTopDiagnostic() {            
+            $('.wrapperTopDx').addClass('loadingGrid');
             $.ajax({
                 cache: false,
                 dataType: 'html',
@@ -215,15 +190,16 @@
                 url: '/PatientsAssistance/TopDiagnostic',
                 success: function (html) {
                     if (html.indexOf("IniciarSesion") == -1) {
-                        $("#RenderTopDiagnostic").html(html);
-                        Load();
+                        $('.wrapperTopDx').removeClass('loadingGrid');
+                        Load(html);
+                       
                     } else {
                         location.href = "/";
                     }
                 },
                 error: function (error) {
                     alerta("Sucedió un error al conectarse al servidor", "rojo");
-                    $('.wrapperGrid').removeClass('loadingGrid');
+                    $('.wrapperTopDx').removeClass('loadingGrid');
                     console.log(error);
                 }
             });
@@ -233,6 +209,7 @@
             var events = [];
             $.ajax({
                 type: "GET",
+                async: true,
                 url: "/PatientsAssistance/GetSchedule",
                 success: function (data) {
                     $.each(data, function (i, v) {
@@ -255,7 +232,6 @@
         }
 
         function GenerateCalender(events) {
-
             $('#calendar').fullCalendar('destroy');
             $('#calendar').fullCalendar({
                 lang: 'es',
@@ -308,7 +284,6 @@
                     if (html.indexOf("IniciarSesion") == -1) {
                         $('.wrapperGrid').removeClass('loadingGrid');
                         $("#RenderBoardPatientsAssistancePartial").html(html);
-                        Load();
                     } else {
                         location.href = "/";
                     }
@@ -327,8 +302,54 @@
                 cache: false,
                 async: true,
                 dataType: 'html',
-                method: 'POST',
+                method: 'GET',
                 url: '/PatientsAssistance/Test',
+                success: function (html) {
+                    console.log(html)
+                    if (html.indexOf("IniciarSesion") == -1) {
+                        $("#Valuetest").html(html);
+                    } else {
+                        location.href = "/";
+                    }
+                },
+                error: function (error) {
+                    alerta("Sucedió un error al conectarse al servidor", "rojo");
+                    console.log(error);
+                }
+            });
+        }
+
+        function Test2() {
+            console.log("hola");
+            $.ajax({
+                cache: false,
+                async: true,
+                dataType: 'html',
+                method: 'GET',
+                url: '/PatientsAssistance/Test2',
+                success: function (html) {
+                    console.log(html)
+                    if (html.indexOf("IniciarSesion") == -1) {
+                        $("#Valuetest2").html(html);
+                    } else {
+                        location.href = "/";
+                    }
+                },
+                error: function (error) {
+                    alerta("Sucedió un error al conectarse al servidor", "rojo");
+                    console.log(error);
+                }
+            });
+        }
+
+        function Test2() {
+            console.log("hola");
+            $.ajax({
+                cache: false,
+                async: true,
+                dataType: 'html',
+                method: 'GET',
+                url: '/PatientsAssistance/Test2',
                 success: function (html) {
                     console.log(html)
                     if (html.indexOf("IniciarSesion") == -1) {

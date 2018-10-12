@@ -18,7 +18,7 @@ namespace BL.MedicalAssistance
         {
             try
             {
-                Thread.Sleep(10000);
+                //Thread.Sleep(20000);
                 var isDeleted = (int)Enumeratores.SiNo.No;
                 int groupDocTypeId = (int)Enumeratores.DataHierarchy.TypeDoc;
                 int genderId = (int)Enumeratores.Parameters.Gender;
@@ -92,17 +92,33 @@ namespace BL.MedicalAssistance
         public int Test()
         {
             try
-            {              
-                var preList = (from a in ctx.Diseases
-                               select new Patients
-                               {
-                                   PatientId = a.v_DiseasesId,
-                                  
-                               }).ToList();
+            {
+                Thread.Sleep(20000);
+                return 20;
+                //var preList = (from a in ctx.Diseases
+                //               select new Patients
+                //               {
+                //                   PatientId = a.v_DiseasesId,
 
-                int totalRecords = preList.Count;
+                //               }).ToList();
 
-                return totalRecords;
+                //int totalRecords = preList.Count;
+
+                //return totalRecords;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public int Test2()
+        {
+            try
+            {
+                Thread.Sleep(5000);
+                return 20;
 
             }
             catch (Exception ex)
@@ -139,23 +155,24 @@ namespace BL.MedicalAssistance
         {
             try
             {
+                //Thread.Sleep(5000);
                 var isDeleted = (int)Enumeratores.SiNo.No;
                 var list = (from a in ctx.DiagnosticRepository
                             join b in ctx.Diseases on a.v_DiseasesId equals b.v_DiseasesId
                             where a.i_IsDeleted == isDeleted
-                            select new TopDiagnostic
+                            select new 
                             {
                                 DiagnosticId = a.v_DiseasesId,
                                 Diagnostic = b.v_Name,                               
                             }).ToList();
 
                 var group = list
-                            .GroupBy(n => n.DiagnosticId)
+                            .GroupBy(n => n.Diagnostic)
                             .Select(n => new TopDiagnostic
                             {
-                                Diagnostic = n.Key,
-                                TotalDiagnostic = n.Count()
-                            }).OrderByDescending(n => n.TotalDiagnostic).Take(5);
+                                name = n.Key,
+                                y = n.Count()
+                            }).OrderByDescending(n => n.y).Take(10);
 
                 return group.ToList();
 

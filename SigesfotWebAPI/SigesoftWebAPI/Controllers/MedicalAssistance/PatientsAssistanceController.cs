@@ -30,6 +30,17 @@ namespace SigesoftWebAPI.Controllers.MedicalAssistance
             });            
         }
 
+        [HttpGet]
+        public async Task<IHttpActionResult> GetTest2()
+        {
+            var result = 0;
+            return await Task.Run(() => {
+                result = oPatientsAssistanceBL.Test2();
+                return Ok(result);
+            });
+        }
+
+
         [HttpPost]
         public async Task<IHttpActionResult> GetAllPatientsAssistance(BoardPatient data)
         {
