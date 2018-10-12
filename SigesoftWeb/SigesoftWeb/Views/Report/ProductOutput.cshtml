@@ -36,56 +36,98 @@
 <div class="container-fluid">
     <div class="box box-default mt-2" id="acordion">
         <div class="box-header with-border" id="heading1">
-            <h3 class="box-title" style="cursor:pointer;" onclick="ColapsarFiltro('collapse1')"><i class="icon-calendar"></i> Bandeja de Reporte</h3>
+            <h3 class="box-title" style="cursor:pointer;" onclick="ColapseTable('divFilter', 'heightFilter')"><i class="icon-calendar"></i> Bandeja de Reporte</h3>
         </div>
-        <div id="collapse1" class="box-body collapse show" aria-labelledby="heading1" style="overflow:hidden;">
-            <div class="row">
-                <div class="col-12 col-lg-4 col-xl-3">
-                    <div class="form-group">
-                        <label class="m-0" for="">Tipo de producto</label>
-                        <div class="row w-100 m-0 p-0">
-                            <div class="col-12 m-0 p-0 ">
-                                @{
-                                    if (ViewBag.CategoryProd != null)
-                                    {
-                                        <select class="mt-2 p-0 m-0 form-control" id="CategoryProd">
-                                            @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.CategoryProd)
-                                            {
-                                                <option value="@G.Id">@G.Value</option>
-                                            }
-                                        </select>
+        <input id="heightFilter" type="hidden" value="">
+        <div id="divFilter" style="overflow:hidden;">
+            <div id="collapse1" class="box-body collapse show" aria-labelledby="heading1" style="overflow:hidden;">
+                <div class="row">
+                    <div class="col-12 col-lg-4 col-xl-3">
+                        <div class="form-group">
+                            <label class="m-0" for="">Empresa/Sede: </label>
+                            <div class="row w-100 m-0 p-0">
+                                <div class="col-12 m-0 p-0 ">
+                                    @{
+                                if (ViewBag.OrganizationIdLocationId != null)
+                                {
+                                    <select class="mt-2 p-0 m-0 form-control" id="OrganizationLocationId">
+                                        @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.OrganizationIdLocationId)
+                                {
+                                    <option value="@G.Id">@G.Value</option>
+                        }
+                                    </select>
+                        }
                                     }
-                                }
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 col-lg-3 col-xl-3">
-                    <div class="form-group">
-                        <label for="">Código del Producto</label>
-                        <input type="text" id="ProductCode" class="form-control" maxlength="150" placeholder="Ingrese codigo del producto" />
+                    <div class="col-12 col-lg-4 col-xl-2">
+                        <div class="form-group">
+                            <label class="m-0" for="">Almacén: </label>
+                            <div class="row w-100 m-0 p-0">
+                                <div class="col-12 m-0 p-0 ">
+                                    @{
+                                if (ViewBag.WarehouseId != null)
+                                {
+                                    <select class="mt-2 p-0 m-0 form-control" id="WarehouseId">
+                                        @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.WarehouseId)
+                                {
+                                    <option value="@G.Id">@G.Value</option>
+                        }
+                                    </select>
+                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-12 col-lg-3 col-xl-3">
-                    <div class="form-group">
-                        <label for="">Producto</label>
-                        <input type="text" id="ProductName" class="form-control" maxlength="11" placeholder="Ingrese nombre del producto" />
+                    <div class="col-12 col-lg-4 col-xl-3">
+                        <div class="form-group">
+                            <label class="m-0" for="">Tipo de producto</label>
+                            <div class="row w-100 m-0 p-0">
+                                <div class="col-12 m-0 p-0 ">
+                                    @{
+                                if (ViewBag.CategoryProd != null)
+                                {
+                                    <select class="mt-2 p-0 m-0 form-control" id="CategoryProd">
+                                        @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.CategoryProd)
+                                {
+                                    <option value="@G.Id">@G.Value</option>
+                        }
+                                    </select>
+                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-12 col-lg-2 col-xl-2">
-                    <div class="form-group">
-                        <label for="" id="filtProduct" class="d-none d-lg-block">Filtrar</label>
-                        <button class="btn btn-info boton form-control" onclick="Filtrar(1)">
-                            <i class="fa fa-search"></i> Filtrar
-                        </button>
+                    <div class="col-12 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                            <label for="">Código del Producto</label>
+                            <input type="text" id="ProductCode" class="form-control" maxlength="150" placeholder="Ingrese codigo del producto" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                            <label for="">Producto</label>
+                            <input type="text" id="ProductName" class="form-control" maxlength="11" placeholder="Ingrese nombre del producto" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-2 col-xl-2">
+                        <div class="form-group">
+                            <label for="" id="filtProduct" class="d-none d-lg-block">Filtrar</label>
+                            <button class="btn btn-info boton form-control" onclick="Filtrar(1)">
+                                <i class="fa fa-search"></i> Filtrar
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
     <div id="RenderBandeja">
-        @*@Html.Partial("_ReportProductsPartial")*@
+        @*@Html.Partial("_ReportProductPartial")*@
     </div>
 </div>
 
@@ -109,27 +151,12 @@
     $(document).ready(function () {
         Filtrar(1);
     });
-    function ColapsarFiltro(id) {
-        setTimeout(function () {
-            var height = 10;
-
-            for (i = 0; i < $("#" + id + " .row").length; i++) {
-                height = height + $($("#" + id + " .row")[i]).height();
-            }
-
-            if ($("#" + id).height() == 0) {
-                $("#" + id).animate({ "height": height + "px", "padding": "10px" }, 400);
-            } else {
-                $("#" + id).animate({ "height": "0px", "padding": "0px 10px" }, 400);
-            }
-        }, 200);
-    }
-
+   
     function ColapsarTabla(id) {
         var Altura = $("#TablaAExportar").height() + 60;
-
+        console.log(Altura);
         if ($("." + id).height() == 0) {
-            $("." + id).animate({ "height": Altura + "px" }, 400);
+            $("." + id).animate({ "height": "100%" }, 400);
         } else {
             alturaTabla = $("." + id).height();
             $("." + id).animate({ "height": "0px" }, 400);
@@ -138,6 +165,8 @@
 
     function Filtrar(index) {
         var data = {
+            OrganizationLocationId: $("#OrganizationLocationId").val(),
+            WarehouseId: $("#WarehouseId").val(),
             ProductCode: $("#ProductCode").val(),
             CategoryId: $("#CategoryProd").val(),
             Name: $("#ProductName").val(),
@@ -173,7 +202,37 @@
         });
 
     }
-
+    function loadWarehouse() {
+        var orgLocationId = $("#OrganizationLocationId").val(),
+            separar = orgLocationId.split("|"),
+            organizationId = separar[1],
+            locationId = separar[2];
+        $.ajax(
+            {
+                url: '/Report/GetWarehouseNotInRestricted?OrganizationId=' + organizationId + ' &LocationId=' + locationId + '',
+                type: 'GET',
+                success: function (json) {
+                    var listItems = '';
+                    var $select = $('#WarehouseId');
+                    $select.find('option').remove();
+                    for (var i = 0; i < json.length; i++) {
+                        listItems += "<option value='" + json[i].Id + "'>" + json[i].Value + "</option>";
+                    }
+                    $select.html(listItems);
+                    clearddl();
+                },
+                error: function () {
+                    alert('Error');
+                }
+            })
+    }
+    function clearddl() {
+        $('#WarehouseId').val('-1');
+    }
+    $(document).ready(function () {
+        $('#OrganizationLocationId').on('change', loadWarehouse);
+        $(document).ready();
+    });
 </script>
 
 

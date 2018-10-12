@@ -7,13 +7,13 @@ function resize() {
 }
 
 function alerta(Mensaje, color) {
-    if ($('.alert').css("display") == "none") {
+    if ($('.alert').css("display") === "none") {
         $('.alert').show();
-        if (Mensaje != undefined)
+        if (Mensaje !== undefined)
             $('.alert span').html(Mensaje);
 
         var stilo = "";
-        if (color != undefined) {
+        if (color !== undefined) {
             switch (color) {
                 case "negro": {
                     stilo = "alert-dark";
@@ -45,7 +45,7 @@ function alerta(Mensaje, color) {
 
         window.setTimeout(function () {
             $(".alert").fadeTo(500).slideUp(500, function () {
-                if (stilo != "")
+                if (stilo !== "")
                     $('.alert').removeClass(stilo);
                 $(this).hide();
             });
@@ -107,7 +107,7 @@ function validateNumber(evt) {
 function ColapseTable(divColapse, inputHidden) {
     var Altura = $("#" + divColapse).height();
     console.log(Altura);
-    if ($("#" + divColapse).height() == 0) {
+    if ($("#" + divColapse).height() === 0) {
         $("#" + divColapse).animate({ "height": $('#' + inputHidden).val() + "px" }, 400);
        
     } else {

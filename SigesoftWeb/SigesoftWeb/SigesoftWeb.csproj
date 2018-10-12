@@ -498,12 +498,9 @@
     <Content Include="Views\InputOutput\_BoardInputOutputPartial.cshtml" />
     <Content Include="Views\PatientsAssistance\MedicalConsultation.cshtml" />
     <Content Include="Views\PatientsAssistance\_BoardMedicalSummaryPartial.cshtml" />
-
     <Content Include="Views\Report\ProductOutput.cshtml" />
     <Content Include="Views\Report\_ReportProductPartial.cshtml" />
-
     <Content Include="Views\PatientsAssistance\_TopDiagnosticPartial.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

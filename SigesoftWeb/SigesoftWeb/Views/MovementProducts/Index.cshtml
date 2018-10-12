@@ -24,123 +24,125 @@
 <div class="container-fluid">
     <div class="box box-default mt-2" id="acordion">
         <div class="box-header with-border" id="heading1">
-            <h3 class="box-title" style="cursor:pointer;" onclick="ColapsarFiltro('collapse1')"><i class="icon-calendar"></i>Bandeja de Movimientos</h3>
+            <h3 class="box-title" style="cursor:pointer;" onclick="ColapseTable('divFilter', 'heightFilter')"><i class="icon-calendar"></i>Bandeja de Movimientos</h3>
         </div>
-        <div id="collapse1" class="box-body collapse show" aria-labelledby="heading1" style="overflow:hidden;">
-            <div class="row">
-                <div class="col-12 col-lg-4 col-xl-3">
-                    <div class="form-group">
-                        <label class="m-0" for="">Empresa/Sede: </label>
-                        <div class="row w-100 m-0 p-0">
-                            <div class="col-12 m-0 p-0 ">
-                                @{
-                            if (ViewBag.OrganizationIdLocationId != null)
-                            {
-                                <select class="mt-2 p-0 m-0 form-control" id="OrganizationLocationId">
-                                    @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.OrganizationIdLocationId)
-                            {
-                                <option value="@G.Id">@G.Value</option>
-                    }
-                                </select>
-                    }
-                                }
+        <input id="heightFilter" type="hidden" value="">
+        <div id="divFilter" style="overflow:hidden;">
+            <div id="collapse1" class="box-body collapse show" aria-labelledby="heading1" style="overflow:hidden;">
+                <div class="row">
+                    <div class="col-12 col-lg-4 col-xl-3">
+                        <div class="form-group">
+                            <label class="m-0" for="">Empresa/Sede: </label>
+                            <div class="row w-100 m-0 p-0">
+                                <div class="col-12 m-0 p-0 ">
+                                    @{
+                                if (ViewBag.OrganizationIdLocationId != null)
+                                {
+                                    <select class="mt-2 p-0 m-0 form-control" id="OrganizationLocationId">
+                                        @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.OrganizationIdLocationId)
+                                {
+                                    <option value="@G.Id">@G.Value</option>
+                        }
+                                    </select>
+                        }
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 col-lg-4 col-xl-2">
-                    <div class="form-group">
-                        <label class="m-0" for="">Almacén: </label>
-                        <div class="row w-100 m-0 p-0">
-                            <div class="col-12 m-0 p-0 ">
-                                @{
-                            if (ViewBag.WarehouseMovement != null)
-                            {
-                                <select class="mt-2 p-0 m-0 form-control" id="WarehouseMovement">
-                                    @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.WarehouseMovement)
-                            {
-                                <option value="@G.Id">@G.Value</option>
-                    }
-                                </select>
-                    }
-                                }
+                    <div class="col-12 col-lg-4 col-xl-2">
+                        <div class="form-group">
+                            <label class="m-0" for="">Almacén: </label>
+                            <div class="row w-100 m-0 p-0">
+                                <div class="col-12 m-0 p-0 ">
+                                    @{
+                                if (ViewBag.WarehouseMovement != null)
+                                {
+                                    <select class="mt-2 p-0 m-0 form-control" id="WarehouseMovement">
+                                        @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.WarehouseMovement)
+                                {
+                                    <option value="@G.Id">@G.Value</option>
+                        }
+                                    </select>
+                        }
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-12 col-lg-4 col-xl-2">
-                    <div class="form-group">
-                        <label class="m-0" for="">Tipo: </label>
-                        <div class="row w-100 m-0 p-0">
-                            <div class="col-12 m-0 p-0 ">
-                                @{
-                            if (ViewBag.TypeMovement != null)
-                            {
-                                <select class="mt-2 p-0 m-0 form-control" id="MovementTypeId">
-                                    @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.TypeMovement)
-                            {
-                                <option value="@G.Id">@G.Value</option>
-                    }
-                                </select>
-                    }
-                                }
+                    <div class="col-12 col-lg-4 col-xl-2">
+                        <div class="form-group">
+                            <label class="m-0" for="">Tipo: </label>
+                            <div class="row w-100 m-0 p-0">
+                                <div class="col-12 m-0 p-0 ">
+                                    @{
+                                if (ViewBag.TypeMovement != null)
+                                {
+                                    <select class="mt-2 p-0 m-0 form-control" id="MovementTypeId">
+                                        @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.TypeMovement)
+                                {
+                                    <option value="@G.Id">@G.Value</option>
+                        }
+                                    </select>
+                        }
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-12 col-lg-3 col-xl-2">
-                    <div class="form-group">
-                        <label for="">Desde: </label>
-                        <input type="date" id="StartDate" class="form-control" />
+                    <div class="col-12 col-lg-3 col-xl-2">
+                        <div class="form-group">
+                            <label for="">Desde: </label>
+                            <input type="date" id="StartDate" class="form-control" />
+                        </div>
                     </div>
-                </div>
-                <div class="col-12 col-lg-3 col-xl-2">
-                    <div class="form-group">
-                        <label for="">Hasta:</label>
-                        <input type="date" id="EndDate" class="form-control" />
+                    <div class="col-12 col-lg-3 col-xl-2">
+                        <div class="form-group">
+                            <label for="">Hasta:</label>
+                            <input type="date" id="EndDate" class="form-control" />
+                        </div>
                     </div>
-                </div>
 
+                </div>
+                <nav class="row justify-content-end">
+                    <div class="col-12 col-lg-2 col-xl-2">
+                        <div class="form-group">
+                            <button class="btn btn-info boton form-control" onclick="Filtrar(1)">
+                                <i class="fa fa-search"></i> Filtrar
+                            </button>
+                        </div>
+                    </div>
+                </nav>
             </div>
-            <nav class="row justify-content-end">
-                <div class="col-12 col-lg-2 col-xl-2">
-                    <div class="form-group">
-                        <button class="btn btn-info boton form-control" onclick="Filtrar(1)">
-                            <i class="fa fa-search"></i> Filtrar
-                        </button>
-                    </div>
-                </div>
-            </nav>
         </div>
+        </div>
+        <div id="RenderBandeja">
+            @Html.Partial("_BoardMovementPartial")
+        </div>
+        <nav class="row justify-content-end">
+            <div class="col-12 col-md-auto">
+                <button class="btn-info boton form-control" onclick="location.href='@Url.Action("Index","InputOutput")'" style="cursor:pointer;margin-bottom:20px;">
+                    <i class=""></i> Ingreso
+                </button>
+            </div>
+            <div class="col-12 col-md-auto">
+                <button class="btn-info boton form-control" onclick="location.href='@Url.Action("Index","InputOutput")'" style="cursor:pointer;margin-bottom:20px;">
+                    <i class=""></i>Salida
+                </button>
+            </div>
+            <div class="col-12 col-md-auto">
+                <button class="btn-info boton form-control" onclick="location.href='@Url.Action("Index","InputOutput")'" style="cursor:pointer;margin-bottom:20px;">
+                    <i class=""></i>Transf. entre almacenes
+                </button>
+            </div>
+        </nav>
 
-    </div>
-    <div id="RenderBandeja">
-        @Html.Partial("_BoardMovementPartial")
-    </div>
-    <nav class="row justify-content-end">
-        <div class="col-12 col-md-auto">
-            <button class="btn-info boton form-control" onclick="location.href='@Url.Action("Index","InputOutput")'" style="cursor:pointer;margin-bottom:20px;">
-                <i class=""></i> Ingreso
-            </button>
-        </div>
-        <div class="col-12 col-md-auto">
-            <button class="btn-info boton form-control" onclick="location.href='@Url.Action("Index","InputOutput")'" style="cursor:pointer;margin-bottom:20px;">
-                <i class=""></i>Salida
-            </button>
-        </div>
-        <div class="col-12 col-md-auto">
-            <button class="btn-info boton form-control" onclick="location.href='@Url.Action("Index","InputOutput")'" style="cursor:pointer;margin-bottom:20px;">
-                <i class=""></i>Transf. entre almacenes
-            </button>
-        </div>
-    </nav>
-    
 
 
 
-</div>
+    </div>
 
 <div class="alert" role="alert" style="display:none;">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
