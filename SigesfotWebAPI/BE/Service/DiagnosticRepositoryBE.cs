@@ -1,42 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BE.Service
 {
+    [Table("DiagnosticRepository")]
     public class DiagnosticRepositoryBE
     {
         [Key]
-        public string DiagnosticRepositoryId { get; set; } 
+        public string v_DiagnosticRepositoryId { get; set; } 
 
-        public string ServiceId { get; set; } 
-        public string DiseasesId { get; set; } 
-        public string ComponentId { get; set; } 
-        public string ComponentFieldId { get; set; } 
-        public int? AutoManualId { get; set; } 
-        public int? PreQualificationId { get; set; } 
-        public int? FinalQualificationId { get; set; } 
-        public int? DiagnosticTypeId { get; set; } 
-        public int? IsSentToAntecedent { get; set; } 
-        public DateTime? ExpirationDateDiagnostic { get; set; } 
-        public int? GenerateMedicalBreak { get; set; } 
-        public string Recomendations { get; set; } 
-        public int? DiagnosticSourceId { get; set; } 
-        public int? ShapeAccidentId { get; set; } 
-        public int? BodyPartId { get; set; } 
-        public int? ClassificationOfWorkAccidentId { get; set; } 
-        public int? RiskFactorId { get; set; } 
-        public int? ClassificationOfWorkdiseaseId { get; set; } 
-        public int? SendTointerconsultationId { get; set; } 
-        public int? interconsultationDestinationintId { get; set; } 
-        public int? IsDeleted { get; set; } 
-        public int? InsertUserId { get; set; } 
-        public DateTime? InsertDate { get; set; } 
-        public int? UpdateUserId { get; set; } 
-        public DateTime? UpdateDate { get; set; } 
-        public string interconsultationDestinationId { get; set; } 
+        public string v_ServiceId { get; set; } 
+        public string v_DiseasesId { get; set; } 
+        public string v_ComponentId { get; set; } 
+        public string v_ComponentFieldId { get; set; } 
+        public int? i_AutoManualId { get; set; } 
+        public int? i_PreQualificationId { get; set; } 
+        public int? i_FinalQualificationId { get; set; } 
+        public int? i_DiagnosticTypeId { get; set; } 
+        public int? i_IsSentToAntecedent { get; set; } 
+        public DateTime? d_ExpirationDateDiagnostic { get; set; } 
+        public int? i_GenerateMedicalBreak { get; set; } 
+        public string v_Recomendations { get; set; } 
+        public int? i_DiagnosticSourceId { get; set; } 
+        public int? i_ShapeAccidentId { get; set; } 
+        public int? i_BodyPartId { get; set; } 
+        public int? i_ClassificationOfWorkAccidentId { get; set; } 
+        public int? i_RiskFactorId { get; set; } 
+        public int? i_ClassificationOfWorkdiseaseId { get; set; } 
+        public int? i_SendTointerconsultationId { get; set; } 
+        public int? i_interconsultationDestinationintId { get; set; } 
+        public int? i_IsDeleted { get; set; } 
+        public int? i_InsertUserId { get; set; } 
+        public DateTime? d_InsertDate { get; set; } 
+        public int? i_UpdateUserId { get; set; } 
+        public DateTime? d_UpdateDate { get; set; } 
+        public string v_interconsultationDestinationId { get; set; } 
     }
 }

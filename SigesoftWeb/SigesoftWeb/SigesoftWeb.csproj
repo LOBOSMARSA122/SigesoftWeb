@@ -184,6 +184,8 @@
     <Compile Include="Models\Common\Boards.cs" />
     <Compile Include="Models\Common\Dropdownlist.cs" />
     <Compile Include="Models\MedicalAssistance\Boards.cs" />
+    <Compile Include="Models\MedicalAssistance\Schedule.cs" />
+    <Compile Include="Models\MedicalAssistance\TopDiagnostic.cs" />
     <Compile Include="Models\Security\AuthorizationModel.cs" />
     <Compile Include="Models\Warehouse\Boards.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -226,6 +228,7 @@
     <Content Include="Content\Images\Boceto.png" />
     <Content Include="Content\Images\ImageLogo.jpeg" />
     <Content Include="Content\Images\loading.gif" />
+    <Content Include="Content\Images\loadingGrid.gif" />
     <Content Include="Content\Images\logoSalusLaboris.jpg" />
     <Content Include="Content\static\images\foto%40default.png" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -495,8 +498,12 @@
     <Content Include="Views\InputOutput\_BoardInputOutputPartial.cshtml" />
     <Content Include="Views\PatientsAssistance\MedicalConsultation.cshtml" />
     <Content Include="Views\PatientsAssistance\_BoardMedicalSummaryPartial.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Report\ProductOutput.cshtml" />
     <Content Include="Views\Report\_ReportProductPartial.cshtml" />
+=======
+    <Content Include="Views\PatientsAssistance\_TopDiagnosticPartial.cshtml" />
+>>>>>>> 8650162c051625ffaba866469bf45dee4a445fbc
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

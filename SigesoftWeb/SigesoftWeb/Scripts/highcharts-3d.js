@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿/*
+=======
+/*
+>>>>>>> 8650162c051625ffaba866469bf45dee4a445fbc
  Highcharts JS v6.1.0 (2018-04-13)
 
  3D features for Highcharts JS
@@ -28,6 +32,7 @@
         }; l.prototype.face3d = function (a) {
             var c = this, m = this.createElement("path"); m.vertexes = []; m.insidePlotArea = !1; m.enabled = !0; u(m, "attr", function (a, m) {
                 if ("object" === typeof m && (r(m.enabled) || r(m.vertexes) || r(m.insidePlotArea))) {
+<<<<<<< HEAD
                     this.enabled = e(m.enabled, this.enabled); this.vertexes = e(m.vertexes, this.vertexes); this.insidePlotArea = e(m.insidePlotArea, this.insidePlotArea); delete m.enabled; delete m.vertexes; delete m.insidePlotArea; var d = k(this.vertexes, z[c.chartIndex], this.insidePlotArea),
                         C = c.toLinePath(d, !0), d = b.shapeArea(d), d = this.enabled && 0 < d ? "visible" : "hidden"; m.d = C; m.visibility = d
                 } return a.apply(this, [].slice.call(arguments, 1))
@@ -35,6 +40,15 @@
                 if ("object" === typeof m && (r(m.enabled) || r(m.vertexes) || r(m.insidePlotArea))) {
                     this.enabled = e(m.enabled, this.enabled); this.vertexes = e(m.vertexes, this.vertexes); this.insidePlotArea = e(m.insidePlotArea, this.insidePlotArea); delete m.enabled; delete m.vertexes; delete m.insidePlotArea; var d = k(this.vertexes, z[c.chartIndex], this.insidePlotArea),
                         C = c.toLinePath(d, !0), d = b.shapeArea(d), d = this.enabled && 0 < d ? "visible" : "hidden"; m.d = C; this.attr("visibility", d)
+=======
+                this.enabled = e(m.enabled, this.enabled); this.vertexes = e(m.vertexes, this.vertexes); this.insidePlotArea = e(m.insidePlotArea, this.insidePlotArea); delete m.enabled; delete m.vertexes; delete m.insidePlotArea; var d = k(this.vertexes, z[c.chartIndex], this.insidePlotArea),
+                    C = c.toLinePath(d, !0), d = b.shapeArea(d), d = this.enabled && 0 < d ? "visible" : "hidden"; m.d = C; m.visibility = d
+                } return a.apply(this, [].slice.call(arguments, 1))
+            }); u(m, "animate", function (a, m) {
+                if ("object" === typeof m && (r(m.enabled) || r(m.vertexes) || r(m.insidePlotArea))) {
+                this.enabled = e(m.enabled, this.enabled); this.vertexes = e(m.vertexes, this.vertexes); this.insidePlotArea = e(m.insidePlotArea, this.insidePlotArea); delete m.enabled; delete m.vertexes; delete m.insidePlotArea; var d = k(this.vertexes, z[c.chartIndex], this.insidePlotArea),
+                    C = c.toLinePath(d, !0), d = b.shapeArea(d), d = this.enabled && 0 < d ? "visible" : "hidden"; m.d = C; this.attr("visibility", d)
+>>>>>>> 8650162c051625ffaba866469bf45dee4a445fbc
                 } return a.apply(this, [].slice.call(arguments, 1))
             }); return m.attr(a)
         }; l.prototype.polyhedron = function (a) {
@@ -52,8 +66,13 @@
                 this.front.attr({ fill: a }); this.top.attr({ fill: n(a).brighten(.1).get() }); this.side.attr({ fill: n(a).brighten(-.1).get() }); this.color = a; e.fill =
                     a; return this
             }; e.opacitySetter = function (a) { this.front.attr({ opacity: a }); this.top.attr({ opacity: a }); this.side.attr({ opacity: a }); return this }; e.attr = function (a, e, b, m) { if ("string" === typeof a && "undefined" !== typeof e) { var d = a; a = {}; a[d] = e } if (a.shapeArgs || r(a.x)) a = this.renderer.cuboidPath(a.shapeArgs || a), this.front.attr({ d: a[0] }), this.top.attr({ d: a[1] }), this.side.attr({ d: a[2] }); else return c.prototype.attr.call(this, a, void 0, b, m); return this }; e.animate = function (a, e, b) {
+<<<<<<< HEAD
                 r(a.x) && r(a.y) ? (a = this.renderer.cuboidPath(a),
                     this.front.animate({ d: a[0] }, e, b), this.top.animate({ d: a[1] }, e, b), this.side.animate({ d: a[2] }, e, b), this.attr({ zIndex: -a[3] })) : a.opacity ? (this.front.animate(a, e, b), this.top.animate(a, e, b), this.side.animate(a, e, b)) : c.prototype.animate.call(this, a, e, b); return this
+=======
+            r(a.x) && r(a.y) ? (a = this.renderer.cuboidPath(a),
+                this.front.animate({ d: a[0] }, e, b), this.top.animate({ d: a[1] }, e, b), this.side.animate({ d: a[2] }, e, b), this.attr({ zIndex: -a[3] })) : a.opacity ? (this.front.animate(a, e, b), this.top.animate(a, e, b), this.side.animate(a, e, b)) : c.prototype.animate.call(this, a, e, b); return this
+>>>>>>> 8650162c051625ffaba866469bf45dee4a445fbc
             }; e.destroy = function () { this.front.destroy(); this.top.destroy(); this.side.destroy(); return b.call(this) }; e.attr({ zIndex: -a[3] }); return e
         }; b.SVGRenderer.prototype.cuboidPath = function (a) {
             function e(a) { return t[a] } var c = a.x, f = a.y, l = a.z, v = a.height,
@@ -67,8 +86,13 @@
                     zIndex: c.zOut
                 }); m.side1.attr({ d: c.side1, zIndex: c.zSide1 }); m.side2.attr({ d: c.side2, zIndex: c.zSide2 }); m.zIndex = e; m.attr({ zIndex: e }); a.center && (m.top.setRadialReference(a.center), delete a.center)
             }; m.setPaths(b); m.fillSetter = function (a) { var c = n(a).brighten(-.1).get(); this.fill = a; this.side1.attr({ fill: c }); this.side2.attr({ fill: c }); this.inn.attr({ fill: c }); this.out.attr({ fill: c }); this.top.attr({ fill: a }); return this }; q(["opacity", "translateX", "translateY", "visibility"], function (a) {
+<<<<<<< HEAD
                 m[a + "Setter"] = function (a,
                     c) { m[c] = a; q(["out", "inn", "side1", "side2", "top"], function (e) { m[e].attr(c, a) }) }
+=======
+            m[a + "Setter"] = function (a,
+                c) { m[c] = a; q(["out", "inn", "side1", "side2", "top"], function (e) { m[e].attr(c, a) }) }
+>>>>>>> 8650162c051625ffaba866469bf45dee4a445fbc
             }); u(m, "attr", function (a, c) { var e; "object" === typeof c && (e = d(c)) && (f(m.attribs, e), m.setPaths(m.attribs)); return a.apply(this, [].slice.call(arguments, 1)) }); u(m, "animate", function (a, c, b, f) {
                 var l, k = this.attribs, u; delete c.center; delete c.z; delete c.depth; delete c.alpha; delete c.beta; u = A(e(b, this.renderer.globalAnimation)); u.duration && (l = d(c), c.dummy = m.dummy++ , l && (u.step = function (a, c) {
                     function b(a) {
@@ -149,6 +173,7 @@
             }
         }); t.prototype.retrieveStacks = function (b) { var f = this.series, a = {}, d, h = 1; g(this.series, function (k) { d = n(k.options.stack, b ? 0 : f.length - 1 - k.index); a[d] ? a[d].series.push(k) : (a[d] = { series: [k], position: h }, h++) }); a.totalStacks = h + 1; return a }; t.prototype.get3dFrame = function () {
             var q = this, f = q.options.chart.options3d,
+<<<<<<< HEAD
                 a = f.frame, d = q.plotLeft, h = q.plotLeft + q.plotWidth, k = q.plotTop, e = q.plotTop + q.plotHeight, c = f.depth, l = function (a) { a = b.shapeArea3d(a, q); return .5 < a ? 1 : -.5 > a ? -1 : 0 }, u = l([{ x: d, y: e, z: c }, { x: h, y: e, z: c }, { x: h, y: e, z: 0 }, { x: d, y: e, z: 0 }]), w = l([{ x: d, y: k, z: 0 }, { x: h, y: k, z: 0 }, { x: h, y: k, z: c }, { x: d, y: k, z: c }]), v = l([{ x: d, y: k, z: 0 }, { x: d, y: k, z: c }, { x: d, y: e, z: c }, { x: d, y: e, z: 0 }]), r = l([{ x: h, y: k, z: c }, { x: h, y: k, z: 0 }, { x: h, y: e, z: 0 }, { x: h, y: e, z: c }]), m = l([{ x: d, y: e, z: 0 }, { x: h, y: e, z: 0 }, { x: h, y: k, z: 0 }, { x: d, y: k, z: 0 }]), l = l([{ x: d, y: k, z: c }, { x: h, y: k, z: c },
                 { x: h, y: e, z: c }, { x: d, y: e, z: c }]), t = !1, A = !1, x = !1, p = !1; g([].concat(q.xAxis, q.yAxis, q.zAxis), function (a) { a && (a.horiz ? a.opposite ? A = !0 : t = !0 : a.opposite ? p = !0 : x = !0) }); var y = function (a, c, e) { for (var b = ["size", "color", "visible"], d = {}, f = 0; f < b.length; f++)for (var l = b[f], h = 0; h < a.length; h++)if ("object" === typeof a[h]) { var k = a[h][l]; if (void 0 !== k && null !== k) { d[l] = k; break } } a = e; !0 === d.visible || !1 === d.visible ? a = d.visible : "auto" === d.visible && (a = 0 < c); return { size: n(d.size, 1), color: n(d.color, "none"), frontFacing: 0 < c, visible: a } },
                     a = { bottom: y([a.bottom, a.top, a], u, t), top: y([a.top, a.bottom, a], w, A), left: y([a.left, a.right, a.side, a], v, x), right: y([a.right, a.left, a.side, a], r, p), back: y([a.back, a.front, a], l, !0), front: y([a.front, a.back, a], m, !1) }; "auto" === f.axisLabelPosition ? (r = function (a, c) { return a.visible !== c.visible || a.visible && c.visible && a.frontFacing !== c.frontFacing }, f = [], r(a.left, a.front) && f.push({ y: (k + e) / 2, x: d, z: 0, xDir: { x: 1, y: 0, z: 0 } }), r(a.left, a.back) && f.push({ y: (k + e) / 2, x: d, z: c, xDir: { x: 0, y: 0, z: -1 } }), r(a.right, a.front) && f.push({
@@ -169,6 +194,28 @@
                             }, right: { x: h, z: 0, xDir: { x: 0, y: 0, z: 1 } }
                         }, x: { top: { y: k, z: 0, xDir: { x: 1, y: 0, z: 0 } }, bottom: { y: e, z: 0, xDir: { x: 1, y: 0, z: 0 } } }, z: { top: { x: x ? h : d, y: k, xDir: x ? { x: 0, y: 0, z: 1 } : { x: 0, y: 0, z: -1 } }, bottom: { x: x ? h : d, y: e, xDir: x ? { x: 0, y: 0, z: 1 } : { x: 0, y: 0, z: -1 } } }
                     }; return a
+=======
+            a = f.frame, d = q.plotLeft, h = q.plotLeft + q.plotWidth, k = q.plotTop, e = q.plotTop + q.plotHeight, c = f.depth, l = function (a) { a = b.shapeArea3d(a, q); return .5 < a ? 1 : -.5 > a ? -1 : 0 }, u = l([{ x: d, y: e, z: c }, { x: h, y: e, z: c }, { x: h, y: e, z: 0 }, { x: d, y: e, z: 0 }]), w = l([{ x: d, y: k, z: 0 }, { x: h, y: k, z: 0 }, { x: h, y: k, z: c }, { x: d, y: k, z: c }]), v = l([{ x: d, y: k, z: 0 }, { x: d, y: k, z: c }, { x: d, y: e, z: c }, { x: d, y: e, z: 0 }]), r = l([{ x: h, y: k, z: c }, { x: h, y: k, z: 0 }, { x: h, y: e, z: 0 }, { x: h, y: e, z: c }]), m = l([{ x: d, y: e, z: 0 }, { x: h, y: e, z: 0 }, { x: h, y: k, z: 0 }, { x: d, y: k, z: 0 }]), l = l([{ x: d, y: k, z: c }, { x: h, y: k, z: c },
+            { x: h, y: e, z: c }, { x: d, y: e, z: c }]), t = !1, A = !1, x = !1, p = !1; g([].concat(q.xAxis, q.yAxis, q.zAxis), function (a) { a && (a.horiz ? a.opposite ? A = !0 : t = !0 : a.opposite ? p = !0 : x = !0) }); var y = function (a, c, e) { for (var b = ["size", "color", "visible"], d = {}, f = 0; f < b.length; f++)for (var l = b[f], h = 0; h < a.length; h++)if ("object" === typeof a[h]) { var k = a[h][l]; if (void 0 !== k && null !== k) { d[l] = k; break } } a = e; !0 === d.visible || !1 === d.visible ? a = d.visible : "auto" === d.visible && (a = 0 < c); return { size: n(d.size, 1), color: n(d.color, "none"), frontFacing: 0 < c, visible: a } },
+                a = { bottom: y([a.bottom, a.top, a], u, t), top: y([a.top, a.bottom, a], w, A), left: y([a.left, a.right, a.side, a], v, x), right: y([a.right, a.left, a.side, a], r, p), back: y([a.back, a.front, a], l, !0), front: y([a.front, a.back, a], m, !1) }; "auto" === f.axisLabelPosition ? (r = function (a, c) { return a.visible !== c.visible || a.visible && c.visible && a.frontFacing !== c.frontFacing }, f = [], r(a.left, a.front) && f.push({ y: (k + e) / 2, x: d, z: 0, xDir: { x: 1, y: 0, z: 0 } }), r(a.left, a.back) && f.push({ y: (k + e) / 2, x: d, z: c, xDir: { x: 0, y: 0, z: -1 } }), r(a.right, a.front) && f.push({
+                    y: (k +
+                        e) / 2, x: h, z: 0, xDir: { x: 0, y: 0, z: 1 }
+                }), r(a.right, a.back) && f.push({ y: (k + e) / 2, x: h, z: c, xDir: { x: -1, y: 0, z: 0 } }), u = [], r(a.bottom, a.front) && u.push({ x: (d + h) / 2, y: e, z: 0, xDir: { x: 1, y: 0, z: 0 } }), r(a.bottom, a.back) && u.push({ x: (d + h) / 2, y: e, z: c, xDir: { x: -1, y: 0, z: 0 } }), w = [], r(a.top, a.front) && w.push({ x: (d + h) / 2, y: k, z: 0, xDir: { x: 1, y: 0, z: 0 } }), r(a.top, a.back) && w.push({ x: (d + h) / 2, y: k, z: c, xDir: { x: -1, y: 0, z: 0 } }), v = [], r(a.bottom, a.left) && v.push({ z: (0 + c) / 2, y: e, x: d, xDir: { x: 0, y: 0, z: -1 } }), r(a.bottom, a.right) && v.push({
+                    z: (0 + c) / 2, y: e, x: h, xDir: {
+                        x: 0,
+                        y: 0, z: 1
+                    }
+                }), e = [], r(a.top, a.left) && e.push({ z: (0 + c) / 2, y: k, x: d, xDir: { x: 0, y: 0, z: -1 } }), r(a.top, a.right) && e.push({ z: (0 + c) / 2, y: k, x: h, xDir: { x: 0, y: 0, z: 1 } }), d = function (a, c, e) { if (0 === a.length) return null; if (1 === a.length) return a[0]; for (var b = 0, d = z(a, q, !1), f = 1; f < d.length; f++)e * d[f][c] > e * d[b][c] ? b = f : e * d[f][c] === e * d[b][c] && d[f].z < d[b].z && (b = f); return a[b] }, a.axes = { y: { left: d(f, "x", -1), right: d(f, "x", 1) }, x: { top: d(w, "y", -1), bottom: d(u, "y", 1) }, z: { top: d(e, "y", -1), bottom: d(v, "y", 1) } }) : a.axes = {
+                    y: {
+                        left: {
+                            x: d, z: 0, xDir: {
+                                x: 1,
+                                y: 0, z: 0
+                            }
+                        }, right: { x: h, z: 0, xDir: { x: 0, y: 0, z: 1 } }
+                    }, x: { top: { y: k, z: 0, xDir: { x: 1, y: 0, z: 0 } }, bottom: { y: e, z: 0, xDir: { x: 1, y: 0, z: 0 } } }, z: { top: { x: x ? h : d, y: k, xDir: x ? { x: 0, y: 0, z: 1 } : { x: 0, y: 0, z: -1 } }, bottom: { x: x ? h : d, y: e, xDir: x ? { x: 0, y: 0, z: 1 } : { x: 0, y: 0, z: -1 } } }
+                }; return a
+>>>>>>> 8650162c051625ffaba866469bf45dee4a445fbc
         }; b.Fx.prototype.matrixSetter = function () {
             var g; if (1 > this.pos && (b.isArray(this.start) || b.isArray(this.end))) { var f = this.start || [1, 0, 0, 1, 0, 0], a = this.end || [1, 0, 0, 1, 0, 0]; g = []; for (var d = 0; 6 > d; d++)g.push(this.pos * a[d] + (1 - this.pos) * f[d]) } else g = this.end; this.elem.attr(this.prop,
                 g, null, !0)
@@ -228,23 +275,41 @@
                 !1 : b.apply(this, [].slice.call(arguments, 1))
         }); n.column.prototype.translate3dPoints = function () { }; n.column.prototype.translate3dShapes = function () {
             var b = this, a = b.chart, d = b.options, h = d.depth || 25, k = (d.stacking ? d.stack || 0 : b.index) * (h + (d.groupZPadding || 1)), e = b.borderWidth % 2 ? .5 : 0; a.inverted && !b.yAxis.reversed && (e *= -1); !1 !== d.grouping && (k = 0); k += d.groupZPadding || 1; t(b.data, function (c) {
+<<<<<<< HEAD
                 c.outside3dPlot = null; if (null !== c.y) {
                     var d = c.shapeArgs, f = c.tooltipPos, n; t([["x", "width"], ["y", "height"]], function (a) {
                         n = d[a[0]] -
                             e; 0 > n && (d[a[1]] += d[a[0]] + e, d[a[0]] = -e, n = 0); n + d[a[1]] > b[a[0] + "Axis"].len && 0 !== d[a[1]] && (d[a[1]] = b[a[0] + "Axis"].len - d[a[0]]); if (0 !== d[a[1]] && (d[a[0]] >= b[a[0] + "Axis"].len || d[a[0]] + d[a[1]] <= e)) { for (var f in d) d[f] = 0; c.outside3dPlot = !0 }
                     }); c.shapeType = "cuboid"; d.z = k; d.depth = h; d.insidePlotArea = !0; f = g([{ x: f[0], y: f[1], z: k }], a, !0)[0]; c.tooltipPos = [f.x, f.y]
                 }
+=======
+            c.outside3dPlot = null; if (null !== c.y) {
+                var d = c.shapeArgs, f = c.tooltipPos, n; t([["x", "width"], ["y", "height"]], function (a) {
+                    n = d[a[0]] -
+                    e; 0 > n && (d[a[1]] += d[a[0]] + e, d[a[0]] = -e, n = 0); n + d[a[1]] > b[a[0] + "Axis"].len && 0 !== d[a[1]] && (d[a[1]] = b[a[0] + "Axis"].len - d[a[0]]); if (0 !== d[a[1]] && (d[a[0]] >= b[a[0] + "Axis"].len || d[a[0]] + d[a[1]] <= e)) { for (var f in d) d[f] = 0; c.outside3dPlot = !0 }
+                }); c.shapeType = "cuboid"; d.z = k; d.depth = h; d.insidePlotArea = !0; f = g([{ x: f[0], y: f[1], z: k }], a, !0)[0]; c.tooltipPos = [f.x, f.y]
+            }
+>>>>>>> 8650162c051625ffaba866469bf45dee4a445fbc
             }); b.z = k
         }; q(n.column.prototype, "animate", function (b) {
             if (this.chart.is3d()) {
                 var a = arguments[1], d = this.yAxis, f = this, k = this.yAxis.reversed; x && (a ? t(f.data, function (a) {
+<<<<<<< HEAD
                     null !==
                         a.y && (a.height = a.shapeArgs.height, a.shapey = a.shapeArgs.y, a.shapeArgs.height = 1, k || (a.shapeArgs.y = a.stackY ? a.plotY + d.translate(a.stackY) : a.plotY + (a.negative ? -a.height : a.height)))
+=======
+                null !==
+                    a.y && (a.height = a.shapeArgs.height, a.shapey = a.shapeArgs.y, a.shapeArgs.height = 1, k || (a.shapeArgs.y = a.stackY ? a.plotY + d.translate(a.stackY) : a.plotY + (a.negative ? -a.height : a.height)))
+>>>>>>> 8650162c051625ffaba866469bf45dee4a445fbc
                 }) : (t(f.data, function (a) { null !== a.y && (a.shapeArgs.height = a.height, a.shapeArgs.y = a.shapey, a.graphic && a.graphic.animate(a.shapeArgs, f.options.animation)) }), this.drawDataLabels(), f.animate = null))
             } else b.apply(this, [].slice.call(arguments, 1))
         }); q(n.column.prototype, "plotGroup", function (b, a, d, h, k, e) {
             this.chart.is3d() && e && !this[a] &&
+<<<<<<< HEAD
                 (this.chart.columnGroup || (this.chart.columnGroup = this.chart.renderer.g("columnGroup").add(e)), this[a] = this.chart.columnGroup, this.chart.columnGroup.attr(this.getPlotBox()), this[a].survive = !0); return b.apply(this, Array.prototype.slice.call(arguments, 1))
+=======
+            (this.chart.columnGroup || (this.chart.columnGroup = this.chart.renderer.g("columnGroup").add(e)), this[a] = this.chart.columnGroup, this.chart.columnGroup.attr(this.getPlotBox()), this[a].survive = !0); return b.apply(this, Array.prototype.slice.call(arguments, 1))
+>>>>>>> 8650162c051625ffaba866469bf45dee4a445fbc
         }); q(n.column.prototype, "setVisible", function (b, a) {
             var d = this, f; d.chart.is3d() && t(d.data, function (b) { f = (b.visible = b.options.visible = a = void 0 === a ? !b.visible : a) ? "visible" : "hidden"; d.options.data[r(b, d.data)] = b.options; b.graphic && b.graphic.attr({ visibility: f }) });
             b.apply(this, Array.prototype.slice.call(arguments, 1))
@@ -279,8 +344,13 @@
     })(B); (function (b) {
         var p = b.addEvent, y = b.Axis, t = b.SVGRenderer, g = b.VMLRenderer; g && (b.setOptions({ animate: !1 }), g.prototype.face3d =
             t.prototype.face3d, g.prototype.polyhedron = t.prototype.polyhedron, g.prototype.cuboid = t.prototype.cuboid, g.prototype.cuboidPath = t.prototype.cuboidPath, g.prototype.toLinePath = t.prototype.toLinePath, g.prototype.toLineSegments = t.prototype.toLineSegments, g.prototype.createElement3D = t.prototype.createElement3D, g.prototype.arc3d = function (b) { b = t.prototype.arc3d.call(this, b); b.css({ zIndex: b.zIndex }); return b }, b.VMLRenderer.prototype.arc3dPath = b.SVGRenderer.prototype.arc3dPath, p(y, "render", function () {
+<<<<<<< HEAD
                 this.sideFrame &&
                     (this.sideFrame.css({ zIndex: 0 }), this.sideFrame.front.attr({ fill: this.sideFrame.color })); this.bottomFrame && (this.bottomFrame.css({ zIndex: 1 }), this.bottomFrame.front.attr({ fill: this.bottomFrame.color })); this.backFrame && (this.backFrame.css({ zIndex: 0 }), this.backFrame.front.attr({ fill: this.backFrame.color }))
+=======
+            this.sideFrame &&
+                (this.sideFrame.css({ zIndex: 0 }), this.sideFrame.front.attr({ fill: this.sideFrame.color })); this.bottomFrame && (this.bottomFrame.css({ zIndex: 1 }), this.bottomFrame.front.attr({ fill: this.bottomFrame.color })); this.backFrame && (this.backFrame.css({ zIndex: 0 }), this.backFrame.front.attr({ fill: this.backFrame.color }))
+>>>>>>> 8650162c051625ffaba866469bf45dee4a445fbc
             }))
     })(B)
 });

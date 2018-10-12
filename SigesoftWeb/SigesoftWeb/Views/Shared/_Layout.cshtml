@@ -12,11 +12,11 @@
 
     @Html.Partial("_HeaderPartial")
 
-    <div id="wrapper" class="active">
+    <div id="wrapper">
         @Html.Partial("_SideBarPartial")
 
         <main class="col contenido">
-            <div class="col contenido2">
+            <div class="col contenido2" style="padding-right:0px;">
                 @RenderBody()
             </div>
         </main>

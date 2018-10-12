@@ -1,15 +1,4 @@
 ﻿<style>
-    #Loading {
-        background-color: rgba(0, 0, 0, 0.60);
-        position: fixed;
-        left: 0px;
-        top: 0px;
-        z-index: 9999;
-    }
-
-        #Loading > img {
-            width: 200px;
-        }
 
     .pagination-active span {
         color: #f39c12 !important;
@@ -19,90 +8,20 @@
         opacity: 0;
     }
 
-<<<<<<< HEAD
-    .Chart {
-        height: auto;
-        margin: 10px;
-        box-shadow: 3px 3px 3px #adadad;
-        border: 1px rgba(173, 173,173, 0.1) inset;
-        min-width: 300px;
+    .iconEdit {
+        color: Black;
     }
 
-        .Chart .title {
-            padding-left:10px;
-            /*padding: 2px;*/
-            color: #3c3c3b;
-            text-align: left;
-            border-bottom: 1px rgba(173, 173,173, 0.5) inset;
-            font-weight:500;
-        }
-
-        .Chart .info {
-            color: #3c3c3b;
-            font-family: 'Roboto', sans-serif;
-            font-size: 13px;
-            padding: 10px;
-            padding-left: 0px;
-            margin: 1px;
-            border-bottom: 1px rgba(173, 173,173, 0.5) inset;
-            text-align: left;
-        }
-
-            .Chart .info div {
-                padding-left: 0px;
-            }
-
-            .Chart .info .result {
-                margin-left: 10px;
-            }
-
-        .Chart div:last-child {
-            border-bottom: none;
-        }
-
-   
-
-    .contenedor-main {
-        margin-bottom: 20px;
+    .classRowsClick {
+        background: rgba(169, 168, 168,0.7);
+        color: #fff;
     }
 
-    aside {
-        color: #0d47a1;
+    .xxxxx {
+        width: 300px;
+        overflow: hidden;
+        white-space: nowrap;
     }
-
-    aside .notice{
-        position:fixed;
-        margin-right:15px;
-    }
-
-    .label-danger,
-    .label-info,
-    .label-warning,
-    .label-success {
-        border-radius: 2px;
-        padding: 2px;
-    }
-
-    .fixedContainer_ {
-        background-color: #ddd;
-        position: fixed;
-        padding: 2em;
-        left: 50%;
-        top: 0%;
-        transform: translateX(-50%);
-    }
-
-    .fixedContainer {
-        background-color: #ddd;
-        position: fixed;
-        padding: 2em;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-    }
-    
-=======
->>>>>>> 54cec9331c6263caae656cddc6f055ecf25594cf
 </style>
 <link href="~/Content/fullcalendar.css" rel="stylesheet" />
 <link href="~/Content/css/FullCalendar-custom.css" rel="stylesheet" />
@@ -111,100 +30,114 @@
         <main class="col-md-8">
             <div class="box box-default mt-2" id="acordion">
                 <div class="box-header with-border" id="heading1">
-                    <h3 class="box-title" style="cursor:pointer;" onclick="ColapseFilter('divFilter')"><i class="icon-calendar"></i> Banjeda de Pacientes</h3>
+                    <h3 class="box-title" style="cursor:pointer;" onclick="ColapseTable('divFilter','heightFilter')"><i class="icon-calendar"></i> Banjeda de Pacientes</h3>
                 </div>
                 <input id="heightFilter" type="hidden" value="">
-                <div id="divFilter" class="box-body collapse show" aria-labelledby="heading1" style="overflow:hidden;">
-                    <div class="row">
-                        <div class="col-12 col-lg-3 col-xl-3">
-                            <div class="form-group">
-                                <label for="">Paciente / DNI</label>
-                                <input type="text" id="PacientFullName" class="form-control" maxlength="150" placeholder="Ingrese nombre del paciente" />
+                <div id="divFilter" style="overflow:hidden;">
+                    <div class="box-body" aria-labelledby="heading1">
+                        <div class="row">
+                            <div class="col-12 col-lg-3 col-xl-3">
+                                <div class="form-group">
+                                    <label for="">Paciente / DNI</label>
+                                    <input type="text" id="PacientFullName" class="form-control" maxlength="150" placeholder="Ingrese nombre del paciente" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-12 col-lg-3 col-xl-3">
-                            <div class="form-group">
-                                <label for="">Desde: </label>
-                                <input type="date" id="StartDate" class="form-control" />
+                            <div class="col-12 col-lg-3 col-xl-3">
+                                <div class="form-group">
+                                    <label for="">Desde: </label>
+                                    <input type="date" id="StartDate" class="form-control" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-12 col-lg-3 col-xl-3">
-                            <div class="form-group">
-                                <label for="">Hasta:</label>
-                                <input type="date" id="EndDate" class="form-control" />
+                            <div class="col-12 col-lg-3 col-xl-3">
+                                <div class="form-group">
+                                    <label for="">Hasta:</label>
+                                    <input type="date" id="EndDate" class="form-control" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-12 col-lg-3 col-xl-2">
-                            <div class="form-group">
-                                <label for="" id="filtPaciente" class="d-none d-lg-block">Filtrar</label>
-                                <button class="btn btn-info boton form-control" onclick="Filtrar(1)">
-                                    <i class="fa fa-search"></i> Filtrar
-                                </button>
+                            <div class="col-12 col-lg-3 col-xl-2">
+                                <div class="form-group">
+                                    <label for="" id="filtPaciente" class="d-none d-lg-block">Filtrar</label>
+                                    <button class="btn btn-info boton form-control" onclick="Filter(1)">
+                                        <i class="fa fa-search"></i> Filtrar
+                                    </button>
+                                </div>
                             </div>
                         </div>
-
+                       
                     </div>
                 </div>
 
+
             </div>
-            <input id="heightTablePatientsAssistancePartial" type="hidden" value="">
-            <div id="RenderBoardPatientsAssistancePartial">
+            <div id="RenderBoardPatientsAssistancePartial" class=" wrapperGrid loadingGrid">
                 @Html.Partial("_BoardPatientsAssistancePartial")
             </div>
-            <div class="row">
-                <div class="box box-default mt-2 col-12" id="acordion">
-                    <div class="box-header with-border" id="heading1" onclick="ColapsarFiltro('collapse2')">
+            <div class="row" style=" margin-left: 0px; margin-right: 0px;">
+                <div class="box box-warning mt-2 col-12" id="acordion" style=" padding-left: 0px; padding-right: 0px;">
+                    <div class="box-header with-border" id="heading1" onclick="ColapseTable('DivCalendar','heightCalendar')">
                         <h3 class="box-title" style="cursor:pointer;">Agenda de Citas </h3>
                     </div>
-                    <div id="collapse2" class="box-body collapse show" aria-labelledby="heading1" style="overflow:hidden;">
-                        <div class="row">
-                            <div class="col-12">
-                                <div id="calendar" class="calendar-custom mt-2"></div>
+                    <input id="heightCalendar" type="hidden" value="">
+                    <div id="DivCalendar" style="overflow:hidden;">
+                        <div class="box-body collapse show" aria-labelledby="heading1">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div id="calendar" class="calendar-custom mt-2"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
-        <aside class="col-md-4 ">
-            <div class="row notice ">
+        <aside class="col-md-4 " style="padding-right: 0px;">
+            <div class="row notice" style="margin-right:0px;">
+                <div class="col Chart wrapperTopDx loadingGrid">
+                    <div class="row title" onclick="ColapseTable('divTopDx','heightdivTopDx')">
+                        Top 10 Diagnósticos
+                    </div>
+                    <input id="heightdivTopDx" type="hidden" value="">
+                    <div id="divTopDx" style="overflow:hidden">
+                        <div class="row info id=" RenderTopDiagnostic"">
+                            @*<img class="img-fluid" src="~/Content/Images/Boceto.png" />*@
+                            @Html.Partial("_TopDiagnosticPartial")
+                        </div>
+                    </div>
+
+                </div>
+
                 <div class="col Chart">
-                    <div class="row title">
+                    <div class="row title" onclick="ColapseTable('DivNotices','heightDivNotices')">
                         Avisos Diarios
                     </div>
-                    <div class="row info ">
-                        <div class="col-10">
-                            Completar datos de empresa:
+                    <input id="heightDivNotices" type="hidden" value="">
+                    <div id="DivNotices" style="overflow:hidden">
+                        <div class="row info ">
+                            <div class="col-10">
+                                Completar datos de empresa:
+                            </div>
+                            <div class="col-2">
+                                <span class="label label-warning result">10</span>
+                            </div>
                         </div>
-                        <div class="col-2">
-                            <span class="label label-warning result">10</span>
+                        <div class="row info">
+                            <div class="col-10">
+                                Empresas con  deudas:
+                            </div>
+                            <div class="col-2">
+                                <span class="label label-warning result">02</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row info">
-                        <div class="col-10">
-                            Empresas con  deudas:
+                        <div class="row info">
+                            <div class="col-10 ">
+                                Controles para el día de hoy:
+                            </div>
+                            <div class="col-2">
+                                <span class="label label-warning result">18</span>
+                            </div>
                         </div>
-                        <div class="col-2">
-                            <span class="label label-warning result">02</span>
-                        </div>
-                    </div>
-                    <div class="row info">
-                        <div class="col-10 ">
-                            Controles para el día de hoy:
-                        </div>
-                        <div class="col-2">
-                            <span class="label label-warning result">18</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col Chart">
-                    <div class="row title">
-                        Top Diagnósticos
-                    </div>
-                    <div class="row info ">
-                        <img class="img-fluid" src="~/Content/Images/Boceto.png" />
                     </div>
                 </div>
             </div>
@@ -215,61 +148,221 @@
 
 </div>
 
-<script>
-    function ColpaseFilter(id) {
-        setTimeout(function () {
-            var height = 10;
+@section Scripts{
+    @{
+        if (Request.Browser.Browser == "IE" && Convert.ToDouble(Request.Browser.Version) < 9.0)
+        {
+            <script>
+              
+            </script>
+        }
+        else
+        {
+            <script src="~/Scripts/highcharts.js"></script>
+            <script src="~/Scripts/highcharts-3d.js"></script>
+            <script src="~/Scripts/exporting.js"></script>
+            <script src="~/Scripts/offline-exporting.js"></script>
 
-            for (i = 0; i < $("#" + id + " .row").length; i++) {
-                height = height + $($("#" + id + " .row")[i]).height();
-            }
-
-            if ($("#" + id).height() == 0) {
-                $("#" + id).animate({ "height": height + "px", "padding": "10px" }, 400);
-            } else {
-                $("#" + id).animate({ "height": "0px", "padding": "0px 10px" }, 400);
-            }
-        }, 200);
-    
-
-    function ColapseDiv(id) {
-        var Altura = $("#divFilter").height();
-        if ($("." + id).height() == 0) {
-            $("." + id).animate({ "height": $('#heightFilter').val() + "px" }, 400);
-        } else {
-            $('#heightFilter').val(Altura);
-            alturaTabla = $("." + id).height();
-            $("." + id).animate({ "height": "0px" }, 400);
+            <link href="~/Content/css/highcharts.css" rel="stylesheet">
         }
     }
+}
 
-    function ColapsarTabla(id) {
-        var Altura = $("#TablaAExportar").height() + 60;
 
-        if ($("." + id).height() == 0) {
-            $("." + id).animate({ "height": Altura + "px" }, 400);
-        } else {
-            alturaTabla = $("." + id).height();
-            $("." + id).animate({ "height": "0px" }, 400);
-        }
-    }
 
-    $(document).ready(function () {
-        $('#calendar').fullCalendar({
-            lang: 'es',
-            contentHeight: 600,
-            defaultDate: new Date(),
-            timeFormat: 'h(:mm)a',
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,basicWeek,basicDay,agenda'
-            },
-            eventLimit: true,
-            dayClick: function (date, jsEvent, view) {
-                OpenCursoPannel();
-                NewCalendar(date);
-            }
+
+    <script>
+
+        $(document).ready(function () {
+            LoadSchedule();
+            LoadTopDiagnostic();
+            Filter(1);
+            
+            
         });
-    });
-</script>
+        function LoadTopDiagnostic() {            
+            $('.wrapperTopDx').addClass('loadingGrid');
+            $.ajax({
+                cache: false,
+                dataType: 'html',
+                method: 'GET',
+                async: true,
+                url: '/PatientsAssistance/TopDiagnostic',
+                success: function (html) {
+                    if (html.indexOf("IniciarSesion") == -1) {
+                        $('.wrapperTopDx').removeClass('loadingGrid');
+                        Load(html);
+                       
+                    } else {
+                        location.href = "/";
+                    }
+                },
+                error: function (error) {
+                    alerta("Sucedió un error al conectarse al servidor", "rojo");
+                    $('.wrapperTopDx').removeClass('loadingGrid');
+                    console.log(error);
+                }
+            });
+        }
+
+        function LoadSchedule() {
+            var events = [];
+            $.ajax({
+                type: "GET",
+                async: true,
+                url: "/PatientsAssistance/GetSchedule",
+                success: function (data) {
+                    $.each(data, function (i, v) {
+                        events.push({
+                            title: v.Pacient,
+                            description: v.EsoType,
+                            start: moment(v.ServiceDate),
+                            end: v.FechaFin != null ? moment(v.ServiceDate).add(1, "day") : null,
+                            color: v.Color,
+                            allDay: true
+                        })
+                    });
+                    GenerateCalender(events);
+                },
+                error: function (error) {
+                    alert('Failed');
+                }
+
+            });
+        }
+
+        function GenerateCalender(events) {
+            $('#calendar').fullCalendar('destroy');
+            $('#calendar').fullCalendar({
+                lang: 'es',
+                contentHeight: 600,
+                defaultDate: new Date(),
+                timeFormat: 'h(:mm)a',
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,basicWeek,basicDay,agenda'
+                },
+                eventLimit: true,
+                eventColor: '#378006',
+                events: events,
+                //eventClick: function (calEvent, jsEvent, view) {
+                //    $('#tabInformacion').removeClass("active");
+                //    $('#tabImportante').removeClass("active");
+                //    $('#tabRegistro').addClass("active");
+
+                //    $('#b').removeClass("active");
+                //    $('#c').removeClass("active");
+                //    $('#a').addClass("active");
+
+                //    $('#ModalInscripcion #eventTitle').text("Inscribir al Curso de: " + calEvent.title);
+                //    $('#CursoProgramadoId').val(calEvent.description);
+                //    $('#ModalInscripcion').modal();
+                //    loadSalon();
+                //}
+            });
+        }
+
+        function Filter(index) {
+            $('.wrapperGrid').addClass('loadingGrid');
+            var data = {
+                Patient: $("#PacientFullName").val(),
+                StartDate: moment($("#StartDate").val()).format("DD/MM/YYYY"),
+                EndDate: moment($("#EndDate").val()).format("DD/MM/YYYY"),
+                Index: index,
+                Take: $("#take").val()
+            };
+
+            $.ajax({
+                cache: false,
+                dataType: 'html',
+                method: 'POST',
+                async: true,
+                data: data,
+                url: '/PatientsAssistance/FilterPacient',
+                success: function (html) {
+                    if (html.indexOf("IniciarSesion") == -1) {
+                        $('.wrapperGrid').removeClass('loadingGrid');
+                        $("#RenderBoardPatientsAssistancePartial").html(html);
+                    } else {
+                        location.href = "/";
+                    }
+                },
+                error: function (error) {
+                    alerta("Sucedió un error al conectarse al servidor", "rojo");
+                    $('.wrapperGrid').removeClass('loadingGrid');
+                    console.log(error);
+                }
+            });
+        }
+
+        function Test() {
+            console.log("hola");
+            $.ajax({
+                cache: false,
+                async: true,
+                dataType: 'html',
+                method: 'GET',
+                url: '/PatientsAssistance/Test',
+                success: function (html) {
+                    console.log(html)
+                    if (html.indexOf("IniciarSesion") == -1) {
+                        $("#Valuetest").html(html);
+                    } else {
+                        location.href = "/";
+                    }
+                },
+                error: function (error) {
+                    alerta("Sucedió un error al conectarse al servidor", "rojo");
+                    console.log(error);
+                }
+            });
+        }
+
+        function Test2() {
+            console.log("hola");
+            $.ajax({
+                cache: false,
+                async: true,
+                dataType: 'html',
+                method: 'GET',
+                url: '/PatientsAssistance/Test2',
+                success: function (html) {
+                    console.log(html)
+                    if (html.indexOf("IniciarSesion") == -1) {
+                        $("#Valuetest2").html(html);
+                    } else {
+                        location.href = "/";
+                    }
+                },
+                error: function (error) {
+                    alerta("Sucedió un error al conectarse al servidor", "rojo");
+                    console.log(error);
+                }
+            });
+        }
+
+        function Test2() {
+            console.log("hola");
+            $.ajax({
+                cache: false,
+                async: true,
+                dataType: 'html',
+                method: 'GET',
+                url: '/PatientsAssistance/Test2',
+                success: function (html) {
+                    console.log(html)
+                    if (html.indexOf("IniciarSesion") == -1) {
+                        $("#Valuetest").html(html);
+                    } else {
+                        location.href = "/";
+                    }
+                },
+                error: function (error) {
+                    alerta("Sucedió un error al conectarse al servidor", "rojo");
+                    console.log(error);
+                }
+            });
+        }
+
+    </script>

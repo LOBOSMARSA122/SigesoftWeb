@@ -1,0 +1,94 @@
+﻿@{
+    Dictionary<string, int> Chart1 = new Dictionary<string, int>();
+
+    List<string> Diagnostic = new List<string>();
+    List<string> TotalDiagnostic = new List<string>();
+    string Total =  "0,1,2";
+
+}
+
+
+
+    <div class="col-12" id="reporte11">
+        <div id="chart1" class="chart" style="width:100%" ></div>
+    </div>  
+
+<div>
+    @{
+        if (ViewBag.TOPDX != null)
+        {
+            foreach (var item in ViewBag.TOPDX)
+            {
+                Chart1.Add(string.IsNullOrWhiteSpace(item.Diagnostic) ? "" : item.Diagnostic, item.TotalDiagnostic);
+                Total += item.TotalDiagnostic + ",";
+            }
+
+            Diagnostic = Chart1.OrderByDescending(x => x.Value).Select(x => x.Key).ToList();
+            TotalDiagnostic = Chart1.OrderByDescending(x => x.Value).Select(x => x.Value.ToString()).ToList();
+            Total = Chart1.OrderByDescending(x => x.Value).Select(x => x.Value.ToString()).ToList()[0];
+
+        }
+        else
+        {
+            ViewBag.TOPDX = 10;
+        }
+
+    }
+       
+</div>
+    @{
+
+        if (Request.Browser.Browser == "IE" && Convert.ToDouble(Request.Browser.Version) < 9.0)
+        {
+        }
+        else
+        {
+<script>
+    function Load(data) {
+        var obj = JSON.parse(data);
+                Highcharts.chart('chart1', {
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: ' '
+                    },
+                    xAxis: {
+                        type: 'category'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Cantidad de casos'
+                        }
+
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        series: {
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y:.1f}%'
+                            }
+                        }
+                    },
+
+                    tooltip: {
+                        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                    },
+
+                    "series": [
+                        {
+                            "name": "Browsers",
+                            "colorByPoint": true,
+                            "data": obj
+                        }
+                    ]
+                });
+            }
+</script>
+        }
+    }

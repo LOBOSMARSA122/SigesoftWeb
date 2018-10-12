@@ -16,6 +16,8 @@ namespace BE.MedicalAssistance
     public class BoardPatient : Boards
     {
         public string Patient { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
         public List<Patients> List { get; set; }
     }
 
@@ -31,6 +33,8 @@ namespace BE.MedicalAssistance
         public string AptitudeStatus { get; set; }
         public string DocumentType { get; set; }
         public string DocumentNumber { get; set; }
-
+        public string ProtocolName { get; set; }
+        public string OrganizationLocation { get; set; }
+        public string Geso { get; set; }
     }
 }
