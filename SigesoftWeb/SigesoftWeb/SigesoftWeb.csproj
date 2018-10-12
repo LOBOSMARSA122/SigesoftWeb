@@ -498,12 +498,12 @@
     <Content Include="Views\InputOutput\_BoardInputOutputPartial.cshtml" />
     <Content Include="Views\PatientsAssistance\MedicalConsultation.cshtml" />
     <Content Include="Views\PatientsAssistance\_BoardMedicalSummaryPartial.cshtml" />
-<<<<<<< HEAD
+
     <Content Include="Views\Report\ProductOutput.cshtml" />
     <Content Include="Views\Report\_ReportProductPartial.cshtml" />
-=======
+
     <Content Include="Views\PatientsAssistance\_TopDiagnosticPartial.cshtml" />
->>>>>>> 8650162c051625ffaba866469bf45dee4a445fbc
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
