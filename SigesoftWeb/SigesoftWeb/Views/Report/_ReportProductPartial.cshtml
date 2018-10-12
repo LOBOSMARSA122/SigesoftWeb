@@ -144,7 +144,7 @@
 
         function Load() {
 
-            Highcharts.getOptions().plotOptions.column.colors = (function () {
+            @*Highcharts.getOptions().plotOptions.column.colors = (function () {
                 var colors = [],
                     //base = '#e85b13',
                     base = '#00a7d0',
@@ -154,7 +154,7 @@
                     colors.push(Highcharts.Color(base).brighten((i - 3) / @(ViewBag.REGISTROSPROD.List.Count < 4 ? 20 : ViewBag.REGISTROSPROD.List.Count)).get());
                 }
                 return colors;
-            }());
+            }());*@
 
             Highcharts.chart('chart1', {
                 chart: {
