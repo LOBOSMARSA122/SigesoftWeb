@@ -1,26 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BE.Service
 {
+    [Table("ServiceComponentFieldValues")]
     public class ServiceComponentFieldValuesBE
     {
         [Key]
-        public string ServiceComponentFieldValuesId { get; set; }
-        public string ComponentFieldValuesId { get; set; }
-        public string ServiceComponentFieldsId { get; set; }
-        public string Value1 { get; set; }
-        public string Value2 { get; set; }
-        public int? Index { get; set; }
-        public int? ValueInt1 { get; set; }
-        public int? IsDeleted { get; set; }
-        public int? InsertUserId { get; set; }
-        public DateTime? InsertDate { get; set; }
-        public int? UpdateUserId { get; set; }
-        public DateTime? UpdateDate { get; set; }
+        public string v_ServiceComponentFieldValuesId { get; set; }
+        public string v_ComponentFieldValuesId { get; set; }
+        public string v_ServiceComponentFieldsId { get; set; }
+        public string v_Value1 { get; set; }
+        public string v_Value2 { get; set; }
+        public int? i_Index { get; set; }
+        public int? i_ValueInt1 { get; set; }
+        public int? i_IsDeleted { get; set; }
+        public int? i_InsertUserId { get; set; }
+        public DateTime? d_InsertDate { get; set; }
+        public int? i_UpdateUserId { get; set; }
+        public DateTime? d_UpdateDate { get; set; }
     }
 }

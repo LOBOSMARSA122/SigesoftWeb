@@ -6,7 +6,8 @@ using System.Net;
 using System.IO;
 using System.Configuration;
 using Newtonsoft.Json;
-
+using System.Threading.Tasks;
+using System.Net.Http;
 
 namespace SigesoftWeb.Models
 {
@@ -151,6 +152,8 @@ namespace SigesoftWeb.Models
             string obj = MakeRequestStream(url, httpVerb, arr);
             return obj;
         }
+
+      
 
         private string MakeRequest(Uri url, HttpVerb httpVerb, Dictionary<string, string> args)
         {

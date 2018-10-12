@@ -93,18 +93,19 @@ namespace BL.MedicalAssistance
         {
             try
             {
-                Thread.Sleep(20000);
-                return 20;
-                //var preList = (from a in ctx.Diseases
-                //               select new Patients
-                //               {
-                //                   PatientId = a.v_DiseasesId,
+                int totalRecords = 0;
+                for (int i = 0; i < 8000; i++)
+                {
+                    var preList = (from a in ctx.ServiceComponentFieldValues
+                                   select new Patients
+                                   {
+                                       PatientId = a.v_ServiceComponentFieldValuesId,
 
-                //               }).ToList();
+                                   }).ToList();
 
-                //int totalRecords = preList.Count;
-
-                //return totalRecords;
+                    totalRecords = preList.Count;
+                }
+                return totalRecords;
 
             }
             catch (Exception ex)
@@ -117,8 +118,19 @@ namespace BL.MedicalAssistance
         {
             try
             {
-                Thread.Sleep(5000);
-                return 20;
+                int totalRecords = 0;
+                for (int i = 0; i < 5; i++)
+                {
+                    var preList = (from a in ctx.Diseases
+                                   select new Patients
+                                   {
+                                       PatientId = a.v_DiseasesId,
+
+                                   }).ToList();
+
+                    totalRecords = preList.Count;
+                }
+                return totalRecords;
 
             }
             catch (Exception ex)

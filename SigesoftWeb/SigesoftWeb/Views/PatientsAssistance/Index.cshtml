@@ -65,7 +65,32 @@
                                 </div>
                             </div>
                         </div>
-                       
+                        <div class="row">
+                            <div class="col-12 col-lg-3 col-xl-2">
+                                <div class="form-group">
+                                    <label for="" id="filtPaciente" class="d-none d-lg-block">Filtrar</label>
+                                    <button class="btn btn-info boton form-control" onclick="Test(1)">
+                                        <i class="fa fa-search"></i> Test
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="Valuetest" style="background:#f39c12; width:20px; height:20px;">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-lg-3 col-xl-2">
+                                <div class="form-group">
+                                    <label for="" id="filtPaciente" class="d-none d-lg-block">Filtrar</label>
+                                    <button class="btn btn-info boton form-control" onclick="Test2(1)">
+                                        <i class="fa fa-search"></i> Test2
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="Valuetest2" style="background:#f39c12; width:20px; height:20px;">
+
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -297,7 +322,7 @@
         }
 
         function Test() {
-            console.log("hola");
+            console.log("hola soy solamanente test ");
             $.ajax({
                 cache: false,
                 async: true,
@@ -320,7 +345,7 @@
         }
 
         function Test2() {
-            console.log("hola");
+            console.log("hola soy test 2");
             $.ajax({
                 cache: false,
                 async: true,
@@ -331,29 +356,6 @@
                     console.log(html)
                     if (html.indexOf("IniciarSesion") == -1) {
                         $("#Valuetest2").html(html);
-                    } else {
-                        location.href = "/";
-                    }
-                },
-                error: function (error) {
-                    alerta("Sucedió un error al conectarse al servidor", "rojo");
-                    console.log(error);
-                }
-            });
-        }
-
-        function Test2() {
-            console.log("hola");
-            $.ajax({
-                cache: false,
-                async: true,
-                dataType: 'html',
-                method: 'GET',
-                url: '/PatientsAssistance/Test2',
-                success: function (html) {
-                    console.log(html)
-                    if (html.indexOf("IniciarSesion") == -1) {
-                        $("#Valuetest").html(html);
                     } else {
                         location.href = "/";
                     }

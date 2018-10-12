@@ -5,6 +5,7 @@ using SigesoftWeb.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -60,29 +61,47 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
 
         //}
 
-        [GeneralSecurity(Rol = "PatientsAssistance-Test1")]
+        //[GeneralSecurity(Rol = "PatientsAssistance-Test1")]
         public async Task<JsonResult> Test()
         {
-            Api API = new Api();
-            int response = 0;
+            //Api API = new Api();
+            //int response = 0;
+
+            //return await Task.Run(() =>
+            //{
+            //    response = API.Get<int>("PatientsAssistance/GetTest");
+            //    return Json(response);
+            //});
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetAsync("http://localhost:82/PatientsAssistance/GetTest");
+            response.EnsureSuccessStatusCode();
+            string content = await response.Content.ReadAsStringAsync();
 
             return await Task.Run(() =>
             {
-                response = API.Get<int>("PatientsAssistance/GetTest");
-                return Json(response);
+                return new JsonResult { Data = content, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             });
         }
 
-        [GeneralSecurity(Rol = "PatientsAssistance-Test2")]
+        //[GeneralSecurity(Rol = "PatientsAssistance-Test2")]
         public async Task<JsonResult> Test2()
         {
-            Api API = new Api();
-            int response = 0;
+            //Api API = new Api();
+            //int response = 0;
+
+            //return await Task.Run(() =>
+            //{
+            //    response = API.Get<int>("PatientsAssistance/GetTest2");
+            //    return Json(response);
+            //});
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetAsync("http://localhost:82/PatientsAssistance/GetTest2");
+            response.EnsureSuccessStatusCode();
+            string content = await response.Content.ReadAsStringAsync();
 
             return await Task.Run(() =>
             {
-                response = API.Get<int>("PatientsAssistance/GetTest2");
-                return Json(response);
+                return new JsonResult { Data = content, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             });
         }
 
@@ -110,9 +129,20 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
             {
                 return new JsonResult { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             });
+
         }
 
+        //public async Task<JsonObject> GetAsync(string uri)
+        //{
+        //    var httpClient = new HttpClient();
+        //    var response = await httpClient.GetAsync(uri);
 
+        //    //will throw an exception if not successful
+        //    response.EnsureSuccessStatusCode();
+
+        //    string content = await response.Content.ReadAsStringAsync();
+        //    return await Task.Run(() => JsonObject.Parse(content));
+        //}
 
         //public JsonResult TopDiagnostic()
         //{
