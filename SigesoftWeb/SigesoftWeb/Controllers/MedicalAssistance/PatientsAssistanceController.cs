@@ -20,7 +20,7 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
             return View();
         }
 
-        [GeneralSecurity(Rol = "PatientsAssistance-BoardPatientsAssistance")]
+        //[GeneralSecurity(Rol = "PatientsAssistance-BoardPatientsAssistance")]
         public async Task<ActionResult> FilterPacient(BoardPatient data)
         {
             Api API = new Api();
@@ -32,13 +32,27 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
                 { "Index", data.Index.ToString()},
                 { "Take", data.Take.ToString()}
             };
-            await Task.Run(() =>
-            {
+
+            return await Task.Run(() => {
                 ViewBag.Services = API.Post<BoardPatient>("PatientsAssistance/GetAllPatientsAssistance", arg);
+
+                return PartialView("_BoardPatientsAssistancePartial");
             });
-               
-            return PartialView("_BoardPatientsAssistancePartial");
+           
         }
+      
+        //[GeneralSecurity(Rol = "PatientsAssistance-Test")]
+        public async Task<JsonResult> Test()
+        {
+            Api API = new Api();
+            int response = 0;
+
+            return await Task.Run(() => {
+                response = API.Get<int>("PatientsAssistance/GetTest");
+                return Json(response);
+            });
+        }
+
 
         [GeneralSecurity(Rol = "PatientsAssistance-MedicalConsultation")]
         public ActionResult MedicalConsultation(string id)
@@ -46,17 +60,28 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
             return View();
         }
 
-        [GeneralSecurity(Rol = "PatientsAssistance-Test")]
-        public async Task<JsonResult> Test()
+        public JsonResult GetSchedule()
         {
             Api API = new Api();
-            int response = 0;
-            await Task.Run(() =>
-            {
-                response = API.Get<int>("PatientsAssistance/GetTest");
-            });
-               
-            return Json(response);
+            string url = "PatientsAssistance/GetSchedule";
+            var result = API.Get<List<Schedule>>(url);
+            return new JsonResult { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+        //public JsonResult TopDiagnostic()
+        //{
+        //    Api API = new Api();
+        //    string url = "PatientsAssistance/TopDiagnostic";
+        //    var result = API.Get<List<TopDiagnostic>>(url);
+        //    return new JsonResult { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        //}
+
+        [GeneralSecurity(Rol = "PatientsAssistance-TopDiagnostic")]
+        public ActionResult TopDiagnostic()
+        {
+            Api API = new Api();
+            ViewBag.TOPDX = API.Get<List<TopDiagnostic>>("PatientsAssistance/TopDiagnostic");
+            return PartialView("_TopDiagnosticPartial");
         }
     }
 }

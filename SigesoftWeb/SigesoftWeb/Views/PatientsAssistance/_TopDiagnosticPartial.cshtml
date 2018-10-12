@@ -1,0 +1,122 @@
+﻿@{
+    Dictionary<string, int> Chart1 = new Dictionary<string, int>();
+
+    List<string> Diagnostic = new List<string>();
+    List<string> TotalDiagnostic = new List<string>();
+    string Total =  "0,1,2";
+
+}
+
+
+
+<div class="box box-warning mt-2">
+    <div class="col-12" id="reporte11" style="display:inline-block;max-width:100%">
+        <div id="chart1" class="chart"></div>
+    </div>    
+</div>
+
+<div>
+    @{
+        if (ViewBag.TOPDX != null)
+        {
+            foreach (var item in ViewBag.TOPDX)
+            {
+                Chart1.Add(string.IsNullOrWhiteSpace(item.Diagnostic) ? "" : item.Diagnostic, item.TotalDiagnostic);
+                Total += item.TotalDiagnostic + ",";
+            }
+
+            Diagnostic = Chart1.OrderByDescending(x => x.Value).Select(x => x.Key).ToList();
+            TotalDiagnostic = Chart1.OrderByDescending(x => x.Value).Select(x => x.Value.ToString()).ToList();
+            Total = Chart1.OrderByDescending(x => x.Value).Select(x => x.Value.ToString()).ToList()[0];
+
+        }
+        else
+        {
+            ViewBag.TOPDX = 10;
+        }
+
+    }
+       
+</div>
+    @{
+
+        if (Request.Browser.Browser == "IE" && Convert.ToDouble(Request.Browser.Version) < 9.0)
+        {
+        }
+        else
+        {
+<script>
+            function Load() {
+                Highcharts.getOptions().plotOptions.column.colors = (function () {
+                    var colors = [],
+                        base = '#e85b13',
+                        i;
+
+                    for (i = 0; i < 50; i += 1) {
+                        // Start out with a darkened base color (negative brighten), and end
+                        // up with a much brighter color
+                        colors.push(Highcharts.Color(base).brighten((i - 3) / @(Diagnostic.Count() < 4 ? 20 : Diagnostic.Count())).get());
+                    }
+                    return colors;
+                }());
+
+
+                Highcharts.chart('chart1', {
+                    chart: {
+                        type: 'column',
+                        options3d: {
+                            enabled: true,
+                            alpha: 10,
+                            beta: 15,
+                            depth: 100
+                        }
+                    },
+                    title: {
+                        text: 'Top de Diagnósticos'
+                    },
+                    subtitle: {
+                        text: ''
+                    },
+                       plotOptions: {
+                        column: {
+                            depth: 100,
+                            colorByPoint: true
+                        },
+                        series: {
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y:.1f}%'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span><b>{point.y:.2f}%</b><br/>'
+                    },
+                    xAxis: {
+                        categories: ['N009-DD000000787','N009-DD000000516','N009-DD000000799','N009-DD000000661','N009-DD000000777'],
+                        //categories: ['@Html.Raw(string.Join("','",Diagnostic))'],
+                        labels: {
+                            skew3d: true,
+                            style: {
+                                fontSize: '16px'
+                            }
+                        }
+                    },
+                    yAxis: {
+                        title: {
+                            text: "Cantidad"
+                        }
+                    },
+                    series: [{
+                       
+                        name: ' ',
+                        //data: ['@Html.Raw(string.Join(",", TotalDiagnostic))'],
+                         data: [10,20,30,40,50],
+                    }]
+
+                });
+            }
+</script>
+        }
+    }

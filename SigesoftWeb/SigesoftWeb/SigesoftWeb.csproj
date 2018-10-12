@@ -183,6 +183,8 @@
     <Compile Include="Models\Common\Boards.cs" />
     <Compile Include="Models\Common\Dropdownlist.cs" />
     <Compile Include="Models\MedicalAssistance\Boards.cs" />
+    <Compile Include="Models\MedicalAssistance\Schedule.cs" />
+    <Compile Include="Models\MedicalAssistance\TopDiagnostic.cs" />
     <Compile Include="Models\Security\AuthorizationModel.cs" />
     <Compile Include="Models\Warehouse\Boards.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -313,12 +315,15 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-reboot.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Scripts\exporting.js" />
     <Content Include="Scripts\FormValidateFile.js" />
     <Content Include="Scripts\FormValidateSecurity.js" />
     <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\fullcalendar.min.js" />
     <Content Include="Scripts\gcal.js" />
     <Content Include="Scripts\gcal.min.js" />
+    <Content Include="Scripts\highcharts-3d.js" />
+    <Content Include="Scripts\highcharts.js" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
@@ -437,6 +442,7 @@
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\offline-exporting.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -491,6 +497,7 @@
     <Content Include="Views\InputOutput\_BoardInputOutputPartial.cshtml" />
     <Content Include="Views\PatientsAssistance\MedicalConsultation.cshtml" />
     <Content Include="Views\PatientsAssistance\_BoardMedicalSummaryPartial.cshtml" />
+    <Content Include="Views\PatientsAssistance\_TopDiagnosticPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

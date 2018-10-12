@@ -110,5 +110,60 @@ namespace BL.MedicalAssistance
                 throw;
             }
         }
+
+        public List<Schedule> GetSchedule()
+        {
+            try
+            {
+                var isDeleted = (int)Enumeratores.SiNo.No;
+                var list = (from a in ctx.Service
+                               join b in ctx.Person on a.v_PersonId equals b.v_PersonId                               
+                               where a.i_IsDeleted == isDeleted                                     
+                               select new Schedule
+                               {
+                                   PacientId = a.v_PersonId,
+                                   Pacient = b.v_FirstName + " " + b.v_FirstLastName + " " + b.v_SecondLastName,                               
+                                   ServiceDate = a.d_ServiceDate.Value                               
+                               }).ToList();               
+
+                return list;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public List<TopDiagnostic> TopDiagnostic()
+        {
+            try
+            {
+                var isDeleted = (int)Enumeratores.SiNo.No;
+                var list = (from a in ctx.DiagnosticRepository
+                            join b in ctx.Diseases on a.v_DiseasesId equals b.v_DiseasesId
+                            where a.i_IsDeleted == isDeleted
+                            select new TopDiagnostic
+                            {
+                                DiagnosticId = a.v_DiseasesId,
+                                Diagnostic = b.v_Name,                               
+                            }).ToList();
+
+                var group = list
+                            .GroupBy(n => n.DiagnosticId)
+                            .Select(n => new TopDiagnostic
+                            {
+                                Diagnostic = n.Key,
+                                TotalDiagnostic = n.Count()
+                            }).OrderByDescending(n => n.TotalDiagnostic).Take(5);
+
+                return group.ToList();
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

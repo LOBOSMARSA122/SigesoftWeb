@@ -85,6 +85,8 @@
     <Compile Include="History\PersonMedicalHistoryBE.cs" />
     <Compile Include="History\WorkStationDangersBE.cs" />
     <Compile Include="MedicalAssistance\Boards.cs" />
+    <Compile Include="MedicalAssistance\Schedule.cs" />
+    <Compile Include="MedicalAssistance\TopDiagnostic.cs" />
     <Compile Include="Organization\AreaBE.cs" />
     <Compile Include="Organization\CodigoEmpresaBE.cs" />
     <Compile Include="Organization\GesBE.cs" />
