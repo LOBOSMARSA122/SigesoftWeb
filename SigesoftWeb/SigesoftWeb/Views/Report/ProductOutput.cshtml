@@ -1,4 +1,5 @@
-﻿<style>
+﻿
+<style>
     #Loading {
         background-color: rgba(0, 0, 0, 0.60);
         position: fixed;
@@ -19,12 +20,23 @@
         opacity: 0;
     }
 
+    .iconEdit {
+        color: black;
+    }
 
+    th {
+        text-align: center;
+    }
+
+    .classRowsClick {
+        background: rgba(169, 168, 168,0.7);
+        color: #fff;
+    }
 </style>
 <div class="container-fluid">
     <div class="box box-default mt-2" id="acordion">
         <div class="box-header with-border" id="heading1">
-            <h3 class="box-title" style="cursor:pointer;" onclick="ColapseTable('divFilter', 'heightFilter')"><i class="icon-calendar"></i>Bandeja de Movimientos</h3>
+            <h3 class="box-title" style="cursor:pointer;" onclick="ColapseTable('divFilter', 'heightFilter')"><i class="icon-calendar"></i> Bandeja de Reporte</h3>
         </div>
         <input id="heightFilter" type="hidden" value="">
         <div id="divFilter" style="overflow:hidden;">
@@ -56,10 +68,10 @@
                             <div class="row w-100 m-0 p-0">
                                 <div class="col-12 m-0 p-0 ">
                                     @{
-                                if (ViewBag.WarehouseMovement != null)
+                                if (ViewBag.WarehouseId != null)
                                 {
-                                    <select class="mt-2 p-0 m-0 form-control" id="WarehouseMovement">
-                                        @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.WarehouseMovement)
+                                    <select class="mt-2 p-0 m-0 form-control" id="WarehouseId">
+                                        @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.WarehouseId)
                                 {
                                     <option value="@G.Id">@G.Value</option>
                         }
@@ -70,17 +82,16 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-12 col-lg-4 col-xl-2">
+                    <div class="col-12 col-lg-4 col-xl-3">
                         <div class="form-group">
-                            <label class="m-0" for="">Tipo: </label>
+                            <label class="m-0" for="">Tipo de producto</label>
                             <div class="row w-100 m-0 p-0">
                                 <div class="col-12 m-0 p-0 ">
                                     @{
-                                if (ViewBag.TypeMovement != null)
+                                if (ViewBag.CategoryProd != null)
                                 {
-                                    <select class="mt-2 p-0 m-0 form-control" id="MovementTypeId">
-                                        @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.TypeMovement)
+                                    <select class="mt-2 p-0 m-0 form-control" id="CategoryProd">
+                                        @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.CategoryProd)
                                 {
                                     <option value="@G.Id">@G.Value</option>
                         }
@@ -91,58 +102,34 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-12 col-lg-3 col-xl-2">
+                    <div class="col-12 col-lg-3 col-xl-3">
                         <div class="form-group">
-                            <label for="">Desde: </label>
-                            <input type="date" id="StartDate" class="form-control" />
+                            <label for="">Código del Producto</label>
+                            <input type="text" id="ProductCode" class="form-control" maxlength="150" placeholder="Ingrese codigo del producto" />
                         </div>
                     </div>
-                    <div class="col-12 col-lg-3 col-xl-2">
+                    <div class="col-12 col-lg-3 col-xl-3">
                         <div class="form-group">
-                            <label for="">Hasta:</label>
-                            <input type="date" id="EndDate" class="form-control" />
+                            <label for="">Producto</label>
+                            <input type="text" id="ProductName" class="form-control" maxlength="11" placeholder="Ingrese nombre del producto" />
                         </div>
                     </div>
-
-                </div>
-                <nav class="row justify-content-end">
                     <div class="col-12 col-lg-2 col-xl-2">
                         <div class="form-group">
+                            <label for="" id="filtProduct" class="d-none d-lg-block">Filtrar</label>
                             <button class="btn btn-info boton form-control" onclick="Filtrar(1)">
                                 <i class="fa fa-search"></i> Filtrar
                             </button>
                         </div>
                     </div>
-                </nav>
+                </div>
             </div>
         </div>
-        </div>
-        <div id="RenderBandeja">
-            @Html.Partial("_BoardMovementPartial")
-        </div>
-        <nav class="row justify-content-end">
-            <div class="col-12 col-md-auto">
-                <button class="btn-info boton form-control" onclick="location.href='@Url.Action("Index","InputOutput")'" style="cursor:pointer;margin-bottom:20px;">
-                    <i class=""></i> Ingreso
-                </button>
-            </div>
-            <div class="col-12 col-md-auto">
-                <button class="btn-info boton form-control" onclick="location.href='@Url.Action("Index","InputOutput")'" style="cursor:pointer;margin-bottom:20px;">
-                    <i class=""></i>Salida
-                </button>
-            </div>
-            <div class="col-12 col-md-auto">
-                <button class="btn-info boton form-control" onclick="location.href='@Url.Action("Index","InputOutput")'" style="cursor:pointer;margin-bottom:20px;">
-                    <i class=""></i>Transf. entre almacenes
-                </button>
-            </div>
-        </nav>
-
-
-
-
     </div>
+    <div id="RenderBandeja">
+        @*@Html.Partial("_ReportProductPartial")*@
+    </div>
+</div>
 
 <div class="alert" role="alert" style="display:none;">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
@@ -152,57 +139,37 @@
 <div id="Loading" style="display:none;">
     <img src="~/Content/Images/loading.gif" />
 </div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/highcharts.js"></script>
+<script src="~/Scripts/highcharts-3d.js"></script>
+<script src="~/Scripts/exporting.js"></script>
+<script src="~/Scripts/offline-exporting.js"></script>
+<link href="~/Content/css/highcharts.css" rel="stylesheet" />
 
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
 <script>
-    window.onload = function () {
-        var fecha = new Date();
-        var m = fecha.getMonth() + 1;
-        var d = fecha.getDate();
-        var y = fecha.getFullYear();
-        if (d < 10)
-            d = '0' + d;
-        if (m < 10)
-            m = '0' + m
-        document.getElementById('EndDate').value = y + "-" + m + "-" + d;
-        document.getElementById('StartDate').value = y + "-" + m + "-" + (d - d) + 1;
-    }
-
-    function ColapsarFiltro(id) {
-        setTimeout(function () {
-            var height = 10;
-
-            for (i = 0; i < $("#" + id + " .row").length; i++) {
-                height = height + $($("#" + id + " .row")[i]).height();
-            }
-
-            if ($("#" + id).height() == 0) {
-                $("#" + id).animate({ "height": height + "px", "padding": "10px" }, 400);
-            } else {
-                $("#" + id).animate({ "height": "0px", "padding": "0px 10px" }, 400);
-            }
-        }, 200);
-    }
-
+    $(document).ready(function () {
+        Filtrar(1);
+    });
+   
     function ColapsarTabla(id) {
         var Altura = $("#TablaAExportar").height() + 60;
-
+        console.log(Altura);
         if ($("." + id).height() == 0) {
-            $("." + id).animate({ "height": Altura + "px" }, 400);
+            $("." + id).animate({ "height": "100%" }, 400);
         } else {
             alturaTabla = $("." + id).height();
             $("." + id).animate({ "height": "0px" }, 400);
         }
     }
-    
-    function Filtrar(index) {
 
+    function Filtrar(index) {
         var data = {
             OrganizationLocationId: $("#OrganizationLocationId").val(),
-            WarehouseId: $("#WarehouseMovement").val(),
-            MovementType: $("#MovementTypeId").val(),
-            StartDate: moment($("#StartDate").val()).format("DD/MM/YYYY"),
-            EndDate: moment($("#EndDate").val()).format("DD/MM/YYYY"),
+            WarehouseId: $("#WarehouseId").val(),
+            ProductCode: $("#ProductCode").val(),
+            CategoryId: $("#CategoryProd").val(),
+            Name: $("#ProductName").val(),
             Index: index,
             Take: $("#take").val()
         };
@@ -217,11 +184,12 @@
             dataType: 'html',
             method: 'POST',
             data: data,
-            url: '/MovementProducts/FilterWarehouseMovement',
+            url: '/Report/FilterReportProduct',
             success: function (html) {
                 if (html.indexOf("IniciarSesion") == -1) {
                     $("#Loading").hide();
                     $("#RenderBandeja").html(html);
+                    Load();
                 } else {
                     location.href = "/";
                 }
@@ -232,22 +200,20 @@
                 console.log(error);
             }
         });
+
     }
-
-    function loadMovement() {
-
-        var xxx = $("#OrganizationLocationId").val(),
-            res = xxx.split("|"),
-            organizationId = res[1],
-            locationId = res[2];
-
+    function loadWarehouse() {
+        var orgLocationId = $("#OrganizationLocationId").val(),
+            separar = orgLocationId.split("|"),
+            organizationId = separar[1],
+            locationId = separar[2];
         $.ajax(
             {
-                url: '/MovementProducts/GetWarehouseNotInRestricted?OrganizationId=' + organizationId + ' &LocationId=' + locationId +'',
+                url: '/Report/GetWarehouseNotInRestricted?OrganizationId=' + organizationId + ' &LocationId=' + locationId + '',
                 type: 'GET',
                 success: function (json) {
                     var listItems = '';
-                    var $select = $('#WarehouseMovement');
+                    var $select = $('#WarehouseId');
                     $select.find('option').remove();
                     for (var i = 0; i < json.length; i++) {
                         listItems += "<option value='" + json[i].Id + "'>" + json[i].Value + "</option>";
@@ -261,11 +227,13 @@
             })
     }
     function clearddl() {
-        $('#WarehouseMovement').val('-1');
+        $('#WarehouseId').val('-1');
     }
     $(document).ready(function () {
-        $('#OrganizationLocationId').on('change', loadMovement);
+        $('#OrganizationLocationId').on('change', loadWarehouse);
         $(document).ready();
     });
 </script>
+
+
 

@@ -198,6 +198,51 @@ namespace BL.Warehouse
                 return false;
             }
         }
+
+
+        public BoardProduct BandejaReporteProducto (BoardProduct data)
+        {
+            try
+            {
+                var isDeleted = (int)Enumeratores.SiNo.No;
+                int groupCategoryId = (int)Enumeratores.DataHierarchy.CategoryProd;
+                int skip = (data.Index - 1) * data.Take;
+
+                string filterProductCode = string.IsNullOrWhiteSpace(data.ProductCode) ? "" : data.ProductCode;
+                string filterName = string.IsNullOrWhiteSpace(data.Name) ? "" : data.Name;
+
+
+
+                var list = (from a in ctx.Product
+                            join b in ctx.DataHierarchy on new { a = a.i_CategoryId.Value, b = groupCategoryId } equals new { a = b.i_ItemId, b = b.i_GroupId }
+                            where a.i_IsDeleted == isDeleted
+                                    && (a.v_ProductCode.Contains(filterProductCode))
+                                    && (a.v_Name.Contains(filterName)
+                                    && (data.CategoryId == -1 || a.i_CategoryId == data.CategoryId))
+                            select new Products
+                            {
+                                CategoryProd = b.v_Value1,
+                                Name = a.v_Name,
+                            }).ToList();
+
+
+                int totalRecords = list.Count;
+
+                if (data.Take > 0)
+                    list = list.Skip(skip).Take(data.Take).ToList();
+
+                data.TotalRecords = totalRecords;
+                data.List = list;
+
+                return data;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
         #endregion
 
 

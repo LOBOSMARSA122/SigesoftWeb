@@ -8,23 +8,24 @@ using System.Threading.Tasks;
 
 namespace BE.Warehouse
 {
+    [Table("ProductWarehouse")]
     public class ProductWarehouseBE
     {
         [Key, Column(Order = 1)]
-        public string WarehouseId { get; set; }
+        public string v_WarehouseId { get; set; }
         [Key, Column(Order = 2)]
-        public string ProductId { get; set; }
+        public string v_ProductId { get; set; }
 
-        public float StockMin { get; set; }
-        public float StockMax { get; set; }
-        public float StockActual { get; set; }
+        public float r_StockMin { get; set; }
+        public float r_StockMax { get; set; }
+        public float r_StockActual { get; set; }
 
-        #region Creado
-        public int? IsDeleted { get; set; }
-        #endregion
-        public int? InsertUserId { get; set; }
-        public DateTime? InsertDate { get; set; }
-        public int? UpdateUserId { get; set; }
-        public DateTime? UpdateDate { get; set; }
+        //#region Creado
+        //public int? IsDeleted { get; set; }
+        //#endregion
+        public int? i_InsertUserId { get; set; }
+        public DateTime? d_InsertDate { get; set; }
+        public int? i_UpdateUserId { get; set; }
+        public DateTime? d_UpdateDate { get; set; }
     }
 }

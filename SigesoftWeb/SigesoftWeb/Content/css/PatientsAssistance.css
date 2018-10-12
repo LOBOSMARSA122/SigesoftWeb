@@ -53,7 +53,7 @@ aside {
 }
 
     aside .notice {
-        position: fixed;
+        /*position: fixed;*/
         margin-right: 15px;
     }
 

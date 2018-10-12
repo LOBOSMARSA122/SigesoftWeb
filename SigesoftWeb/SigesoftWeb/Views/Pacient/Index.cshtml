@@ -32,54 +32,55 @@
 <div class="container-fluid">
     <div class="box box-default mt-2" id="acordion">
         <div class="box-header with-border" id="heading1">
-            <h3 class="box-title" style="cursor:pointer;" onclick="ColapseTable('Filter','heighFilter')"><i class="icon-calendar"></i> Banjeda de Pacientes</h3>
+            <h3 class="box-title" style="cursor:pointer;" onclick="ColapseTable('divFilter','heightFilter')"><i class="icon-calendar"></i> Banjeda de Pacientes</h3>
         </div>
-        <input id="heighFilter" type="hidden" value="">
-        <div id="Filter" class="box-body collapse show" aria-labelledby="heading1" style="overflow:hidden;">
-            <div class="row">
-                <div class="col-12 col-lg-3 col-xl-3">
-                    <div class="form-group">
-                        <label for="">Paciente</label>
-                        <input type="text" id="PacientFullName" class="form-control" maxlength="150" placeholder="Ingrese nombre del paciente" />
+        <input id="heightFilter" type="hidden" value="">
+        <div id="divFilter" style="overflow:hidden;">
+            <div id="collapse1" class="box-body collapse show" aria-labelledby="heading1" style="overflow:hidden;">
+                <div class="row">
+                    <div class="col-12 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                            <label for="">Paciente</label>
+                            <input type="text" id="PacientFullName" class="form-control" maxlength="150" placeholder="Ingrese nombre del paciente" />
+                        </div>
                     </div>
-                </div>
-                <div class="col-12 col-lg-4 col-xl-3">
-                    <div class="form-group">
-                        <label class="m-0" for="">Tipo de documento</label>
-                        <div class="row w-100 m-0 p-0">
-                            <div class="col-12 m-0 p-0 ">
-                                @{
-                                    if (ViewBag.DocType != null)
-                                    {
-                                        <select class="mt-2 p-0 m-0 form-control" id="DocType" @*data-validation="number" data-validation-allowing="range[1;100]" data-validation-error-msg="Debe seleccionar una opción"*@>
-                                            @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.DocType)
-                                            {
-                                                <option value="@G.Id">@G.Value</option>
-                                            }
-                                        </select>
+                    <div class="col-12 col-lg-4 col-xl-3">
+                        <div class="form-group">
+                            <label class="m-0" for="">Tipo de documento</label>
+                            <div class="row w-100 m-0 p-0">
+                                <div class="col-12 m-0 p-0 ">
+                                    @{
+                                if (ViewBag.DocType != null)
+                                {
+                                    <select class="mt-2 p-0 m-0 form-control" id="DocType" @*data-validation="number" data-validation-allowing="range[1;100]" data-validation-error-msg="Debe seleccionar una opción"*@>
+                                        @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.DocType)
+                                {
+                                    <option value="@G.Id">@G.Value</option>
+                        }
+                                    </select>
+                        }
                                     }
-                                }
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 col-lg-3 col-xl-3">
-                    <div class="form-group">
-                        <label for="">N° Documento</label>
-                        <input type="text" id="DocNumber" class="form-control" maxlength="11" placeholder="Ingrese N° de documento" />
+                    <div class="col-12 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                            <label for="">N° Documento</label>
+                            <input type="text" id="DocNumber" class="form-control" maxlength="11" placeholder="Ingrese N° de documento" />
+                        </div>
                     </div>
-                </div>
-                <div class="col-12 col-lg-2 col-xl-2">
-                    <div class="form-group">
-                        <label for="" id="filtPaciente" class="d-none d-lg-block">Filtrar</label>
-                        <button class="btn btn-info boton form-control" onclick="Filtrar(1)">
-                            <i class="fa fa-search"></i> Filtrar
-                        </button>
+                    <div class="col-12 col-lg-2 col-xl-2">
+                        <div class="form-group">
+                            <label for="" id="filtPaciente" class="d-none d-lg-block">Filtrar</label>
+                            <button class="btn btn-info boton form-control" onclick="Filtrar(1)">
+                                <i class="fa fa-search"></i> Filtrar
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
     <div id="RenderBandeja">
         @Html.Partial("_BoardPacientsPartial")
@@ -139,4 +140,16 @@
             }
         });
     }
+    //function ColapseTable(divColapse, inputHidden) {
+    //    var Altura = $("#" + divColapse).height();
+    //    console.log(Altura);
+    //    if ($("#" + divColapse).height() == 0) {
+    //        $("#" + divColapse).animate({ "height": $('#' + inputHidden).val() + "px" }, 400);
+
+    //    } else {
+    //        $('#' + inputHidden).val(Altura);
+    //        $("#" + divColapse).animate({ "height": "0px" }, 400);
+
+    //    }
+    //}
 </script>

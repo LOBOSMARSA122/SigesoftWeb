@@ -172,6 +172,7 @@
     <Compile Include="Controllers\Common\PacientController.cs" />
     <Compile Include="Controllers\GeneralsController.cs" />
     <Compile Include="Controllers\MedicalAssistance\PatientsAssistanceController.cs" />
+    <Compile Include="Controllers\Report\ReportController.cs" />
     <Compile Include="Controllers\Security\GeneralSecurityAttributeController.cs" />
     <Compile Include="Controllers\Warehouse\InputOutputController.cs" />
     <Compile Include="Controllers\Warehouse\MovementProductsController.cs" />
@@ -497,6 +498,8 @@
     <Content Include="Views\InputOutput\_BoardInputOutputPartial.cshtml" />
     <Content Include="Views\PatientsAssistance\MedicalConsultation.cshtml" />
     <Content Include="Views\PatientsAssistance\_BoardMedicalSummaryPartial.cshtml" />
+    <Content Include="Views\Report\ProductOutput.cshtml" />
+    <Content Include="Views\Report\_ReportProductPartial.cshtml" />
     <Content Include="Views\PatientsAssistance\_TopDiagnosticPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>

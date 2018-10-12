@@ -51,6 +51,12 @@ namespace SigesoftWebAPI.Controllers.Warehouse
             return Ok(result);
         }
 
+        [HttpPost]
+        public IHttpActionResult BandejaReporteProducto(BoardProduct data)
+        {
+            var result = oProductBL.BandejaReporteProducto(data);
+            return Ok(result);
+        }
 
     }
 }
