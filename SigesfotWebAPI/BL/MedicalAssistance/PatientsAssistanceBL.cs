@@ -37,13 +37,10 @@ namespace BL.MedicalAssistance
                             join g in ctx.Location on e.v_CustomerLocationId equals g.v_LocationId
                             join h in ctx.GroupOccupation on e.v_GroupOccupationId equals h.v_GroupOccupationId
                             join i in ctx.SystemParameter on new { a = a.i_MasterServiceId.Value, b = 119 } equals new { a = i.i_ParameterId, b = i.i_GroupId }
-                               //join N in dbContext.systemparameter on new { a = A.i_MasterServiceId.Value, b = 119 } equals new { a = N.i_ParameterId, b = N.i_GroupId } into N_join
-                               //from N in N_join.DefaultIfEmpty()
-
-                               where a.i_IsDeleted == isDeleted
+                            where a.i_IsDeleted == isDeleted
                                     && (b.v_FirstName.Contains(filterPacient) || b.v_FirstLastName.Contains(filterPacient) || b.v_SecondLastName.Contains(filterPacient) || b.v_DocNumber.Contains(filterPacient))
                                       && (startDate < a.d_ServiceDate && endDate > a.d_ServiceDate)
-                               select new Patients
+                            select new Patients
                             {
                                 ServiceId = a.v_ServiceId,
                                 PatientId = a.v_PersonId,
@@ -102,11 +99,13 @@ namespace BL.MedicalAssistance
         {
             try
             {
+                int masterServiceId = (int)Enumeratores.masterService.Assistence;
                 var isDeleted = (int)Enumeratores.SiNo.No;
                 var list = (from a in ctx.Service
                                join b in ctx.Person on a.v_PersonId equals b.v_PersonId                               
-                               where a.i_IsDeleted == isDeleted                                     
-                               select new Schedule
+                               where a.i_IsDeleted == isDeleted  
+                                        && a.i_MasterServiceId == masterServiceId
+                            select new Schedule
                                {
                                    PacientId = a.v_PersonId,
                                    Pacient = b.v_FirstName + " " + b.v_FirstLastName + " " + b.v_SecondLastName,                               

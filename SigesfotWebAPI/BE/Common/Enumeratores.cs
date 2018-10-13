@@ -43,5 +43,11 @@ namespace BE.Common
             Eliminar = 4
         }
 
+        public enum masterService
+        {
+            Ocupational = 2,
+            Assistence = 10,
+        }
+
     }
 }

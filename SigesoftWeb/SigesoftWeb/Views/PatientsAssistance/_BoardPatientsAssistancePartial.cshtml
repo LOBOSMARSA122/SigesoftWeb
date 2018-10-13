@@ -41,11 +41,16 @@
         border-radius: 50%;
         vertical-align: middle;
         position: relative;
-        top: -1px;
+        top: -1px;       
     }
 
-    .ant-badge-status-success {
-        background-color: #52c41a;
+    .ant-badge-status-ocupational {
+        background-color: #049cf9;
+    }
+
+    .ant-badge-status-assistence {
+        background-color: #308705;
+        padding-right: 5px;
     }
 </style>
 
@@ -78,6 +83,7 @@
                         <th>Paciente</th>
                         <th>Empresa-Sede</th>
                         <th>Protocolo</th>
+                        <th>Fecha Servicio</th>
                         <th>Ges</th>
                         <th>Puesto</th>
                         <th>Género</th>
@@ -102,10 +108,11 @@
                                 if (item.MasterServiceId == 2)
                                 {
                             <tr>
-                                <td> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"  style="padding:2px;"><span class="ant-badge-status-dot ant-badge-status-success"></span><span class="ant-badge-status-text"></span>@item.PatientFullName</span></td>  
+                                <td class="ColumnNoWrap"> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"><span class="ant-badge-status-dot ant-badge-status-ocupational"></span><span class="ant-badge-status-text pl-2">@item.PatientFullName</span></span></td>  
                                 @*<td class="ColumnNoWrap ant-badge-status-dot ant-badge-status-success"></td>*@
                                 <td class="ColumnNoWrap">@item.OrganizationLocation</td>
                                 <td class="ColumnNoWrap">@item.ProtocolName</td>
+                                <td class="ColumnNoWrap">@item.ServiceDate.ToShortDateString()</td>
                                 <td class="ColumnNoWrap">@item.Geso</td>
                                 <td class="ColumnNoWrap">@item.Occupation</td>
                                 <td class="ColumnNoWrap">@item.Gender</td>
@@ -115,29 +122,31 @@
                                 }
                                 else if (item.MasterServiceId == 10)
                                 {
-                                    <tr>
-                                        <td class="ColumnNoWrap">@item.PatientFullName</td>
-                                        <td class="ColumnNoWrap">@item.OrganizationLocation</td>
-                                        <td class="ColumnNoWrap">@item.ProtocolName</td>
-                                        <td class="ColumnNoWrap">@item.Geso</td>
-                                        <td class="ColumnNoWrap">@item.Occupation</td>
-                                        <td class="ColumnNoWrap">@item.Gender</td>
-                                        <td class="ColumnNoWrap">@item.MasterService</td>
-                                        <td><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = item.ServiceId })"><span class="d-flex justify-content-center iconEdit align-items-center icon-edit"></span></a></td>
-                                    </tr>
+                            <tr>
+                                <td class="ColumnNoWrap"> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"><span class="ant-badge-status-dot ant-badge-status-assistence"></span><span class="ant-badge-status-text pl-2">@item.PatientFullName</span></span></td>
+                                <td class="ColumnNoWrap">@item.OrganizationLocation</td>
+                                <td class="ColumnNoWrap">@item.ProtocolName</td>
+                                <td class="ColumnNoWrap">@item.ServiceDate.ToShortDateString()</td>
+                                <td class="ColumnNoWrap">@item.Geso</td>
+                                <td class="ColumnNoWrap">@item.Occupation</td>
+                                <td class="ColumnNoWrap">@item.Gender</td>
+                                <td class="ColumnNoWrap">@item.MasterService</td>
+                                <td><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = item.ServiceId })"><span class="d-flex justify-content-center iconEdit align-items-center icon-edit"></span></a></td>
+                            </tr>
                                 }
                                 else
                                 {
-                                    <tr >
-                                        <td class="ColumnNoWrap">@item.PatientFullName</td>
-                                        <td class="ColumnNoWrap">@item.OrganizationLocation</td>
-                                        <td class="ColumnNoWrap">@item.ProtocolName</td>
-                                        <td class="ColumnNoWrap">@item.Geso</td>
-                                        <td class="ColumnNoWrap">@item.Occupation</td>
-                                        <td class="ColumnNoWrap">@item.Gender</td>
-                                        <td class="ColumnNoWrap">@item.MasterService</td>
-                                        <td><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = item.ServiceId })"><span class="d-flex justify-content-center iconEdit align-items-center icon-edit"></span></a></td>
-                                    </tr>
+                            <tr>
+                                <td class="ColumnNoWrap">@item.PatientFullName</td>
+                                <td class="ColumnNoWrap">@item.OrganizationLocation</td>
+                                <td class="ColumnNoWrap">@item.ProtocolName</td>
+                                <td class="ColumnNoWrap">@item.ServiceDate.ToShortDateString()</td>
+                                <td class="ColumnNoWrap">@item.Geso</td>
+                                <td class="ColumnNoWrap">@item.Occupation</td>
+                                <td class="ColumnNoWrap">@item.Gender</td>
+                                <td class="ColumnNoWrap">@item.MasterService</td>
+                                <td><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = item.ServiceId })"><span class="d-flex justify-content-center iconEdit align-items-center icon-edit"></span></a></td>
+                            </tr>
                                 }
                             }
                         }
