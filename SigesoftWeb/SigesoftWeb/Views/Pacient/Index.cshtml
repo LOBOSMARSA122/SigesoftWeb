@@ -140,16 +140,14 @@
             }
         });
     }
-    //function ColapseTable(divColapse, inputHidden) {
-    //    var Altura = $("#" + divColapse).height();
-    //    console.log(Altura);
-    //    if ($("#" + divColapse).height() == 0) {
-    //        $("#" + divColapse).animate({ "height": $('#' + inputHidden).val() + "px" }, 400);
+    function ColapsarTabla(id) {
+        var Altura = $("#TablaAExportar").height() + 60;
 
-    //    } else {
-    //        $('#' + inputHidden).val(Altura);
-    //        $("#" + divColapse).animate({ "height": "0px" }, 400);
-
-    //    }
-    //}
+        if ($("." + id).height() == 0) {
+            $("." + id).animate({ "height": Altura + "px" }, 400);
+        } else {
+            alturaTabla = $("." + id).height();
+            $("." + id).animate({ "height": "0px" }, 400);
+        }
+    }
 </script>

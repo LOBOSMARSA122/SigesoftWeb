@@ -443,6 +443,24 @@ body footer {
 
 
 /*BANDEJAS*/
+.table-responsive::-webkit-scrollbar {
+    max-width: 10px;
+    max-height: 10px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #dddddd;
+}
+
+.table-responsive::-webkit-scrollbar-button {
+    background-color: #dddddd;
+    border-radius: 20%;
+}
+
+.table-responsive::-webkit-scrollbar-corner {
+    background-color: #dddddd;
+}
 table thead {
     color: #969696;
     font-family: 'Roboto', sans-serif;

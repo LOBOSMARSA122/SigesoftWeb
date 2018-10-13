@@ -132,16 +132,6 @@
         }, 200);
     }
 
-    function ColapsarTabla(id) {
-        var Altura = $("#TablaAExportar").height() + 60;
-
-        if ($("." + id).height() == 0) {
-            $("." + id).animate({ "height": Altura + "px" }, 400);
-        } else {
-            alturaTabla = $("." + id).height();
-            $("." + id).animate({ "height": "0px" }, 400);
-        }
-    }
 
     function Filtrar(index) {
         var data = {
