@@ -153,6 +153,52 @@ namespace BL.MedicalAssistance
             }
         }
 
+        public Indicators IndicatorByPacient(string pacientId, string componentFieldId)
+        {
+            try
+            {
+                var serviceComponentFieldValues = (from A in ctx.Service
+                                                   join B in ctx.ServiceComponent on A.v_ServiceId equals B.v_ServiceId
+                                                   join C in ctx.ServiceComponentFields on B.v_ServiceComponentId equals C.v_ServiceComponentId
+                                                   join D in ctx.ServiceComponentFieldValues on C.v_ServiceComponentFieldsId equals D.v_ServiceComponentFieldsId
+
+                                                   where A.v_PersonId == pacientId
+                                                           && C.v_ComponentFieldId == componentFieldId
+                                                           && B.i_IsDeleted == 0
+                                                           && C.i_IsDeleted == 0
+
+                                                   select new 
+                                                   {
+                                                       ServiceDate = A.d_ServiceDate,
+                                                       ComponentFieldId = C.v_ComponentFieldId,
+                                                       ServiceComponentFieldsId = C.v_ServiceComponentFieldsId,
+                                                       Value1 = D.v_Value1,
+                                                   }).ToList();
+                Indicators oIndicators = new Indicators();
+                oIndicators.PersonId = pacientId;
+                List<Weight> Weights = new List<Weight>();
+
+                foreach (var itemWeight in serviceComponentFieldValues)
+                {
+                  var Weight = new Weight();
+                    Weight.Date = itemWeight.ServiceDate.Value.ToString("dd-MM-yyyy");
+                    Weight.y = itemWeight.Value1;
+
+                    Weights.Add(Weight);
+                }
+                oIndicators.Weights = Weights;
+
+
+                return oIndicators;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            
+        }
+
         public int Test()
         {
             try

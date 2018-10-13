@@ -47,9 +47,22 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
         }                         
 
         [GeneralSecurity(Rol = "PatientsAssistance-MedicalConsultation")]
-        public ActionResult MedicalConsultation(string id)
+        public async Task<ActionResult> MedicalConsultation(string id)
         {
-            return View();
+            Api API = new Api();
+            Dictionary<string, string> arg = new Dictionary<string, string>()
+            {
+                { "pacientId",id},
+                { "componentFieldId","N002-MF000000008"},
+               
+            };
+
+            return await Task.Run(() =>
+            {
+                ViewBag.Indicators = API.Get<Indicators>("PatientsAssistance/IndicatorByPacient", arg);
+
+                return PartialView("_WeightPartial");
+            });
         }
 
         public JsonResult GetSchedule()
