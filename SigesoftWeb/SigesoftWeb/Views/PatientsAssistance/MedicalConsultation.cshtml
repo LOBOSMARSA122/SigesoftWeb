@@ -157,10 +157,10 @@
                                 </li>
                             </ul>
                             <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="Peso" role="tabpanel" aria-labelledby="home-tab">Peso<img class="img-fluid" src="~/Content/Images/Boceto.png" /></div>
-                                <div class="tab-pane fade" id="Hemoglobina" role="tabpanel" aria-labelledby="profile-tab">Hemoglobina<img class="img-fluid" src="~/Content/Images/Boceto.png" /></div>
-                                <div class="tab-pane fade" id="Talla" role="tabpanel" aria-labelledby="contact-tab">Talla<img class="img-fluid" src="~/Content/Images/Boceto.png" /></div>
-                                <div class="tab-pane fade" id="Presion" role="tabpanel" aria-labelledby="contact-tab">Presión<img class="img-fluid" src="~/Content/Images/Boceto.png" /></div>
+                                <div class="tab-pane fade show active" id="Peso" role="tabpanel" aria-labelledby="home-tab">@Html.Partial("_RecordPesoPartial")</div>
+                                <div class="tab-pane fade" id="Hemoglobina" role="tabpanel" aria-labelledby="profile-tab">@Html.Partial("_RecordHemoglobinaPartial")</div>
+                                <div class="tab-pane fade" id="Talla" role="tabpanel" aria-labelledby="contact-tab">@Html.Partial("_RecordTallaPartial")</div>
+                                <div class="tab-pane fade" id="Presion" role="tabpanel" aria-labelledby="contact-tab">@Html.Partial("_RecordPresionPartial")</div>
                             </div>
                             
                         </div>

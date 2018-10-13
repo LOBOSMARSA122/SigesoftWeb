@@ -502,6 +502,10 @@
     <Content Include="Views\Report\ProductOutput.cshtml" />
     <Content Include="Views\Report\_ReportProductPartial.cshtml" />
     <Content Include="Views\PatientsAssistance\_TopDiagnosticPartial.cshtml" />
+    <Content Include="Views\PatientsAssistance\_RecordPesoPartial.cshtml" />
+    <Content Include="Views\PatientsAssistance\_RecordHemoglobinaPartial.cshtml" />
+    <Content Include="Views\PatientsAssistance\_RecordTallaPartial.cshtml" />
+    <Content Include="Views\PatientsAssistance\_RecordPresionPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
