@@ -6,12 +6,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
 namespace SigesoftWeb.Controllers.MedicalAssistance
 {
+    [SessionState(System.Web.SessionState.SessionStateBehavior.ReadOnly)]
     public class PatientsAssistanceController : Controller
     {
         [GeneralSecurity(Rol = "PatientsAssistance-BoardPatientsAssistance")]
@@ -61,9 +64,9 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
 
         //}
 
-        //[GeneralSecurity(Rol = "PatientsAssistance-Test1")]
-        public async Task<JsonResult> Test()
+        public JsonResult Test()
         {
+            #region MyRegion
             //Api API = new Api();
             //int response = 0;
 
@@ -72,20 +75,59 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
             //    response = API.Get<int>("PatientsAssistance/GetTest");
             //    return Json(response);
             //});
-            var httpClient = new HttpClient();
-            var response = await httpClient.GetAsync("http://localhost:82/PatientsAssistance/GetTest");
-            response.EnsureSuccessStatusCode();
-            string content = await response.Content.ReadAsStringAsync();
 
-            return await Task.Run(() =>
-            {
-                return new JsonResult { Data = content, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-            });
+            //var httpClient = new HttpClient();
+            //var response = await httpClient.GetAsync("http://localhost:1932/PatientsAssistance/GetTest");
+            //response.EnsureSuccessStatusCode();
+            //string content = await response.Content.ReadAsStringAsync();
+
+            //return await Task.Run(() =>
+            //{
+            //    return new JsonResult { Data = content, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            //});
+
+            //string url = "http://localhost:1932/PatientsAssistance/GetTest";
+            //using (var result = await _httpClient.GetAsync($"{url}"))
+            //{
+            //    string content = await result.Content.ReadAsStringAsync();
+            //    return new JsonResult { Data = content, JsonRequestBehavior = JsonRequestBehavior.AllowGet }; 
+            //}
+
+
+            //var httpClient = new HttpClient();
+            //HttpResponseMessage response;
+            //response = await Task.Run(() =>
+            //{
+            //    return httpClient.GetAsync("http://localhost:1932/PatientsAssistance/GetTest");
+            //});
+
+            ////response = await httpClient.GetAsync("http://localhost:1932/PatientsAssistance/GetTest2");
+            //response.EnsureSuccessStatusCode();
+            //string content = await Task.Run(() => {
+            //    return response.Content.ReadAsStringAsync();
+            //});
+            ////string content = await response.Content.ReadAsStringAsync();
+
+            //return new JsonResult { Data = "100", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+
+
+            //return await Task.Run(() =>
+            //{
+            //    //return httpClient.GetAsync("http://localhost:1932/PatientsAssistance/GetTest");           
+            //    Thread.Sleep(20000);
+            //    return new JsonResult { Data = "100", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            //});
+            #endregion
+
+            Api API = new Api();
+            string url = "PatientsAssistance/GetTest";
+            var result = API.Get<int>(url);
+            return new JsonResult { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
-        //[GeneralSecurity(Rol = "PatientsAssistance-Test2")]
-        public async Task<JsonResult> Test2()
+        public JsonResult Test2()
         {
+            #region MyRegion
             //Api API = new Api();
             //int response = 0;
 
@@ -94,16 +136,48 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
             //    response = API.Get<int>("PatientsAssistance/GetTest2");
             //    return Json(response);
             //});
-            var httpClient = new HttpClient();
-            var response = await httpClient.GetAsync("http://localhost:82/PatientsAssistance/GetTest2");
-            response.EnsureSuccessStatusCode();
-            string content = await response.Content.ReadAsStringAsync();
 
-            return await Task.Run(() =>
-            {
-                return new JsonResult { Data = content, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-            });
+            //var httpClient = new HttpClient();
+            //HttpResponseMessage response;
+            //await Task.Run(() =>
+            //{
+            //    //return httpClient.GetAsync("http://localhost:1932/PatientsAssistance/GetTest2");           
+            //    Thread.Sleep(1000);
+            //});
+
+            //response = await httpClient.GetAsync("http://localhost:1932/PatientsAssistance/GetTest2");
+            //response.EnsureSuccessStatusCode();
+
+            //string content = await Task.Run(() => {
+            //   return response.Content.ReadAsStringAsync();
+            //});
+            //string content = await response.Content.ReadAsStringAsync();
+
+            //return new JsonResult { Data = "200", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+
+
+            //string url = "http://localhost:1932/PatientsAssistance/GetTest2";
+            //using (var result = await _httpClient.GetAsync($"{url}"))
+            //{
+            //    string content = await result.Content.ReadAsStringAsync();
+            //    return new JsonResult { Data = content, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            //}
+
+            //return await Task.Run(() =>
+            //{
+            //    //return httpClient.GetAsync("http://localhost:1932/PatientsAssistance/GetTest2");           
+            //    Thread.Sleep(1000);
+            //    return new JsonResult { Data = "100", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            //});
+            #endregion
+
+            Api API = new Api();
+            string url = "PatientsAssistance/GetTest2";
+            var result = API.Get<int>(url);
+            return new JsonResult { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
+
+
 
 
         [GeneralSecurity(Rol = "PatientsAssistance-MedicalConsultation")]
