@@ -48,53 +48,53 @@
             <div class="table-responsive " id="DivMedicalConsultation">
                 <div class="row" style="margin:0px; padding:0px;">
                     <div class="col-12">
-                        <form action="/">
-                            <div class="form-group row ">
+                        <form action="/" class="formGroup">
+                            <div class="form-group row formGroup">
                                 <div class="col-12 col-md-2">
+                                    <input type="text" class="form-control inputLabelFloat" placeholder="" name="pacient" id="pacient" />
                                     <label for="nombre" class="has-float-label">Peso</label>
-                                    <input type="text" class="form-control" placeholder="Paciente" name="pacient" id="pacient" />
                                 </div>
                                 <div class="col-12 col-md-2">
-                                    <label for="nombre">Talla</label>
-                                    <input type="text" class="form-control" placeholder="Empresa/Sede/Área" name="pass" id="pass" />
+                                    <input type="text" class="form-control inputLabelFloat" placeholder="" name="pass" id="pass" />
+                                    <label for="nombre" class="has-float-label">Talla</label>
                                 </div>
                                 <div class="col-12 col-md-2">
-                                    <label for="nombre">IMC</label>
-                                    <input type="text" class="form-control" placeholder="IMC" name="pacient" id="pacient" />
+                                    <input type="text" class="form-control inputLabelFloat" placeholder="" name="pacient" id="pacient" />
+                                    <label for="nombre" class="has-float-label">IMC</label>
                                 </div>
                                 <div class="col-12 col-md-2">
-                                    <label for="nombre">P. Abdom.</label>
-                                    <input type="text" class="form-control" placeholder="Paciente" name="pacient" id="pacient" />
+                                    <input type="text" class="form-control inputLabelFloat" placeholder="" name="pacient" id="pacient" />
+                                    <label for="nombre" class="has-float-label">P. Abdom.</label>
                                 </div>
                                 <div class="col-12 col-md-2">
-                                    <label for="nombre">P. Cad.</label>
-                                    <input type="text" class="form-control" placeholder="Empresa/Sede/Área" name="pass" id="pass" />
+                                    <input type="text" class="form-control inputLabelFloat" placeholder="" name="pass" id="pass" />
+                                    <label for="nombre" class="has-float-label">P. Cad.</label>
                                 </div>
                                 <div class="col-12 col-md-2">
-                                    <label for="nombre">I. C.</label>
-                                    <input type="text" class="form-control" placeholder="IMC" name="pacient" id="pacient" />
+                                    <input type="text" class="form-control inputLabelFloat" placeholder="" name="pacient" id="pacient" />
+                                    <label for="nombre" class="has-float-label">I. C.</label>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group row formGroup">
                                 <div class="col-12 col-md-2">
-                                    <label for="nombre">PS-PD</label>
-                                    <input type="text" class="form-control" placeholder="IMC" name="pacient" id="pacient" />
+                                    <input type="text" class="form-control inputLabelFloat" placeholder="" name="pacient" id="pacient" />
+                                    <label for="nombre" class="has-float-label">PS-PD</label>
                                 </div>
                                 <div class="col-12 col-md-2">
-                                    <label for="nombre">F. Respi.</label>
-                                    <input type="text" class="form-control" placeholder="IMC" name="pacient" id="pacient" />
+                                    <input type="text" class="form-control inputLabelFloat" placeholder="" name="pacient" id="pacient" />
+                                    <label for="nombre" class="has-float-label">F. Respi.</label>
                                 </div>
                                 <div class="col-12 col-md-2">
-                                    <label for="nombre">F. Cardi.</label>
-                                    <input type="text" class="form-control" placeholder="IMC" name="pacient" id="pacient" />
+                                    <input type="text" class="form-control inputLabelFloat" placeholder="" name="pacient" id="pacient" />
+                                    <label for="nombre" class="has-float-label">F. Cardi.</label>
                                 </div>
                                 <div class="col-12 col-md-2">
-                                    <label for="nombre">Temp.</label>
-                                    <input type="text" class="form-control" placeholder="IMC" name="pacient" id="pacient" />
+                                    <input type="text" class="form-control inputLabelFloat" placeholder="" name="pacient" id="pacient" />
+                                    <label for="nombre" class="has-float-label">PSD</label>
                                 </div>
                                 <div class="col-12 col-md-2">
-                                    <label for="nombre">Sat. O.</label>
-                                    <input type="text" class="form-control" placeholder="IMC" name="pacient" id="pacient" />
+                                    <input type="text" class="form-control inputLabelFloat" placeholder="" name="pacient" id="pacient" />
+                                    <label for="nombre" class="has-float-label">Sat. O.</label>
                                 </div>
                             </div>
                             <div class="form-group row" style="margin-left:0px; margin-right:0px;">
@@ -124,7 +124,7 @@
                                         </div>
                                     </div>
                                 </div>
-                               
+
                             </div>
                         </form>
                     </div>
@@ -235,10 +235,32 @@
         </aside>
     </section>
 </div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/JqueryFormValidate.js"></script>
 <script src="~/Scripts/FormValidateSecurity.js"></script>
 <link href="~/Content/Themes/FormValidatorTheme.css" rel="stylesheet" type="text/css" />
 <script>
-
-
+    $(document).ready(function () {
+        //var inputs = $(".inputLabelFloat");
+        //for (var i = 0; i < inputs.length; i++) {
+        //    $(".inputLabelFloat")[i].keyup(function () {
+        //        if (this.value.lenght >= 1) {
+        //            this.next().toggleClass('static')
+        //        } else {
+        //            this.next().toggleClass('static')
+        //        }
+        //    });
+        //}
+        var inputs = document.getElementsByClassName('inputLabelFloat');
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener('keyup', function () {
+            if (this.value.length >= 1) {
+                this.nextElementSibling.classList.add('static');
+            } else {
+                this.nextElementSibling.classList.remove('static');
+            }
+        });
+    }
+    })
+    
 </script>
