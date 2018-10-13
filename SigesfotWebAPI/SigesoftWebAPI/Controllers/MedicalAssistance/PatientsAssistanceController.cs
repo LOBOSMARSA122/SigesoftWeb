@@ -63,5 +63,14 @@ namespace SigesoftWebAPI.Controllers.MedicalAssistance
                 return Ok(result);
             });
         }
+
+        [HttpGet]
+        public async Task<IHttpActionResult> IndicatorByPacient(string pacientId, string componentFieldId)
+        {
+            return await Task.Run(() => {
+                var result = oPatientsAssistanceBL.IndicatorByPacient(pacientId, componentFieldId);
+                return Ok(result);
+            });
+        }
     }
 }
