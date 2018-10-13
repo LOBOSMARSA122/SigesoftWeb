@@ -52,16 +52,14 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
             Api API = new Api();
             Dictionary<string, string> arg = new Dictionary<string, string>()
             {
-                { "pacientId",id},
-                { "componentFieldId","N002-MF000000008"},
-               
+                { "pacientId",id}               
             };
 
             return await Task.Run(() =>
             {
                 ViewBag.Indicators = API.Get<Indicators>("PatientsAssistance/IndicatorByPacient", arg);
 
-                return PartialView("_WeightPartial");
+                return View();
             });
         }
 

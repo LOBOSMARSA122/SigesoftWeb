@@ -48,6 +48,7 @@
     <Compile Include="Common\Boards.cs" />
     <Compile Include="Common\Cie10BE.cs" />
     <Compile Include="Common\CIIUIBE.cs" />
+    <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\DataHierarchyBE.cs" />
     <Compile Include="Common\Dropdownlist.cs" />
     <Compile Include="Common\EmailBE.cs" />

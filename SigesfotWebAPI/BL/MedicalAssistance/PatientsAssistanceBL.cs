@@ -153,7 +153,7 @@ namespace BL.MedicalAssistance
             }
         }
 
-        public Indicators IndicatorByPacient(string pacientId, string componentFieldId)
+        public Indicators IndicatorByPacient(string pacientId)
         {
             try
             {
@@ -163,7 +163,7 @@ namespace BL.MedicalAssistance
                                                    join D in ctx.ServiceComponentFieldValues on C.v_ServiceComponentFieldsId equals D.v_ServiceComponentFieldsId
 
                                                    where A.v_PersonId == pacientId
-                                                           && C.v_ComponentFieldId == componentFieldId
+                                                           && (C.v_ComponentFieldId == Constants.COLESTEROL_TOTAL_Colesterol_Total_Id || C.v_ComponentFieldId == Constants.PERFIL_LIPIDICO_Colesterol_Total_Id || C.v_ComponentFieldId == Constants.GLUCOSA_Glucosa_Id || C.v_ComponentFieldId == Constants.HEMOGLOBINA_Hemoglobina_Id || C.v_ComponentFieldId == Constants.HEMOGRAMA_Hemoglobina_Id || C.v_ComponentFieldId == Constants.FUNCIONES_VITALES_Presion_Sistolica_Id || C.v_ComponentFieldId == Constants.FUNCIONES_VITALES_Presion_Distolica_Id || C.v_ComponentFieldId == Constants.ANTROPOMETRIA_Peso_Id)
                                                            && B.i_IsDeleted == 0
                                                            && C.i_IsDeleted == 0
 
@@ -176,18 +176,91 @@ namespace BL.MedicalAssistance
                                                    }).ToList();
                 Indicators oIndicators = new Indicators();
                 oIndicators.PersonId = pacientId;
+
+
+                #region Weights
                 List<Weight> Weights = new List<Weight>();
-
-                foreach (var itemWeight in serviceComponentFieldValues)
+                var ListWeights = serviceComponentFieldValues.FindAll(p => p.ComponentFieldId == Constants.ANTROPOMETRIA_Peso_Id);
+                foreach (var item in ListWeights)
                 {
-                  var Weight = new Weight();
-                    Weight.Date = itemWeight.ServiceDate.Value.ToString("dd-MM-yyyy");
-                    Weight.y = itemWeight.Value1;
+                    var oWeight = new Weight();
+                    oWeight.Date = item.ServiceDate.Value.ToString("dd-MM-yyyy");
+                    oWeight.y = item.Value1;
 
-                    Weights.Add(Weight);
+                    Weights.Add(oWeight);
                 }
                 oIndicators.Weights = Weights;
+                #endregion
 
+                #region BloodPressureSis
+                var BloodPressureSis = new List<BloodPressureSis>();
+                var ListBloodPressureSis = serviceComponentFieldValues.FindAll(p => p.ComponentFieldId == Constants.FUNCIONES_VITALES_Presion_Sistolica_Id);
+                foreach (var item in ListBloodPressureSis)
+                {
+                    var oBloodPressureSis = new BloodPressureSis();
+                    oBloodPressureSis.Date = item.ServiceDate.Value.ToString("dd-MM-yyyy");
+                    oBloodPressureSis.y = item.Value1;
+
+                    BloodPressureSis.Add(oBloodPressureSis);
+                }
+                oIndicators.BloodPressureSis = BloodPressureSis;
+                #endregion
+
+                #region BloodPressureDia
+                var BloodPressureDia = new List<BloodPressureDia>();
+                var ListBloodPressureDia = serviceComponentFieldValues.FindAll(p => p.ComponentFieldId == Constants.FUNCIONES_VITALES_Presion_Distolica_Id);
+                foreach (var item in ListBloodPressureDia)
+                {
+                    var oBloodPressureDia = new BloodPressureDia();
+                    oBloodPressureDia.Date = item.ServiceDate.Value.ToString("dd-MM-yyyy");
+                    oBloodPressureDia.y = item.Value1;
+
+                    BloodPressureDia.Add(oBloodPressureDia);
+                }
+                oIndicators.BloodPressureDia = BloodPressureDia;
+                #endregion
+
+                #region Cholesterol
+                var Cholesterol = new List<Cholesterol>();
+                var ListCholesterol = serviceComponentFieldValues.FindAll(p => p.ComponentFieldId == Constants.COLESTEROL_TOTAL_Colesterol_Total_Id || p.ComponentFieldId == Constants.PERFIL_LIPIDICO_Colesterol_Total_Id);
+                foreach (var item in ListCholesterol)
+                {
+                    var oCholesterol = new Cholesterol();
+                    oCholesterol.Date = item.ServiceDate.Value.ToString("dd-MM-yyyy");
+                    oCholesterol.y = item.Value1;
+
+                    Cholesterol.Add(oCholesterol);
+                }
+                oIndicators.Cholesterols = Cholesterol;
+                #endregion
+
+                #region Glucoses
+                var Glucoses = new List<Glucose>();
+                var ListGlucoses = serviceComponentFieldValues.FindAll(p => p.ComponentFieldId == Constants.GLUCOSA_Glucosa_Id);
+                foreach (var item in ListGlucoses)
+                {
+                    var oGlucoses = new Glucose();
+                    oGlucoses.Date = item.ServiceDate.Value.ToString("dd-MM-yyyy");
+                    oGlucoses.y = item.Value1;
+
+                    Glucoses.Add(oGlucoses);
+                }
+                oIndicators.Glucoses = Glucoses;
+                #endregion
+
+                #region Haemoglobin
+                var Haemoglobins = new List<Haemoglobin>();
+                var ListHaemoglobins = serviceComponentFieldValues.FindAll(p => p.ComponentFieldId == Constants.HEMOGLOBINA_Hemoglobina_Id || p.ComponentFieldId == Constants.HEMOGRAMA_Hemoglobina_Id);
+                foreach (var item in ListHaemoglobins)
+                {
+                    var oHaemoglobin = new Haemoglobin();
+                    oHaemoglobin.Date = item.ServiceDate.Value.ToString("dd-MM-yyyy");
+                    oHaemoglobin.y = item.Value1;
+
+                    Haemoglobins.Add(oHaemoglobin);
+                }
+                oIndicators.Haemoglobins = Haemoglobins;
+                #endregion
 
                 return oIndicators;
             }

@@ -21,6 +21,10 @@ namespace SigesoftWeb.Models.MedicalAssistance
         public List<BloodPressureSis> BloodPressureSis { get; set; }
         public List<BloodPressureDia> BloodPressureDia { get; set; }
 
+        public List<Cholesterol> Cholesterols { get; set; }
+        public List<Glucose> Glucoses { get; set; }
+        public List<Haemoglobin> Haemoglobins { get; set; }
+
     }
 
     public class Weight
@@ -34,13 +38,29 @@ namespace SigesoftWeb.Models.MedicalAssistance
     {
         public string Date { get; set; }
         public string y { get; set; }
-
     }
 
     public class BloodPressureDia
     {
         public string Date { get; set; }
         public string y { get; set; }
+    }
 
+    public class Cholesterol
+    {
+        public string Date { get; set; }
+        public string y { get; set; }
+    }
+
+    public class Glucose
+    {
+        public string Date { get; set; }
+        public string y { get; set; }
+    }
+
+    public class Haemoglobin
+    {
+        public string Date { get; set; }
+        public string y { get; set; }
     }
 }
