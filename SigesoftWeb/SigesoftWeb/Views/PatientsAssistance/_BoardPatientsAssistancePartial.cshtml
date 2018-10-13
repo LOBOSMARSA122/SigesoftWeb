@@ -33,6 +33,20 @@
         background-color: rgba(97, 192, 234,0.2); /* For browsers that do not support gradients */
         background-image: linear-gradient(to right, rgba(97, 192, 234,0.2), #ffffff);
     }
+
+    .ant-badge-status-dot {
+        width: 6px;
+        height: 6px;
+        display: inline-block;
+        border-radius: 50%;
+        vertical-align: middle;
+        position: relative;
+        top: -1px;
+    }
+
+    .ant-badge-status-success {
+        background-color: #52c41a;
+    }
 </style>
 
 <div class="container-fluid" style="padding:0px;">
@@ -87,20 +101,21 @@
                             {
                                 if (item.MasterServiceId == 2)
                                 {
-                                    <tr class="Assistence">
-                                        <td class="ColumnNoWrap">@item.PatientFullName</td>
-                                        <td class="ColumnNoWrap">@item.OrganizationLocation</td>
-                                        <td class="ColumnNoWrap">@item.ProtocolName</td>
-                                        <td class="ColumnNoWrap">@item.Geso</td>
-                                        <td class="ColumnNoWrap">@item.Occupation</td>
-                                        <td class="ColumnNoWrap">@item.Gender</td>
-                                        <td class="ColumnNoWrap">@item.MasterService</td>
-                                        <td><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = item.ServiceId })"><span class="d-flex justify-content-center iconEdit align-items-center icon-edit"></span></a></td>
-                                    </tr>
+                            <tr>
+                                <td> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"  style="padding:2px;"><span class="ant-badge-status-dot ant-badge-status-success"></span><span class="ant-badge-status-text"></span>@item.PatientFullName</span></td>  
+                                @*<td class="ColumnNoWrap ant-badge-status-dot ant-badge-status-success"></td>*@
+                                <td class="ColumnNoWrap">@item.OrganizationLocation</td>
+                                <td class="ColumnNoWrap">@item.ProtocolName</td>
+                                <td class="ColumnNoWrap">@item.Geso</td>
+                                <td class="ColumnNoWrap">@item.Occupation</td>
+                                <td class="ColumnNoWrap">@item.Gender</td>
+                                <td class="ColumnNoWrap">@item.MasterService</td>
+                                <td><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = item.ServiceId })"><span class="d-flex justify-content-center iconEdit align-items-center icon-edit"></span></a></td>
+                            </tr>
                                 }
                                 else if (item.MasterServiceId == 10)
                                 {
-                                    <tr class="Ocupational">
+                                    <tr>
                                         <td class="ColumnNoWrap">@item.PatientFullName</td>
                                         <td class="ColumnNoWrap">@item.OrganizationLocation</td>
                                         <td class="ColumnNoWrap">@item.ProtocolName</td>
