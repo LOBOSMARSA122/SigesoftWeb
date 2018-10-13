@@ -13,12 +13,6 @@ namespace SigesoftWebAPI.Controllers.MedicalAssistance
     public class PatientsAssistanceController : ApiController
     {
         PatientsAssistanceBL oPatientsAssistanceBL = new PatientsAssistanceBL();
-        //[HttpPost]
-        //public IHttpActionResult GetAllPatientsAssistance(BoardPatient data)
-        //{
-        //    var result = oPatientsAssistanceBL.GetAllPatientsAssistance(data);
-        //    return Ok(result);
-        //}
 
         [HttpGet]
         public async Task<IHttpActionResult> GetTest()

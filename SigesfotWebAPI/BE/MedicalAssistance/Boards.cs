@@ -23,6 +23,7 @@ namespace BE.MedicalAssistance
 
     public class Patients
     {
+        public string ServiceId { get; set; }
         public string PatientId { get; set; }
         public string PatientFullName { get; set; }
         public string Gender { get; set; }
@@ -36,5 +37,7 @@ namespace BE.MedicalAssistance
         public string ProtocolName { get; set; }
         public string OrganizationLocation { get; set; }
         public string Geso { get; set; }
+        public int MasterServiceId { get; set; }
+        public string MasterService { get; set; }
     }
 }

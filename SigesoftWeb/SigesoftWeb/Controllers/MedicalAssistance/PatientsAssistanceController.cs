@@ -44,29 +44,37 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
                 return PartialView("_BoardPatientsAssistancePartial");
             });
 
+        }                         
+
+        [GeneralSecurity(Rol = "PatientsAssistance-MedicalConsultation")]
+        public ActionResult MedicalConsultation(string id)
+        {
+            return View();
         }
 
-        //[GeneralSecurity(Rol = "PatientsAssistance-BoardPatientsAssistance")]
-        //public ActionResult FilterPacient(BoardPatient data)
-        //{
-        //    Api API = new Api();
-        //    Dictionary<string, string> arg = new Dictionary<string, string>()
-        //    {
-        //        { "Patient",data.Patient},
-        //        { "StartDate",data.StartDate == null ? "" :data.StartDate.Value.ToString("yyyy/MM/dd")},
-        //        { "EndDate", data.EndDate== null ? "" :data.EndDate.Value.ToString("yyyy/MM/dd")},
-        //        { "Index", data.Index.ToString()},
-        //        { "Take", data.Take.ToString()}
-        //    };
-        //        ViewBag.Services = API.Post<BoardPatient>("PatientsAssistance/GetAllPatientsAssistance", arg);
+        public JsonResult GetSchedule()
+        {
+            Api API = new Api();
+            string url = "PatientsAssistance/GetSchedule";
+            var result = API.Get<List<Schedule>>(url);
+            return new JsonResult { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
 
-        //        return PartialView("_BoardPatientsAssistancePartial");
+        public async Task<JsonResult> TopDiagnostic()
+        {
+            Api API = new Api();
+            string url = "PatientsAssistance/TopDiagnostic";
+            var result = API.Get<List<TopDiagnostic>>(url);
+            return await Task.Run(() =>
+            {
+                return new JsonResult { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            });
 
-        //}
+        }
 
         public JsonResult Test()
         {
-            #region MyRegion
+            #region ...
             //Api API = new Api();
             //int response = 0;
 
@@ -127,7 +135,7 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
 
         public JsonResult Test2()
         {
-            #region MyRegion
+            #region ...
             //Api API = new Api();
             //int response = 0;
 
@@ -170,42 +178,13 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
             //    return new JsonResult { Data = "100", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             //});
             #endregion
-
             Api API = new Api();
             string url = "PatientsAssistance/GetTest2";
             var result = API.Get<int>(url);
             return new JsonResult { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
-
-
-
-        [GeneralSecurity(Rol = "PatientsAssistance-MedicalConsultation")]
-        public ActionResult MedicalConsultation(string id)
-        {
-            return View();
-        }
-
-        public JsonResult GetSchedule()
-        {
-            Api API = new Api();
-            string url = "PatientsAssistance/GetSchedule";
-            var result = API.Get<List<Schedule>>(url);
-            return new JsonResult { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-        }
-
-        public async Task<JsonResult> TopDiagnostic()
-        {
-            Api API = new Api();
-            string url = "PatientsAssistance/TopDiagnostic";
-            var result = API.Get<List<TopDiagnostic>>(url);
-            return await Task.Run(() =>
-            {
-                return new JsonResult { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-            });
-
-        }
-
+        #region ...
         //public async Task<JsonObject> GetAsync(string uri)
         //{
         //    var httpClient = new HttpClient();
@@ -236,5 +215,27 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
         //    ViewBag.TOPDX = API.Get<List<TopDiagnostic>>("PatientsAssistance/TopDiagnostic");
         //    return PartialView("_TopDiagnosticPartial");
         //}
+        #endregion
+
+        #region ...
+        //[GeneralSecurity(Rol = "PatientsAssistance-BoardPatientsAssistance")]
+        //public ActionResult FilterPacient(BoardPatient data)
+        //{
+        //    Api API = new Api();
+        //    Dictionary<string, string> arg = new Dictionary<string, string>()
+        //    {
+        //        { "Patient",data.Patient},
+        //        { "StartDate",data.StartDate == null ? "" :data.StartDate.Value.ToString("yyyy/MM/dd")},
+        //        { "EndDate", data.EndDate== null ? "" :data.EndDate.Value.ToString("yyyy/MM/dd")},
+        //        { "Index", data.Index.ToString()},
+        //        { "Take", data.Take.ToString()}
+        //    };
+        //        ViewBag.Services = API.Post<BoardPatient>("PatientsAssistance/GetAllPatientsAssistance", arg);
+
+        //        return PartialView("_BoardPatientsAssistancePartial");
+
+        //}
+        #endregion
+
     }
 }

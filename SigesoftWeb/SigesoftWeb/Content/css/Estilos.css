@@ -479,11 +479,12 @@ table tbody {
     display: none
 }
 .classRowsClick {
-    background: rgba(169, 168, 168,0.7);
-    color: #fff;
+    /*background: rgba(169, 168, 168,0.7);*/
+    color: #080505;
+    font-weight:500;
 }
 tr.classRowsClick:hover {
-    background-color: rgba(169, 168, 168,0.7);
+    /*background-color: rgba(169, 168, 168,0.7);*/
     color: gray;
 }
 .informacion {

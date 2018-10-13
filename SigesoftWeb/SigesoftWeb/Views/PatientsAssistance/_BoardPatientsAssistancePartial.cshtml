@@ -23,6 +23,18 @@
     }
 }
 
+<style>
+    .Ocupational {
+        background-color: rgba(83, 242, 140,0.4); /* For browsers that do not support gradients */
+        background-image: linear-gradient(to right,rgba(83, 242, 140,0.5), #ffffff);
+    }
+
+    .Assistence {
+        background-color: rgba(97, 192, 234,0.2); /* For browsers that do not support gradients */
+        background-image: linear-gradient(to right, rgba(97, 192, 234,0.2), #ffffff);
+    }
+</style>
+
 <div class="container-fluid" style="padding:0px;">
     <div class="box box-default mt-2" id="acordion">
         <div class="box-header with-border" id="heading1">
@@ -55,6 +67,7 @@
                         <th>Ges</th>
                         <th>Puesto</th>
                         <th>Género</th>
+                        <th>Servicio</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -72,15 +85,45 @@
                         {
                             foreach (var item in ViewBag.Services.List)
                             {
-                            <tr>
-                                <td class="xxxxx">@item.PatientFullName</td>
-                                <td class="xxxxx">@item.OrganizationLocation</td>
-                                <td class="xxxxx">@item.ProtocolName</td>
-                                <td class="xxxxx">@item.Geso</td>
-                                <td class="xxxxx">@item.Occupation</td>
-                                <td class="xxxxx">@item.Gender</td>
-                                <td><a href="@Url.Action("", "", new { id = item.PatientFullName })"><span class="icon-edit"></span></a></td>
-                            </tr>
+                                if (item.MasterServiceId == 2)
+                                {
+                                    <tr class="Assistence">
+                                        <td class="ColumnNoWrap">@item.PatientFullName</td>
+                                        <td class="ColumnNoWrap">@item.OrganizationLocation</td>
+                                        <td class="ColumnNoWrap">@item.ProtocolName</td>
+                                        <td class="ColumnNoWrap">@item.Geso</td>
+                                        <td class="ColumnNoWrap">@item.Occupation</td>
+                                        <td class="ColumnNoWrap">@item.Gender</td>
+                                        <td class="ColumnNoWrap">@item.MasterService</td>
+                                        <td><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = item.ServiceId })"><span class="d-flex justify-content-center iconEdit align-items-center icon-edit"></span></a></td>
+                                    </tr>
+                                }
+                                else if (item.MasterServiceId == 10)
+                                {
+                                    <tr class="Ocupational">
+                                        <td class="ColumnNoWrap">@item.PatientFullName</td>
+                                        <td class="ColumnNoWrap">@item.OrganizationLocation</td>
+                                        <td class="ColumnNoWrap">@item.ProtocolName</td>
+                                        <td class="ColumnNoWrap">@item.Geso</td>
+                                        <td class="ColumnNoWrap">@item.Occupation</td>
+                                        <td class="ColumnNoWrap">@item.Gender</td>
+                                        <td class="ColumnNoWrap">@item.MasterService</td>
+                                        <td><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = item.ServiceId })"><span class="d-flex justify-content-center iconEdit align-items-center icon-edit"></span></a></td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr >
+                                        <td class="ColumnNoWrap">@item.PatientFullName</td>
+                                        <td class="ColumnNoWrap">@item.OrganizationLocation</td>
+                                        <td class="ColumnNoWrap">@item.ProtocolName</td>
+                                        <td class="ColumnNoWrap">@item.Geso</td>
+                                        <td class="ColumnNoWrap">@item.Occupation</td>
+                                        <td class="ColumnNoWrap">@item.Gender</td>
+                                        <td class="ColumnNoWrap">@item.MasterService</td>
+                                        <td><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = item.ServiceId })"><span class="d-flex justify-content-center iconEdit align-items-center icon-edit"></span></a></td>
+                                    </tr>
+                                }
                             }
                         }
                     }

@@ -36,12 +36,16 @@ namespace BL.MedicalAssistance
                             join f in ctx.Organization on e.v_CustomerOrganizationId equals f.v_OrganizationId
                             join g in ctx.Location on e.v_CustomerLocationId equals g.v_LocationId
                             join h in ctx.GroupOccupation on e.v_GroupOccupationId equals h.v_GroupOccupationId
+                            join i in ctx.SystemParameter on new { a = a.i_MasterServiceId.Value, b = 119 } equals new { a = i.i_ParameterId, b = i.i_GroupId }
+                               //join N in dbContext.systemparameter on new { a = A.i_MasterServiceId.Value, b = 119 } equals new { a = N.i_ParameterId, b = N.i_GroupId } into N_join
+                               //from N in N_join.DefaultIfEmpty()
 
-                            where a.i_IsDeleted == isDeleted
+                               where a.i_IsDeleted == isDeleted
                                     && (b.v_FirstName.Contains(filterPacient) || b.v_FirstLastName.Contains(filterPacient) || b.v_SecondLastName.Contains(filterPacient) || b.v_DocNumber.Contains(filterPacient))
                                       && (startDate < a.d_ServiceDate && endDate > a.d_ServiceDate)
                                select new Patients
                             {
+                                ServiceId = a.v_ServiceId,
                                 PatientId = a.v_PersonId,
                                 PatientFullName = b.v_FirstName + " " + b.v_FirstLastName + " " + b.v_SecondLastName,
                                 DocumentType = c.v_Value1,
@@ -52,12 +56,15 @@ namespace BL.MedicalAssistance
                                 Gender = d.v_Value1,
                                 ProtocolName = e.v_Name,
                                 OrganizationLocation = f.v_Name + " " + g.v_Name,
-                                Geso = h.v_Name
+                                Geso = h.v_Name,
+                                MasterServiceId = a.i_MasterServiceId.Value,
+                                MasterService = i.v_Value1
                             }).ToList();
 
                 var list = (from a in preList
                             select new Patients
                             {
+                                ServiceId = a.ServiceId,
                                 PatientId = a.PatientId,
                                 PatientFullName = a.PatientFullName,
                                 DocumentType = a.DocumentType,
@@ -69,7 +76,9 @@ namespace BL.MedicalAssistance
                                 Gender = a.Gender,
                                 ProtocolName =a.ProtocolName,
                                 OrganizationLocation = a.OrganizationLocation,
-                                Geso = a.Geso
+                                Geso = a.Geso,
+                                MasterServiceId = a.MasterServiceId,
+                                MasterService = a.MasterService
                             }).ToList();
 
                 int totalRecords = list.Count;
@@ -81,6 +90,62 @@ namespace BL.MedicalAssistance
                 data.List = list;
 
                 return data;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        
+        public List<Schedule> GetSchedule()
+        {
+            try
+            {
+                var isDeleted = (int)Enumeratores.SiNo.No;
+                var list = (from a in ctx.Service
+                               join b in ctx.Person on a.v_PersonId equals b.v_PersonId                               
+                               where a.i_IsDeleted == isDeleted                                     
+                               select new Schedule
+                               {
+                                   PacientId = a.v_PersonId,
+                                   Pacient = b.v_FirstName + " " + b.v_FirstLastName + " " + b.v_SecondLastName,                               
+                                   ServiceDate = a.d_ServiceDate.Value                               
+                               }).ToList();               
+
+                return list;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public List<TopDiagnostic> TopDiagnostic()
+        {
+            try
+            {
+                //Thread.Sleep(5000);
+                var isDeleted = (int)Enumeratores.SiNo.No;
+                var list = (from a in ctx.DiagnosticRepository
+                            join b in ctx.Diseases on a.v_DiseasesId equals b.v_DiseasesId
+                            where a.i_IsDeleted == isDeleted
+                            select new 
+                            {
+                                DiagnosticId = a.v_DiseasesId,
+                                Diagnostic = b.v_Name,                               
+                            }).ToList();
+
+                var group = list
+                            .GroupBy(n => n.Diagnostic)
+                            .Select(n => new TopDiagnostic
+                            {
+                                name = n.Key,
+                                y = n.Count()
+                            }).OrderByDescending(n => n.y).Take(10);
+
+                return group.ToList();
 
             }
             catch (Exception ex)
@@ -131,62 +196,6 @@ namespace BL.MedicalAssistance
                     totalRecords = preList.Count;
                 }
                 return totalRecords;
-
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
-
-        public List<Schedule> GetSchedule()
-        {
-            try
-            {
-                var isDeleted = (int)Enumeratores.SiNo.No;
-                var list = (from a in ctx.Service
-                               join b in ctx.Person on a.v_PersonId equals b.v_PersonId                               
-                               where a.i_IsDeleted == isDeleted                                     
-                               select new Schedule
-                               {
-                                   PacientId = a.v_PersonId,
-                                   Pacient = b.v_FirstName + " " + b.v_FirstLastName + " " + b.v_SecondLastName,                               
-                                   ServiceDate = a.d_ServiceDate.Value                               
-                               }).ToList();               
-
-                return list;
-
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
-
-        public List<TopDiagnostic> TopDiagnostic()
-        {
-            try
-            {
-                //Thread.Sleep(5000);
-                var isDeleted = (int)Enumeratores.SiNo.No;
-                var list = (from a in ctx.DiagnosticRepository
-                            join b in ctx.Diseases on a.v_DiseasesId equals b.v_DiseasesId
-                            where a.i_IsDeleted == isDeleted
-                            select new 
-                            {
-                                DiagnosticId = a.v_DiseasesId,
-                                Diagnostic = b.v_Name,                               
-                            }).ToList();
-
-                var group = list
-                            .GroupBy(n => n.Diagnostic)
-                            .Select(n => new TopDiagnostic
-                            {
-                                name = n.Key,
-                                y = n.Count()
-                            }).OrderByDescending(n => n.y).Take(10);
-
-                return group.ToList();
 
             }
             catch (Exception ex)
