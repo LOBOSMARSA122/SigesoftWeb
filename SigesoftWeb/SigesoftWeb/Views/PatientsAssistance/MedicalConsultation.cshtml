@@ -23,16 +23,16 @@
                         <form action="/">
                             <div class="form-group row">
                                 <div class="col-12 col-md-4">
-                                    <label for="nombre">Paciente</label>
-                                    <input type="text" class="form-control" placeholder="Paciente" name="pacient" id="pacient" />
+                                    <input type="text" class="form-control inputLabelFloat" placeholder="" name="pacient" id="pacient" />
+                                    <label for="nombre" class="has-float-label">Paciente</label>
                                 </div>
                                 <div class="col-12 col-md-4">
-                                    <label for="nombre">Empresa/Sede/Área</label>
-                                    <input type="text" class="form-control" placeholder="Empresa/Sede/Área" name="pass" id="pass" />
+                                    <input type="text" class="form-control inputLabelFloat" placeholder="" name="pass" id="pass" />
+                                    <label for="nombre" class="has-float-label">Empresa/Sede/Área</label>
                                 </div>
                                 <div class="col-12 col-md-4">
-                                    <label for="nombre">Puesto</label>
-                                    <input type="text" class="form-control" placeholder="Puesto" name="pacient" id="pacient" />
+                                    <input type="text" class="form-control inputLabelFloat" placeholder="" name="pacient" id="pacient" />
+                                    <label for="nombre" class="has-float-label">Puesto</label>
                                 </div>
                             </div>
                         </form>
@@ -49,7 +49,7 @@
                 <div class="row" style="margin:0px; padding:0px;">
                     <div class="col-12">
                         <form action="/" class="formGroup">
-                            <div class="form-group row formGroup">
+                            <div class="form-group row">
                                 <div class="col-12 col-md-2">
                                     <input type="text" class="form-control inputLabelFloat" placeholder="" name="pacient" id="pacient" />
                                     <label for="nombre" class="has-float-label">Peso</label>
@@ -98,25 +98,25 @@
                                 </div>
                             </div>
                             <div class="form-group row" style="margin-left:0px; margin-right:0px;">
-                                <div class="col-12" style="border: 1px rgba(173, 173,173, 0.3) solid;">
-                                    <label for="nombre">Motivo de Consulta</label>
-                                    <div class="row" style="padding-left:10px; padding-right:10px">
-                                        <div class="col-12 col-md-4">
-                                            <label class="xxxx">
+                                <div class="col-12 mt-3" style="border: 1px rgba(173, 173,173, 0.3) solid;">
+                                    <label for="nombre" class="labelMotivo">Motivo de Consulta</label>
+                                    <div class="row pt-0 pb-0" style="padding-left:10px; padding-right:10px">
+                                        <div class="col-12 col-md-4 ">
+                                            <label class="xxxx radButton">
                                                 Ambulatoria
                                                 <input type="radio" checked="checked" name="radio">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
                                         <div class="col-12 col-md-4">
-                                            <label class="xxxx">
+                                            <label class="xxxx radButton">
                                                 Urgencia
                                                 <input type="radio" name="radio">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
                                         <div class="col-12 col-md-4">
-                                            <label class="xxxx">
+                                            <label class="xxxx radButton">
                                                 Emergencia
                                                 <input type="radio" name="radio">
                                                 <span class="checkmark"></span>
@@ -142,7 +142,27 @@
                     <input id="heightDivTopDx" type="hidden" value="">
                     <div id="DivTopDx" style="overflow:hidden">
                         <div class="row info">
-                            <img class="img-fluid" src="~/Content/Images/Boceto.png" />
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="peso-tab" data-toggle="tab" role="tab" aria-controls="Peso" aria-selected="true" onclick="NavTabActive()" href="#Peso">Peso</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="Hemoglobina-tab" data-toggle="tab" role="tab" aria-controls="Hemoglobina" aria-selected="true" onclick="NavTabActive()" href="#Hemoglobina">Hemoglobina</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="Talla-tab" data-toggle="tab" role="tab" aria-controls="Talla" aria-selected="true" onclick="NavTabActive()" href="#Talla">Talla</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="Presión-tab" data-toggle="tab" role="tab" aria-controls="Presion" aria-selected="true" onclick="NavTabActive()" href="#Presion">Presión</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="Peso" role="tabpanel" aria-labelledby="home-tab">Peso<img class="img-fluid" src="~/Content/Images/Boceto.png" /></div>
+                                <div class="tab-pane fade" id="Hemoglobina" role="tabpanel" aria-labelledby="profile-tab">Hemoglobina<img class="img-fluid" src="~/Content/Images/Boceto.png" /></div>
+                                <div class="tab-pane fade" id="Talla" role="tabpanel" aria-labelledby="contact-tab">Talla<img class="img-fluid" src="~/Content/Images/Boceto.png" /></div>
+                                <div class="tab-pane fade" id="Presion" role="tabpanel" aria-labelledby="contact-tab">Presión<img class="img-fluid" src="~/Content/Images/Boceto.png" /></div>
+                            </div>
+                            
                         </div>
                     </div>
 
@@ -241,26 +261,20 @@
 <link href="~/Content/Themes/FormValidatorTheme.css" rel="stylesheet" type="text/css" />
 <script>
     $(document).ready(function () {
-        //var inputs = $(".inputLabelFloat");
-        //for (var i = 0; i < inputs.length; i++) {
-        //    $(".inputLabelFloat")[i].keyup(function () {
-        //        if (this.value.lenght >= 1) {
-        //            this.next().toggleClass('static')
-        //        } else {
-        //            this.next().toggleClass('static')
-        //        }
-        //    });
-        //}
         var inputs = document.getElementsByClassName('inputLabelFloat');
-    for (var i = 0; i < inputs.length; i++) {
-        inputs[i].addEventListener('keyup', function () {
-            if (this.value.length >= 1) {
-                this.nextElementSibling.classList.add('static');
-            } else {
-                this.nextElementSibling.classList.remove('static');
-            }
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].addEventListener('keyup', function () {
+                if (this.value.length >= 1) {
+                    this.nextElementSibling.classList.add('static');
+                } else {
+                    this.nextElementSibling.classList.remove('static');
+                }
         });
     }
     })
+    function NavTabActive() {
+        $("ul li a").removeClass("active");
+        $(this).toggleClass("active");
+    }
     
 </script>
