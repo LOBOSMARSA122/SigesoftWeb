@@ -44,7 +44,7 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
                 return PartialView("_BoardPatientsAssistancePartial");
             });
 
-        }                         
+        }
 
         [GeneralSecurity(Rol = "PatientsAssistance-MedicalConsultation")]
         public async Task<ActionResult> MedicalConsultation(string id)
