@@ -137,7 +137,7 @@
             <div class="row notice ">
                 <div class="col-12 Chart mr-0">
                     <div class="row title" onclick="ColapseTable('DivTopDx','heightDivTopDx')">
-                        Top Diagnósticos
+                        Indicadores
                     </div>
                     <input id="heightDivTopDx" type="hidden" value="">
                     <div id="DivTopDx" style="overflow:hidden">
@@ -156,7 +156,7 @@
                                     <a class="nav-link" id="Presión-tab" data-toggle="tab" role="tab" aria-controls="Presion" aria-selected="true" onclick="NavTabActive()" href="#Presion">Presión</a>
                                 </li>
                             </ul>
-                            <div class="tab-content" id="myTabContent">
+                            <div class="tab-content" id="myTabContent" style="width:100%">
                                 <div class="tab-pane fade show active" id="Weight" role="tabpanel" aria-labelledby="home-tab">@Html.Partial("_WeightPartial")</div>
                                 <div class="tab-pane fade" id="Hemoglobina" role="tabpanel" aria-labelledby="profile-tab">@*@Html.Partial("_RecordHemoglobinaPartial"*@</div>
                                 <div class="tab-pane fade" id="Talla" role="tabpanel" aria-labelledby="contact-tab">@*@Html.Partial("_RecordTallaPartial")*@</div>
