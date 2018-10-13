@@ -1,9 +1,8 @@
 ﻿@{
-    Dictionary<string, int> Chart1 = new Dictionary<string, int>();
+    Dictionary<string, string> Chart1 = new Dictionary<string, string>();
 
-    List<string> Tiempo = new List<string>();
-    List<string> TotalPeso = new List<string>();
-
+    List<string> WeightDate = new List<string>();
+    List<string> Weight = new List<string>();
 
 }
 
@@ -15,20 +14,24 @@
 
 <div>
     @{
-        if (ViewBag.TOPDX != null)
+        if (ViewBag.Indicators != null)
         {
-            foreach (var item in ViewBag.TOPDX)
+
+            var item = ViewBag.Indicators;
+
+            for (int i = 0; i < item.Weights.Count; i++)
             {
-                Chart1.Add(string.IsNullOrWhiteSpace(item.Diagnostic) ? "" : item.Diagnostic, item.TotalDiagnostic);
+                var a = ViewBag.Indicators.Weights[i].y;
+                Chart1.Add(string.IsNullOrWhiteSpace(item.Weights[i].Date) ? "" : item.Weights[i].Date, a);
             }
 
-            Tiempo = Chart1.OrderByDescending(x => x.Value).Select(x => x.Key).ToList();
-            TotalPeso = Chart1.OrderByDescending(x => x.Value).Select(x => x.Value.ToString()).ToList();
+            WeightDate = Chart1.OrderByDescending(x => x.Value).Select(x => x.Key).ToList();
+            Weight = Chart1.OrderByDescending(x => x.Value).Select(x => x.Value.ToString()).ToList();
 
         }
         else
         {
-            ViewBag.TOPDX = 10;
+            ViewBag.Indicators = 10;
         }
 
     }
@@ -42,61 +45,69 @@
     else
     {
         <script>
-    function Load(data) {
-        var obj = JSON.parse(data);
-                Highcharts.chart('chart1', {
+    function Load() {      
+            Highcharts.chart('chart1', {
 
-                    title: {
-                        text: 'Historial'
-                    },
+                title: {
+                    text: 'Historial'
+                },
 
-                    subtitle: {
-                        text: ''
-                    },
-
-                    yAxis: {
-                        title: {
-                            text: 'Kilogramos'
-                        }
-                    },
-                    legend: {
-                        layout: 'horizontal',
-                        align: 'right',
-                        verticalAlign: 'middle'
-                    },
-
-                    plotOptions: {
-                        series: {
-                            label: {
-                                connectorAllowed: false
-                            },
-                            pointStart: 2010
-                        }
-                    },
-
-                    series: [{
-                        name: 'Peso',
-                        data: [],
-                    }],
-
-                    responsive: {
-                        rules: [{
-                            condition: {
-                                maxWidth: 500
-                            },
-                            chartOptions: {
-                                legend: {
-                                    layout: 'horizontal',
-                                    align: 'center',
-                                    verticalAlign: 'bottom'
-                                }
-                            }
-                        }]
-                    }
-
-                });
+                subtitle: {
+                    text: ''
+                },
                 
-            }
+                yAxis: {
+                    title: {
+                        text: 'Kilogramos'
+                    }
+                },
+                legend: {
+                    layout: 'horizontal',
+                    align: 'right',
+                    verticalAlign: 'middle'
+                },
+
+                plotOptions: {
+                    series: {
+                        label: {
+                            connectorAllowed: false
+                        },
+                        //pointStart: '2018-10-07'
+                    }
+                },
+                xAxis: {
+
+                    categories: ['@Html.Raw(string.Join("','", WeightDate))'],
+                    labels: {
+                        skew3d: true,
+                        style: {
+                            fontSize: '16px'
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Peso',
+                    data: [@Html.Raw(string.Join(",", Weight))],
+                }],
+
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500
+                        },
+                        chartOptions: {
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            }
+                        }
+                    }]
+                }
+
+            });
+                
+        }
         </script>
     }
 }

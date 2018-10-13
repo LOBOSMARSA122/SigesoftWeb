@@ -502,10 +502,10 @@
     <Content Include="Views\Report\ProductOutput.cshtml" />
     <Content Include="Views\Report\_ReportProductPartial.cshtml" />
     <Content Include="Views\PatientsAssistance\_TopDiagnosticPartial.cshtml" />
-    <Content Include="Views\PatientsAssistance\_RecordPesoPartial.cshtml" />
-    <Content Include="Views\PatientsAssistance\_RecordHemoglobinaPartial.cshtml" />
-    <Content Include="Views\PatientsAssistance\_RecordTallaPartial.cshtml" />
-    <Content Include="Views\PatientsAssistance\_RecordPresionPartial.cshtml" />
+    <Content Include="Views\PatientsAssistance\_WeightPartial.cshtml" />
+    <Content Include="Views\PatientsAssistance\_HemoglobinPartial.cshtml" />
+    <Content Include="Views\PatientsAssistance\_SizePartial.cshtml" />
+    <Content Include="Views\PatientsAssistance\_PressurePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

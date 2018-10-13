@@ -144,7 +144,7 @@
                         <div class="row info">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="peso-tab" data-toggle="tab" role="tab" aria-controls="Peso" aria-selected="true" onclick="NavTabActive()" href="#Peso">Peso</a>
+                                    <a class="nav-link active" id="weight-tab" data-toggle="tab" role="tab" aria-controls="Weight" aria-selected="true" onclick="NavTabActive()" href="#Weight">Peso</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="Hemoglobina-tab" data-toggle="tab" role="tab" aria-controls="Hemoglobina" aria-selected="true" onclick="NavTabActive()" href="#Hemoglobina">Hemoglobina</a>
@@ -157,12 +157,12 @@
                                 </li>
                             </ul>
                             <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="Peso" role="tabpanel" aria-labelledby="home-tab">@Html.Partial("_RecordPesoPartial")</div>
-                                <div class="tab-pane fade" id="Hemoglobina" role="tabpanel" aria-labelledby="profile-tab">@Html.Partial("_RecordHemoglobinaPartial")</div>
-                                <div class="tab-pane fade" id="Talla" role="tabpanel" aria-labelledby="contact-tab">@Html.Partial("_RecordTallaPartial")</div>
-                                <div class="tab-pane fade" id="Presion" role="tabpanel" aria-labelledby="contact-tab">@Html.Partial("_RecordPresionPartial")</div>
+                                <div class="tab-pane fade show active" id="Weight" role="tabpanel" aria-labelledby="home-tab">@Html.Partial("_WeightPartial")</div>
+                                <div class="tab-pane fade" id="Hemoglobina" role="tabpanel" aria-labelledby="profile-tab">@*@Html.Partial("_RecordHemoglobinaPartial"*@</div>
+                                <div class="tab-pane fade" id="Talla" role="tabpanel" aria-labelledby="contact-tab">@*@Html.Partial("_RecordTallaPartial")*@</div>
+                                <div class="tab-pane fade" id="Presion" role="tabpanel" aria-labelledby="contact-tab">@*@Html.Partial("_RecordPresionPartial")*@</div>
                             </div>
-                            
+
                         </div>
                     </div>
 
@@ -198,31 +198,41 @@
                             </div>
                         </div>
                     </div>
-                </div>               
+                </div>
             </div>
         </aside>
     </section>
 </div>
+
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/JqueryFormValidate.js"></script>
 <script src="~/Scripts/FormValidateSecurity.js"></script>
+
+<script src="~/Scripts/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="~/Scripts/exporting.js"></script>
+<script src="~/Scripts/offline-exporting.js"></script>
+<link href="~/Content/css/highcharts.css" rel="stylesheet">
+
 <link href="~/Content/Themes/FormValidatorTheme.css" rel="stylesheet" type="text/css" />
+
 <script>
     $(document).ready(function () {
+        Load();
         var inputs = document.getElementsByClassName('inputLabelFloat');
-            for (var i = 0; i < inputs.length; i++) {
-                inputs[i].addEventListener('keyup', function () {
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].addEventListener('keyup', function () {
                 if (this.value.length >= 1) {
                     this.nextElementSibling.classList.add('static');
                 } else {
                     this.nextElementSibling.classList.remove('static');
                 }
-        });
-    }
+            });
+        }
     })
     function NavTabActive() {
         $("ul li a").removeClass("active");
         $(this).toggleClass("active");
     }
-    
+
 </script>

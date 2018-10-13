@@ -44,7 +44,7 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
                 return PartialView("_BoardPatientsAssistancePartial");
             });
 
-        }                         
+        }
 
         [GeneralSecurity(Rol = "PatientsAssistance-MedicalConsultation")]
         public async Task<ActionResult> MedicalConsultation(string id)
@@ -54,14 +54,14 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
             {
                 { "pacientId",id},
                 { "componentFieldId","N002-MF000000008"},
-               
+
             };
 
             return await Task.Run(() =>
             {
                 ViewBag.Indicators = API.Get<Indicators>("PatientsAssistance/IndicatorByPacient", arg);
 
-                return PartialView("_WeightPartial");
+                return View();
             });
         }
 
