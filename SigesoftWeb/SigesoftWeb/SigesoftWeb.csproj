@@ -208,6 +208,7 @@
     <Content Include="Content\css\bootstrap-treeview.css" />
     <Content Include="Content\css\bootstrap-treeview.min.css" />
     <Content Include="Content\css\Estilos.css" />
+    <Content Include="Content\css\FloatLabel.css" />
     <Content Include="Content\css\fontello-codes.css" />
     <Content Include="Content\css\fontello-embedded.css" />
     <Content Include="Content\css\fontello-ie7-codes.css" />
