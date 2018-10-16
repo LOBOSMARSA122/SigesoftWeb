@@ -1,0 +1,91 @@
+﻿<div class="" id="reporte11" style="width:100%">
+    <div id="chartLoadMonthlyControls" class="chart table-responsive"></div>
+</div>
+
+
+@{
+
+    if (Request.Browser.Browser == "IE" && Convert.ToDouble(Request.Browser.Version) < 9.0)
+    {
+    }
+    else
+    {
+        <script>
+            function LoadMonthlyControls(data) {
+                var obj = JSON.parse(data);
+                var days = obj.NroDays;
+                var controls = obj.DailyControls;
+                var controlsCompleted = obj.DailyControlsCompleted;
+
+                var arrDays = [];
+                var arrControls = [];
+                var arrControlsCompleted = [];
+
+                for (var x in days) {
+                    arrDays.push(days[x].NroDay);
+                }
+
+                for (var x in controls) {
+                    arrControls.push(parseInt(controls[x].y));
+                }
+
+                for (var x in controlsCompleted) {
+                    arrControlsCompleted.push(parseInt(controlsCompleted[x].y));
+                }
+
+                console.log(arrControls);
+                console.log(arrControlsCompleted);
+
+
+                Highcharts.chart('chartLoadMonthlyControls', {
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Efficiency Optimization by Branch'
+                    },
+                    xAxis: {
+                        categories: arrDays
+                    },
+                    yAxis: [{
+                        min: 0,
+                        title: {
+                            text: 'Employees'
+                        }
+                    }, {
+                        title: {
+                            text: 'Profit (millions)'
+                        },
+                        opposite: true
+                    }],
+                    legend: {
+                        shadow: false
+                    },
+                    tooltip: {
+                        shared: true
+                    },
+                    plotOptions: {
+                        column: {
+                            grouping: false,
+                            shadow: false,
+                            borderWidth: 0
+                        }
+                    },
+                    series: [{
+                        name: 'Controles',
+                        color: 'rgba(165,170,217,1)',
+                        data: arrControls,
+                        pointPadding: 0.3,
+                        pointPlacement: -0.2
+                    }, {
+                        name: 'Controles Completados',
+                        color: 'rgba(126,86,134,.9)',
+                            data: arrControlsCompleted,
+                        pointPadding: 0.4,
+                        pointPlacement: -0.2
+                    }]
+                });
+            }
+        </script>
+    }
+}

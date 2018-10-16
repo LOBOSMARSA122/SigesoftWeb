@@ -103,5 +103,8 @@ namespace BE.Service
         public int? i_IsFacMedico { get; set; }
         public string v_centrocosto { get; set; }
         public string v_NroLiquidacion { get; set; }
+
+        public int? i_StatusControl { get; set; }
+        public int? i_IsControl { get; set; }
     }
 }

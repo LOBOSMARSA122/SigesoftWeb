@@ -83,6 +83,18 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
 
         }
 
+        public async Task<JsonResult> MonthlyControls()
+        {
+            Api API = new Api();
+            string url = "PatientsAssistance/MonthlyControls";
+            var result = API.Get<MonthlyControls>(url);
+            return await Task.Run(() =>
+            {
+                return new JsonResult { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            });
+
+        }
+
         public JsonResult Test()
         {
             #region ...

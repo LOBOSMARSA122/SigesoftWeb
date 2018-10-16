@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using static BE.Common.Enumeratores;
 
 namespace BL.MedicalAssistance
 {
@@ -320,6 +321,66 @@ namespace BL.MedicalAssistance
             {
                 throw;
             }
+        }
+
+        public MonthlyControls MonthlyControls()
+        {
+           var currentDate = DateTime.Today;
+           var firstDay = new DateTime(currentDate.Year, currentDate.Month, 1);
+           var lastDay = new DateTime(currentDate.Year, currentDate.Month + 1, 1).AddDays(-1);
+
+            var services = (from A in ctx.Service
+                            join B in ctx.Protocol on A.v_ProtocolId equals B.v_ProtocolId
+                            where (A.d_ServiceDate >= firstDay && A.d_ServiceDate <= lastDay)
+                                    && A.i_IsDeleted == 0 && A.i_MasterServiceId == 21 && B.i_MasterServiceTypeId == 20
+                            select new
+                            {
+                                ServiceDate = A.d_ServiceDate,
+                                StatusControl = A.i_ServiceStatusId,
+                                IsControl =A.i_IsControl
+                            }).ToList().OrderBy(o => o.ServiceDate);
+
+            var oMonthlyControls = new MonthlyControls();
+            oMonthlyControls.Date = currentDate.Date.Month.ToString();
+
+            var listDays = new List<Day>();
+            var listControlDay = new List<ControlDay>();
+            var listControlDayCompleted = new List<ControlCompletedDay>();
+
+            for (int i = 1; i <= lastDay.Day; i++)
+            {
+                #region Days
+                var oDay = new Day();
+                var fecha = new DateTime(currentDate.Year, currentDate.Month, i);
+                oDay.NroDay = fecha.ToString("ddd") + "-" + i;
+                listDays.Add(oDay);
+                oMonthlyControls.NroDays = listDays;
+                #endregion
+                #region Controles
+                var ControlsDay = services.ToList().FindAll(p => p.ServiceDate.Value.Day == i);
+
+                var oControlDay = new ControlDay();
+                oControlDay.Date = new DateTime(currentDate.Year, currentDate.Month, i).ToString();
+                oControlDay.y = ControlsDay.Count().ToString();
+                listControlDay.Add(oControlDay);
+
+                oMonthlyControls.DailyControls = listControlDay;
+                #endregion
+
+                #region Controles Completados
+                var ControlsDayCompleted = services.ToList().FindAll(p => p.ServiceDate.Value.Day == i && p.StatusControl == (int)ServiceStatus.Completed);
+
+                var oControlCompletedDay = new ControlCompletedDay();
+                oControlCompletedDay.Date = new DateTime(currentDate.Year, currentDate.Month, i).ToString();
+                oControlCompletedDay.y = ControlsDayCompleted.Count().ToString();
+                listControlDayCompleted.Add(oControlCompletedDay);
+
+                oMonthlyControls.DailyControlsCompleted = listControlDayCompleted;
+                #endregion
+
+            }
+            return oMonthlyControls;
+
         }
     }
 }

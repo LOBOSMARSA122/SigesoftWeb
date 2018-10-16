@@ -72,5 +72,14 @@ namespace SigesoftWebAPI.Controllers.MedicalAssistance
                 return Ok(result);
             });
         }
+
+        [HttpGet]
+        public async Task<IHttpActionResult> MonthlyControls()
+        {
+            return await Task.Run(() => {
+                var result = oPatientsAssistanceBL.MonthlyControls();
+                return Ok(result);
+            });
+        }
     }
 }

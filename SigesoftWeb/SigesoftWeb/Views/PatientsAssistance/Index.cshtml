@@ -118,15 +118,25 @@
                         Top 10 Diagnósticos
                     </div>
                     <input id="heightdivTopDx" type="hidden" value="">
-                    <div id="divTopDx"  style="overflow:hidden">
+                    <div id="divTopDx" style="overflow:hidden">
                         <div class="row info" id="RenderTopDiagnostic">
-                            @*<img class="img-fluid" src="~/Content/Images/Boceto.png" />*@
                             @Html.Partial("_TopDiagnosticPartial")
                         </div>
                     </div>
 
                 </div>
+                <div class="col-12 Chart wrapperMonthlyControls loadingGrid">
+                    <div class="row title" onclick="ColapseTable('divMonthlyControls','heightDivMonthlyControls')">
+                        Controles Mensuales
+                    </div>
+                    <input id="heightDivMonthlyControls" type="hidden" value="">
+                    <div id="divMonthlyControls" style="overflow:hidden">
+                        <div class="row info" id="RenderHeightdivMonthlyControls">
+                            @Html.Partial("_MonthlyControlsPartial")
+                        </div>
+                    </div>
 
+                </div>
                 <div class="col-12 Chart">
                     <div class="row title" onclick="ColapseTable('DivNotices','heightDivNotices')">
                         Avisos Diarios
@@ -181,7 +191,6 @@
             <script src="~/Scripts/highcharts-3d.js"></script>
             <script src="~/Scripts/exporting.js"></script>
             <script src="~/Scripts/offline-exporting.js"></script>
-
             <link href="~/Content/css/highcharts.css" rel="stylesheet">
         }
     }
@@ -195,10 +204,10 @@
         $(document).ready(function () {
             LoadSchedule();
             LoadTopDiagnostic();
-            Filter(1);
-            
-            
+            MonthlyControls();
+            Filter(1);    
         });
+
         function LoadTopDiagnostic() {            
             $('.wrapperTopDx').addClass('loadingGrid');
             $.ajax({
@@ -210,8 +219,7 @@
                 success: function (html) {
                     if (html.indexOf("IniciarSesion") == -1) {
                         $('.wrapperTopDx').removeClass('loadingGrid');
-                        Load(html);
-                       
+                        Load(html);                       
                     } else {
                         location.href = "/";
                     }
@@ -219,6 +227,30 @@
                 error: function (error) {
                     alerta("Sucedió un error al conectarse al servidor", "rojo");
                     $('.wrapperTopDx').removeClass('loadingGrid');
+                    console.log(error);
+                }
+            });
+        }
+
+        function MonthlyControls() {
+            $('.wrapperMonthlyControls').addClass('loadingGrid');
+            $.ajax({
+                cache: false,
+                dataType: 'html',
+                method: 'GET',
+                async: true,
+                url: '/PatientsAssistance/MonthlyControls',
+                success: function (html) {
+                    if (html.indexOf("IniciarSesion") == -1) {
+                        $('.wrapperMonthlyControls').removeClass('loadingGrid');
+                        LoadMonthlyControls(html);
+                    } else {
+                        location.href = "/";
+                    }
+                },
+                error: function (error) {
+                    alerta("Sucedió un error al conectarse al servidor", "rojo");
+                    $('.wrapperMonthlyControls').removeClass('loadingGrid');
                     console.log(error);
                 }
             });

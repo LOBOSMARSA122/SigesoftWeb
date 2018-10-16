@@ -1,41 +1,8 @@
-﻿@{
-    Dictionary<string, int> Chart1 = new Dictionary<string, int>();
-
-    List<string> Diagnostic = new List<string>();
-    List<string> TotalDiagnostic = new List<string>();
-    string Total =  "0,1,2";
-
-}
-
-
-
+﻿
     <div class="" id="reporte11"  style="width:100%">
         <div id="chart1" class="chart table-responsive"></div>
     </div>  
 
-<div>
-    @{
-        if (ViewBag.TOPDX != null)
-        {
-            foreach (var item in ViewBag.TOPDX)
-            {
-                Chart1.Add(string.IsNullOrWhiteSpace(item.Diagnostic) ? "" : item.Diagnostic, item.TotalDiagnostic);
-                Total += item.TotalDiagnostic + ",";
-            }
-
-            Diagnostic = Chart1.OrderByDescending(x => x.Value).Select(x => x.Key).ToList();
-            TotalDiagnostic = Chart1.OrderByDescending(x => x.Value).Select(x => x.Value.ToString()).ToList();
-            Total = Chart1.OrderByDescending(x => x.Value).Select(x => x.Value.ToString()).ToList()[0];
-
-        }
-        else
-        {
-            ViewBag.TOPDX = 10;
-        }
-
-    }
-       
-</div>
     @{
 
         if (Request.Browser.Browser == "IE" && Convert.ToDouble(Request.Browser.Version) < 9.0)

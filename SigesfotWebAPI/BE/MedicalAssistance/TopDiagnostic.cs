@@ -65,6 +65,30 @@ namespace BE.MedicalAssistance
         public string Date { get; set; }
         public string y { get; set; }
     }
-
+       
+    public class MonthlyControls
+    {
+        public string Date { get; set; }
+        public List<Day> NroDays { get; set; }
+        public List<ControlDay> DailyControls { get; set; }
+        public List<ControlCompletedDay> DailyControlsCompleted { get; set; }
+    }
     
+    public class Day
+    {
+        public string NroDay { get; set; }
+    }
+
+    public class ControlDay
+    {
+        public string Date { get; set; }
+        public string y { get; set; }
+    }
+
+    public class ControlCompletedDay
+    {
+        public string Date { get; set; }
+        public string y { get; set; }
+    }
+
 }

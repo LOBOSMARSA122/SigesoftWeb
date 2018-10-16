@@ -49,5 +49,14 @@ namespace BE.Common
             Assistence = 10,
         }
 
+        public enum ServiceStatus
+        {
+            PorIniciar = 1,
+            Iniciado = 2,
+            Completed = 3,
+            Incompleto = 4,
+            Cancelado = 5,
+            EsperandoAptitud = 6
+        }
     }
 }

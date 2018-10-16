@@ -508,6 +508,7 @@
     <Content Include="Views\PatientsAssistance\_CholesterolPartial.cshtml" />
     <Content Include="Views\PatientsAssistance\_BloodPressurePartial.cshtml" />
     <Content Include="Views\PatientsAssistance\_GlucosePartial.cshtml" />
+    <Content Include="Views\PatientsAssistance\_MonthlyControlsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
