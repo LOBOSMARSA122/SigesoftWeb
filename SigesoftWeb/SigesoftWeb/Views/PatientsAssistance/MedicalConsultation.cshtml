@@ -147,20 +147,24 @@
                                     <a class="nav-link active" id="weight-tab" data-toggle="tab" role="tab" aria-controls="Weight" aria-selected="true" onclick="NavTabActive()" href="#Weight">Peso</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="Hemoglobina-tab" data-toggle="tab" role="tab" aria-controls="Hemoglobina" aria-selected="true" onclick="NavTabActive()" href="#Hemoglobina">Hemoglobina</a>
+                                    <a class="nav-link" id="Haemoglobin-tab" data-toggle="tab" role="tab" aria-controls="Haemoglobin" aria-selected="true" onclick="NavTabActive()" href="#Haemoglobin">Hemoglobina</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="Talla-tab" data-toggle="tab" role="tab" aria-controls="Talla" aria-selected="true" onclick="NavTabActive()" href="#Talla">Talla</a>
+                                    <a class="nav-link" id="Cholesterol-tab" data-toggle="tab" role="tab" aria-controls="Cholesterol" aria-selected="true" onclick="NavTabActive()" href="#Cholesterol">Colesterol</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="Presión-tab" data-toggle="tab" role="tab" aria-controls="Presion" aria-selected="true" onclick="NavTabActive()" href="#Presion">Presión</a>
+                                    <a class="nav-link" id="BloodPressure-tab" data-toggle="tab" role="tab" aria-controls="BloodPressure" aria-selected="true" onclick="NavTabActive()" href="#BloodPressure">Presión</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="Glucose-tab" data-toggle="tab" role="tab" aria-controls="Glucose" aria-selected="true" onclick="NavTabActive()" href="#Glucose">Glucosa</a>
                                 </li>
                             </ul>
                             <div class="tab-content" id="myTabContent" style="width:100%">
                                 <div class="tab-pane fade show active" id="Weight" role="tabpanel" aria-labelledby="home-tab">@Html.Partial("_WeightPartial")</div>
-                                <div class="tab-pane fade" id="Hemoglobina" role="tabpanel" aria-labelledby="profile-tab">@*@Html.Partial("_RecordHemoglobinaPartial"*@</div>
-                                <div class="tab-pane fade" id="Talla" role="tabpanel" aria-labelledby="contact-tab">@*@Html.Partial("_RecordTallaPartial")*@</div>
-                                <div class="tab-pane fade" id="Presion" role="tabpanel" aria-labelledby="contact-tab">@*@Html.Partial("_RecordPresionPartial")*@</div>
+                                <div class="tab-pane fade" id="Haemoglobin" role="tabpanel" aria-labelledby="profile-tab">@Html.Partial("_HaemoglobinPartial")</div>
+                                <div class="tab-pane fade" id="Cholesterol" role="tabpanel" aria-labelledby="contact-tab">@Html.Partial("_CholesterolPartial")</div>
+                                <div class="tab-pane fade" id="BloodPressure" role="tabpanel" aria-labelledby="contact-tab">@Html.Partial("_BloodPressurePartial")</div>
+                                <div class="tab-pane fade" id="Glucose" role="tabpanel" aria-labelledby="contact-tab">@Html.Partial("_GlucosePartial")</div>
                             </div>
 
                         </div>
@@ -218,7 +222,11 @@
 
 <script>
     $(document).ready(function () {
-        Load();
+        LoadWeight();
+        LoadCholesterol();
+        LoadHaemoglobin();
+        LoadBloodPressure();
+        LoadGlucose();
         var inputs = document.getElementsByClassName('inputLabelFloat');
         for (var i = 0; i < inputs.length; i++) {
             inputs[i].addEventListener('keyup', function () {

@@ -1,12 +1,16 @@
-﻿@{
+﻿
+@{
     Dictionary<string, string> Chart1 = new Dictionary<string, string>();
+    Dictionary<string, string> Chart2 = new Dictionary<string, string>();
 
-    List<string> WeightDate = new List<string>();
-    List<string> Weight = new List<string>();
+    List<string> PressureDate = new List<string>();
+    List<string> Pressure = new List<string>();
+
+    List<string> PressureDias = new List<string>();
 }
 
 <div class="" id="reporte11" style="width:100%">
-    <div id="chart1" class="chart table-responsive"></div>
+    <div id="chartPressure" class="chart table-responsive"></div>
 </div>
 
 <div>
@@ -16,15 +20,23 @@
 
             var item = ViewBag.Indicators;
 
-            for (int i = 0; i < item.Weights.Count; i++)
+            for (int i = 0; i < item.BloodPressureSis.Count; i++)
             {
-                var a = ViewBag.Indicators.Weights[i].y;
-                Chart1.Add(string.IsNullOrWhiteSpace(item.Weights[i].Date) ? "" : item.Weights[i].Date, a);
+                var a = ViewBag.Indicators.BloodPressureSis[i].y;
+                Chart1.Add(string.IsNullOrWhiteSpace(item.BloodPressureSis[i].Date) ? "" : item.BloodPressureSis[i].Date, a);
             }
 
-            WeightDate = Chart1.OrderByDescending(x => x.Value).Select(x => x.Key).ToList();
-            Weight = Chart1.OrderByDescending(x => x.Value).Select(x => x.Value.ToString()).ToList();
+            PressureDate = Chart1.OrderByDescending(x => x.Value).Select(x => x.Key).ToList();
+            Pressure = Chart1.OrderByDescending(x => x.Value).Select(x => x.Value.ToString()).ToList();
 
+
+            for (int i = 0; i < item.BloodPressureDia.Count; i++)
+            {
+                var a = ViewBag.Indicators.BloodPressureDia[i].y;
+                Chart2.Add(string.IsNullOrWhiteSpace(item.BloodPressureDia[i].Date) ? "" : item.BloodPressureDia[i].Date, a);
+            }
+            PressureDate = Chart2.OrderByDescending(x => x.Value).Select(x => x.Key).ToList();
+            PressureDias = Chart2.OrderByDescending(x => x.Value).Select(x => x.Value.ToString()).ToList();
         }
         else
         {
@@ -42,8 +54,8 @@
     else
     {
         <script>
-            function LoadWeight() {      
-            Highcharts.chart('chart1', {
+            function LoadBloodPressure() {
+            Highcharts.chart('chartPressure', {
 
                 title: {
                     text: 'Historial'
@@ -52,14 +64,14 @@
                 subtitle: {
                     text: ''
                 },
-                
+
                 yAxis: {
                     title: {
-                        text: 'Kilogramos'
+                        text: 'mmHg'
                     }
                 },
                 legend: {
-                    layout: 'horizontal',
+                    layout: 'vertical',
                     align: 'right',
                     verticalAlign: 'middle'
                 },
@@ -74,7 +86,7 @@
                 },
                 xAxis: {
 
-                    categories: ['@Html.Raw(string.Join("','", WeightDate))'],
+                    categories: ['@Html.Raw(string.Join("','", PressureDate))'],
                     labels: {
                         skew3d: true,
                         style: {
@@ -83,8 +95,11 @@
                     }
                 },
                 series: [{
-                    name: 'Peso',
-                    data: [@Html.Raw(string.Join(",", Weight))],
+                    name: 'Presion Sistolica',
+                    data: [@Html.Raw(string.Join(",", Pressure))],
+                },{
+                    name: 'Presion Diastolica',
+                    data: [@Html.Raw(string.Join(",", PressureDias))],
                 }],
 
                 responsive: {
@@ -94,7 +109,7 @@
                         },
                         chartOptions: {
                             legend: {
-                                layout: 'horizontal',
+                                layout: 'vertical',
                                 align: 'center',
                                 verticalAlign: 'bottom'
                             }
@@ -103,7 +118,7 @@
                 }
 
             });
-                
+
         }
         </script>
     }
