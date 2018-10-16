@@ -302,6 +302,7 @@
     <Content Include="Content\font\user-plus.ttf" />
     <Content Include="Content\font\user-plus.woff" />
     <Content Include="Content\font\user-plus.woff2" />
+    <Content Include="Scripts\controlPin.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />

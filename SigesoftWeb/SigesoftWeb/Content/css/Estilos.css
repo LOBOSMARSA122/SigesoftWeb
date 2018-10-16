@@ -440,8 +440,15 @@ body footer {
         .busqueda-empleado form > input {
             margin: 10px;
         }
-
-
+.fa-thumbtack {
+    color:black;
+}
+.iconoPin{
+    border:hidden;
+}
+.iconPinRotate{
+    transform: rotate(90deg);
+}
 /*BANDEJAS*/
 .table-responsive::-webkit-scrollbar {
     max-width: 10px;

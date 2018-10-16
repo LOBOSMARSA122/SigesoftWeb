@@ -11,7 +11,7 @@
     .iconEdit {
         color: Black;
     }
-    
+
     .ColumnNoWrap {
         overflow: hidden;
         white-space: nowrap;
@@ -21,7 +21,8 @@
 <link href="~/Content/css/FullCalendar-custom.css" rel="stylesheet" />
 <div class="container-fluid">
     <section class="contenedor-main  row">
-        <main class="col-12 col-md-8">
+
+        <main class="colMain col-12 col-md-8">
             <div class="box box-default mt-2" id="acordion">
                 <div class="box-header with-border" id="heading1">
                     <h3 class="box-title" style="cursor:pointer;" onclick="ColapseTable('divFilter','heightFilter')"><i class="icon-calendar"></i> Banjeda de Pacientes</h3>
@@ -60,31 +61,31 @@
                             </div>
                         </div>
                         @*<div class="row">
-                            <div class="col-12 col-lg-3 col-xl-2">
-                                <div class="form-group">
-                                    <label for="" id="filtPaciente" class="d-none d-lg-block">Filtrar</label>
-                                    <button class="btn btn-info boton form-control" onclick="Test(1)">
-                                        <i class="fa fa-search"></i> Test
-                                    </button>
+                                <div class="col-12 col-lg-3 col-xl-2">
+                                    <div class="form-group">
+                                        <label for="" id="filtPaciente" class="d-none d-lg-block">Filtrar</label>
+                                        <button class="btn btn-info boton form-control" onclick="Test(1)">
+                                            <i class="fa fa-search"></i> Test
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="Valuetest" style="background:#f39c12; width:20px; height:20px;">
+
                                 </div>
                             </div>
-                            <div id="Valuetest" style="background:#f39c12; width:20px; height:20px;">
-
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-lg-3 col-xl-2">
-                                <div class="form-group">
-                                    <label for="" id="filtPaciente" class="d-none d-lg-block">Filtrar</label>
-                                    <button class="btn btn-info boton form-control" onclick="Test2(1)">
-                                        <i class="fa fa-search"></i> Test2
-                                    </button>
+                            <div class="row">
+                                <div class="col-12 col-lg-3 col-xl-2">
+                                    <div class="form-group">
+                                        <label for="" id="filtPaciente" class="d-none d-lg-block">Filtrar</label>
+                                        <button class="btn btn-info boton form-control" onclick="Test2(1)">
+                                            <i class="fa fa-search"></i> Test2
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div id="Valuetest2" style="background:#f39c12; width:20px; height:20px;">
+                                <div id="Valuetest2" style="background:#f39c12; width:20px; height:20px;">
 
-                            </div>
-                        </div>*@
+                                </div>
+                            </div>*@
                     </div>
                 </div>
 
@@ -111,11 +112,15 @@
                 </div>
             </div>
         </main>
-        <aside class="col-12 col-md-4 " style="padding-right: 0px;">
+        <aside class="col-12 col-md-4 colAside" style="padding-right: 0px;">
             <div class="row notice" style="margin-right:0px;">
                 <div class="col-12 Chart wrapperTopDx loadingGrid">
-                    <div class="row title" onclick="ColapseTable('divTopDx','heightdivTopDx')">
-                        Top 10 Diagnósticos
+                    <div class="row title justify-content-between">
+                        <div class="col-11 " onclick="ColapseTable('divTopDx','heightdivTopDx')">
+                            Top 10 Diagnósticos
+                        </div>
+                        <div class="col-auto p-0 mr-2" ><button  class=" iconoPin btn p-0 m-0 btn-outline-info" value="onPin"><i class="fa fa-thumbtack"></i></button></div>
+
                     </div>
                     <input id="heightdivTopDx" type="hidden" value="">
                     <div id="divTopDx" style="overflow:hidden">
@@ -182,16 +187,21 @@
         if (Request.Browser.Browser == "IE" && Convert.ToDouble(Request.Browser.Version) < 9.0)
         {
             <script>
-              
+
             </script>
         }
         else
         {
+
+            <script src="~/Scripts/jquery-3.3.1.js"></script>
             <script src="~/Scripts/highcharts.js"></script>
             <script src="~/Scripts/highcharts-3d.js"></script>
             <script src="~/Scripts/exporting.js"></script>
             <script src="~/Scripts/offline-exporting.js"></script>
+            <script src="~/Scripts/controlPin.js"></script>
             <link href="~/Content/css/highcharts.css" rel="stylesheet">
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+            
         }
     }
 }
@@ -199,198 +209,198 @@
 
 
 
-    <script>
+<script>
 
-        $(document).ready(function () {
-            LoadSchedule();
-            LoadTopDiagnostic();
-            MonthlyControls();
-            Filter(1);    
-        });
+    $(document).ready(function () {
+        LoadSchedule();
+        LoadTopDiagnostic();
+        MonthlyControls();
+        Filter(1);
+    });
 
-        function LoadTopDiagnostic() {            
-            $('.wrapperTopDx').addClass('loadingGrid');
-            $.ajax({
-                cache: false,
-                dataType: 'html',
-                method: 'GET',
-                async: true,
-                url: '/PatientsAssistance/TopDiagnostic',
-                success: function (html) {
-                    if (html.indexOf("IniciarSesion") == -1) {
-                        $('.wrapperTopDx').removeClass('loadingGrid');
-                        Load(html);                       
-                    } else {
-                        location.href = "/";
-                    }
-                },
-                error: function (error) {
-                    alerta("Sucedió un error al conectarse al servidor", "rojo");
+    function LoadTopDiagnostic() {
+        $('.wrapperTopDx').addClass('loadingGrid');
+        $.ajax({
+            cache: false,
+            dataType: 'html',
+            method: 'GET',
+            async: true,
+            url: '/PatientsAssistance/TopDiagnostic',
+            success: function (html) {
+                if (html.indexOf("IniciarSesion") == -1) {
                     $('.wrapperTopDx').removeClass('loadingGrid');
-                    console.log(error);
+                    Load(html);
+                } else {
+                    location.href = "/";
                 }
-            });
-        }
+            },
+            error: function (error) {
+                alerta("Sucedió un error al conectarse al servidor", "rojo");
+                $('.wrapperTopDx').removeClass('loadingGrid');
+                console.log(error);
+            }
+        });
+    }
 
-        function MonthlyControls() {
-            $('.wrapperMonthlyControls').addClass('loadingGrid');
-            $.ajax({
-                cache: false,
-                dataType: 'html',
-                method: 'GET',
-                async: true,
-                url: '/PatientsAssistance/MonthlyControls',
-                success: function (html) {
-                    if (html.indexOf("IniciarSesion") == -1) {
-                        $('.wrapperMonthlyControls').removeClass('loadingGrid');
-                        LoadMonthlyControls(html);
-                    } else {
-                        location.href = "/";
-                    }
-                },
-                error: function (error) {
-                    alerta("Sucedió un error al conectarse al servidor", "rojo");
+    function MonthlyControls() {
+        $('.wrapperMonthlyControls').addClass('loadingGrid');
+        $.ajax({
+            cache: false,
+            dataType: 'html',
+            method: 'GET',
+            async: true,
+            url: '/PatientsAssistance/MonthlyControls',
+            success: function (html) {
+                if (html.indexOf("IniciarSesion") == -1) {
                     $('.wrapperMonthlyControls').removeClass('loadingGrid');
-                    console.log(error);
+                    LoadMonthlyControls(html);
+                } else {
+                    location.href = "/";
                 }
-            });
-        }
+            },
+            error: function (error) {
+                alerta("Sucedió un error al conectarse al servidor", "rojo");
+                $('.wrapperMonthlyControls').removeClass('loadingGrid');
+                console.log(error);
+            }
+        });
+    }
 
-        function LoadSchedule() {
-            var events = [];
-            $.ajax({
-                type: "GET",
-                async: true,
-                url: "/PatientsAssistance/GetSchedule",
-                success: function (data) {
-                    $.each(data, function (i, v) {
-                        events.push({
-                            title: v.Pacient,
-                            description: v.EsoType,
-                            start: moment(v.ServiceDate),
-                            end: v.FechaFin != null ? moment(v.ServiceDate).add(1, "day") : null,
-                            color: v.Color,
-                            allDay: true
-                        })
-                    });
-                    GenerateCalender(events);
-                },
-                error: function (error) {
-                    alert('Failed');
-                }
+    function LoadSchedule() {
+        var events = [];
+        $.ajax({
+            type: "GET",
+            async: true,
+            url: "/PatientsAssistance/GetSchedule",
+            success: function (data) {
+                $.each(data, function (i, v) {
+                    events.push({
+                        title: v.Pacient,
+                        description: v.EsoType,
+                        start: moment(v.ServiceDate),
+                        end: v.FechaFin != null ? moment(v.ServiceDate).add(1, "day") : null,
+                        color: v.Color,
+                        allDay: true
+                    })
+                });
+                GenerateCalender(events);
+            },
+            error: function (error) {
+                alert('Failed');
+            }
 
-            });
-        }
+        });
+    }
 
-        function GenerateCalender(events) {
-            $('#calendar').fullCalendar('destroy');
-            $('#calendar').fullCalendar({
-                lang: 'es',
-                contentHeight: 600,
-                defaultDate: new Date(),
-                timeFormat: 'h(:mm)a',
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month,basicWeek,basicDay,agenda'
-                },
-                eventLimit: true,
-                eventColor: '#378006',
-                events: events,
-                //eventClick: function (calEvent, jsEvent, view) {
-                //    $('#tabInformacion').removeClass("active");
-                //    $('#tabImportante').removeClass("active");
-                //    $('#tabRegistro').addClass("active");
+    function GenerateCalender(events) {
+        $('#calendar').fullCalendar('destroy');
+        $('#calendar').fullCalendar({
+            lang: 'es',
+            contentHeight: 600,
+            defaultDate: new Date(),
+            timeFormat: 'h(:mm)a',
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,basicWeek,basicDay,agenda'
+            },
+            eventLimit: true,
+            eventColor: '#378006',
+            events: events,
+            //eventClick: function (calEvent, jsEvent, view) {
+            //    $('#tabInformacion').removeClass("active");
+            //    $('#tabImportante').removeClass("active");
+            //    $('#tabRegistro').addClass("active");
 
-                //    $('#b').removeClass("active");
-                //    $('#c').removeClass("active");
-                //    $('#a').addClass("active");
+            //    $('#b').removeClass("active");
+            //    $('#c').removeClass("active");
+            //    $('#a').addClass("active");
 
-                //    $('#ModalInscripcion #eventTitle').text("Inscribir al Curso de: " + calEvent.title);
-                //    $('#CursoProgramadoId').val(calEvent.description);
-                //    $('#ModalInscripcion').modal();
-                //    loadSalon();
-                //}
-            });
-        }
+            //    $('#ModalInscripcion #eventTitle').text("Inscribir al Curso de: " + calEvent.title);
+            //    $('#CursoProgramadoId').val(calEvent.description);
+            //    $('#ModalInscripcion').modal();
+            //    loadSalon();
+            //}
+        });
+    }
 
-        function Filter(index) {
-            $('.wrapperGrid').addClass('loadingGrid');
-            var data = {
-                Patient: $("#PacientFullName").val(),
-                StartDate: moment($("#StartDate").val()).format("DD/MM/YYYY"),
-                EndDate: moment($("#EndDate").val()).format("DD/MM/YYYY"),
-                Index: index,
-                Take: $("#take").val()
-            };
+    function Filter(index) {
+        $('.wrapperGrid').addClass('loadingGrid');
+        var data = {
+            Patient: $("#PacientFullName").val(),
+            StartDate: moment($("#StartDate").val()).format("DD/MM/YYYY"),
+            EndDate: moment($("#EndDate").val()).format("DD/MM/YYYY"),
+            Index: index,
+            Take: $("#take").val()
+        };
 
-            $.ajax({
-                cache: false,
-                dataType: 'html',
-                method: 'POST',
-                async: true,
-                data: data,
-                url: '/PatientsAssistance/FilterPacient',
-                success: function (html) {
-                    if (html.indexOf("IniciarSesion") == -1) {
-                        $('.wrapperGrid').removeClass('loadingGrid');
-                        $("#RenderBoardPatientsAssistancePartial").html(html);
-                    } else {
-                        location.href = "/";
-                    }
-                },
-                error: function (error) {
-                    alerta("Sucedió un error al conectarse al servidor", "rojo");
+        $.ajax({
+            cache: false,
+            dataType: 'html',
+            method: 'POST',
+            async: true,
+            data: data,
+            url: '/PatientsAssistance/FilterPacient',
+            success: function (html) {
+                if (html.indexOf("IniciarSesion") == -1) {
                     $('.wrapperGrid').removeClass('loadingGrid');
-                    console.log(error);
+                    $("#RenderBoardPatientsAssistancePartial").html(html);
+                } else {
+                    location.href = "/";
                 }
-            });
-        }
+            },
+            error: function (error) {
+                alerta("Sucedió un error al conectarse al servidor", "rojo");
+                $('.wrapperGrid').removeClass('loadingGrid');
+                console.log(error);
+            }
+        });
+    }
 
-        function Test() {
-            console.log("hola soy solamanente test ");
-            $.ajax({
-                cache: false,
-                async: true,
-                dataType: 'html',
-                method: 'GET',
-                url: '/PatientsAssistance/Test',
-                success: function (html) {
-                    console.log(html)
-                    if (html.indexOf("IniciarSesion") == -1) {
-                        $("#Valuetest").html(html);
-                    } else {
-                        location.href = "/";
-                    }
-                },
-                error: function (error) {
-                    alerta("Sucedió un error al conectarse al servidor", "rojo");
-                    console.log(error);
+    function Test() {
+        console.log("hola soy solamanente test ");
+        $.ajax({
+            cache: false,
+            async: true,
+            dataType: 'html',
+            method: 'GET',
+            url: '/PatientsAssistance/Test',
+            success: function (html) {
+                console.log(html)
+                if (html.indexOf("IniciarSesion") == -1) {
+                    $("#Valuetest").html(html);
+                } else {
+                    location.href = "/";
                 }
-            });
-        }
+            },
+            error: function (error) {
+                alerta("Sucedió un error al conectarse al servidor", "rojo");
+                console.log(error);
+            }
+        });
+    }
 
-        function Test2() {
-            console.log("hola soy test 2");
-            $.ajax({
-                cache: false,
-                async: true,
-                dataType: 'html',
-                method: 'GET',
-                url: '/PatientsAssistance/Test2',
-                success: function (html) {
-                    console.log(html)
-                    if (html.indexOf("IniciarSesion") == -1) {
-                        $("#Valuetest2").html(html);
-                    } else {
-                        location.href = "/";
-                    }
-                },
-                error: function (error) {
-                    alerta("Sucedió un error al conectarse al servidor", "rojo");
-                    console.log(error);
+    function Test2() {
+        console.log("hola soy test 2");
+        $.ajax({
+            cache: false,
+            async: true,
+            dataType: 'html',
+            method: 'GET',
+            url: '/PatientsAssistance/Test2',
+            success: function (html) {
+                console.log(html)
+                if (html.indexOf("IniciarSesion") == -1) {
+                    $("#Valuetest2").html(html);
+                } else {
+                    location.href = "/";
                 }
-            });
-        }
+            },
+            error: function (error) {
+                alerta("Sucedió un error al conectarse al servidor", "rojo");
+                console.log(error);
+            }
+        });
+    }
 
-    </script>
+</script>
