@@ -39,5 +39,6 @@ namespace BE.MedicalAssistance
         public string Geso { get; set; }
         public int MasterServiceId { get; set; }
         public string MasterService { get; set; }
+        public int? IsRevisedHistoryId { get; set; }
     }
 }

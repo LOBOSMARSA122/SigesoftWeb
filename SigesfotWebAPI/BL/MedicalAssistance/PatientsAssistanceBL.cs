@@ -56,7 +56,8 @@ namespace BL.MedicalAssistance
                                 OrganizationLocation = f.v_Name + " " + g.v_Name,
                                 Geso = h.v_Name,
                                 MasterServiceId = a.i_MasterServiceId.Value,
-                                MasterService = i.v_Value1
+                                MasterService = i.v_Value1,
+                                IsRevisedHistoryId = a.i_IsRevisedHistoryId.Value
                             }).ToList();
 
                 var list = (from a in preList
@@ -76,7 +77,8 @@ namespace BL.MedicalAssistance
                                 OrganizationLocation = a.OrganizationLocation,
                                 Geso = a.Geso,
                                 MasterServiceId = a.MasterServiceId,
-                                MasterService = a.MasterService
+                                MasterService = a.MasterService,
+                                IsRevisedHistoryId = a.IsRevisedHistoryId
                             }).ToList();
 
                 int totalRecords = list.Count;

@@ -35,10 +35,15 @@
     }
 
     .ant-badge-status-ocupational {
-        background-color: #049cf9;
+        background-color: #ff0000;
     }
 
     .ant-badge-status-assistence {
+        background-color: #808080;
+        padding-right: 5px;
+    }
+
+    .ant-badge-status-control {
         background-color: #308705;
         padding-right: 5px;
     }
@@ -70,6 +75,7 @@
             <table class="table table-hover" id="TablaAExportar" style="text-align:center">
                 <thead>
                     <tr>
+                        @*<th> </th>*@
                         <th>Paciente</th>
                         <th>Empresa-Sede</th>
                         <th>Protocolo</th>
@@ -78,7 +84,6 @@
                         <th>Puesto</th>
                         <th>Género</th>
                         <th>Servicio</th>
-                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -95,11 +100,11 @@
                         {
                             foreach (var item in ViewBag.Services.List)
                             {
-                                if (item.MasterServiceId == 2)
+                                if (item.MasterServiceId == 2 && item.IsRevisedHistoryId != 1)
                                 {
                             <tr>
-                                <td class="ColumnNoWrap"> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"><span class="ant-badge-status-dot ant-badge-status-ocupational"></span><span class="ant-badge-status-text pl-2">@item.PatientFullName</span></span></td>  
-                                @*<td class="ColumnNoWrap ant-badge-status-dot ant-badge-status-success"></td>*@
+                                @*<td><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = item.PatientId })"><span class="d-flex justify-content-center iconEdit align-items-center icon-edit"></span></a></td>*@
+                                <td class="ColumnNoWrap"> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"><span class="ant-badge-status-dot ant-badge-status-ocupational"></span><span class="ant-badge-status-text pl-2">@item.PatientFullName</span></span></td>
                                 <td class="ColumnNoWrap">@item.OrganizationLocation</td>
                                 <td class="ColumnNoWrap">@item.ProtocolName</td>
                                 <td class="ColumnNoWrap">@item.ServiceDate.ToShortDateString()</td>
@@ -107,12 +112,26 @@
                                 <td class="ColumnNoWrap">@item.Occupation</td>
                                 <td class="ColumnNoWrap">@item.Gender</td>
                                 <td class="ColumnNoWrap">@item.MasterService</td>
-                                <td><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = item.PatientId })"><span class="d-flex justify-content-center iconEdit align-items-center icon-edit"></span></a></td>
                             </tr>
                                 }
-                                else if (item.MasterServiceId == 10)
+                                else if (item.MasterServiceId == 21)
                                 {
                             <tr>
+                               @* <td><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = item.PatientId })"><span class="d-flex justify-content-center iconEdit align-items-center icon-edit"></span></a></td>*@
+                                <td class="ColumnNoWrap"> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"><span class="ant-badge-status-dot ant-badge-status-control"></span><span class="ant-badge-status-text pl-2">@item.PatientFullName</span></span></td>
+                                <td class="ColumnNoWrap">@item.OrganizationLocation</td>
+                                <td class="ColumnNoWrap">@item.ProtocolName</td>
+                                <td class="ColumnNoWrap">@item.ServiceDate.ToShortDateString()</td>
+                                <td class="ColumnNoWrap">@item.Geso</td>
+                                <td class="ColumnNoWrap">@item.Occupation</td>
+                                <td class="ColumnNoWrap">@item.Gender</td>
+                                <td class="ColumnNoWrap">@item.MasterService</td>
+                            </tr>
+                                }
+                                else
+                                {
+                            <tr>
+                                @*<td><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = item.PatientId })"><span class="d-flex justify-content-center iconEdit align-items-center icon-edit"></span></a></td>*@
                                 <td class="ColumnNoWrap"> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"><span class="ant-badge-status-dot ant-badge-status-assistence"></span><span class="ant-badge-status-text pl-2">@item.PatientFullName</span></span></td>
                                 <td class="ColumnNoWrap">@item.OrganizationLocation</td>
                                 <td class="ColumnNoWrap">@item.ProtocolName</td>
@@ -121,21 +140,6 @@
                                 <td class="ColumnNoWrap">@item.Occupation</td>
                                 <td class="ColumnNoWrap">@item.Gender</td>
                                 <td class="ColumnNoWrap">@item.MasterService</td>
-                                <td><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = item.PatientId })"><span class="d-flex justify-content-center iconEdit align-items-center icon-edit"></span></a></td>
-                            </tr>
-                                }
-                                else
-                                {
-                            <tr>
-                                <td class="ColumnNoWrap">@item.PatientFullName</td>
-                                <td class="ColumnNoWrap">@item.OrganizationLocation</td>
-                                <td class="ColumnNoWrap">@item.ProtocolName</td>
-                                <td class="ColumnNoWrap">@item.ServiceDate.ToShortDateString()</td>
-                                <td class="ColumnNoWrap">@item.Geso</td>
-                                <td class="ColumnNoWrap">@item.Occupation</td>
-                                <td class="ColumnNoWrap">@item.Gender</td>
-                                <td class="ColumnNoWrap">@item.MasterService</td>
-                                <td><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = item.PatientId })"><span class="d-flex justify-content-center iconEdit align-items-center icon-edit"></span></a></td>
                             </tr>
                                 }
                             }
