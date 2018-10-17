@@ -443,8 +443,22 @@ body footer {
 .fa-thumbtack {
     color:black;
 }
-.iconoPin{
-    border:hidden;
+.fa-thumbtack:hover {
+    color: grey;
+}
+.iconoPin {
+    border: 0;
+    background-color: transparent;
+    cursor:pointer
+}
+/*.iconoPin:hover {
+    border: 0;
+    
+}*/
+.iconoPin:active {
+    border: 0;
+    background-color: transparent;
+    outline: 0 none
 }
 .iconPinRotate{
     transform: rotate(90deg);
@@ -799,7 +813,9 @@ textarea {
 /*MEDIA QUERYS*/
 @media (max-width: 480px) {
     .login-page {
-        background: url('../img/login-mobile_ve.jpg');
+        /*background: url('../Images/ImageLogo.jpeg') no-repeat fixed center;
+        background-size: cover;*/
+        background: url('../Images/login-mobile_ho.jpg')no-repeat fixed cover center;
     }
 
     .absolute-center.is-responsive {
@@ -847,7 +863,8 @@ textarea {
 
 @media only screen and (max-width: 640px) and (orientation: landscape) {
     .login-page {
-        background: url('../img/login-mobile_ho.jpg')no-repeat fixed center;
+        background: url('../Images/ImageLogo.jpeg') no-repeat fixed center;
+        /*background: url('../Images/login-mobile_ho.jpg')no-repeat fixed center;*/
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;

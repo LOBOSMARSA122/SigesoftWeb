@@ -22,7 +22,7 @@
 <div class="container-fluid">
     <section class="contenedor-main  row">
 
-        <main class="colMain col-12 col-md-8">
+        <main class="colMain col-12 col-md-8 mr-0 pr-0">
             <div class="box box-default mt-2" id="acordion">
                 <div class="box-header with-border" id="heading1">
                     <h3 class="box-title" style="cursor:pointer;" onclick="ColapseTable('divFilter','heightFilter')"><i class="icon-calendar"></i> Banjeda de Pacientes</h3>
@@ -115,11 +115,10 @@
         <aside class="col-12 col-md-4 colAside" style="padding-right: 0px;">
             <div class="row notice" style="margin-right:0px;">
                 <div class="col-12 Chart wrapperTopDx loadingGrid">
-                    <div class="row title justify-content-between">
-                        <div class="col-11 " onclick="ColapseTable('divTopDx','heightdivTopDx')">
+                    <div class="row title " onclick="ColapseTable('divTopDx','heightdivTopDx')">
                             Top 10 Diagnósticos
-                        </div>
-                        <div class="col-auto p-0 mr-2" ><button  class=" iconoPin btn p-0 m-0 btn-outline-info" value="onPin"><i class="fa fa-thumbtack"></i></button></div>
+
+                        <div class="d-none col-auto p-0 mr-2" ><button  class="iconoPin p-0 m-0 " value="onPin"><i class="fa fa-thumbtack"></i></button></div>
 
                     </div>
                     <input id="heightdivTopDx" type="hidden" value="">
@@ -181,7 +180,7 @@
 
 
 </div>
-
+<script src="~/Scripts/jquery-3.3.1.js"></script>
 @section Scripts{
     @{
         if (Request.Browser.Browser == "IE" && Convert.ToDouble(Request.Browser.Version) < 9.0)
@@ -193,7 +192,7 @@
         else
         {
 
-            <script src="~/Scripts/jquery-3.3.1.js"></script>
+            
             <script src="~/Scripts/highcharts.js"></script>
             <script src="~/Scripts/highcharts-3d.js"></script>
             <script src="~/Scripts/exporting.js"></script>
