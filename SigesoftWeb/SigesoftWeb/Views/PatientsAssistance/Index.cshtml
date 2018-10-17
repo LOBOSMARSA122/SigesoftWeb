@@ -11,11 +11,28 @@
     .iconEdit {
         color: Black;
     }
-    
+
     .ColumnNoWrap {
         overflow: hidden;
         white-space: nowrap;
     }
+
+    .modal-content {
+        width: 600px !important;
+        margin: 30px auto !important;
+    }
+
+    .modal-dialog {
+
+        margin: 0px auto;
+        height: 100%;
+        max-width: 1000px;
+    }
+
+    .modal-content{
+        width:auto;
+    }
+
 </style>
 <link href="~/Content/fullcalendar.css" rel="stylesheet" />
 <link href="~/Content/css/FullCalendar-custom.css" rel="stylesheet" />
@@ -60,31 +77,31 @@
                             </div>
                         </div>
                         @*<div class="row">
-                            <div class="col-12 col-lg-3 col-xl-2">
-                                <div class="form-group">
-                                    <label for="" id="filtPaciente" class="d-none d-lg-block">Filtrar</label>
-                                    <button class="btn btn-info boton form-control" onclick="Test(1)">
-                                        <i class="fa fa-search"></i> Test
-                                    </button>
+                                <div class="col-12 col-lg-3 col-xl-2">
+                                    <div class="form-group">
+                                        <label for="" id="filtPaciente" class="d-none d-lg-block">Filtrar</label>
+                                        <button class="btn btn-info boton form-control" onclick="Test(1)">
+                                            <i class="fa fa-search"></i> Test
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="Valuetest" style="background:#f39c12; width:20px; height:20px;">
+
                                 </div>
                             </div>
-                            <div id="Valuetest" style="background:#f39c12; width:20px; height:20px;">
-
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-lg-3 col-xl-2">
-                                <div class="form-group">
-                                    <label for="" id="filtPaciente" class="d-none d-lg-block">Filtrar</label>
-                                    <button class="btn btn-info boton form-control" onclick="Test2(1)">
-                                        <i class="fa fa-search"></i> Test2
-                                    </button>
+                            <div class="row">
+                                <div class="col-12 col-lg-3 col-xl-2">
+                                    <div class="form-group">
+                                        <label for="" id="filtPaciente" class="d-none d-lg-block">Filtrar</label>
+                                        <button class="btn btn-info boton form-control" onclick="Test2(1)">
+                                            <i class="fa fa-search"></i> Test2
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div id="Valuetest2" style="background:#f39c12; width:20px; height:20px;">
+                                <div id="Valuetest2" style="background:#f39c12; width:20px; height:20px;">
 
-                            </div>
-                        </div>*@
+                                </div>
+                            </div>*@
                     </div>
                 </div>
 
@@ -120,10 +137,9 @@
                     <input id="heightdivTopDx" type="hidden" value="">
                     <div id="divTopDx" style="overflow:hidden">
                         <div class="row info" id="RenderTopDiagnostic">
-                            @Html.Partial("_TopDiagnosticPartial")
+                            <a href="#" data-toggle="modal" data-target="#modal1" onclick="ModalTopDiagnosticPartial()">@Html.Partial("_TopDiagnosticPartial")</a>
                         </div>
                     </div>
-
                 </div>
                 <div class="col-12 Chart wrapperMonthlyControls loadingGrid">
                     <div class="row title" onclick="ColapseTable('divMonthlyControls','heightDivMonthlyControls')">
@@ -132,7 +148,7 @@
                     <input id="heightDivMonthlyControls" type="hidden" value="">
                     <div id="divMonthlyControls" style="overflow:hidden">
                         <div class="row info" id="RenderHeightdivMonthlyControls">
-                            @Html.Partial("_MonthlyControlsPartial")
+                            <a href="#" data-toggle="modal" data-target="#modal2" onclick="ModalMonthlyControls()">@Html.Partial("_MonthlyControlsPartial")</a>
                         </div>
                     </div>
 
@@ -171,8 +187,25 @@
                 </div>
             </div>
         </aside>
-
     </section>
+
+
+    <!--Modal-->
+    <div class="modal fade" id="modal1">
+        <div class="modal-dialog d-flex justify-content-center align-items-center">
+            <div class="modal-content">
+                @Html.Partial("_ModalTopDiagnosticPartial")
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal2">
+        <div class="modal-dialog d-flex justify-content-center align-items-center">
+            <div class="modal-content">
+                @Html.Partial("_ModalMonthlyControlsPartial")
+            </div>
+        </div>
+    </div>
 
 
 </div>
@@ -208,7 +241,18 @@
             Filter(1);    
         });
 
-        function LoadTopDiagnostic() {            
+        function ModalTopDiagnosticPartial() {
+            LoadModalTopDiagnostic();
+        }
+
+        function ModalMonthlyControls() {
+            LoadModalMonthlyControls();
+        }
+
+
+
+
+        function LoadTopDiagnostic() {      
             $('.wrapperTopDx').addClass('loadingGrid');
             $.ajax({
                 cache: false,
@@ -232,7 +276,31 @@
             });
         }
 
-        function MonthlyControls() {
+        function LoadModalTopDiagnostic() {    
+            $.ajax({
+                cache: false,
+                dataType: 'html',
+                method: 'GET',
+                async: true,
+                url: '/PatientsAssistance/TopDiagnostic',
+                success: function (html) {
+                    if (html.indexOf("IniciarSesion") == -1) {                    
+                        LoadModalTop(html);
+                    } else {
+                        location.href = "/";
+                    }
+                },
+                error: function (error) {
+                    alerta("Sucedió un error al conectarse al servidor", "rojo");                  
+                    console.log(error);
+                }
+            });
+        }
+
+
+
+
+        function MonthlyControls() {           
             $('.wrapperMonthlyControls').addClass('loadingGrid');
             $.ajax({
                 cache: false,
@@ -243,7 +311,7 @@
                 success: function (html) {
                     if (html.indexOf("IniciarSesion") == -1) {
                         $('.wrapperMonthlyControls').removeClass('loadingGrid');
-                        LoadMonthlyControls(html);
+                        LoadMonContr(html);
                     } else {
                         location.href = "/";
                     }
@@ -251,6 +319,27 @@
                 error: function (error) {
                     alerta("Sucedió un error al conectarse al servidor", "rojo");
                     $('.wrapperMonthlyControls').removeClass('loadingGrid');
+                    console.log(error);
+                }
+            });
+        }
+
+        function LoadModalMonthlyControls() {
+            $.ajax({
+                cache: false,
+                dataType: 'html',
+                method: 'GET',
+                async: true,
+                url: '/PatientsAssistance/MonthlyControls',
+                success: function (html) {
+                    if (html.indexOf("IniciarSesion") == -1) {
+                        LoadModalMonContr(html);
+                    } else {
+                        location.href = "/";
+                    }
+                },
+                error: function (error) {
+                    alerta("Sucedió un error al conectarse al servidor", "rojo");
                     console.log(error);
                 }
             });

@@ -1,5 +1,5 @@
-﻿<div class="" id="reporte11LoadMonContr" style="width:100%">
-    <div id="chartLoadMonthlyControls" class="chart table-responsive"></div>
+﻿<div class="" id="reporteMonContr" style="width:100%">
+    <div id="chartModalMonthlyControls" class="chart table-responsive"></div>
 </div>
 
 
@@ -11,7 +11,7 @@
     else
     {
         <script>
-            function LoadMonContr(data) {
+            function LoadModalMonContr(data) {
                 var obj = JSON.parse(data);
                 var days = obj.NroDays;
                 var controls = obj.DailyControls;
@@ -33,7 +33,7 @@
                     arrControlsCompleted.push(parseInt(controlsCompleted[x].y));
                 }
 
-                Highcharts.chart('chartLoadMonthlyControls', {
+                Highcharts.chart('chartModalMonthlyControls', {
                     chart: {
                         type: 'column'
                     },
@@ -83,7 +83,7 @@
                     }, {
                         name: 'Controles Completados',
                         color: 'rgba(126,86,134,.9)',
-                            data: arrControlsCompleted,
+                        data: arrControlsCompleted,
                         pointPadding: 0.4,
                         pointPlacement: -0.2
                     }]
