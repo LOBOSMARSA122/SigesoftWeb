@@ -23,16 +23,14 @@
     }
 
     .modal-dialog {
-
         margin: 0px auto;
         height: 100%;
         max-width: 1000px;
     }
 
-    .modal-content{
-        width:auto;
+    .modal-content {
+        width: auto;
     }
-
 </style>
 <link href="~/Content/fullcalendar.css" rel="stylesheet" />
 <link href="~/Content/css/FullCalendar-custom.css" rel="stylesheet" />
@@ -134,7 +132,7 @@
                 <div class="col-12 Chart wrapperTopDx loadingGrid">
                     <div class="row title " onclick="ColapseTable('divTopDx','heightdivTopDx')">
                         Top 10 Diagnósticos
-                        <div class="d-none col-auto p-0 mr-2" ><button  class="iconoPin p-0 m-0 " value="onPin"><i class="fa fa-thumbtack"></i></button></div>
+                        <div class="d-none col-auto p-0 mr-2"><button class="iconoPin p-0 m-0 " value="onPin"><i class="fa fa-thumbtack"></i></button></div>
                     </div>
                     <input id="heightdivTopDx" type="hidden" value="">
                     <div id="divTopDx" style="overflow:hidden">
@@ -211,7 +209,10 @@
 
 
 </div>
+
+<span class="context-menu-one btn btn-neutral">right click me</span>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
+
 @section Scripts{
     @{
         if (Request.Browser.Browser == "IE" && Convert.ToDouble(Request.Browser.Version) < 9.0)
@@ -222,8 +223,6 @@
         }
         else
         {
-
-            
             <script src="~/Scripts/highcharts.js"></script>
             <script src="~/Scripts/highcharts-3d.js"></script>
             <script src="~/Scripts/exporting.js"></script>
@@ -231,12 +230,10 @@
             <script src="~/Scripts/controlPin.js"></script>
             <link href="~/Content/css/highcharts.css" rel="stylesheet">
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-            
+
         }
     }
 }
-
-
 
 
 <script>
@@ -247,35 +244,67 @@
         MonthlyControls();
         $("#take").val(10);
         Filter(1);
+
+        $.contextMenu({
+            selector: '.context-menu-one',
+            callback: function (key, options) {
+                if (key === "RevisarEMO") {
+                    $('tr.context-menu-active').each(function () {
+                        alert($(this).find('td').eq(0).text());
+                    });
+                }
+                else if (key === "ConsultaMedica") {
+                    $('tr.context-menu-active').each(function () {
+                        alert($(this).find('td').eq(0).text());
+                    });
+                }
+            },
+            items: {
+                "RevisarEMO": { name: "Revisar EMO", icon: "icon-edit" },
+                "ConsultaMedica": { name: "Consulta Médica", icon: "icon-users" }
+            }
+        });
+
+        $.contextMenu({
+            selector: '.context-menu-two',
+            callback: function (key, options) {
+                var m = "clicked: " + key;
+                window.console && console.log(m) || alert(m);
+            },
+            items: {
+                "ConsultaMedica": { name: "Consulta Médica", icon: "icon-users" }
+            }
+        });
+
     });
 
-        function ModalTopDiagnosticPartial() {
-            LoadModalTopDiagnostic();
-        }
+    function ModalTopDiagnosticPartial() {
+        LoadModalTopDiagnostic();
+    }
 
-        function ModalMonthlyControls() {
-            LoadModalMonthlyControls();
-        }
-
-
+    function ModalMonthlyControls() {
+        LoadModalMonthlyControls();
+    }
 
 
-        function LoadTopDiagnostic() {      
-            $('.wrapperTopDx').addClass('loadingGrid');
-            $.ajax({
-                cache: false,
-                dataType: 'html',
-                method: 'GET',
-                async: true,
-                url: '/PatientsAssistance/TopDiagnostic',
-                success: function (html) {
-                    if (html.indexOf("IniciarSesion") == -1) {
-                        $('.wrapperTopDx').removeClass('loadingGrid');
-                        Load(html);                       
-                    } else {
-                        location.href = "/";
-                    }
-                },
+
+
+    function LoadTopDiagnostic() {
+        $('.wrapperTopDx').addClass('loadingGrid');
+        $.ajax({
+            cache: false,
+            dataType: 'html',
+            method: 'GET',
+            async: true,
+            url: '/PatientsAssistance/TopDiagnostic',
+            success: function (html) {
+                if (html.indexOf("IniciarSesion") == -1) {
+                    $('.wrapperTopDx').removeClass('loadingGrid');
+                    Load(html);
+                } else {
+                    location.href = "/";
+                }
+            },
             error: function (error) {
                 alerta("Sucedió un error al conectarse al servidor", "rojo");
                 $('.wrapperTopDx').removeClass('loadingGrid');
@@ -284,46 +313,46 @@
         });
     }
 
-        function LoadModalTopDiagnostic() {    
-            $.ajax({
-                cache: false,
-                dataType: 'html',
-                method: 'GET',
-                async: true,
-                url: '/PatientsAssistance/TopDiagnostic',
-                success: function (html) {
-                    if (html.indexOf("IniciarSesion") == -1) {                    
-                        LoadModalTop(html);
-                    } else {
-                        location.href = "/";
-                    }
-                },
-                error: function (error) {
-                    alerta("Sucedió un error al conectarse al servidor", "rojo");                  
-                    console.log(error);
+    function LoadModalTopDiagnostic() {
+        $.ajax({
+            cache: false,
+            dataType: 'html',
+            method: 'GET',
+            async: true,
+            url: '/PatientsAssistance/TopDiagnostic',
+            success: function (html) {
+                if (html.indexOf("IniciarSesion") == -1) {
+                    LoadModalTop(html);
+                } else {
+                    location.href = "/";
                 }
-            });
-        }
+            },
+            error: function (error) {
+                alerta("Sucedió un error al conectarse al servidor", "rojo");
+                console.log(error);
+            }
+        });
+    }
 
 
 
 
-        function MonthlyControls() {           
-            $('.wrapperMonthlyControls').addClass('loadingGrid');
-            $.ajax({
-                cache: false,
-                dataType: 'html',
-                method: 'GET',
-                async: true,
-                url: '/PatientsAssistance/MonthlyControls',
-                success: function (html) {
-                    if (html.indexOf("IniciarSesion") == -1) {
-                        $('.wrapperMonthlyControls').removeClass('loadingGrid');
-                        LoadMonContr(html);
-                    } else {
-                        location.href = "/";
-                    }
-                },
+    function MonthlyControls() {
+        $('.wrapperMonthlyControls').addClass('loadingGrid');
+        $.ajax({
+            cache: false,
+            dataType: 'html',
+            method: 'GET',
+            async: true,
+            url: '/PatientsAssistance/MonthlyControls',
+            success: function (html) {
+                if (html.indexOf("IniciarSesion") == -1) {
+                    $('.wrapperMonthlyControls').removeClass('loadingGrid');
+                    LoadMonContr(html);
+                } else {
+                    location.href = "/";
+                }
+            },
             error: function (error) {
                 alerta("Sucedió un error al conectarse al servidor", "rojo");
                 $('.wrapperMonthlyControls').removeClass('loadingGrid');
@@ -332,49 +361,49 @@
         });
     }
 
-        function LoadModalMonthlyControls() {
-            $.ajax({
-                cache: false,
-                dataType: 'html',
-                method: 'GET',
-                async: true,
-                url: '/PatientsAssistance/MonthlyControls',
-                success: function (html) {
-                    if (html.indexOf("IniciarSesion") == -1) {
-                        LoadModalMonContr(html);
-                    } else {
-                        location.href = "/";
-                    }
-                },
-                error: function (error) {
-                    alerta("Sucedió un error al conectarse al servidor", "rojo");
-                    console.log(error);
+    function LoadModalMonthlyControls() {
+        $.ajax({
+            cache: false,
+            dataType: 'html',
+            method: 'GET',
+            async: true,
+            url: '/PatientsAssistance/MonthlyControls',
+            success: function (html) {
+                if (html.indexOf("IniciarSesion") == -1) {
+                    LoadModalMonContr(html);
+                } else {
+                    location.href = "/";
                 }
-            });
-        }
+            },
+            error: function (error) {
+                alerta("Sucedió un error al conectarse al servidor", "rojo");
+                console.log(error);
+            }
+        });
+    }
 
-        function LoadSchedule() {
-            var events = [];
-            $.ajax({
-                type: "GET",
-                async: true,
-                url: "/PatientsAssistance/GetSchedule",
-                success: function (data) {
-                    $.each(data, function (i, v) {
-                        events.push({
-                            title: v.Pacient,
-                            description: v.EsoType,
-                            start: moment(v.ServiceDate),
-                            end: v.FechaFin != null ? moment(v.ServiceDate).add(1, "day") : null,
-                            color: v.Color,
-                            allDay: true
-                        })
-                    });
-                    GenerateCalender(events);
-                },
-                error: function (error) {
-                    alert('Failed');
-                }
+    function LoadSchedule() {
+        var events = [];
+        $.ajax({
+            type: "GET",
+            async: true,
+            url: "/PatientsAssistance/GetSchedule",
+            success: function (data) {
+                $.each(data, function (i, v) {
+                    events.push({
+                        title: v.Pacient,
+                        description: v.EsoType,
+                        start: moment(v.ServiceDate),
+                        end: v.FechaFin != null ? moment(v.ServiceDate).add(1, "day") : null,
+                        color: v.Color,
+                        allDay: true
+                    })
+                });
+                GenerateCalender(events);
+            },
+            error: function (error) {
+                alert('Failed');
+            }
 
         });
     }

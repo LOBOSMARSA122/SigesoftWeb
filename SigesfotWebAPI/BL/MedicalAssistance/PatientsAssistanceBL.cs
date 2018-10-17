@@ -354,7 +354,7 @@ namespace BL.MedicalAssistance
                 #region Days
                 var oDay = new Day();
                 var fecha = new DateTime(currentDate.Year, currentDate.Month, i);
-                oDay.NroDay = fecha.ToString("ddd") + "-" + i;
+                oDay.NroDay = fecha.ToString("ddd", new System.Globalization.CultureInfo("es-ES")) + "-" + i;
                 listDays.Add(oDay);
                 oMonthlyControls.NroDays = listDays;
                 #endregion

@@ -1,17 +1,17 @@
 /**
- * jQuery contextMenu v@VERSION - Plugin for simple contextMenu handling
+ * jQuery contextMenu v2.6.3 - Plugin for simple contextMenu handling
  *
- * Version: v@VERSION
+ * Version: v2.6.3
  *
  * Authors: Björn Brala (SWIS.nl), Rodney Rehm, Addy Osmani (patches for FF)
  * Web: http://swisnl.github.io/jQuery-contextMenu/
  *
- * Copyright (c) 2011-@YEAR SWIS BV and contributors
+ * Copyright (c) 2011-2017 SWIS BV and contributors
  *
  * Licensed under
  *   MIT License http://www.opensource.org/licenses/mit-license
  *
- * Date: @DATE
+ * Date: 2017-10-30T19:03:13.804Z
  */
 
 // jscs:disable
@@ -335,7 +335,26 @@
 
                         op.create(e.data);
                     }
-                    op.show.call($this, e.data, e.pageX, e.pageY);
+                    var showMenu = false;
+                    for (var item in e.data.items) {
+                        if (e.data.items.hasOwnProperty(item)) {
+                            var visible;
+                            if ($.isFunction(e.data.items[item].visible)) {
+                                visible = e.data.items[item].visible.call($(e.currentTarget), item, e.data);
+                            } else if (typeof e.data.items[item] !== 'undefined' && e.data.items[item].visible) {
+                                visible = e.data.items[item].visible === true;
+                            } else {
+                                visible = true;
+                            }
+                            if (visible) {
+                                showMenu = true;
+                            }
+                        }
+                    }
+                    if (showMenu) {
+                        // show menu
+                        op.show.call($this, e.data, e.pageX, e.pageY);
+                    }
                 }
             },
             // contextMenu left-click trigger
@@ -430,21 +449,12 @@
                     button = e.button,
                     x = e.pageX,
                     y = e.pageY,
-                    fakeClick = x === undefined,
                     target,
                     offset;
 
                 e.preventDefault();
 
                 setTimeout(function () {
-                    // If the click is not real, things break: https://github.com/swisnl/jQuery-contextMenu/issues/132
-                    if(fakeClick){
-                        if (root !== null && typeof root !== 'undefined' && root.$menu !== null  && typeof root.$menu !== 'undefined') {
-                            root.$menu.trigger('contextmenu:hide');
-                        }
-                        return;
-                    }
-
                     var $window;
                     var triggerAction = ((root.trigger === 'left' && button === 0) || (root.trigger === 'right' && button === 2));
 
@@ -973,11 +983,7 @@
                 }
 
                 // create or update context menu
-                var hasVisibleItems = op.update.call($trigger, opt);
-                if (hasVisibleItems === false) {
-                    $currentTrigger = null;
-                    return;
-                }
+                op.update.call($trigger, opt);
 
                 // position menu
                 opt.position.call($trigger, opt, x, y);
@@ -1003,7 +1009,7 @@
                     $trigger.trigger('contextmenu:visible');
                     
                     op.activated(opt);
-                    opt.events.activated(opt);
+                    opt.events.activated();
                 });
                 // make options available and set state
                 $trigger
@@ -1404,9 +1410,6 @@
                     root = opt;
                     op.resize(opt.$menu);
                 }
-
-                var hasVisibleItems = false;
-
                 // re-check disabled for each item
                 opt.$menu.children().each(function () {
                     var $item = $(this),
@@ -1421,11 +1424,6 @@
                     } else {
                         visible = true;
                     }
-
-                    if (visible) {
-                        hasVisibleItems = true;
-                    }
-
                     $item[visible ? 'show' : 'hide']();
 
                     // dis- / enable item
@@ -1461,13 +1459,9 @@
 
                     if (item.$menu) {
                         // update sub-menu
-                        var subMenuHasVisibleItems = op.update.call($trigger, item, root);
-                        if (subMenuHasVisibleItems) {
-                            hasVisibleItems = true;
-                        }
+                        op.update.call($trigger, item, root);
                     }
                 });
-                return hasVisibleItems;
             },
             layer: function (opt, zIndex) {
                 // add transparent layer for click area

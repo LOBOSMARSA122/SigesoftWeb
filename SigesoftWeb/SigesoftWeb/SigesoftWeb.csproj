@@ -231,6 +231,8 @@
     <Content Include="Content\Images\loading.gif" />
     <Content Include="Content\Images\loadingGrid.gif" />
     <Content Include="Content\Images\logoSalusLaboris.jpg" />
+    <Content Include="Content\jquery.contextMenu.css" />
+    <Content Include="Content\jquery.contextMenu.min.css" />
     <Content Include="Content\static\images\foto%40default.png" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -302,6 +304,7 @@
     <Content Include="Content\font\user-plus.ttf" />
     <Content Include="Content\font\user-plus.woff" />
     <Content Include="Content\font\user-plus.woff2" />
+    <Content Include="Scripts\ContextMenu.js" />
     <Content Include="Scripts\controlPin.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
@@ -333,7 +336,14 @@
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="font\context-menu-icons.woff2" />
+    <Content Include="font\context-menu-icons.woff" />
+    <Content Include="font\context-menu-icons.ttf" />
+    <Content Include="font\context-menu-icons.eot" />
+    <Content Include="Content\jquery.contextMenu.min.css.map" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Scripts\jquery.contextMenu.min.js" />
+    <Content Include="Scripts\jquery.contextMenu.min.js.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -344,6 +354,7 @@
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery.contextMenu.js" />
     <Content Include="Scripts\jquery.ui.position.js" />
+    <Content Include="Scripts\jquery.ui.position.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
