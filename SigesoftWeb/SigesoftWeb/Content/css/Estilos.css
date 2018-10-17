@@ -813,9 +813,11 @@ textarea {
 /*MEDIA QUERYS*/
 @media (max-width: 480px) {
     .login-page {
-        /*background: url('../Images/ImageLogo.jpeg') no-repeat fixed center;
-        background-size: cover;*/
-        background: url('../Images/login-mobile_ho.jpg')no-repeat fixed cover center;
+        background: url('../Images/ImageLogo.jpeg') no-repeat fixed center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
     }
 
     .absolute-center.is-responsive {
