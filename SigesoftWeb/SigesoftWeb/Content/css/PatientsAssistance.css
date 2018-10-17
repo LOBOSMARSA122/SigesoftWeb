@@ -37,6 +37,9 @@
         .Chart .info .result {
             margin-left: 10px;
         }
+    .Chart .info a{
+        text-decoration:dotted;
+    }
 
     .Chart div:last-child {
         border-bottom: none;
