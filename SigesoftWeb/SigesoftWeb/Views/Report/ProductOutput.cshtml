@@ -48,15 +48,15 @@
                             <div class="row w-100 m-0 p-0">
                                 <div class="col-12 m-0 p-0 ">
                                     @{
-                                if (ViewBag.OrganizationIdLocationId != null)
-                                {
-                                    <select class="mt-2 p-0 m-0 form-control" id="OrganizationLocationId">
-                                        @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.OrganizationIdLocationId)
-                                {
-                                    <option value="@G.Id">@G.Value</option>
-                        }
-                                    </select>
-                        }
+                                        if (ViewBag.OrganizationIdLocationId != null)
+                                        {
+                                            <select class="mt-2 p-0 m-0 form-control" id="OrganizationLocationId">
+                                                @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.OrganizationIdLocationId)
+                                                {
+                                                    <option value="@G.Id">@G.Value</option>
+                                                }
+                                            </select>
+                                        }
                                     }
                                 </div>
                             </div>
@@ -68,15 +68,15 @@
                             <div class="row w-100 m-0 p-0">
                                 <div class="col-12 m-0 p-0 ">
                                     @{
-                                if (ViewBag.WarehouseId != null)
-                                {
-                                    <select class="mt-2 p-0 m-0 form-control" id="WarehouseId">
-                                        @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.WarehouseId)
-                                {
-                                    <option value="@G.Id">@G.Value</option>
-                        }
-                                    </select>
-                        }
+                                        if (ViewBag.WarehouseId != null)
+                                        {
+                                            <select class="mt-2 p-0 m-0 form-control" id="WarehouseId">
+                                                @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.WarehouseId)
+                                                {
+                                                    <option value="@G.Id">@G.Value</option>
+                                                }
+                                            </select>
+                                        }
                                     }
                                 </div>
                             </div>
@@ -88,15 +88,15 @@
                             <div class="row w-100 m-0 p-0">
                                 <div class="col-12 m-0 p-0 ">
                                     @{
-                                if (ViewBag.CategoryProd != null)
-                                {
-                                    <select class="mt-2 p-0 m-0 form-control" id="CategoryProd">
-                                        @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.CategoryProd)
-                                {
-                                    <option value="@G.Id">@G.Value</option>
-                        }
-                                    </select>
-                        }
+                                        if (ViewBag.CategoryProd != null)
+                                        {
+                                            <select class="mt-2 p-0 m-0 form-control" id="CategoryProd">
+                                                @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.CategoryProd)
+                                                {
+                                                    <option value="@G.Id">@G.Value</option>
+                                                }
+                                            </select>
+                                        }
                                     }
                                 </div>
                             </div>
@@ -126,7 +126,22 @@
             </div>
         </div>
     </div>
-    <div id="RenderBandeja">       
+    @*<div class="row m-0 p-0 contReportProduct box-info m-0 p-0">
+            <div class="col-12 col-md-6">
+                <div id="RenderBandeja">
+                    @Html.Partial("_BoardReportPartial")
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <div id="RenderGraphic">
+
+                </div>
+            </div>
+
+        </div>*@
+    <div id="RenderGraphic">
+
     </div>
 </div>
 
@@ -147,8 +162,13 @@
 
 
 <script>
+
     $(document).ready(function () {
         Filtrar(1);
+        
+        $("#take").val(10);
+          
+        
     });
    
     function ColapsarTabla(id) {
@@ -187,8 +207,9 @@
             success: function (html) {
                 if (html.indexOf("IniciarSesion") == -1) {
                     $("#Loading").hide();
-                    $("#RenderBandeja").html(html);
-                    Load();
+                    //$("#RenderBandeja").html(html);    
+                    $("#RenderGraphic").html(html);                  
+                    Load();                                      
                 } else {
                     location.href = "/";
                 }
