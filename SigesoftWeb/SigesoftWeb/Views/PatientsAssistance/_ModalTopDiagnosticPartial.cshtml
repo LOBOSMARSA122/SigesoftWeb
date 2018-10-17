@@ -1,0 +1,62 @@
+﻿
+
+<div class="" id="reporte11Modal" style="width:100%">
+    <div id="chartModal" class="chart table-responsive"></div>
+</div>
+
+@{
+
+    if (Request.Browser.Browser == "IE" && Convert.ToDouble(Request.Browser.Version) < 9.0)
+    {
+    }
+    else
+    {
+        <script>
+        function LoadModalTop(data) {
+        var obj = JSON.parse(data);
+                Highcharts.chart('chartModal', {
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: ' '
+                    },
+                    xAxis: {
+                        type: 'category'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Cantidad de casos'
+                        }
+
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        series: {
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y: f}'
+                            }
+                        }
+                    },
+
+                    tooltip: {
+                        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                    },
+
+                    "series": [
+                        {
+                            "name": "Browsers",
+                            "colorByPoint": true,
+                            "data": obj
+                        }
+                    ]
+                });
+            }
+        </script>
+    }
+}

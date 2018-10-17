@@ -16,6 +16,23 @@
         overflow: hidden;
         white-space: nowrap;
     }
+
+    .modal-content {
+        width: 600px !important;
+        margin: 30px auto !important;
+    }
+
+    .modal-dialog {
+
+        margin: 0px auto;
+        height: 100%;
+        max-width: 1000px;
+    }
+
+    .modal-content{
+        width:auto;
+    }
+
 </style>
 <link href="~/Content/fullcalendar.css" rel="stylesheet" />
 <link href="~/Content/css/FullCalendar-custom.css" rel="stylesheet" />
@@ -124,10 +141,9 @@
                     <input id="heightdivTopDx" type="hidden" value="">
                     <div id="divTopDx" style="overflow:hidden">
                         <div class="row info" id="RenderTopDiagnostic">
-                            @Html.Partial("_TopDiagnosticPartial")
+                            <a href="#" data-toggle="modal" data-target="#modal1" onclick="ModalTopDiagnosticPartial()">@Html.Partial("_TopDiagnosticPartial")</a>
                         </div>
                     </div>
-
                 </div>
                 <div class="col-12 Chart wrapperMonthlyControls loadingGrid">
                     <div class="row title" onclick="ColapseTable('divMonthlyControls','heightDivMonthlyControls')">
@@ -136,7 +152,7 @@
                     <input id="heightDivMonthlyControls" type="hidden" value="">
                     <div id="divMonthlyControls" style="overflow:hidden">
                         <div class="row info" id="RenderHeightdivMonthlyControls">
-                            @Html.Partial("_MonthlyControlsPartial")
+                            <a href="#" data-toggle="modal" data-target="#modal2" onclick="ModalMonthlyControls()">@Html.Partial("_MonthlyControlsPartial")</a>
                         </div>
                     </div>
 
@@ -175,8 +191,25 @@
                 </div>
             </div>
         </aside>
-
     </section>
+
+
+    <!--Modal-->
+    <div class="modal fade" id="modal1">
+        <div class="modal-dialog d-flex justify-content-center align-items-center">
+            <div class="modal-content">
+                @Html.Partial("_ModalTopDiagnosticPartial")
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal2">
+        <div class="modal-dialog d-flex justify-content-center align-items-center">
+            <div class="modal-content">
+                @Html.Partial("_ModalMonthlyControlsPartial")
+            </div>
+        </div>
+    </div>
 
 
 </div>
@@ -217,22 +250,33 @@
         Filter(1);
     });
 
-    function LoadTopDiagnostic() {
-        $('.wrapperTopDx').addClass('loadingGrid');
-        $.ajax({
-            cache: false,
-            dataType: 'html',
-            method: 'GET',
-            async: true,
-            url: '/PatientsAssistance/TopDiagnostic',
-            success: function (html) {
-                if (html.indexOf("IniciarSesion") == -1) {
-                    $('.wrapperTopDx').removeClass('loadingGrid');
-                    Load(html);
-                } else {
-                    location.href = "/";
-                }
-            },
+        function ModalTopDiagnosticPartial() {
+            LoadModalTopDiagnostic();
+        }
+
+        function ModalMonthlyControls() {
+            LoadModalMonthlyControls();
+        }
+
+
+
+
+        function LoadTopDiagnostic() {      
+            $('.wrapperTopDx').addClass('loadingGrid');
+            $.ajax({
+                cache: false,
+                dataType: 'html',
+                method: 'GET',
+                async: true,
+                url: '/PatientsAssistance/TopDiagnostic',
+                success: function (html) {
+                    if (html.indexOf("IniciarSesion") == -1) {
+                        $('.wrapperTopDx').removeClass('loadingGrid');
+                        Load(html);                       
+                    } else {
+                        location.href = "/";
+                    }
+                },
             error: function (error) {
                 alerta("Sucedió un error al conectarse al servidor", "rojo");
                 $('.wrapperTopDx').removeClass('loadingGrid');
@@ -241,22 +285,46 @@
         });
     }
 
-    function MonthlyControls() {
-        $('.wrapperMonthlyControls').addClass('loadingGrid');
-        $.ajax({
-            cache: false,
-            dataType: 'html',
-            method: 'GET',
-            async: true,
-            url: '/PatientsAssistance/MonthlyControls',
-            success: function (html) {
-                if (html.indexOf("IniciarSesion") == -1) {
-                    $('.wrapperMonthlyControls').removeClass('loadingGrid');
-                    LoadMonthlyControls(html);
-                } else {
-                    location.href = "/";
+        function LoadModalTopDiagnostic() {    
+            $.ajax({
+                cache: false,
+                dataType: 'html',
+                method: 'GET',
+                async: true,
+                url: '/PatientsAssistance/TopDiagnostic',
+                success: function (html) {
+                    if (html.indexOf("IniciarSesion") == -1) {                    
+                        LoadModalTop(html);
+                    } else {
+                        location.href = "/";
+                    }
+                },
+                error: function (error) {
+                    alerta("Sucedió un error al conectarse al servidor", "rojo");                  
+                    console.log(error);
                 }
-            },
+            });
+        }
+
+
+
+
+        function MonthlyControls() {           
+            $('.wrapperMonthlyControls').addClass('loadingGrid');
+            $.ajax({
+                cache: false,
+                dataType: 'html',
+                method: 'GET',
+                async: true,
+                url: '/PatientsAssistance/MonthlyControls',
+                success: function (html) {
+                    if (html.indexOf("IniciarSesion") == -1) {
+                        $('.wrapperMonthlyControls').removeClass('loadingGrid');
+                        LoadMonContr(html);
+                    } else {
+                        location.href = "/";
+                    }
+                },
             error: function (error) {
                 alerta("Sucedió un error al conectarse al servidor", "rojo");
                 $('.wrapperMonthlyControls').removeClass('loadingGrid');
@@ -265,28 +333,49 @@
         });
     }
 
-    function LoadSchedule() {
-        var events = [];
-        $.ajax({
-            type: "GET",
-            async: true,
-            url: "/PatientsAssistance/GetSchedule",
-            success: function (data) {
-                $.each(data, function (i, v) {
-                    events.push({
-                        title: v.Pacient,
-                        description: v.EsoType,
-                        start: moment(v.ServiceDate),
-                        end: v.FechaFin != null ? moment(v.ServiceDate).add(1, "day") : null,
-                        color: v.Color,
-                        allDay: true
-                    })
-                });
-                GenerateCalender(events);
-            },
-            error: function (error) {
-                alert('Failed');
-            }
+        function LoadModalMonthlyControls() {
+            $.ajax({
+                cache: false,
+                dataType: 'html',
+                method: 'GET',
+                async: true,
+                url: '/PatientsAssistance/MonthlyControls',
+                success: function (html) {
+                    if (html.indexOf("IniciarSesion") == -1) {
+                        LoadModalMonContr(html);
+                    } else {
+                        location.href = "/";
+                    }
+                },
+                error: function (error) {
+                    alerta("Sucedió un error al conectarse al servidor", "rojo");
+                    console.log(error);
+                }
+            });
+        }
+
+        function LoadSchedule() {
+            var events = [];
+            $.ajax({
+                type: "GET",
+                async: true,
+                url: "/PatientsAssistance/GetSchedule",
+                success: function (data) {
+                    $.each(data, function (i, v) {
+                        events.push({
+                            title: v.Pacient,
+                            description: v.EsoType,
+                            start: moment(v.ServiceDate),
+                            end: v.FechaFin != null ? moment(v.ServiceDate).add(1, "day") : null,
+                            color: v.Color,
+                            allDay: true
+                        })
+                    });
+                    GenerateCalender(events);
+                },
+                error: function (error) {
+                    alert('Failed');
+                }
 
         });
     }
