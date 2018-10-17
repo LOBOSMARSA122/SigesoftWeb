@@ -115,7 +115,10 @@
 
 
 <script>
-    
+    $(document).ready(function () {
+        $("#take").val(10);
+        Filtrar(1);
+    });
     function ColapsarFiltro(id) {
         setTimeout(function () {
             var height = 10;

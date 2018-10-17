@@ -139,7 +139,7 @@
                     <input id="heightdivTopDx" type="hidden" value="">
                     <div id="divTopDx" style="overflow:hidden">
                         <div class="row info" id="RenderTopDiagnostic">
-                            <a href="#" data-toggle="modal" data-target="#modal1" onclick="ModalTopDiagnosticPartial()">@Html.Partial("_TopDiagnosticPartial")</a>
+                            <a href="#" class="table-responsive" data-toggle="modal" data-target="#modal1" onclick="ModalTopDiagnosticPartial()">@Html.Partial("_TopDiagnosticPartial")</a>
                         </div>
                     </div>
                 </div>
@@ -150,7 +150,7 @@
                     <input id="heightDivMonthlyControls" type="hidden" value="">
                     <div id="divMonthlyControls" style="overflow:hidden">
                         <div class="row info" id="RenderHeightdivMonthlyControls">
-                            <a href="#" data-toggle="modal" data-target="#modal2" onclick="ModalMonthlyControls()">@Html.Partial("_MonthlyControlsPartial")</a>
+                            <a href="#" class="table-responsive" data-toggle="modal" data-target="#modal2" onclick="ModalMonthlyControls()">@Html.Partial("_MonthlyControlsPartial")</a>
                         </div>
                     </div>
 
@@ -245,6 +245,7 @@
         LoadSchedule();
         LoadTopDiagnostic();
         MonthlyControls();
+        $("#take").val(10);
         Filter(1);
     });
 
@@ -419,7 +420,6 @@
             Index: index,
             Take: $("#take").val()
         };
-
         $.ajax({
             cache: false,
             dataType: 'html',

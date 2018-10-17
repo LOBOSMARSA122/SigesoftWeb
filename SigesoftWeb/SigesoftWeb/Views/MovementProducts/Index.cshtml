@@ -155,6 +155,10 @@
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script>
+    $(document).ready(function () {
+        $("#take").val(10);
+        Filtrar(1);
+    });
     window.onload = function () {
         var fecha = new Date();
         var m = fecha.getMonth() + 1;
