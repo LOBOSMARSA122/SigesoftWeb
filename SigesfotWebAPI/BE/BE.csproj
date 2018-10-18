@@ -84,8 +84,11 @@
     <Compile Include="History\HistoryBE.cs" />
     <Compile Include="History\NoxiousHabitsBE.cs" />
     <Compile Include="History\PersonMedicalHistoryBE.cs" />
+    <Compile Include="History\TypeOfEppBE.cs" />
     <Compile Include="History\WorkStationDangersBE.cs" />
     <Compile Include="MedicalAssistance\Boards.cs" />
+    <Compile Include="MedicalAssistance\PersonMedicalHistoryList.cs" />
+    <Compile Include="MedicalAssistance\ReviewEMO.cs" />
     <Compile Include="MedicalAssistance\Schedule.cs" />
     <Compile Include="MedicalAssistance\TopDiagnostic.cs" />
     <Compile Include="Organization\AreaBE.cs" />

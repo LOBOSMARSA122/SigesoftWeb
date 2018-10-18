@@ -81,5 +81,23 @@ namespace SigesoftWebAPI.Controllers.MedicalAssistance
                 return Ok(result);
             });
         }
+
+        [HttpGet]
+        public async Task<IHttpActionResult> ReviewsEMOs(string pacientId)
+        {
+            return await Task.Run(() => {
+                var result = oPatientsAssistanceBL.ReviewsEMOs(pacientId);
+                return Ok(result);
+            });
+        }
+
+        [HttpGet]
+        public async Task<IHttpActionResult> GetAntecedentConsolidateForService(string pacientId)
+        {
+            return await Task.Run(() => {
+                var result = oPatientsAssistanceBL.GetAntecedentConsolidateForService(pacientId);
+                return Ok(result);
+            });
+        }
     }
 }
