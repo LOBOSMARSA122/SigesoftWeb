@@ -1,73 +1,17 @@
 ﻿
+<link href="~/Content/Gnostice/documentviewer.css" rel="stylesheet" />
+<link href="~/Content/Gnostice/default.theme.css" rel="stylesheet" />
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/Gnostice/documentviewer.min.js"></script>
+<script src="~/Scripts/Gnostice/ViewerInitializer.js"></script>
 <div class="col-12">
     <div class="row" style="margin-right:0px;">
 
 
-        <div class="col-4 Chart">
-            <div class="row title" onclick="ColapseTable('DivNotices','heightDivNotices')">
-                Antecedentes
-            </div>
-            <input id="heightDivNotices" type="hidden" value="">
-            <div id="DivNotices" style="overflow:hidden">
-                <div class="row info ">
-                    <div class="col-10">
-                        Completar datos de empresa:
-                    </div>
-                    <div class="col-2">
-                        <span class="label label-warning result">10</span>
-                    </div>
-                </div>
-                <div class="row info">
-                    <div class="col-10">
-                        Empresas con  deudas:
-                    </div>
-                    <div class="col-2">
-                        <span class="label label-danger result">02</span>
-                    </div>
-                </div>
-                <div class="row info">
-                    <div class="col-10 ">
-                        Controles para el día de hoy:
-                    </div>
-                    <div class="col-2">
-                        <span class="label label-success result">10</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-4 Chart">
-            <div class="row title" onclick="ColapseTable('DivNotices','heightDivNotices')">
-                EMOs
-            </div>
-            <input id="heightDivNotices" type="hidden" value="">
-            <div id="DivNotices" style="overflow:hidden">
-                <div class="row info ">
-                    <div class="col-10">
-                        Completar datos de empresa:
-                    </div>
-                    <div class="col-2">
-                        <span class="label label-warning result">10</span>
-                    </div>
-                </div>
-                <div class="row info">
-                    <div class="col-10">
-                        Empresas con  deudas:
-                    </div>
-                    <div class="col-2">
-                        <span class="label label-danger result">02</span>
-                    </div>
-                </div>
-                <div class="row info">
-                    <div class="col-10 ">
-                        Controles para el día de hoy:
-                    </div>
-                    <div class="col-2">
-                        <span class="label label-success result">10</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
 
         <div class="col-4 Chart">
             <div class="row title" onclick="ColapseTable('DivNotices','heightDivNotices')">
@@ -100,6 +44,11 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12" id="doc-viewer-id" style="height:700px">
+
         </div>
     </div>
 </div>
