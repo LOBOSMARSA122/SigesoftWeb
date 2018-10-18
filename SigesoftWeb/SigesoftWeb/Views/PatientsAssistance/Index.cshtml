@@ -36,7 +36,7 @@
 <link href="~/Content/css/FullCalendar-custom.css" rel="stylesheet" />
 <div class="container-fluid">
     <section class="contenedor-main  row">
-
+        <button type="button" class="btnModalReview btn p-0 m-0 absolute-center" id="btnModalReviewEMO" data-toggle="modal" data-target="#modalReviewEMO"></button>
         <main class="colMain col-12 col-md-8 mr-0 pr-0">
             <div class="box box-default mt-2" id="acordion">
                 <div class="box-header with-border" id="heading1">
@@ -76,31 +76,31 @@
                             </div>
                         </div>
                         @*<div class="row">
-                                <div class="col-12 col-lg-3 col-xl-2">
-                                    <div class="form-group">
-                                        <label for="" id="filtPaciente" class="d-none d-lg-block">Filtrar</label>
-                                        <button class="btn btn-info boton form-control" onclick="Test(1)">
-                                            <i class="fa fa-search"></i> Test
-                                        </button>
-                                    </div>
-                                </div>
-                                <div id="Valuetest" style="background:#f39c12; width:20px; height:20px;">
-
+                            <div class="col-12 col-lg-3 col-xl-2">
+                                <div class="form-group">
+                                    <label for="" id="filtPaciente" class="d-none d-lg-block">Filtrar</label>
+                                    <button class="btn btn-info boton form-control" onclick="Test(1)">
+                                        <i class="fa fa-search"></i> Test
+                                    </button>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-12 col-lg-3 col-xl-2">
-                                    <div class="form-group">
-                                        <label for="" id="filtPaciente" class="d-none d-lg-block">Filtrar</label>
-                                        <button class="btn btn-info boton form-control" onclick="Test2(1)">
-                                            <i class="fa fa-search"></i> Test2
-                                        </button>
-                                    </div>
-                                </div>
-                                <div id="Valuetest2" style="background:#f39c12; width:20px; height:20px;">
+                            <div id="Valuetest" style="background:#f39c12; width:20px; height:20px;">
 
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-lg-3 col-xl-2">
+                                <div class="form-group">
+                                    <label for="" id="filtPaciente" class="d-none d-lg-block">Filtrar</label>
+                                    <button class="btn btn-info boton form-control" onclick="Test2(1)">
+                                        <i class="fa fa-search"></i> Test2
+                                    </button>
                                 </div>
-                            </div>*@
+                            </div>
+                            <div id="Valuetest2" style="background:#f39c12; width:20px; height:20px;">
+
+                            </div>
+                        </div>*@
                     </div>
                 </div>
 
@@ -207,10 +207,17 @@
         </div>
     </div>
 
+    
+    <div class="modal fade" id="modalReviewEMO">
+        <div class="modal-dialog d-flex justify-content-center align-items-center">
+            <div class="modal-content">
+                @Html.Partial("_ReviewEMOPartial")
+            </div>
+        </div>
+    </div>
 
 </div>
 
-<span class="context-menu-one btn btn-neutral">right click me</span>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 
 @section Scripts{
@@ -249,9 +256,16 @@
             selector: '.context-menu-one',
             trigger: 'left',
             callback: function (key, options) {
+                var m = "clicked: " + key;
+                
                 if (key === "RevisarEMO") {
                     $('tr.context-menu-active').each(function () {
-                        alert($(this).find('td').eq(0).text());
+                        var serviceId = $(this).find('td').eq(0).text();
+                        //alert($(this).find('td').eq(0).text());
+                        //LoadReviewEMO(serviceId);
+                        if (m === "clicked: " + "RevisarEMO") {
+                            $('#btnModalReviewEMO').click();
+                        }
                     });
                 }
                 else if (key === "ConsultaMedica") {
@@ -262,7 +276,9 @@
             },
             items: {
                 "RevisarEMO": { name: "Revisar EMO", icon: "icon-edit" },
-                "ConsultaMedica": { name: "Consulta Médica", icon: "icon-users" }
+                "ConsultaMedica": { name: "Consulta Médica", icon: "icon-users" },
+                "sep1": "---------",
+                "Salir": { name: "Salir" }
             }
         });
 
@@ -277,7 +293,9 @@
                 }
             },
             items: {
-                "ConsultaMedica": { name: "Consulta Médica", icon: "icon-users" }
+                "ConsultaMedica": { name: "Consulta Médica", icon: "icon-users" },
+                "sep1": "---------",
+                "Salir": { name: "Salir" }
             }
         });
 
@@ -292,6 +310,31 @@
     }
 
 
+    function LoadReviewEMO(serviceId) {
+        var data = {
+            ServiceId: serviceId          
+        };
+        $.ajax({
+            cache: false,
+            dataType: 'html',
+            method: 'POST',
+            async: true,
+            data: data,
+            url: '/PatientsAssistance/ReviewEMO',
+            success: function (html) {
+                if (html.indexOf("IniciarSesion") == -1) {       
+                    $('#modalReviewEMO').modal();
+                    //$("#RenderBoardPatientsAssistancePartial").html(html);
+                } else {
+                    location.href = "/";
+                }
+            },
+            error: function (error) {
+                alerta("Sucedió un error al conectarse al servidor", "rojo");              
+                console.log(error);
+            }
+        });
+    }
 
 
     function LoadTopDiagnostic() {
