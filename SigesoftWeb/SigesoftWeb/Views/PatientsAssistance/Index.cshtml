@@ -255,9 +255,10 @@
         $.contextMenu({
             selector: '.context-menu-one',
             trigger: 'left',
+            
+
             callback: function (key, options) {
-                var m = "clicked: " + key;
-                
+                var m = "clicked: " + key;                
                 if (key === "RevisarEMO") {
                     $('tr.context-menu-active').each(function () {
                         var serviceId = $(this).find('td').eq(0).text();
@@ -274,10 +275,10 @@
                     });
                 }
             },
-            items: {
-                "RevisarEMO": { name: "Revisar EMO", icon: "icon-edit" },
-                "ConsultaMedica": { name: "Consulta Médica", icon: "icon-users" },
-                "sep1": "---------",
+            items: {               
+                "RevisarEMO": { name: "Revisar EMO"},
+                "ConsultaMedica": { name: "Consulta Médica" },
+                "sep1": "---------", 
                 "Salir": { name: "Salir" }
             }
         });
@@ -293,7 +294,7 @@
                 }
             },
             items: {
-                "ConsultaMedica": { name: "Consulta Médica", icon: "icon-users" },
+                "ConsultaMedica": { name: "Consulta Médica"},
                 "sep1": "---------",
                 "Salir": { name: "Salir" }
             }
