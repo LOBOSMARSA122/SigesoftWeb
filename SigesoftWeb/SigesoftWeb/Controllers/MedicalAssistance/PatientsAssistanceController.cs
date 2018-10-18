@@ -95,6 +95,22 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
 
         }
 
+        public ActionResult ReviewEMO(string serviceId)
+        {
+            Api API = new Api();
+            Dictionary<string, string> arg = new Dictionary<string, string>()
+            {
+                { "serviceId",serviceId}
+            };
+
+            //return await Task.Run(() =>
+            //{
+            //    ViewBag.Services = API.Post<BoardPatient>("PatientsAssistance/GetAllPatientsAssistance", arg);
+                return PartialView("_ReviewEMOPartial");
+            //});
+
+        }
+
         public JsonResult Test()
         {
             #region ...
