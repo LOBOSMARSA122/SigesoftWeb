@@ -18,19 +18,63 @@
     }
 
     .modal-content {
-        width: 600px !important;
-        margin: 30px auto !important;
+        width: 60% !important;
+        margin: 15px auto !important;
     }
-
     .modal-dialog {
         margin: 0px auto;
         height: 100%;
-        max-width: 1000px;
+        max-width: 100%;
+    }
+    .View {
+        height: auto;
+        margin: 10px;
+        box-shadow: 3px 3px 3px #adadad;
+        border:  1px rgba(173, 173,173, 0.1) inset;
     }
 
-    .modal-content {
-        width: auto;
+        .View .title {
+            padding-left: 10px;
+            /*padding: 2px;*/
+            color: #3c3c3b;
+            text-align: left;
+            border-bottom: 1px rgba(173, 173,173, 0.5) inset;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+    .View .title:hover {
+        background: rgba(173, 173,173, 0.1);
     }
+
+    .View .info {
+        color: #3c3c3b;
+        font-family: 'Roboto', sans-serif;
+        font-size: 13px;
+        padding: 10px;
+        padding-left: 0px;
+        margin: 1px;
+        border-bottom: 1px rgba(173, 173,173, 0.5) inset;
+        text-align: left;
+    }
+
+        .View .info div {
+            padding-left: 0px;
+        }
+
+        .View .info .result {
+            margin-left: 10px;
+        }
+
+        .View .info a {
+            text-decoration: dotted;
+        }
+
+    .View div:last-child {
+        border-bottom: none;
+    }
+
+
 </style>
 <link href="~/Content/fullcalendar.css" rel="stylesheet" />
 <link href="~/Content/css/FullCalendar-custom.css" rel="stylesheet" />
@@ -209,9 +253,12 @@
 
     
     <div class="modal fade" id="modalReviewEMO">
-        <div class="modal-dialog d-flex justify-content-center align-items-center modal-lg">
+        <div class="modal-dialog d-flex justify-content-center align-items-center" role="document" >
             <div class="modal-content">
-                @Html.Partial("_ReviewEMOPartial")
+                <div class="modal-body table-responsive">                       
+                    @Html.Partial("_ReviewEMOPartial")                  
+                </div>
+                
             </div>
         </div>
     </div>
@@ -257,16 +304,13 @@
             trigger: 'left',
             
 
-            callback: function (key, options) {
-                var m = "clicked: " + key;                
+            callback: function (key, options) {             
                 if (key === "RevisarEMO") {
                     $('tr.context-menu-active').each(function () {
                         var serviceId = $(this).find('td').eq(0).text();
                         //alert($(this).find('td').eq(0).text());
-                        //LoadReviewEMO(serviceId);
-                        if (m === "clicked: " + "RevisarEMO") {
-                            $('#btnModalReviewEMO').click();
-                        }
+                        //LoadReviewEMO(serviceId);                        
+                        $('#btnModalReviewEMO').click();                        
                     });
                 }
                 else if (key === "ConsultaMedica") {
