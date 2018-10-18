@@ -247,6 +247,7 @@
 
         $.contextMenu({
             selector: '.context-menu-one',
+            trigger: 'left',
             callback: function (key, options) {
                 if (key === "RevisarEMO") {
                     $('tr.context-menu-active').each(function () {
@@ -267,9 +268,13 @@
 
         $.contextMenu({
             selector: '.context-menu-two',
+            trigger: 'left',
             callback: function (key, options) {
-                var m = "clicked: " + key;
-                window.console && console.log(m) || alert(m);
+                if (key === "ConsultaMedica") {
+                    $('tr.context-menu-active').each(function () {
+                        alert($(this).find('td').eq(0).text());
+                    });
+                }
             },
             items: {
                 "ConsultaMedica": { name: "Consulta Médica", icon: "icon-users" }
