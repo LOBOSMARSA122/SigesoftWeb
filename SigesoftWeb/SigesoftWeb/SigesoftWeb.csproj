@@ -523,7 +523,6 @@
     <Content Include="Views\PatientsAssistance\_MonthlyControlsPartial.cshtml" />
     <Content Include="Views\PatientsAssistance\_ModalTopDiagnosticPartial.cshtml" />
     <Content Include="Views\PatientsAssistance\_ModalMonthlyControlsPartial.cshtml" />
-    <Content Include="Views\Report\_BoardReportPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
