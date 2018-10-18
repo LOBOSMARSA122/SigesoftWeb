@@ -95,5 +95,7 @@ namespace DAL
 
         public DbSet<SupplierBE> Supplier { get; set; }
         public DbSet<ApplicationHierarchyBE> ApplicationHierarchy { get; set; }
+
+        public DbSet<TypeOfEppBE> TypeOfEpp { get; set; }
     }
 }

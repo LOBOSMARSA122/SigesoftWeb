@@ -14,141 +14,141 @@ namespace BL.History
         private DatabaseContext ctx = new DatabaseContext();
 
         #region CRUD
-        public WorkStationDangersBE GetWorkStationDangerss(string workStationDangersId)
-        {
-            try
-            {
-                var objEntity = (from a in ctx.WorkStationDangers
-                                 where a.WorkstationDangersId == workStationDangersId
-                                 select a).FirstOrDefault();
+        //public WorkStationDangersBE GetWorkStationDangerss(string workStationDangersId)
+        //{
+        //    try
+        //    {
+        //        var objEntity = (from a in ctx.WorkStationDangers
+        //                         where a.WorkstationDangersId == workStationDangersId
+        //                         select a).FirstOrDefault();
 
-                return objEntity;
+        //        return objEntity;
 
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return null;
+        //    }
+        //}
 
-        public List<WorkStationDangersBE> GetAllWorkStationDangers()
-        {
-            try
-            {
-                var isDelete = (int)Enumeratores.SiNo.No;
-                var objEntity = (from a in ctx.WorkStationDangers
-                                 where a.IsDeleted == isDelete
-                                 select new WorkStationDangersBE()
-                                 {
-                                     WorkstationDangersId = a.WorkstationDangersId,
-                                     HistoryId = a.HistoryId,
-                                     DangerId = a.DangerId,
-                                     IsDeleted = a.IsDeleted,
-                                     InsertUserId = a.InsertUserId,
-                                     NoiseSource = a.NoiseSource,
-                                     NoiseLevel = a.NoiseLevel,
-                                     TimeOfExposureToNoise = a.TimeOfExposureToNoise,
-                                     InsertDate = a.InsertDate,
-                                     UpdateDate = a.UpdateDate,
-                                     UpdateUserId = a.UpdateUserId
-                                 }).ToList();
+        //public List<WorkStationDangersBE> GetAllWorkStationDangers()
+        //{
+        //    try
+        //    {
+        //        var isDelete = (int)Enumeratores.SiNo.No;
+        //        var objEntity = (from a in ctx.WorkStationDangers
+        //                         where a.IsDeleted == isDelete
+        //                         select new WorkStationDangersBE()
+        //                         {
+        //                             WorkstationDangersId = a.WorkstationDangersId,
+        //                             HistoryId = a.HistoryId,
+        //                             DangerId = a.DangerId,
+        //                             IsDeleted = a.IsDeleted,
+        //                             InsertUserId = a.InsertUserId,
+        //                             NoiseSource = a.NoiseSource,
+        //                             NoiseLevel = a.NoiseLevel,
+        //                             TimeOfExposureToNoise = a.TimeOfExposureToNoise,
+        //                             InsertDate = a.InsertDate,
+        //                             UpdateDate = a.UpdateDate,
+        //                             UpdateUserId = a.UpdateUserId
+        //                         }).ToList();
 
-                return objEntity;
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
+        //        return objEntity;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return null;
+        //    }
+        //}
 
-        public bool AddWorkStationDangers(WorkStationDangersBE workStationDangers, int systemUserId)
-        {
-            try
-            {
-                WorkStationDangersBE oWorkStationDangersBE = new WorkStationDangersBE()
-                {
-                    WorkstationDangersId =  new Utils().GetPrimaryKey(1, 39, "HW"),
-                    HistoryId = workStationDangers.HistoryId,
-                    DangerId = workStationDangers.DangerId,
-                    NoiseSource = workStationDangers.NoiseSource,
-                    NoiseLevel = workStationDangers.NoiseLevel,
-                    TimeOfExposureToNoise = workStationDangers.TimeOfExposureToNoise,
+        //public bool AddWorkStationDangers(WorkStationDangersBE workStationDangers, int systemUserId)
+        //{
+        //    try
+        //    {
+        //        WorkStationDangersBE oWorkStationDangersBE = new WorkStationDangersBE()
+        //        {
+        //            WorkstationDangersId =  new Utils().GetPrimaryKey(1, 39, "HW"),
+        //            HistoryId = workStationDangers.HistoryId,
+        //            DangerId = workStationDangers.DangerId,
+        //            NoiseSource = workStationDangers.NoiseSource,
+        //            NoiseLevel = workStationDangers.NoiseLevel,
+        //            TimeOfExposureToNoise = workStationDangers.TimeOfExposureToNoise,
 
-                    //Auditoria
-                    IsDeleted = (int)Enumeratores.SiNo.No,
-                    InsertDate = DateTime.UtcNow,
-                    InsertUserId = systemUserId,
-                };
+        //            //Auditoria
+        //            IsDeleted = (int)Enumeratores.SiNo.No,
+        //            InsertDate = DateTime.UtcNow,
+        //            InsertUserId = systemUserId,
+        //        };
 
-                ctx.WorkStationDangers.Add(oWorkStationDangersBE);
+        //        ctx.WorkStationDangers.Add(oWorkStationDangersBE);
 
-                int rows = ctx.SaveChanges();
+        //        int rows = ctx.SaveChanges();
 
-                return rows > 0;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
+        //        return rows > 0;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return false;
+        //    }
+        //}
 
-        public bool UpdateWorkStationDangers(WorkStationDangersBE workStationDangers, int systemUserId)
-        {
-            try
-            {
-                var oWorkStationDangers = (from a in ctx.WorkStationDangers
-                                           where a.WorkstationDangersId == workStationDangers.WorkstationDangersId
-                                           select a).FirstOrDefault();
+        //public bool UpdateWorkStationDangers(WorkStationDangersBE workStationDangers, int systemUserId)
+        //{
+        //    try
+        //    {
+        //        var oWorkStationDangers = (from a in ctx.WorkStationDangers
+        //                                   where a.WorkstationDangersId == workStationDangers.WorkstationDangersId
+        //                                   select a).FirstOrDefault();
 
-                if (oWorkStationDangers == null)
-                    return false;
+        //        if (oWorkStationDangers == null)
+        //            return false;
 
-                oWorkStationDangers.HistoryId = workStationDangers.HistoryId;
-                oWorkStationDangers.DangerId = workStationDangers.DangerId;
-                oWorkStationDangers.NoiseSource = workStationDangers.NoiseSource;
-                oWorkStationDangers.NoiseLevel = workStationDangers.NoiseLevel;
-                oWorkStationDangers.TimeOfExposureToNoise = workStationDangers.TimeOfExposureToNoise;
+        //        oWorkStationDangers.HistoryId = workStationDangers.HistoryId;
+        //        oWorkStationDangers.DangerId = workStationDangers.DangerId;
+        //        oWorkStationDangers.NoiseSource = workStationDangers.NoiseSource;
+        //        oWorkStationDangers.NoiseLevel = workStationDangers.NoiseLevel;
+        //        oWorkStationDangers.TimeOfExposureToNoise = workStationDangers.TimeOfExposureToNoise;
 
-                //Auditoria
+        //        //Auditoria
 
-                oWorkStationDangers.UpdateDate = DateTime.UtcNow;
-                oWorkStationDangers.UpdateUserId = systemUserId;
+        //        oWorkStationDangers.UpdateDate = DateTime.UtcNow;
+        //        oWorkStationDangers.UpdateUserId = systemUserId;
 
-                int rows = ctx.SaveChanges();
+        //        int rows = ctx.SaveChanges();
 
-                return rows > 0;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
+        //        return rows > 0;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return false;
+        //    }
+        //}
 
-        public bool DeleteWorkStationDangers(string workStationDangersId, int systemUserId)
-        {
-            try
-            {
-                var oWorkStationDangers = (from a in ctx.WorkStationDangers
-                                           where a.WorkstationDangersId == workStationDangersId
-                                           select a).FirstOrDefault();
+        //public bool DeleteWorkStationDangers(string workStationDangersId, int systemUserId)
+        //{
+        //    try
+        //    {
+        //        var oWorkStationDangers = (from a in ctx.WorkStationDangers
+        //                                   where a.WorkstationDangersId == workStationDangersId
+        //                                   select a).FirstOrDefault();
 
-                if (oWorkStationDangers == null)
-                    return false;
+        //        if (oWorkStationDangers == null)
+        //            return false;
 
-                oWorkStationDangers.UpdateUserId = systemUserId;
-                oWorkStationDangers.UpdateDate = DateTime.UtcNow;
-                oWorkStationDangers.IsDeleted = (int)Enumeratores.SiNo.Si;
+        //        oWorkStationDangers.UpdateUserId = systemUserId;
+        //        oWorkStationDangers.UpdateDate = DateTime.UtcNow;
+        //        oWorkStationDangers.IsDeleted = (int)Enumeratores.SiNo.Si;
 
-                int rows = ctx.SaveChanges();
+        //        int rows = ctx.SaveChanges();
 
-                return rows > 0;
+        //        return rows > 0;
 
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return false;
+        //    }
+        //}
         #endregion
     }
 }

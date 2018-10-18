@@ -58,5 +58,16 @@ namespace BE.Common
             Cancelado = 5,
             EsperandoAptitud = 6
         }
+
+        public enum AptitudeStatus
+        {
+            SinAptitud = 1,
+            Apto = 2,
+            NoApto = 3,
+            Observado = 4,
+            AptoRestriccion = 5,
+            Asistencial = 6,
+            Evaluado = 7
+        }
     }
 }

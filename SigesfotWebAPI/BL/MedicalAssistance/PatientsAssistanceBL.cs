@@ -384,5 +384,217 @@ namespace BL.MedicalAssistance
             return oMonthlyControls;
 
         }
+
+        public List<ReviewEMO> ReviewsEMOs(string pacientId)
+        {
+            try
+            {
+                var isDeleted = (int)Enumeratores.SiNo.No;
+                var list = (from a in ctx.Service
+                            join b in ctx.SystemParameter on new { a = a.i_AptitudeStatusId.Value, b = 124 } equals new { a = b.i_ParameterId, b = b.i_GroupId }
+                            where a.i_IsDeleted == isDeleted &&  a.i_MasterServiceId == 10
+                            select new ReviewEMO
+                            {
+                                ServiceId = a.v_ServiceId,
+                                Aptitude = b.v_Value1,
+                                ServiceDate = a.d_ServiceDate.Value,
+                                IsRevisedHistoryId = a.i_IsRevisedHistoryId.Value,
+                                MasterServiceId = a.i_MasterServiceId.Value,
+                            }).ToList();
+
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public List<PersonMedicalHistoryList> GetAntecedentConsolidateForService(string pacientId)
+        {
+            //mon.IsActive = true;
+
+            try
+            {
+                List<PersonMedicalHistoryList> lis = new List<PersonMedicalHistoryList>();
+
+                int isDeleted = (int)SiNo.No;
+
+                #region querys individuales
+
+                // Obtener todos loa antecedentes de una persona (una o varias empresas)
+                var historyId = (from a in ctx.History
+                                 where a.v_PersonId == pacientId && a.i_IsDeleted == isDeleted
+                                 select new PersonMedicalHistoryList
+                                 {
+                                     v_AntecedentTypeName = "Ocupacionales",
+                                     v_DiseasesName = null,
+                                     v_HistoryId = a.v_HistoryId,
+                                     d_StartDate = a.d_StartDate,
+                                     d_EndDate = a.d_EndDate,
+                                     v_Occupation = a.v_workstation,
+                                     v_GroupName = null
+                                 }).ToList();
+
+                // personmedicalhistory
+                var q1tmp = (from A in ctx.PersonMedicalHistory
+                             join D in ctx.Diseases on A.v_DiseasesId equals D.v_DiseasesId
+                             where A.i_IsDeleted == isDeleted && A.v_PersonId == pacientId
+
+                             select new PersonMedicalHistoryList
+                             {
+                                 v_AntecedentTypeName = "Medicos-Personales",
+                                 v_DiseasesName = D.v_Name,
+                                 d_StartDate = A.d_StartDate,
+                                 v_GroupName = null
+
+                             }).ToList();
+
+                var q1 = (from A in q1tmp
+                          select new PersonMedicalHistoryList
+                          {
+                              v_AntecedentTypeName = "Medicos-Personales",
+                              v_DiseasesName = A.v_DiseasesName,
+                              v_DateOrGroup = A.d_StartDate.Value.ToShortDateString(),
+                              d_StartDate = A.d_StartDate.Value
+                          }).ToList();
+
+                // typeofeep
+                var q2 = (from A in historyId
+                          select new PersonMedicalHistoryList
+                          {
+                              v_AntecedentTypeName = "Ocupacionales, " + A.v_Occupation,
+                              v_DiseasesName = ConcatenateTypeOfeep(A.v_HistoryId),
+                              v_DateOrGroup = A.d_StartDate.Value.ToString("MM/yyyy") + " - " + A.d_EndDate.Value.ToString("MM/yyyy"),
+                              d_StartDate = A.d_StartDate,
+                          }).ToList();
+
+                // workstationdangers
+                var q3 = (from A in historyId
+                          select new PersonMedicalHistoryList
+                          {
+                              v_AntecedentTypeName = "Ocupacionales, " + A.v_Occupation,
+                              v_DiseasesName = ConcatenateWorkStationDangers(A.v_HistoryId),
+                              v_DateOrGroup = A.d_StartDate.Value.ToString("MM/yyyy") + " - " + A.d_EndDate.Value.ToString("MM/yyyy"),
+                              d_StartDate = A.d_StartDate,
+                          }).ToList();
+
+                // noxioushabits
+                var q4 = (from A in ctx.NoxiousHabits
+                          join B in ctx.SystemParameter on new { a = A.i_TypeHabitsId.Value, b = 148 }  // HÁBITOS NOCIVOS
+                                                         equals new { a = B.i_ParameterId, b = B.i_GroupId } into B_join
+                          from B in B_join.DefaultIfEmpty()
+                          where A.i_IsDeleted == 0 && A.v_PersonId == pacientId
+                          select new PersonMedicalHistoryList
+                          {
+                              v_AntecedentTypeName = "Hábitos Nocivos",
+                              v_DiseasesName = B.v_Value1 + ", " + A.v_Frequency,
+                          }).ToList();
+
+                // familymedicalantecedents
+
+                var q5tmp = (from A in ctx.FamilyMedicalAntecedents
+                             join B in ctx.SystemParameter on new { a = A.i_TypeFamilyId.Value, b = 149 }  // ANTECEDENTES FAMILIARES MÉDICOS
+                                                            equals new { a = B.i_ParameterId, b = B.i_GroupId } into B_join
+                             from B in B_join.DefaultIfEmpty()
+                             join C in ctx.SystemParameter on new { a = B.i_ParentParameterId.Value, b = 149 }
+                                                          equals new { a = C.i_ParameterId, b = C.i_GroupId } into C_join
+                             from C in C_join.DefaultIfEmpty()
+                             where A.i_IsDeleted == 0 && A.v_PersonId == pacientId
+                             group C by new { C.i_ParameterId, C.v_Value1 } into g
+                             select new PersonMedicalHistoryList
+                             {
+                                 v_AntecedentTypeName = "Familiares",
+                                 i_TypeFamilyId = g.Key.i_ParameterId,
+                                 v_TypeFamilyName = g.Key.v_Value1
+                             }).ToList();
+
+                var q5 = (from A in q5tmp
+                          select new PersonMedicalHistoryList
+                          {
+                              v_AntecedentTypeName = A.v_AntecedentTypeName,
+                              v_DiseasesName = ConcatenateFamilyMedicalAntecedents(pacientId, A.i_TypeFamilyId),
+                              v_DateOrGroup = A.v_TypeFamilyName
+                          }).ToList();
+
+                #endregion
+
+                #region Fusion
+
+                if (q1.Count > 0)
+                    lis.AddRange(q1);
+                if (q2.Count > 0)
+                    lis.AddRange(q2);
+                if (q3.Count > 0)
+                    lis.AddRange(q3);
+                if (q4.Count > 0)
+                    lis.AddRange(q4);
+                if (q5.Count > 0)
+                    lis.AddRange(q5);
+
+                #endregion
+
+                return lis.OrderBy(x => x.v_AntecedentTypeName).ToList();
+
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        private string ConcatenateTypeOfeep(string pstrHistoryId)
+        {
+            var qry = (from A in ctx.TypeOfEpp
+                       join B in ctx.SystemParameter on new { a = A.i_TypeofEEPId.Value, b = 146 }  // TIPO DE EPP USADO
+                                                            equals new { a = B.i_ParameterId, b = B.i_GroupId }
+                       where A.v_HistoryId == pstrHistoryId &&
+                       A.i_IsDeleted == 0
+                       select new
+                       {
+                           v_DiseasesName = B.v_Value1
+                       }).ToList();
+
+            return qry.Count == 0 ? "No usa EPP" : string.Join(", ", qry.Select(p => p.v_DiseasesName));
+        }
+
+        private string ConcatenateWorkStationDangers(string pstrHistoryId)
+        {            
+            var qry = (from A in ctx.WorkStationDangers
+                       join B in ctx.SystemParameter on new { a = A.i_DangerId.Value, b = 145 } // PELIGROS EN EL PUESTO
+                                                              equals new { a = B.i_ParameterId, b = B.i_GroupId }
+                       where A.v_HistoryId == pstrHistoryId &&
+                       A.i_IsDeleted == 0
+                       select new
+                       {
+                           v_DiseasesName = B.v_Value1
+                       }).ToList();
+
+            return qry.Count == 0 ? "No refiere peligros en el puesto" : string.Join(", ", qry.Select(p => p.v_DiseasesName));
+        }
+
+        private string ConcatenateFamilyMedicalAntecedents(string pstrPersonId, int pintTypeFamilyId)
+        {       
+            var qry = (from A in ctx.FamilyMedicalAntecedents
+                       join B in ctx.SystemParameter on new { a = A.i_TypeFamilyId.Value, b = 149 }  // ANTECEDENTES FAMILIARES MÉDICOS
+                                                    equals new { a = B.i_ParameterId, b = B.i_GroupId } into B_join
+                       from B in B_join.DefaultIfEmpty()
+                       join C in ctx.SystemParameter on new { a = B.i_ParentParameterId.Value, b = 149 }  // [PADRE,MADRE,HERMANOS]
+                                                      equals new { a = C.i_ParameterId, b = C.i_GroupId } into C_join
+                       from C in C_join.DefaultIfEmpty()
+                       join D in ctx.Diseases on new { a = A.v_DiseasesId }
+                                                               equals new { a = D.v_DiseasesId } into D_join
+                       from D in D_join.DefaultIfEmpty()
+                       where A.v_PersonId == pstrPersonId &&
+                       A.i_IsDeleted == 0 && C.i_ParameterId == pintTypeFamilyId
+                       select new
+                       {
+                           v_DiseasesName = D.v_Name
+                       }).ToList();
+
+            return string.Join(", ", qry.Select(p => p.v_DiseasesName));
+        }
+
     }
 }
