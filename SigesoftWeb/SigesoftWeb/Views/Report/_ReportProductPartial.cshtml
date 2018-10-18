@@ -57,6 +57,7 @@
             <option value="50" @(Take == 50 ? "selected" : "")>50</option>
             <option value="0" @(Take == 0 ? "selected" : "")>TODOS</option>
         </select>
+        <script>$("#take").val(10);</script>
     </div>
 </div>
 <div class="container-fluid p-0">
@@ -143,19 +144,6 @@
     <script>
         
         function Load() {
-            //$("#take").val(10);
-            @*Highcharts.getOptions().plotOptions.column.colors = (function () {
-                var colors = [],
-                    //base = '#e85b13',
-                    base = '#00a7d0',
-                    i;
-
-                for (var i = 0; i < 50; i += 1) {
-                    colors.push(Highcharts.Color(base).brighten((i - 3) / @(ViewBag.REGISTROSPROD.List.Count < 4 ? 20 : ViewBag.REGISTROSPROD.List.Count)).get());
-                }
-                return colors;
-            }());*@
-
             Highcharts.chart('chart1', {
                 chart: {
                     type: 'column',
