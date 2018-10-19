@@ -48,7 +48,8 @@ namespace SigesoftWeb
                        "~/Content/css/PatientsAssistance.css",
                         "~/Content/css/FloatLabel.css",
                       "~/Content/themes/base/jquery-ui.css",
-                      "~/Content/jquery.contextMenu.css"));
+                      "~/Content/jquery.contextMenu.css"
+                      ));
 
 
         }

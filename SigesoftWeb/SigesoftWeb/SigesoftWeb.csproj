@@ -238,6 +238,7 @@
     <Content Include="Content\css\FullCalendar-custom.css" />
     <Content Include="Content\css\highcharts.css" />
     <Content Include="Content\css\jquery.contextMenu.css" />
+    <Content Include="Content\css\modal.css" />
     <Content Include="Content\css\PatientsAssistance.css" />
     <Content Include="Content\fontello.css" />
     <Content Include="Content\fonts\gijgo-material.svg" />

@@ -1,9 +1,12 @@
 ﻿<style>
-
+    
     .pagination-active span {
         color: #f39c12 !important;
     }
+    /*.btnModalReview{
+        position: absolute;
 
+    }*/
     #filtPaciente {
         opacity: 0;
     }
@@ -17,13 +20,9 @@
         white-space: nowrap;
     }
 
-    .modal-content {
-        width: 60% !important;
-        margin: 15px auto !important;
-    }
+    
     .modal-dialog {
         margin: 0px auto;
-        height: 100%;
         max-width: 100%;
     }
     .View {
@@ -80,7 +79,7 @@
 <link href="~/Content/css/FullCalendar-custom.css" rel="stylesheet" />
 <div class="container-fluid">
     <section class="contenedor-main  row">
-        <button type="button" class="btnModalReview btn p-0 m-0 absolute-center" id="btnModalReviewEMO" data-toggle="modal" data-target="#modalReviewEMO"></button>
+        <button type="button" class="d-none btnModalReview btn p-0 m-0" id="btnModalReviewEMO" data-toggle="modal" data-target="#modalReviewEMO"></button>
         <main class="colMain col-12 col-md-8 mr-0 pr-0">
             <div class="box box-default mt-2" id="acordion">
                 <div class="box-header with-border" id="heading1">
@@ -235,27 +234,27 @@
 
 
     <!--Modal-->
-    <div class="modal fade" id="modal1">
-        <div class="modal-dialog d-flex justify-content-center align-items-center">
-            <div class="modal-content">
+    <div class="modal fade p-0 modalFade" id="modal1">
+        <div class="modal-dialog d-flex justify-content-center align-items-center modal-dialog-centered">
+            <div class="modal-content modalContent">
                 @Html.Partial("_ModalTopDiagnosticPartial")
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="modal2">
-        <div class="modal-dialog d-flex justify-content-center align-items-center">
-            <div class="modal-content">
+    <div class="modal fade p-0 modalFade" id="modal2">
+        <div class="modal-dialog d-flex justify-content-center align-items-center modal-dialog-centered">
+            <div class="modal-content modalContent">
                 @Html.Partial("_ModalMonthlyControlsPartial")
             </div>
         </div>
     </div>
 
     
-    <div class="modal fade" id="modalReviewEMO">
-        <div class="modal-dialog d-flex justify-content-center align-items-center" role="document" >
-            <div class="modal-content">
-                <div class="modal-body table-responsive">                       
+    <div class="modal fade p-0 modalFade" id="modalReviewEMO">
+        <div class="modal-dialog d-flex justify-content-center align-items-center modal-dialog-centered">
+            <div class="modal-content modalContent">
+                <div class="modal-body">                       
                     @Html.Partial("_ReviewEMOPartial")                  
                 </div>
                 
@@ -266,7 +265,7 @@
 </div>
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-
+<link href="~/Content/css/modal.css" rel="stylesheet" />
 @section Scripts{
     @{
         if (Request.Browser.Browser == "IE" && Convert.ToDouble(Request.Browser.Version) < 9.0)
@@ -281,9 +280,7 @@
             <script src="~/Scripts/highcharts-3d.js"></script>
             <script src="~/Scripts/exporting.js"></script>
             <script src="~/Scripts/offline-exporting.js"></script>
-            <script src="~/Scripts/controlPin.js"></script>
             <link href="~/Content/css/highcharts.css" rel="stylesheet">
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 
         }
     }
@@ -310,7 +307,8 @@
                         var serviceId = $(this).find('td').eq(0).text();
                         //alert($(this).find('td').eq(0).text());
                         //LoadReviewEMO(serviceId);                        
-                        $('#btnModalReviewEMO').click();                        
+                        $('#btnModalReviewEMO').click();  
+                        KeyUp();
                     });
                 }
                 else if (key === "ConsultaMedica") {
@@ -348,12 +346,30 @@
 
     function ModalTopDiagnosticPartial() {
         LoadModalTopDiagnostic();
+        KeyUp();
     }
-
+    
     function ModalMonthlyControls() {
         LoadModalMonthlyControls();
+        KeyUp();
     }
 
+    function KeyUp() {
+        if (window.history && window.history.pushState) {
+
+            $(window).on('popstate', function () {
+                $(".modalFade").click();
+            });
+            window.history.pushState('forward', null, './#forward');
+        }
+        $(document).keyup(function (e) {
+
+            if (e.which === 27) {
+                console.log("click");
+                $(".modalFade").click();
+            }
+        });
+    }
 
     function LoadReviewEMO(serviceId) {
         var data = {

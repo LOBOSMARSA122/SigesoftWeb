@@ -812,8 +812,6 @@ textarea {
 }
 
 
-
-
 /*MEDIA QUERYS*/
 @media (max-width: 480px) {
     .login-page {
@@ -823,7 +821,6 @@ textarea {
         -o-background-size: cover;
         background-size: cover;
     }
-
     .absolute-center.is-responsive {
         min-width: 350px;
     }
@@ -878,7 +875,6 @@ textarea {
         height: 470px;
         width: 100%;
     }
-
     .absolute-center.is-responsive div img {
         height: 100px;
     }
