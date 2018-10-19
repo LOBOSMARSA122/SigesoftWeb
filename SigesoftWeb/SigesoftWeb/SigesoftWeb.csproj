@@ -457,6 +457,7 @@
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery.contextMenu.js" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.ui.position.js" />
     <Content Include="Scripts\jquery.ui.position.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -561,6 +562,7 @@
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\offline-exporting.js" />
+    <Content Include="Scripts\pdfobject.min.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -628,12 +630,14 @@
     <Content Include="Views\PatientsAssistance\_ModalTopDiagnosticPartial.cshtml" />
     <Content Include="Views\PatientsAssistance\_ModalMonthlyControlsPartial.cshtml" />
     <Content Include="Views\PatientsAssistance\_ReviewEMOPartial.cshtml" />
+    <Content Include="Views\PatientsAssistance\sample.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\OccupationalHealth\" />
     <Folder Include="Scripts\treeview\" />
     <Folder Include="Views\Default\" />
+    <Folder Include="Views\Pdf\" />
     <Folder Include="Views\Security\" />
   </ItemGroup>
   <ItemGroup>

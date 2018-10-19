@@ -265,6 +265,7 @@
 </div>
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
+
 <link href="~/Content/css/modal.css" rel="stylesheet" />
 @section Scripts{
     @{
@@ -381,7 +382,7 @@
             method: 'POST',
             async: true,
             data: data,
-            url: '/PatientsAssistance/ReviewEMO',
+            url: '/PatientsAssistance/FilterReportProduct',
             success: function (html) {
                 if (html.indexOf("IniciarSesion") == -1) {       
                     $('#modalReviewEMO').modal();

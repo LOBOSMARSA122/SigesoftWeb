@@ -57,7 +57,6 @@ namespace SigesoftWeb.Controllers.Report
             ViewBag.REGISTROSPROD = API.Post<BoardProductWarehouse>("ReportProduct/GetAllProductWarehouse", arg);
             return PartialView("_ReportProductPartial");
         }
-        
 
         public JsonResult GetWarehouseNotInRestricted(string OrganizationId, string LocationId)
         {

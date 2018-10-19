@@ -57,7 +57,6 @@
             <option value="50" @(Take == 50 ? "selected" : "")>50</option>
             <option value="0" @(Take == 0 ? "selected" : "")>TODOS</option>
         </select>
-        <script>$("#take").val(10);</script>
     </div>
 </div>
 <div class="container-fluid p-0">
@@ -138,11 +137,8 @@
 </div>
 
 
-
-
 @{
     <script>
-        
         function Load() {
             Highcharts.chart('chart1', {
                 chart: {
