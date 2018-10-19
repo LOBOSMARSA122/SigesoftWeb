@@ -4,12 +4,7 @@ body {
     padding: 0;
     font-family: 'Roboto', sans-serif;
 }
-.btnModalReview{
-    position: absolute;
-    background-color: transparent;
-    z-index: -1000
-}
-/*LOGIN*/
+
 .login-page {
     /*background-color:#1DAAB5;*/
     /*border:1px solid blue;*/
@@ -339,6 +334,11 @@ body .contenido {
     background-color: white;
 }
 
+.btnModalReview {
+    position: absolute;
+    background-color: transparent;
+    z-index: -1000
+}
 
 /*--FOOTER--*/
 body footer {
