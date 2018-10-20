@@ -1,127 +1,161 @@
 ﻿
-
 <script src="~/Scripts/jquery.min.js"></script>
 <script src="~/Scripts/pdfobject.min.js"></script>
 
-@*<script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script src="~/Scripts/Gnostice/ViewerInitializer.js"></script>
-    <script src="~/Scripts/Gnostice/documentviewer.min.js"></script>
+@{ 
+    string DateOrGroup = "";
+    string DiseasesName = "";
+    string AntecedentTypeName = "";
 
-    <link href="~/Content/Gnostice/documentviewer.css" rel="stylesheet" />
-    <link href="~/Content/Gnostice/default.theme.css" rel="stylesheet" />*@
+    if (ViewBag.Antecedent != null)
+    {
+        DateOrGroup = ViewBag.Antecedent.v_DateOrGroup;
+        DiseasesName = ViewBag.Antecedent.v_DiseasesName;
+        AntecedentTypeName = ViewBag.Antecedent.v_AntecedentTypeName;
+    }
+}
+ 
 <div class="col-12">
     <div class="row w-100 p-0 m-0">
-        <div class="col-12 View ml-0 mr-0 col-lg-4">
-            <div class="row title" onclick="ColapseTable('DivNotices','heightDivNotices')">
-                Antecedentes
-            </div>
-            <input id="heightDivNotices" type="hidden" value="">
-            <div id="DivNotices">
-                <div class="row align-items-center info">
-                    <div class="col-10">
-                        Completar datos de empresa:
-                    </div>
-                    <div class="col-2">
-                        <span class="label label-warning result">10</span>
-                    </div>
-                </div>
-                <div class="row align-items-center info">
-                    <div class="col-10">
-                        Empresas con  deudas:
-                    </div>
-                    <div class="col-2">
-                        <span class="label label-danger result">02</span>
-                    </div>
-                </div>
-                <div class="row align-items-center info">
-                    <div class="col-10 ">
-                        Controles para el día de hoy:
-                    </div>
-                    <div class="col-2">
-                        <span class="label label-success result">10</span>
+        <div class="col-12 mb-2 ml-0 mr-0 p-0 p-lg-1 col-lg-4">
+            <div class="row titleRow p-0 m-0">
+                <div class="col-12 p-0 m-0" onclick="ColapseTable('DivNotices','heightDivNotices')">
+                    <div class="ml-2">
+                        Antecedentes
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-12 View ml-0 mr-0 col-lg-4">
-            <div class="row title" onclick="ColapseTable('DivNotices','heightDivNotices')">
-                Atenciones Médicas
-            </div>
-            <input id="heightDivNotices" type="hidden" value="">
-            <div id="DivNotices">
-                <div class="row align-items-center info ">
-                    <div class="col-10">
-                        Completar datos de empresa:
-                    </div>
-                    <div class="col-2">
-                        <span class="label label-warning result">10</span>
-                    </div>
-                </div>
-                <div class="row align-items-center info">
-                    <div class="col-10">
-                        Empresas con  deudas:
-                    </div>
-                    <div class="col-2">
-                        <span class="label label-danger result">02</span>
-                    </div>
-                </div>
-                <div class="row align-items-center info">
-                    <div class="col-10 ">
-                        Controles para el día de hoy:
-                    </div>
-                    <div class="col-2">
-                        <span class="label label-success result">10</span>
-                    </div>
+            <div class="row p-0 m-0">
+                <div id="DivNotices" class="col-12 View p-0 m-0">
+                    <table class="table tableNotice table-bordered table-sm">
+                        <thead>
+                            <tr class="text-center">
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Tipo de atención</th>
+                                <th scope="col">Fecha/Grupo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ 
+                                var item = ViewBag.Antecedent;
+                                for (int i = 0; i < item.Count; i++)
+                                {
+                                    <tr>
+                                        <td>@item.DiseasesName</td>
+                                        <td>@item.AntecedentTypeName</td>
+                                        <td>@item.DateOrGroup</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        <div class="col-12 View ml-0 mr-0 col-lg-4">
-            <div class="row title" onclick="ColapseTable('DivNotices','heightDivNotices')">
-                Atenciones Médicas
+        <div class="col-12 mb-2 ml-0 mr-0 p-0 p-lg-1 col-lg-4">
+            <div class="row titleRow p-0 m-0">
+                <div class="col-12 p-0 m-0" onclick="ColapseTable('DivNotices','heightDivNotices')">
+                    <div class="ml-2">
+                        Atenciones Médicas
+                    </div>
+                </div>
             </div>
-            <input id="heightDivNotices" type="hidden" value="">
-            <div id="DivNotices">
-                <div class="row align-items-center info ">
-                    <div class="col-10">
-                        Completar datos de empresa:
-                    </div>
-                    <div class="col-2">
-                        <span class="label label-warning result">10</span>
+            <div class="row p-0 m-0">
+                <div id="DivNotices" class="col-12 View p-0 m-0">
+                    <table class="table tableNotice table-bordered table-sm">
+                        <thead>
+                            <tr class="text-center">
+                                <th scope="col">Aptitud</th>
+                                <th scope="col">Fecha/Servicio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                            </tr>
+                            <tr>
+                                <td>JacoJacobJacobJacobb</td>
+                                <td>Thornton</td>
+                            </tr>
+                            <tr>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                            </tr>
+                            <tr>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                            </tr>
+                            <tr>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 mb-2 ml-0 mr-0 p-0 p-lg-1 col-lg-4">
+            <div class="row titleRow p-0 m-0">
+                <div class="col-12 p-0 m-0" onclick="ColapseTable('DivNotices','heightDivNotices')">
+                    <div class="ml-2">
+                        Atenciones Médicas
                     </div>
                 </div>
-                <div class="row align-items-center info">
-                    <div class="col-10">
-                        Empresas con  deudas:
-                    </div>
-                    <div class="col-2">
-                        <span class="label label-danger result">02</span>
-                    </div>
-                </div>
-                <div class="row align-items-center info">
-                    <div class="col-10 ">
-                        Controles para el día de hoy:
-                    </div>
-                    <div class="col-2">
-                        <span class="label label-success result">10</span>
-                    </div>
+            </div>
+            <div class="row p-0 m-0">
+                <div id="DivNotices" class="col-12 View p-0 m-0">
+                    <table class="table tableNotice table-bordered table-sm">
+                        <thead>
+                            <tr class="text-center">
+                                <th scope="col">Nombres</th>
+                                <th scope="col">Apellidos</th>
+                                <th scope="col">DNI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>74325896</td>
+                            </tr>
+                            <tr>
+                                <td>JacoJacobJacobJacobb</td>
+                                <td>Thornton</td>
+                                <td>74325896</td>
+                            </tr>
+                            <tr>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>74325896</td>
+                            </tr>
+                            <tr>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>74325896</td>
+                            </tr>
+                            <tr>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>74325896</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
     <div class="row m-0 p-0">
         <div class="col-12 w-100 m-0 p-0">
-            @*<div id="doc-viewer-id" style="height:700px">
-                </div>*@
-            <div class="container">
-
-                <div id="viewpdf"></div>
-            </div>
-
-            
+            <div id="viewpdf" style="width:100%; height:600px"></div>
         </div>
     </div>
 </div>
+
 <script>
     var viewer = $('#viewpdf');
-    PDFObject.embed('~/sample.pdf', viewer);
+    PDFObject.embed('Temp/sample.pdf', viewer);
+    $("window, html").resize(function () {
+        $(document).ready();
+    });
 </script>

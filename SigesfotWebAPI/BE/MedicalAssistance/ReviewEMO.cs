@@ -9,8 +9,8 @@ namespace BE.MedicalAssistance
     public class ReviewEMO
     {
         public string ServiceId { get; set; }
-        public DateTime? ServiceDate { get; set; }
-        public string Aptitude { get; set; }
+        public DateTime? ServiceDate { get; set; } //Fecha/Servicio
+        public string Aptitude { get; set; } // Aptitud
         public int? IsRevisedHistoryId { get; set; }
         public int? MasterServiceId { get; set; }
     }

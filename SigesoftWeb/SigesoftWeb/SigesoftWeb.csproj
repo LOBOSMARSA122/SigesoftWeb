@@ -630,14 +630,13 @@
     <Content Include="Views\PatientsAssistance\_ModalTopDiagnosticPartial.cshtml" />
     <Content Include="Views\PatientsAssistance\_ModalMonthlyControlsPartial.cshtml" />
     <Content Include="Views\PatientsAssistance\_ReviewEMOPartial.cshtml" />
-    <Content Include="Views\PatientsAssistance\sample.pdf" />
+    <Content Include="Temp\sample.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\OccupationalHealth\" />
     <Folder Include="Scripts\treeview\" />
     <Folder Include="Views\Default\" />
-    <Folder Include="Views\Pdf\" />
     <Folder Include="Views\Security\" />
   </ItemGroup>
   <ItemGroup>

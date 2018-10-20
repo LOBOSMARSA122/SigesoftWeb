@@ -105,9 +105,25 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
 
             //return await Task.Run(() =>
             //{
-            //    ViewBag.Services = API.Post<BoardPatient>("PatientsAssistance/GetAllPatientsAssistance", arg);
-                return PartialView("_ReviewEMOPartial");
+            //    ViewBag.Services = API.Post<BoardPatient>("PatientsAssistance/ReviewsEMOs", arg);
+            return PartialView("_ReviewEMOPartial");
             //});
+
+        }
+
+        public async Task<ActionResult> GetAntecedent(string pacientId)
+        {
+            Api API = new Api();
+            Dictionary<string, string> arg = new Dictionary<string, string>()
+            {
+                { "pacientId", pacientId},
+            };
+
+            return await Task.Run(() =>
+            {
+                ViewBag.Antecedent = API.Post<PersonMedicalHistoryList>("PatientsAssistance/GetAntecedentConsolidateForService", arg);
+                return PartialView("_ReviewEMOPartial");
+            });
 
         }
 

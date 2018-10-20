@@ -16,7 +16,7 @@ namespace BE.MedicalAssistance
 
         public string v_GroupName { get; set; }
 
-        public string v_DiseasesName { get; set; }
+        public string v_DiseasesName { get; set; } //ok  Descripcion
 
         public Nullable<Int32> i_TypeDiagnosticId { get; set; }
 
@@ -36,11 +36,11 @@ namespace BE.MedicalAssistance
 
         public string v_TypeDiagnosticName { get; set; }
 
-        public string v_AntecedentTypeName { get; set; }
+        public string v_AntecedentTypeName { get; set; } //ok Tipo de atencion
 
         public string v_TypeFamilyName { get; set; }
 
-        public string v_DateOrGroup { get; set; }
+        public string v_DateOrGroup { get; set; } //ok fecha/grupo
 
         public int i_TypeFamilyId { get; set; }
 

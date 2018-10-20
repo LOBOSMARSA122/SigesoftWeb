@@ -40,4 +40,11 @@ namespace SigesoftWeb.Models.MedicalAssistance
         public string MasterService { get; set; }
         public int? IsRevisedHistoryId { get; set; }
     }
+
+    public class PersonMedicalHistoryList
+    {
+        public string v_DiseasesName { get; set; } //ok  Descripcion
+        public string v_AntecedentTypeName { get; set; } //ok Tipo de atencion
+        public string v_DateOrGroup { get; set; } //ok fecha/grupo
+    }
 }

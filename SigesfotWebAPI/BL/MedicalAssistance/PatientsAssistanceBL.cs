@@ -392,7 +392,8 @@ namespace BL.MedicalAssistance
                 var isDeleted = (int)Enumeratores.SiNo.No;
                 var list = (from a in ctx.Service
                             join b in ctx.SystemParameter on new { a = a.i_AptitudeStatusId.Value, b = 124 } equals new { a = b.i_ParameterId, b = b.i_GroupId }
-                            where a.i_IsDeleted == isDeleted &&  a.i_MasterServiceId == 10
+                            where a.i_IsDeleted == isDeleted
+                            //&&  a.i_MasterServiceId == 10
                             select new ReviewEMO
                             {
                                 ServiceId = a.v_ServiceId,
