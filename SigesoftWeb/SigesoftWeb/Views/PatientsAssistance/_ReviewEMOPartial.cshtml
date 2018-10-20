@@ -69,6 +69,7 @@
                             <tr class="text-center">
                                 <th scope="col">Aptitud</th>
                                 <th scope="col">Fecha/Servicio</th>
+                                <th scope="col">Diagnóstico</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -90,10 +91,11 @@
                                     {
                                         if (item1[i].MasterServiceId == 21)
                                         {
-                                            <tr>
-                                                <td>@item1[i].Aptitude</td>
-                                                <td>@item1[i].ServiceDate</td>
-                                            </tr>
+                                    <tr>
+                                        <td>@item1[i].Aptitude</td>
+                                        <td>@item1[i].ServiceDate</td>
+                                        <td>@item1[i].DiseaseName</td>
+                                    </tr>
                                         }                                        
                                     }                                  
                                 }
@@ -118,6 +120,8 @@
                             <tr class="text-center">
                                 <th scope="col">Aptitud</th>
                                 <th scope="col">Fecha/Servicio</th>
+                                <th scope="col">Diagnóstico</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -139,10 +143,11 @@
                                         
                                         if (item2[i].MasterServiceId == 2)
                                         {
-                                            <tr>
-                                                <td>@item2[i].Aptitude</td>
-                                                <td>@item2[i].ServiceDate</td>
-                                            </tr>
+                                    <tr>
+                                        <td>@item2[i].Aptitude</td>
+                                        <td>@item2[i].ServiceDate</td>
+                                        <td>@item2[i].DiseaseName</td>
+                                    </tr>
                                         }
                                     }
                           
