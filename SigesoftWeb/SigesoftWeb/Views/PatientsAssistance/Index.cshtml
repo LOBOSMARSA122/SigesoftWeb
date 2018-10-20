@@ -56,7 +56,9 @@
         cursor: pointer;
     }
 
-
+    .bodyRow{
+        height:150px;
+    }
     .titleRow:hover {
         background: rgba(173, 173,173, 0.1);
     }
@@ -268,7 +270,7 @@
     <div class="modal fade p-0 modalFade" id="modalReviewEMO">
         <div class="modal-dialog d-flex justify-content-center align-items-center modal-dialog-centered">
             <div class="modal-content modalContent">
-                <div class="modal-body">                       
+                <div class="modal-body" id="RenderReviewEMO">                       
                     @Html.Partial("_ReviewEMOPartial")                  
                 </div>
                 
@@ -310,7 +312,7 @@
         MonthlyControls();
         $("#take").val(10);
         Filter(1);
-
+        
         $.contextMenu({
             selector: '.context-menu-one',
             trigger: 'left',
@@ -321,9 +323,12 @@
                     $('tr.context-menu-active').each(function () {
                         var serviceId = $(this).find('td').eq(0).text();
                         //alert($(this).find('td').eq(0).text());
-                        //LoadReviewEMO(serviceId);                        
+                        //LoadReviewEMO(serviceId);
+                        var pacientId = $(this).find('td').eq(1).text();                      
                         $('#btnModalReviewEMO').click();
-                        LoadAntecedent()
+                        //LoadReviews(pacientId);
+                        LoadAntecedent(pacientId);
+                        
                         KeyUp();
                     });
                 }
@@ -401,6 +406,7 @@
             success: function (html) {
                 if (html.indexOf("IniciarSesion") == -1) {       
                     $('#modalReviewEMO').modal();
+                    
                     //$("#RenderBoardPatientsAssistancePartial").html(html);
                 } else {
                     location.href = "/";
@@ -414,18 +420,41 @@
     }
 
     function LoadAntecedent(pacientId) {
-        var data = {
-            PacientId: pacientId
-        };
-        $.ajax({
-            cache: false,
-            dataType: 'html',
-            method: 'POST',
-            async: true,
-            data: data,
-            url: '/PatientsAssistance/GetAntecedent',
+        console.log(pacientId);
+        $.ajax({            
+            url: '/PatientsAssistance/GetAntecedent?pacientId='+pacientId,
+            type: 'GET',
+            success: function (html) {
+                if (html.indexOf("IniciarSesion") == -1) {
+                    $("#RenderReviewEMO").html(html);
+                } else {
+                    location.href = "/";
+                }
+            },
+            error: function (error) {
+                alerta("Sucedió un error al conectarse al servidor", "rojo");
+                console.log(error);
+            }
         });
     }
+    //function LoadReviews(pacientId) {
+    //    console.log(pacientId);
+    //    $.ajax({
+    //        url: '/PatientsAssistance/GetReviews?pacientId=' + pacientId,
+    //        type: 'GET',
+    //        //success: function (html) {
+    //        //    if (html.indexOf("IniciarSesion") == -1) {
+    //        //        $("#RenderReviewEMO").html(html);
+    //        //    } else {
+    //        //        location.href = "/";
+    //        //    }
+    //        //},
+    //        //error: function (error) {
+    //        //    alerta("Sucedió un error al conectarse al servidor", "rojo");
+    //        //    console.log(error);
+    //        //}
+    //    });
+    //}
 
     function LoadTopDiagnostic() {
         $('.wrapperTopDx').addClass('loadingGrid');

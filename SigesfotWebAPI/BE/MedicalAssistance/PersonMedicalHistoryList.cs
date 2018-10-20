@@ -10,7 +10,7 @@ namespace BE.MedicalAssistance
     {
         public String v_PersonMedicalHistoryId { get; set; }
 
-        public String v_PersonId { get; set; }
+        public string v_PersonId { get; set; }
 
         public String v_DiseasesId { get; set; }
 

@@ -41,4 +41,5 @@ namespace BE.MedicalAssistance
         public string MasterService { get; set; }
         public int? IsRevisedHistoryId { get; set; }
     }
+
 }

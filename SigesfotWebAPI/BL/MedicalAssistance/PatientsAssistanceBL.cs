@@ -393,7 +393,7 @@ namespace BL.MedicalAssistance
                 var list = (from a in ctx.Service
                             join b in ctx.SystemParameter on new { a = a.i_AptitudeStatusId.Value, b = 124 } equals new { a = b.i_ParameterId, b = b.i_GroupId }
                             where a.i_IsDeleted == isDeleted
-                            //&&  a.i_MasterServiceId == 10
+                            && a.v_PersonId == pacientId
                             select new ReviewEMO
                             {
                                 ServiceId = a.v_ServiceId,
@@ -403,12 +403,38 @@ namespace BL.MedicalAssistance
                                 MasterServiceId = a.i_MasterServiceId.Value,
                             }).ToList();
 
-                return list;
+                var result = (from A in list
+                              select new ReviewEMO
+                              {
+                                  ServiceId = A.ServiceId,
+                                  Aptitude = A.Aptitude,
+                                  ServiceDate = A.ServiceDate,
+                                  IsRevisedHistoryId = A.IsRevisedHistoryId,
+                                  MasterServiceId = A.MasterServiceId,
+                                  DiseaseName = ConcatenateDxForServiceAntecedent(A.ServiceId),
+                              }).OrderByDescending(p => p.ServiceDate).ToList();
+
+                return result;
             }
             catch (Exception ex)
             {
                 throw;
             }
+        }
+
+
+        private string ConcatenateDxForServiceAntecedent(string serviceId)
+        {
+            var qry = (from A in ctx.DiagnosticRepository
+                       join B in ctx.Diseases on A.v_DiseasesId equals B.v_DiseasesId
+                       where A.v_ServiceId == serviceId &&
+                       A.i_IsDeleted == 0
+                       select new
+                       {
+                           v_DiseasesName = B.v_Name
+                       }).ToList();
+
+            return string.Join(", ", qry.Select(p => p.v_DiseasesName));
         }
 
         public List<PersonMedicalHistoryList> GetAntecedentConsolidateForService(string pacientId)

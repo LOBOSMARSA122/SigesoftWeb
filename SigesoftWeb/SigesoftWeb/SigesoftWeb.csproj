@@ -205,6 +205,8 @@
     <Compile Include="Models\Common\Boards.cs" />
     <Compile Include="Models\Common\Dropdownlist.cs" />
     <Compile Include="Models\MedicalAssistance\Boards.cs" />
+    <Compile Include="Models\MedicalAssistance\PersonMedicalHistoryList.cs" />
+    <Compile Include="Models\MedicalAssistance\ReviewEMO.cs" />
     <Compile Include="Models\MedicalAssistance\Schedule.cs" />
     <Compile Include="Models\MedicalAssistance\TopDiagnostic.cs" />
     <Compile Include="Models\Security\AuthorizationModel.cs" />

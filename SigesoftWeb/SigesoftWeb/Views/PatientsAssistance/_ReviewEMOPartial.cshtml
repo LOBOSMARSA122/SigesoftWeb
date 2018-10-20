@@ -2,18 +2,7 @@
 <script src="~/Scripts/jquery.min.js"></script>
 <script src="~/Scripts/pdfobject.min.js"></script>
 
-@{ 
-    string DateOrGroup = "";
-    string DiseasesName = "";
-    string AntecedentTypeName = "";
 
-    if (ViewBag.Antecedent != null)
-    {
-        DateOrGroup = ViewBag.Antecedent.v_DateOrGroup;
-        DiseasesName = ViewBag.Antecedent.v_DiseasesName;
-        AntecedentTypeName = ViewBag.Antecedent.v_AntecedentTypeName;
-    }
-}
  
 <div class="col-12">
     <div class="row w-100 p-0 m-0">
@@ -25,7 +14,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row p-0 m-0">
+            <div class="row bodyRow p-0 m-0">
                 <div id="DivNotices" class="col-12 View p-0 m-0">
                     <table class="table tableNotice table-bordered table-sm">
                         <thead>
@@ -38,13 +27,26 @@
                         <tbody>
                             @{ 
                                 var item = ViewBag.Antecedent;
-                                for (int i = 0; i < item.Count; i++)
+                                if (item == null)
                                 {
+                                    <tr><td colspan="7" class="text-center">Error al conectarse al servidor</td></tr>
+
+                                }
+                                else if (item.Count == 0)
+                                {
+                                    <tr><td colspan="7" class="text-center">No hay resultados</td></tr>
+                                }
+                                else
+                                {
+                                    for (int i = 0; i < item.Count; i++)
+                                    {
                                     <tr>
-                                        <td>@item.DiseasesName</td>
-                                        <td>@item.AntecedentTypeName</td>
-                                        <td>@item.DateOrGroup</td>
+                                        <td>@item[i].v_DiseasesName</td>
+                                        <td>@item[i].v_AntecedentTypeName</td>
+                                        <td>@item[i].v_DateOrGroup</td>
                                     </tr>
+                                    }
+
                                 }
                             }
                         </tbody>
@@ -60,7 +62,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row p-0 m-0">
+            <div class="row bodyRow p-0 m-0">
                 <div id="DivNotices" class="col-12 View p-0 m-0">
                     <table class="table tableNotice table-bordered table-sm">
                         <thead>
@@ -70,26 +72,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                            </tr>
-                            <tr>
-                                <td>JacoJacobJacobJacobb</td>
-                                <td>Thornton</td>
-                            </tr>
-                            <tr>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                            </tr>
-                            <tr>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                            </tr>
-                            <tr>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                            </tr>
+                            @{ 
+                                var item1 = ViewBag.Reviews;
+                                if (item1 == null)
+                                {
+                                    <tr><td colspan="7" class="text-center">Error al conectarse al servidor</td></tr>
+
+                                }
+                                else if (item1.Count == 0)
+                                {
+                                    <tr><td colspan="7" class="text-center">No hay resultados</td></tr>
+                                }
+                                else
+                                {
+                                    
+                                    for (int i = 0; i < item1.Count; i++)
+                                    {
+                                        if (item1[i].MasterServiceId == 21)
+                                        {
+                                            <tr>
+                                                <td>@item1[i].Aptitude</td>
+                                                <td>@item1[i].ServiceDate</td>
+                                            </tr>
+                                        }                                        
+                                    }                                  
+                                }
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -103,42 +111,43 @@
                     </div>
                 </div>
             </div>
-            <div class="row p-0 m-0">
+            <div class="row p-0 bodyRow m-0">
                 <div id="DivNotices" class="col-12 View p-0 m-0">
                     <table class="table tableNotice table-bordered table-sm">
                         <thead>
                             <tr class="text-center">
-                                <th scope="col">Nombres</th>
-                                <th scope="col">Apellidos</th>
-                                <th scope="col">DNI</th>
+                                <th scope="col">Aptitud</th>
+                                <th scope="col">Fecha/Servicio</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>74325896</td>
-                            </tr>
-                            <tr>
-                                <td>JacoJacobJacobJacobb</td>
-                                <td>Thornton</td>
-                                <td>74325896</td>
-                            </tr>
-                            <tr>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>74325896</td>
-                            </tr>
-                            <tr>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>74325896</td>
-                            </tr>
-                            <tr>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>74325896</td>
-                            </tr>
+                            @{ 
+                                var item2 = ViewBag.Reviews;
+                                if (item2 == null)
+                                {
+                                    <tr><td colspan="7" class="text-center">Error al conectarse al servidor</td></tr>
+
+                                }
+                                else if (item2.Count == 0)
+                                {
+                                    <tr><td colspan="7" class="text-center">No hay resultados</td></tr>
+                                }
+                                else
+                                {
+                                    for (int i = 0; i < item2.Count; i++)
+                                    {
+                                        
+                                        if (item2[i].MasterServiceId == 2)
+                                        {
+                                            <tr>
+                                                <td>@item2[i].Aptitude</td>
+                                                <td>@item2[i].ServiceDate</td>
+                                            </tr>
+                                        }
+                                    }
+                          
+                                }
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -158,4 +167,5 @@
     $("window, html").resize(function () {
         $(document).ready();
     });
+
 </script>
