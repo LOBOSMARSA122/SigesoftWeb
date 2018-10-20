@@ -13,5 +13,6 @@ namespace BE.MedicalAssistance
         public string Aptitude { get; set; }
         public int? IsRevisedHistoryId { get; set; }
         public int? MasterServiceId { get; set; }
+        public string DiseaseName { get; set; }
     }
 }
