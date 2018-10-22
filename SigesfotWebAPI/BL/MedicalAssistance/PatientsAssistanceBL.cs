@@ -3,6 +3,7 @@ using BE.MedicalAssistance;
 using DAL;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -385,7 +386,7 @@ namespace BL.MedicalAssistance
 
         }
 
-        public List<ReviewEMO> ReviewsEMOs(string pacientId)
+        public List<ReviewEMO> ReviewsEMOs(string patientId)
         {
             try
             {
@@ -393,7 +394,7 @@ namespace BL.MedicalAssistance
                 var list = (from a in ctx.Service
                             join b in ctx.SystemParameter on new { a = a.i_AptitudeStatusId.Value, b = 124 } equals new { a = b.i_ParameterId, b = b.i_GroupId }
                             where a.i_IsDeleted == isDeleted
-                            && a.v_PersonId == pacientId
+                            && a.v_PersonId == patientId
                             select new ReviewEMO
                             {
                                 ServiceId = a.v_ServiceId,
@@ -422,7 +423,30 @@ namespace BL.MedicalAssistance
             }
         }
 
+        public MemoryStream DownloadFile(string patientId, string directorioESO)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(patientId))
+                    throw new Exception();
 
+                string PatientId = patientId;
+
+                string path = string.Format("{0}{1}.pdf", directorioESO, PatientId);
+                byte[] binaryData;
+                FileStream inFile = new FileStream(path, FileMode.Open, FileAccess.Read);
+                binaryData = new Byte[inFile.Length];
+                inFile.Read(binaryData, 0, (int)inFile.Length);
+
+                MemoryStream ms = new MemoryStream(binaryData);
+                return ms;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
         private string ConcatenateDxForServiceAntecedent(string serviceId)
         {
             var qry = (from A in ctx.DiagnosticRepository
@@ -437,7 +461,7 @@ namespace BL.MedicalAssistance
             return string.Join(", ", qry.Select(p => p.v_DiseasesName));
         }
 
-        public List<PersonMedicalHistoryList> GetAntecedentConsolidateForService(string pacientId)
+        public List<PersonMedicalHistoryList> GetAntecedentConsolidateForService(string patientId)
         {
             //mon.IsActive = true;
 
@@ -451,7 +475,7 @@ namespace BL.MedicalAssistance
 
                 // Obtener todos loa antecedentes de una persona (una o varias empresas)
                 var historyId = (from a in ctx.History
-                                 where a.v_PersonId == pacientId && a.i_IsDeleted == isDeleted
+                                 where a.v_PersonId == patientId && a.i_IsDeleted == isDeleted
                                  select new PersonMedicalHistoryList
                                  {
                                      v_AntecedentTypeName = "Ocupacionales",
@@ -466,7 +490,7 @@ namespace BL.MedicalAssistance
                 // personmedicalhistory
                 var q1tmp = (from A in ctx.PersonMedicalHistory
                              join D in ctx.Diseases on A.v_DiseasesId equals D.v_DiseasesId
-                             where A.i_IsDeleted == isDeleted && A.v_PersonId == pacientId
+                             where A.i_IsDeleted == isDeleted && A.v_PersonId == patientId
 
                              select new PersonMedicalHistoryList
                              {
@@ -511,7 +535,7 @@ namespace BL.MedicalAssistance
                           join B in ctx.SystemParameter on new { a = A.i_TypeHabitsId.Value, b = 148 }  // HÁBITOS NOCIVOS
                                                          equals new { a = B.i_ParameterId, b = B.i_GroupId } into B_join
                           from B in B_join.DefaultIfEmpty()
-                          where A.i_IsDeleted == 0 && A.v_PersonId == pacientId
+                          where A.i_IsDeleted == 0 && A.v_PersonId == patientId
                           select new PersonMedicalHistoryList
                           {
                               v_AntecedentTypeName = "Hábitos Nocivos",
@@ -527,7 +551,7 @@ namespace BL.MedicalAssistance
                              join C in ctx.SystemParameter on new { a = B.i_ParentParameterId.Value, b = 149 }
                                                           equals new { a = C.i_ParameterId, b = C.i_GroupId } into C_join
                              from C in C_join.DefaultIfEmpty()
-                             where A.i_IsDeleted == 0 && A.v_PersonId == pacientId
+                             where A.i_IsDeleted == 0 && A.v_PersonId == patientId
                              group C by new { C.i_ParameterId, C.v_Value1 } into g
                              select new PersonMedicalHistoryList
                              {
@@ -540,7 +564,7 @@ namespace BL.MedicalAssistance
                           select new PersonMedicalHistoryList
                           {
                               v_AntecedentTypeName = A.v_AntecedentTypeName,
-                              v_DiseasesName = ConcatenateFamilyMedicalAntecedents(pacientId, A.i_TypeFamilyId),
+                              v_DiseasesName = ConcatenateFamilyMedicalAntecedents(patientId, A.i_TypeFamilyId),
                               v_DateOrGroup = A.v_TypeFamilyName
                           }).ToList();
 

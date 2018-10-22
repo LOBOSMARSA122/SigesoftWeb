@@ -2,6 +2,7 @@
 using BL.MedicalAssistance;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -83,21 +84,29 @@ namespace SigesoftWebAPI.Controllers.MedicalAssistance
         }
 
         [HttpGet]
-        public async Task<IHttpActionResult> ReviewsEMOs(string pacientId)
+        public async Task<IHttpActionResult> ReviewsEMOs(string patientId)
         {
             return await Task.Run(() => {
-                var result = oPatientsAssistanceBL.ReviewsEMOs(pacientId);
+                var result = oPatientsAssistanceBL.ReviewsEMOs(patientId);
                 return Ok(result);
             });
         }
 
         [HttpGet]
-        public async Task<IHttpActionResult> GetAntecedentConsolidateForService(string pacientId)
+        public async Task<IHttpActionResult> GetAntecedentConsolidateForService(string patientId)
         {
             return await Task.Run(() => {
-                var result = oPatientsAssistanceBL.GetAntecedentConsolidateForService(pacientId);
+                var result = oPatientsAssistanceBL.GetAntecedentConsolidateForService(patientId);
                 return Ok(result);
             });
+        }
+        [HttpPost]
+        public IHttpActionResult DownloadFile(Patients patientId)
+        {
+            string directorioESO = string.Format("{0}{1}\\", System.Web.Hosting.HostingEnvironment.MapPath("~/"), System.Configuration.ConfigurationManager.AppSettings["directorioESO"].ToString());
+
+            MemoryStream response = oPatientsAssistanceBL.DownloadFile(patientId.PatientId, directorioESO);
+            return Ok(response);
         }
     }
 }

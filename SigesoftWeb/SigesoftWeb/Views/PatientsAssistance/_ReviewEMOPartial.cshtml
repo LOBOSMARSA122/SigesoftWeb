@@ -1,7 +1,7 @@
 ﻿
 <script src="~/Scripts/jquery.min.js"></script>
 <script src="~/Scripts/pdfobject.min.js"></script>
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 
  
 <div class="col-12">
@@ -10,7 +10,7 @@
             <div class="row titleRow p-0 m-0">
                 <div class="col-12 p-0 m-0" onclick="ColapseTable('DivNotices','heightDivNotices')">
                     <div class="ml-2">
-                        Antecedentes
+                        Antecedentes médicos
                     </div>
                 </div>
             </div>
@@ -19,9 +19,9 @@
                     <table class="table tableNotice table-bordered table-sm">
                         <thead>
                             <tr class="text-center">
+                                <th scope="col">Fecha/Grupo</th>
                                 <th scope="col">Descripción</th>
                                 <th scope="col">Tipo de atención</th>
-                                <th scope="col">Fecha/Grupo</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,9 +41,9 @@
                                     for (int i = 0; i < item.Count; i++)
                                     {
                                     <tr>
-                                        <td>@item[i].v_DiseasesName</td>
-                                        <td>@item[i].v_AntecedentTypeName</td>
-                                        <td>@item[i].v_DateOrGroup</td>
+                                        <td class="ColumnNoWrap">@item[i].v_DateOrGroup</td>
+                                        <td class="ColumnNoWrap">@item[i].v_DiseasesName</td>
+                                        <td class="ColumnNoWrap">@item[i].v_AntecedentTypeName</td>
                                     </tr>
                                     }
 
@@ -54,11 +54,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 mb-2 ml-0 mr-0 p-0 p-lg-1 col-lg-4">
+        <div class="col-12 mb-2 ml-0 mr-0 p-0 p-lg-1 col-lg-4 ">
             <div class="row titleRow p-0 m-0">
                 <div class="col-12 p-0 m-0" onclick="ColapseTable('DivNotices','heightDivNotices')">
                     <div class="ml-2">
-                        Atenciones Médicas
+                        Examenes de Salud Ocupacional
                     </div>
                 </div>
             </div>
@@ -67,8 +67,10 @@
                     <table class="table tableNotice table-bordered table-sm">
                         <thead>
                             <tr class="text-center">
-                                <th scope="col">Aptitud</th>
+                                <th></th>
+                                <th></th>
                                 <th scope="col">Fecha/Servicio</th>
+                                <th scope="col">Aptitud</th>
                                 <th scope="col">Diagnóstico</th>
                             </tr>
                         </thead>
@@ -92,9 +94,11 @@
                                         if (item1[i].MasterServiceId == 2)
                                         {
                                     <tr>
-                                        <td>@item1[i].Aptitude</td>
-                                        <td>@item1[i].ServiceDate.ToShortDateString()</td>
-                                        <td>@item1[i].DiseaseName</td>
+                                        <td class="ColumnNoWrap"><span onclick="DownloadPdf(74390363)"><i class="">D</i></span></td>
+                                        <td class="ColumnNoWrap"><span><i class="far fa-file-pdf "></i></span></td>
+                                        <td class="ColumnNoWrap">@item1[i].ServiceDate.ToShortDateString()</td>
+                                        <td class="ColumnNoWrap">@item1[i].Aptitude</td>
+                                        <td class="ColumnNoWrap">@item1[i].DiseaseName</td>
                                     </tr>
                                         }                                        
                                     }                                  
@@ -109,7 +113,7 @@
             <div class="row titleRow p-0 m-0">
                 <div class="col-12 p-0 m-0" onclick="ColapseTable('DivNotices','heightDivNotices')">
                     <div class="ml-2">
-                        Atenciones Médicas
+                        Atenciones médicas
                     </div>
                 </div>
             </div>
@@ -118,7 +122,6 @@
                     <table class="table tableNotice table-bordered table-sm">
                         <thead>
                             <tr class="text-center">
-                                <th scope="col">Aptitud</th>
                                 <th scope="col">Fecha/Servicio</th>
                                 <th scope="col">Diagnóstico</th>
                                 
@@ -144,9 +147,8 @@
                                         if (item2[i].MasterServiceId == 21)
                                         {
                                     <tr>
-                                        <td>@item2[i].Aptitude</td>
-                                        <td>@item2[i].ServiceDate.ToShortDateString()</td>
-                                        <td>@item2[i].DiseaseName</td>
+                                        <td class="ColumnNoWrap">@item2[i].ServiceDate.ToShortDateString()</td>
+                                        <td class="ColumnNoWrap">@item2[i].DiseaseName</td>
                                     </tr>
                                         }
                                     }

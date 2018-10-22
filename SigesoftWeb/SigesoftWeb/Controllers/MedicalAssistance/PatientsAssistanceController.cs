@@ -111,12 +111,12 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
 
         //}
 
-        public async Task<ActionResult> GetAntecedent(string pacientId)
+        public async Task<ActionResult> GetAntecedent(string patientId)
         {
             Api API = new Api();
             Dictionary<string, string> arg = new Dictionary<string, string>()
             {
-                { "pacientId", pacientId},
+                { "patientId", patientId},
             };
 
             return await Task.Run(() =>
@@ -126,7 +126,26 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
                 return PartialView("_ReviewEMOPartial");
             });
         }
-        
+
+        public JsonResult DownloadFile(string patientId)
+        {
+            Api API = new Api();
+            Dictionary<string, string> arg = new Dictionary<string, string>()
+            {
+                { "patientId", patientId },
+            };
+
+            byte[] ms = API.PostDownloadStream("PatientsAssistance/DownloadFile", arg);
+
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("Content-Disposition", "attachment; filename=FileName.pdf");
+            Response.BinaryWrite(ms);
+            Response.End();
+
+            return Json(Response);
+        }
 
         public JsonResult Test()
         {

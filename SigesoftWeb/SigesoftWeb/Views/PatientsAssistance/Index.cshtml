@@ -14,13 +14,21 @@
     .iconEdit {
         color: Black;
     }
-
+    span .far{
+        font-size: 15px;
+        color: red;
+    }
+    span .far:hover{
+        color: darkred;
+    }
     .ColumnNoWrap {
         overflow: hidden;
         white-space: nowrap;
     }
 
-    
+    .bodyRow{
+        overflow: hidden;
+    }
     .modal-dialog {
         margin: 0px auto;
         max-width: 100%;
@@ -30,37 +38,39 @@
         width: 100%;
         max-height: 150px;
         margin: 10px;
-        box-shadow: 3px 3px 3px #adadad;
+        /*box-shadow: 3px 3px 3px #e6ecf7;*/
         border: 1px rgba(173, 173,173, 0.1) inset;
         overflow-y: scroll;
         overflow-x: scroll;
     }
         .View::-webkit-scrollbar {
-            max-width: 9px;
-            max-height: 9px;
+            max-width: 7px;
+            max-height: 7px;
         }
 
         .View::-webkit-scrollbar-thumb {
             border-radius: 5px;
-            background-color: #dddddd;
+            background-color: #e0f2ff;
         }
-
     .titleRow {
-        font-family:sans-serif;
-        box-shadow: 3px 0px 3px #adadad;
+        border-top-right-radius: 8px;
+        /*border-top-left-radius: 5px;*/
+        font-family: sans-serif;
+        /*box-shadow: 3px 0px 3px #e6ecf7;*/
         background-color: #fff;
-        border: 1px solid rgba(173, 173,173, 0.1);
+        border: 2px solid rgba(173, 173,173, 0.1);
         color: #3c3c3b;
         text-align: left;
         font-weight: 500;
         cursor: pointer;
+        background-color: #e0f2ff;
     }
 
-    .bodyRow{
-        height:150px;
+    .bodyRow {
+        height: 150px;
     }
     .titleRow:hover {
-        background: rgba(173, 173,173, 0.1);
+        background-color: #d9f2f7;
     }
 
     .View .info {
@@ -72,7 +82,11 @@
         border-bottom: 1px rgba(173, 173,173, 0.5) inset;
         text-align: left;
     }
-
+    #DivNotices {
+        border-bottom-left-radius: 8px;
+        border: 2px solid rgba(173, 173,173, 0.1);
+        /*border-bottom-right-radius: 5px;*/
+    }
         .View .info div {
             padding-left: 0px;
         }
@@ -202,7 +216,7 @@
                 </div>
                 <div class="col-12 Chart wrapperMonthlyControls loadingGrid">
                     <div class="row title" onclick="ColapseTable('divMonthlyControls','heightDivMonthlyControls')">
-                        Controles Mensuales
+                        Cumplimiento de controles mensuales
                     </div>
                     <input id="heightDivMonthlyControls" type="hidden" value="">
                     <div id="divMonthlyControls" style="overflow:hidden">
@@ -218,6 +232,14 @@
                     </div>
                     <input id="heightDivNotices" type="hidden" value="">
                     <div id="DivNotices" style="overflow:hidden">
+                        <div class="row info">
+                            <div class="col-10 ">
+                                Controles para el día de hoy:
+                            </div>
+                            <div class="col-2">
+                                <span class="label label-success result">10</span>
+                            </div>
+                        </div>
                         <div class="row info ">
                             <div class="col-10">
                                 Completar datos de empresa:
@@ -232,14 +254,6 @@
                             </div>
                             <div class="col-2">
                                 <span class="label label-danger result">02</span>
-                            </div>
-                        </div>
-                        <div class="row info">
-                            <div class="col-10 ">
-                                Controles para el día de hoy:
-                            </div>
-                            <div class="col-2">
-                                <span class="label label-success result">10</span>
                             </div>
                         </div>
                     </div>
@@ -324,10 +338,10 @@
                         var serviceId = $(this).find('td').eq(0).text();
                         //alert($(this).find('td').eq(0).text());
                         //LoadReviewEMO(serviceId);
-                        var pacientId = $(this).find('td').eq(1).text();                      
+                        var patientId = $(this).find('td').eq(1).text();                      
                         $('#btnModalReviewEMO').click();
                         //LoadReviews(pacientId);
-                        LoadAntecedent(pacientId);
+                        LoadAntecedent(patientId);
                         
                         KeyUp();
                     });
@@ -339,7 +353,7 @@
                 }
             },
             items: {               
-                "RevisarEMO": { name: "Revisar EMO"},
+                "RevisarEMO": { name: "Revisar ESO"},
                 "ConsultaMedica": { name: "Consulta Médica" },
                 "sep1": "---------", 
                 "Salir": { name: "Salir" }
@@ -419,10 +433,10 @@
         });
     }
 
-    function LoadAntecedent(pacientId) {
-        console.log(pacientId);
+    function LoadAntecedent(patientId) {
+        console.log(patientId);
         $.ajax({            
-            url: '/PatientsAssistance/GetAntecedent?pacientId='+pacientId,
+            url: '/PatientsAssistance/GetAntecedent?patientId=' + patientId,
             type: 'GET',
             success: function (html) {
                 if (html.indexOf("IniciarSesion") == -1) {
@@ -437,24 +451,6 @@
             }
         });
     }
-    //function LoadReviews(pacientId) {
-    //    console.log(pacientId);
-    //    $.ajax({
-    //        url: '/PatientsAssistance/GetReviews?pacientId=' + pacientId,
-    //        type: 'GET',
-    //        //success: function (html) {
-    //        //    if (html.indexOf("IniciarSesion") == -1) {
-    //        //        $("#RenderReviewEMO").html(html);
-    //        //    } else {
-    //        //        location.href = "/";
-    //        //    }
-    //        //},
-    //        //error: function (error) {
-    //        //    alerta("Sucedió un error al conectarse al servidor", "rojo");
-    //        //    console.log(error);
-    //        //}
-    //    });
-    //}
 
     function LoadTopDiagnostic() {
         $('.wrapperTopDx').addClass('loadingGrid');
@@ -500,9 +496,6 @@
             }
         });
     }
-
-
-
 
     function MonthlyControls() {
         $('.wrapperMonthlyControls').addClass('loadingGrid');
@@ -683,6 +676,58 @@
                 console.log(error);
             }
         });
+    }
+
+    function DownloadPdf(patientId) {
+        data = {
+            patientId: patientId
+        };
+
+        $.ajax({
+            cache: false,
+            method: 'POST',
+            data: data,
+            url: '/PatientsAssistance/DownloadFile',
+            success: function (response) {
+                var base64 = JSON.parse(response);
+                var binaryString = window.atob(base64._buffer);
+                var binaryLen = binaryString.length;
+                var bytes = new Uint8Array(binaryLen);
+                for (var i = 0; i < binaryLen; i++) {
+                    var ascii = binaryString.charCodeAt(i);
+                    bytes[i] = ascii;
+                }
+                var d = new Date();
+                var fileName = patientId + ".pdf";
+                var blob = new Blob([bytes], { type: 'application/pdf' });
+
+                if (window.navigator.msSaveOrOpenBlob) {
+                    window.navigator.msSaveOrOpenBlob(blob, fileName);
+                } else if (window.navigator.userAgent.indexOf("Firefox") > 0) {
+
+                    var url = window.URL.createObjectURL(blob);
+                    var anchorElement = document.createElement("a");
+                    anchorElement.style = "display: none";
+                    anchorElement.href = url;
+                    anchorElement.download = fileName;
+                    document.body.appendChild(anchorElement);
+                    anchorElement.click();
+                    document.body.removeChild(anchorElement);
+
+                    setTimeout(function () {
+                        window.URL.revokeObjectURL(url);
+                    }, 1000);
+                } else {
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = fileName;
+                    link.click();
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        })
     }
 
 </script>
