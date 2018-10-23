@@ -356,7 +356,9 @@
                 }
                 else if (key === "ConsultaMedica") {
                     $('tr.context-menu-active').each(function () {
-                        alert($(this).find('td').eq(0).text());
+                        var patientId = $(this).find('td').eq(1).text();          
+                        //alert($(this).find('td').eq(0).text());
+                        LoadMedicalConsultation(patientId)
                     });
                 }
             },
@@ -449,6 +451,23 @@
             success: function (html) {
                 if (html.indexOf("IniciarSesion") == -1) {
                     $("#RenderReviewEMO").html(html);
+                } else {
+                    location.href = "/";
+                }
+            },
+            error: function (error) {
+                alerta("Sucedió un error al conectarse al servidor", "rojo");
+                console.log(error);
+            }
+        });
+    }
+
+    function LoadMedicalConsultation(patientId) {
+        $.ajax({
+            url: '/PatientsAssistance/MedicalConsultation?id=' + patientId,
+            type: 'GET',
+            success: function (html) {
+                if (html.indexOf("IniciarSesion") == -1) {
                 } else {
                     location.href = "/";
                 }
