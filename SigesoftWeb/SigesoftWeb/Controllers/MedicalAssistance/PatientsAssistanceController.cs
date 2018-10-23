@@ -95,22 +95,6 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
 
         }
 
-        //public ActionResult ReviewEMO(string serviceId)
-        //{
-        //    Api API = new Api();
-        //    Dictionary<string, string> arg = new Dictionary<string, string>()
-        //    {
-        //        { "serviceId",serviceId}
-        //    };
-
-        //    //return await Task.Run(() =>
-        //    //{
-        //    //    ViewBag.Services = API.Post<BoardPatient>("PatientsAssistance/ReviewsEMOs", arg);
-        //    return PartialView("_ReviewEMOPartial");
-        //    //});
-
-        //}
-
         public async Task<ActionResult> GetAntecedent(string patientId)
         {
             Api API = new Api();

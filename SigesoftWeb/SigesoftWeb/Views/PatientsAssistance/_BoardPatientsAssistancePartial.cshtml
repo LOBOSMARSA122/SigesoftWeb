@@ -103,7 +103,7 @@
                                 if (item.MasterServiceId == 2 && item.IsRevisedHistoryId != 1)
                                 {
                             <tr class="context-menu-one">
-                                @*<td><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = item.PatientId })"><span class="d-flex justify-content-center iconEdit align-items-center icon-edit"></span></a></td>*@
+                                @*<td style="display:none"><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = item.PatientId })"><span class="d-flex justify-content-center iconEdit align-items-center icon-edit"></span></a></td>*@
                                 <td style="display:none" >@item.ServiceId</td>
                                 <td style="display:none" >@item.PatientId</td>
                                 <td class="ColumnNoWrap"> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"> <a href="#" data-toggle="modal" data-target="#modalOption">       <span class="ant-badge-status-dot ant-badge-status-ocupational"></span>    </a>   <span class="ant-badge-status-text pl-2">@item.PatientFullName</span></span></td>
@@ -121,7 +121,7 @@
                             <tr class="context-menu-two">
                                 <td style="display:none">@item.ServiceId</td>
                                 <td style="display:none">@item.PatientId</td>
-                                @* <td><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = item.PatientId })"><span class="d-flex justify-content-center iconEdit align-items-center icon-edit"></span></a></td>*@
+                                @*<td style="display:none"><a href="@Url.Action("MedicalConsultation", "PatientsAssistance", new { id = item.PatientId })"><span class="d-flex justify-content-center iconEdit align-items-center icon-edit"></span></a></td>*@
                                 <td class="ColumnNoWrap"> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"><span class="ant-badge-status-dot ant-badge-status-control"></span><span class="ant-badge-status-text pl-2">@item.PatientFullName</span></span></td>
                                 <td class="ColumnNoWrap">@item.OrganizationLocation</td>
                                 <td class="ColumnNoWrap">@item.ProtocolName</td>

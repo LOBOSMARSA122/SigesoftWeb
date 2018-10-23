@@ -218,6 +218,18 @@
                     <input id="heightdivTopDx" type="hidden" value="">
                     <div id="divTopDx" style="overflow:hidden">
                         <div class="row info" id="RenderTopDiagnostic">
+                            <a href="#" class="table-responsive" data-toggle="modal" data-target="#modal1" onclick="">@Html.Partial("_TopDiagnosticPartial")</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 Chart wrapperTopDx loadingGrid">
+                    <div class="row title " onclick="ColapseTable('divTopDx','heightdivTopDx')">
+                        Top 10 Diagnósticos
+                        <div class="d-none col-auto p-0 mr-2"><button class="iconoPin p-0 m-0 " value="onPin"><i class="fa fa-thumbtack"></i></button></div>
+                    </div>
+                    <input id="heightdivTopDx" type="hidden" value="">
+                    <div id="divTopDx" style="overflow:hidden">
+                        <div class="row info" id="RenderTopDiagnostic">
                             <a href="#" class="table-responsive" data-toggle="modal" data-target="#modal1" onclick="ModalTopDiagnosticPartial()">@Html.Partial("_TopDiagnosticPartial")</a>
                         </div>
                     </div>
@@ -267,6 +279,7 @@
                     </div>
                 </div>
             </div>
+            
         </aside>
     </section>
 
@@ -326,7 +339,7 @@
 } 
 
 
-<script>
+            <script>
 
     $(document).ready(function () {
         LoadSchedule();
@@ -334,38 +347,37 @@
         MonthlyControls();
         $("#take").val(10);
         Filter(1);
-        
+
         $.contextMenu({
             selector: '.context-menu-one',
             trigger: 'left',
-            
 
-            callback: function (key, options) {             
+
+            callback: function (key, options) {
                 if (key === "RevisarEMO") {
                     $('tr.context-menu-active').each(function () {
                         var serviceId = $(this).find('td').eq(0).text();
                         //alert($(this).find('td').eq(0).text());
                         //LoadReviewEMO(serviceId);
-                        var patientId = $(this).find('td').eq(1).text();                      
+                        var patientId = $(this).find('td').eq(1).text();
                         $('#btnModalReviewEMO').click();
                         //LoadReviews(pacientId);
                         LoadAntecedent(patientId);
-                        
+
                         KeyUp();
                     });
                 }
                 else if (key === "ConsultaMedica") {
                     $('tr.context-menu-active').each(function () {
-                        var patientId = $(this).find('td').eq(1).text();          
-                        //alert($(this).find('td').eq(0).text());
+                        var patientId = $(this).find('td').eq(1).text();
                         LoadMedicalConsultation(patientId)
                     });
                 }
             },
-            items: {               
+            items: {
                 "RevisarEMO": { name: "Revisar ESO"},
                 "ConsultaMedica": { name: "Consulta Médica" },
-                "sep1": "---------", 
+                "sep1": "---------",
                 "Salir": { name: "Salir" }
             }
         });
@@ -393,7 +405,7 @@
         LoadModalTopDiagnostic();
         KeyUp();
     }
-    
+
     function ModalMonthlyControls() {
         LoadModalMonthlyControls();
         KeyUp();
@@ -418,7 +430,7 @@
 
     function LoadReviewEMO(serviceId) {
         var data = {
-            ServiceId: serviceId          
+            ServiceId: serviceId
         };
         $.ajax({
             cache: false,
@@ -428,16 +440,16 @@
             data: data,
             url: '/PatientsAssistance/FilterReportProduct',
             success: function (html) {
-                if (html.indexOf("IniciarSesion") == -1) {       
+                if (html.indexOf("IniciarSesion") == -1) {
                     $('#modalReviewEMO').modal();
-                    
+
                     //$("#RenderBoardPatientsAssistancePartial").html(html);
                 } else {
                     location.href = "/";
                 }
             },
             error: function (error) {
-                alerta("Sucedió un error al conectarse al servidor", "rojo");              
+                alerta("Sucedió un error al conectarse al servidor", "rojo");
                 console.log(error);
             }
         });
@@ -445,7 +457,7 @@
 
     function LoadAntecedent(patientId) {
         console.log(patientId);
-        $.ajax({            
+        $.ajax({
             url: '/PatientsAssistance/GetAntecedent?patientId=' + patientId,
             type: 'GET',
             success: function (html) {
@@ -463,20 +475,14 @@
     }
 
     function LoadMedicalConsultation(patientId) {
-        $.ajax({
-            url: '/PatientsAssistance/MedicalConsultation?id=' + patientId,
-            type: 'GET',
-            success: function (html) {
-                if (html.indexOf("IniciarSesion") == -1) {
-                } else {
-                    location.href = "/";
-                }
-            },
-            error: function (error) {
-                alerta("Sucedió un error al conectarse al servidor", "rojo");
-                console.log(error);
-            }
-        });
+        var patientId = patientId;
+        var url = '/PatientsAssistance/MedicalConsultation?id=' + patientId;
+        var anchorElement = document.createElement("a");
+        anchorElement.style = "display: none";
+        anchorElement.href = url;
+        document.body.appendChild(anchorElement);
+        anchorElement.click();
+        document.body.removeChild(anchorElement);
     }
 
     function LoadTopDiagnostic() {
@@ -757,4 +763,4 @@
         })
     }
 
-</script>
+            </script>
