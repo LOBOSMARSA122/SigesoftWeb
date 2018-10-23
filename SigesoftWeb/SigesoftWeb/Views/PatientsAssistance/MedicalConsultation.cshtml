@@ -46,6 +46,15 @@
     .contForm {
         border: 1px rgba(173, 173,173, 0.3) solid;
     }
+    .titleLabel {
+        background-color: lightskyblue;
+        font-size: 0.9rem;
+        font-family: 'Roboto', sans-serif;
+    }
+    .lblTipo {
+        font-size: 0.9rem;
+        font-family: 'Roboto', sans-serif;
+    }
     .lblDX {
         position: absolute;
         z-index: 100;
@@ -208,12 +217,11 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="anamnesis">Anamnesis</label>
+                                <label for="anamnesis" style="font-size: 0.9rem;font-family: 'Roboto', sans-serif;">Anamnesis</label>
                                 <textarea class="form-control" id="anamnesis"></textarea>
                             </div>
-                        </form>
-                        <form action="/" method="post" class="formGroup">
-                            <div class="p-3 contForm">
+
+                            <div class="py-3 px-2 contForm">
                                 <div class="row">
                                     <label class="ml-2 lblDX">DX y Tratamiento</label>
                                     <div class="col-12">
@@ -276,20 +284,134 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row justify-content-end">
-                                <div class="col-12 mt-3 col-md-6 d-flex justify-content-end">
-                                    <button class="btn btn-info btnHeight">Nuevo DX</button>
+                                <div class="row justify-content-end">
+                                    <div class="col-12 mt-3 col-md-6 d-flex justify-content-end">
+                                        <button class="btn btn-info btnHeight">Nuevo DX</button>
+                                    </div>
                                 </div>
                             </div>
-
+                            <div class="row w-100 px-0 mx-0">
+                                <div class="col-12 py-2 px-0 col-lg-4">
+                                    <div class="p-2 contForm">
+                                        <div class="row titleLabel w-100 m-0 mb-2 p-1 justify-content-center">
+                                                En caso de accidentes de trabajo
+                                        </div>
+                                        <div class="row w-100 m-0">
+                                            <div class="col-12 p-0">
+                                                <div class="row w-100 m-0">
+                                                    <div class="col-12 col-xl-5 p-0 d-flex justify-content-start align-items-center">
+                                                        <label class="m-0 lblTipo">Mec. Acc. Trab</label>
+                                                    </div>
+                                                    <div class="col-12 col-xl-7 p-0">
+                                                        <select class="custom-select custom-select-sm">
+                                                            <option value="value" selected>---Selecciones---</option>
+                                                            <option value="value"></option>
+                                                            <option value="value"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row my-2 w-100 mx-0">
+                                                    <div class="col-12 col-xl-5 p-0 d-flex justify-content-start align-items-center">
+                                                        <label class="m-0 lblTipo">Parte del cuerpo</label>
+                                                    </div>
+                                                    <div class="col-12 p-0 col-xl-7">
+                                                        <select class="custom-select custom-select-sm">
+                                                            <option value="value" selected>---Selecciones---</option>
+                                                            <option value="value"></option>
+                                                            <option value="value"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row w-100 m-0">
+                                                    <div class="col-12 col-xl-5 p-0 d-flex justify-content-start align-items-center">
+                                                        <label class="m-0 lblTipo">Clasificación</label>
+                                                    </div>
+                                                    <div class="col-12 col-xl-7 p-0">
+                                                        <select class="custom-select custom-select-sm">
+                                                            <option value="value" selected>---Selecciones---</option>
+                                                            <option value="value"></option>
+                                                            <option value="value"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 py-2 px-0 p-md-2 col-lg-4">
+                                    <div class="p-2 contForm">
+                                        <div class="row titleLabel w-100 m-0 mb-2 p-1 justify-content-center">
+                                            En caso de enfermedades relacionadas al trabajo
+                                        </div>
+                                        <div class="row w-100 m-0">
+                                            <div class="col-12 p-0">
+                                                <div class="row w-100 m-0">
+                                                    <div class="col-12 col-xl-5 p-0 d-flex justify-content-start align-items-center">
+                                                        <label class="m-0 lblTipo">Fact. de riesgo</label>
+                                                    </div>
+                                                    <div class="col-12 col-xl-7 p-0">
+                                                        <select class="custom-select custom-select-sm">
+                                                            <option value="value" selected>---Selecciones---</option>
+                                                            <option value="value"></option>
+                                                            <option value="value"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row my-2 w-100 m-0">
+                                                    <div class="col-12 col-xl-5 p-0 d-flex justify-content-start align-items-center">
+                                                        <label class="m-0 lblTipo">Clasificación</label>
+                                                    </div>
+                                                    <div class="col-12 col-xl-7 p-0">
+                                                        <select class="custom-select custom-select-sm">
+                                                            <option value="value" selected>---Selecciones---</option>
+                                                            <option value="value"></option>
+                                                            <option value="value"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 py-2 px-0 col-lg-4 p-0">
+                                    <div class="p-2 contForm">
+                                        <div class="row titleLabel w-100 m-0 mb-2 p-1 justify-content-center">
+                                                En caso de accidentes de trabajo
+                                        </div>
+                                        <div class="row w-100 m-0">
+                                            <div class="col-12 p-0">
+                                                <div class="row w-100 m-0">
+                                                    <div class="col-12 col-xl-5 p-0 d-flex justify-content-start align-items-center">
+                                                        <label class="m-0 lblTipo">Aptitud</label>
+                                                    </div>
+                                                    <div class="col-12 p-0 col-xl-7">
+                                                        <select class="custom-select custom-select-sm">
+                                                            <option value="value" selected>---Selecciones---</option>
+                                                            <option value="value"></option>
+                                                            <option value="value"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row w-100 my-2 m-0">
+                                                    <div class="col-12 col-xl-5 p-0 d-flex justify-content-start align-items-center">
+                                                        <label class="m-0 lblTipo">Observaciones</label>
+                                                    </div>
+                                                    <div class="col-12 p-0 col-xl-7">
+                                                        <div class="">
+                                                            <textarea class="form-control" id="anamnesis" rows="3"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </form>
 
                     </div>
                 </div>
             </div>
-
-
         </main>
         <aside class="col-md-4 w-100">
             <div class="row notice ">
