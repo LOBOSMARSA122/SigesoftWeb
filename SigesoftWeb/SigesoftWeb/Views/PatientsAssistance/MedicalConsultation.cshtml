@@ -1,4 +1,60 @@
-﻿
+﻿<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+<style>
+    .fa-medkit{
+        color: green;
+        font-size: 20px;
+    }
+    .tableActive::-webkit-scrollbar {
+        max-width: 7px;
+        max-height: 7px;
+    }
+
+    .tableActive::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: #dddddd;
+    }
+    .tblScroll::-webkit-scrollbar {
+        max-width: 7px;
+        max-height: 7px;
+    }
+
+    .tblScroll::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: #dddddd;
+    }
+    .contTablePrin::-webkit-scrollbar {
+        max-width: 7px;
+        max-height: 7px;
+    }
+
+    .contTablePrin::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: #dddddd;
+    }
+    .tableNoActive {
+        height: 0 !important;
+        width: 0 !important;
+        overflow: hidden;
+        /*transition: all ease 1s;*/
+    }
+    .tableActive {
+        height: 100%;
+        width: 100%;
+        overflow-y: scroll;
+        transition: all ease 1s;
+    }
+    .contForm {
+        border: 1px rgba(173, 173,173, 0.3) solid;
+    }
+    .lblDX {
+        position: absolute;
+        z-index: 100;
+        margin-top: -25px;
+        background: #fff;
+        font-size: 0.9rem;
+        font-family: 'Roboto', sans-serif;
+    }
+</style>
 <div class="container-fluid">
     <section class="contenedor-main  row">
         <main class="col-md-8">
@@ -127,7 +183,108 @@
                                 </div>
 
                             </div>
+
                         </form>
+                        <form action="/" method="post" class="formGroup">
+                            <div class="form-group row" style="margin-left:0px; margin-right:0px;">
+                                <div class="col-12 mt-3" style="border: 1px rgba(173, 173,173, 0.3) solid;">
+                                    <label for="" class="labelMotivo">Nuevo/Control</label>
+                                    <div class="row pt-0 pb-0" style="padding-left:10px; padding-right:10px">
+                                        <div class="col-12 col-md-4 ">
+                                            <label class="xxxx radButton">
+                                                Nuevo
+                                                <input type="radio" checked="checked" name="radio">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-4">
+                                            <label class="xxxx radButton">
+                                                Control
+                                                <input type="radio" name="radio">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="anamnesis">Anamnesis</label>
+                                <textarea class="form-control" id="anamnesis"></textarea>
+                            </div>
+                        </form>
+                        <form action="/" method="post" class="formGroup">
+                            <div class="p-3 contForm">
+                                <div class="row">
+                                    <label class="ml-2 lblDX">DX y Tratamiento</label>
+                                    <div class="col-12">
+                                        <table class="table contTablePrin m-0 table-bordered table-responsive-sm">
+                                            <thead>
+                                                <tr class="text-center">
+                                                    <th scope="col">CIE10</th>
+                                                    <th scope="col">Descripción</th>
+                                                    <th scope="col">Calificación</th>
+                                                    <th scope="col">TX</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>888</td>
+                                                    <td class="ColumnNoWrap">Cancer pulmonar.</td>
+                                                    <td class="ColumnNoWrap">Enfermedad común.</td>
+                                                    <td class="ColumnNoWrap text-center"><span onclick="TableActive()" class="contIcon"><i class="fas fa-medkit"></i></span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-12 m-0">
+                                        <div class="row justify-content-end">
+                                            <div class="col-11">
+                                                <div class="tableNoActive tblcontrol mt-2">
+                                                    <table class="table tblScroll mb-0 table-bordered table-responsive-sm">
+                                                        <thead>
+                                                            <tr class="text-center">
+                                                                <th scope="col">Medicamento</th>
+                                                                <th scope="col">Cantidad</th>
+                                                                <th scope="col">Frecuencia</th>
+                                                                <th scope="col">Consideraciones</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>AAA</td>
+                                                                <td class="ColumnNoWrap">10 und</td>
+                                                                <td class="ColumnNoWrap">1 diaria</td>
+                                                                <td class="ColumnNoWrap text-center">-----</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>BBB</td>
+                                                                <td class="ColumnNoWrap">20 und</td>
+                                                                <td class="ColumnNoWrap">1 semanal</td>
+                                                                <td class="ColumnNoWrap text-center">-----</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>CCC</td>
+                                                                <td class="ColumnNoWrap">30 und</td>
+                                                                <td class="ColumnNoWrap">2 diaria</td>
+                                                                <td class="ColumnNoWrap text-center">-----</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-end">
+                                <div class="col-12 mt-3 col-md-6 d-flex justify-content-end">
+                                    <button class="btn btn-info btnHeight">Nuevo DX</button>
+                                </div>
+                            </div>
+
+                        </form>
+
                     </div>
                 </div>
             </div>
@@ -178,6 +335,14 @@
                     </div>
                     <input id="heightDivAntece" type="hidden" value="">
                     <div id="DivAntece" style="overflow:hidden">
+                        <div class="row info">
+                            <div class="col-10 ">
+                                Controles para el día de hoy:
+                            </div>
+                            <div class="col-2">
+                                <span class="label label-success result">18</span>
+                            </div>
+                        </div>
                         <div class="row info ">
                             <div class="col-10">
                                 Completar datos de empresa:
@@ -192,14 +357,6 @@
                             </div>
                             <div class="col-2">
                                 <span class="label label-warning result">02</span>
-                            </div>
-                        </div>
-                        <div class="row info">
-                            <div class="col-10 ">
-                                Controles para el día de hoy:
-                            </div>
-                            <div class="col-2">
-                                <span class="label label-warning result">18</span>
                             </div>
                         </div>
                     </div>
@@ -239,6 +396,19 @@
             });
         }
     })
+    function TableActive() {
+        var contIcon = $(".contIcon");         
+            $(".tblcontrol").toggleClass("tableNoActive");
+            $(".tblcontrol").toggleClass("tableActive");
+            var height = $(".btnHeight").offset();
+            console.log(height);
+        if ($(window).width() > 1000) {
+            $("html, body").animate({
+                scrollTop: height.top,
+            }, 1000);
+        }
+            
+    }
     function NavTabActive() {
         $("ul li a").removeClass("active");
         $(this).toggleClass("active");

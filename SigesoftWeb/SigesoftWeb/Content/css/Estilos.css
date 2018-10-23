@@ -469,8 +469,8 @@ body footer {
 }
 /*BANDEJAS*/
 .table-responsive::-webkit-scrollbar {
-    max-width: 10px;
-    max-height: 10px;
+    max-width: 7px;
+    max-height: 7px;
 }
 
 .table-responsive::-webkit-scrollbar-thumb {

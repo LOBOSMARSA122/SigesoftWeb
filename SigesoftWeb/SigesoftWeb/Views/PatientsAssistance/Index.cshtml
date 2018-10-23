@@ -357,11 +357,8 @@
                 if (key === "RevisarEMO") {
                     $('tr.context-menu-active').each(function () {
                         var serviceId = $(this).find('td').eq(0).text();
-                        //alert($(this).find('td').eq(0).text());
-                        //LoadReviewEMO(serviceId);
                         var patientId = $(this).find('td').eq(1).text();
                         $('#btnModalReviewEMO').click();
-                        //LoadReviews(pacientId);
                         LoadAntecedent(patientId);
 
                         KeyUp();
@@ -442,8 +439,6 @@
             success: function (html) {
                 if (html.indexOf("IniciarSesion") == -1) {
                     $('#modalReviewEMO').modal();
-
-                    //$("#RenderBoardPatientsAssistancePartial").html(html);
                 } else {
                     location.href = "/";
                 }
@@ -763,4 +758,4 @@
         })
     }
 
-            </script>
+</script>
