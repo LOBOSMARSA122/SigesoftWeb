@@ -46,7 +46,6 @@
         width: 100%;
         max-height: 150px;
         margin: 10px;
-        /*box-shadow: 3px 3px 3px #e6ecf7;*/
         border: 1px rgba(173, 173,173, 0.1) inset;
         overflow-y: scroll;
         overflow-x: scroll;
@@ -62,9 +61,7 @@
         }
     .titleRow {
         border-top-right-radius: 8px;
-        /*border-top-left-radius: 5px;*/
         font-family: sans-serif;
-        /*box-shadow: 3px 0px 3px #e6ecf7;*/
         background-color: #fff;
         border: 2px solid rgba(173, 173,173, 0.1);
         color: #3c3c3b;
@@ -93,7 +90,6 @@
     #DivNotices {
         border-bottom-left-radius: 8px;
         border: 2px solid rgba(173, 173,173, 0.1);
-        /*border-bottom-right-radius: 5px;*/
     }
         .View .info div {
             padding-left: 0px;
@@ -156,32 +152,6 @@
                                 </div>
                             </div>
                         </div>
-                        @*<div class="row">
-                            <div class="col-12 col-lg-3 col-xl-2">
-                                <div class="form-group">
-                                    <label for="" id="filtPaciente" class="d-none d-lg-block">Filtrar</label>
-                                    <button class="btn btn-info boton form-control" onclick="Test(1)">
-                                        <i class="fa fa-search"></i> Test
-                                    </button>
-                                </div>
-                            </div>
-                            <div id="Valuetest" style="background:#f39c12; width:20px; height:20px;">
-
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-lg-3 col-xl-2">
-                                <div class="form-group">
-                                    <label for="" id="filtPaciente" class="d-none d-lg-block">Filtrar</label>
-                                    <button class="btn btn-info boton form-control" onclick="Test2(1)">
-                                        <i class="fa fa-search"></i> Test2
-                                    </button>
-                                </div>
-                            </div>
-                            <div id="Valuetest2" style="background:#f39c12; width:20px; height:20px;">
-
-                            </div>
-                        </div>*@
                     </div>
                 </div>
 
@@ -210,18 +180,6 @@
         </main>
         <aside class="col-12 col-md-4 colAside" style="padding-right: 0px;">
             <div class="row notice" style="margin-right:0px;">
-                <div class="col-12 Chart wrapperTopDx loadingGrid">
-                    <div class="row title " onclick="ColapseTable('divTopDx','heightdivTopDx')">
-                        Top 10 Diagnósticos
-                        <div class="d-none col-auto p-0 mr-2"><button class="iconoPin p-0 m-0 " value="onPin"><i class="fa fa-thumbtack"></i></button></div>
-                    </div>
-                    <input id="heightdivTopDx" type="hidden" value="">
-                    <div id="divTopDx" style="overflow:hidden">
-                        <div class="row info" id="RenderTopDiagnostic">
-                            <a href="#" class="table-responsive" data-toggle="modal" data-target="#modal1" onclick="">@Html.Partial("_TopDiagnosticPartial")</a>
-                        </div>
-                    </div>
-                </div>
                 <div class="col-12 Chart wrapperTopDx loadingGrid">
                     <div class="row title " onclick="ColapseTable('divTopDx','heightdivTopDx')">
                         Top 10 Diagnósticos
@@ -316,7 +274,8 @@
 </div>
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-
+@*<script src="~/Scripts/fullcalendar.js"></script>*@
+@*<script src="~/Scripts/fullcalendar.min.js"></script>*@
 <link href="~/Content/css/modal.css" rel="stylesheet" />
 @section Scripts{
     @{
@@ -336,8 +295,7 @@
 
         }
     }
-} 
-
+}         
 
             <script>
 
@@ -399,6 +357,7 @@
     });
 
     function ModalTopDiagnosticPartial() {
+        console.log("click");
         LoadModalTopDiagnostic();
         KeyUp();
     }
