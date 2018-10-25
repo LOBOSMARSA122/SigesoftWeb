@@ -476,6 +476,7 @@ body footer {
 .table-responsive::-webkit-scrollbar-thumb {
     border-radius: 5px;
     background-color: #dddddd;
+    border: 1px solid #c9c9c9;
 }
 
 .table-responsive::-webkit-scrollbar-button {
@@ -814,6 +815,10 @@ textarea {
 
 /*MEDIA QUERYS*/
 @media (max-width: 480px) {
+    header .logo a {
+        font-size: smaller;
+    }
+
     .login-page {
         background: url('../Images/ImageLogo.jpeg') no-repeat fixed center;
         -webkit-background-size: cover;

@@ -98,7 +98,30 @@ namespace BL.MedicalAssistance
                 throw;
             }
         }
-        
+
+        public BoardPatient GetPendingReview(BoardPatient data)
+        {
+
+            try
+            {
+                var isDeleted = (int)Enumeratores.SiNo.No;          
+                var count = (from a in ctx.Service
+                             where a.i_IsDeleted == isDeleted && a.i_MasterServiceId.Value == 2 && a.i_MasterServiceId.Value != 1
+                             select new Patients
+                             {
+                                 MasterServiceId = a.i_MasterServiceId.Value,
+                             }).ToList();
+                data.List = count;
+                return data;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
+        }
+
         public List<Schedule> GetSchedule()
         {
             try

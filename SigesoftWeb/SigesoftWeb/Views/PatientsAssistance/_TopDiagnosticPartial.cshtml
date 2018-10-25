@@ -14,6 +14,11 @@
     function Load(data) {
         var obj = JSON.parse(data);
                 Highcharts.chart('chart1', {
+                    navigation: {
+                        buttonOptions: {
+                            enabled: false
+                        }
+                    },
                     chart: {
                         type: 'column'
                     },

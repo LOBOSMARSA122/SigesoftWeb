@@ -47,6 +47,17 @@ namespace SigesoftWebAPI.Controllers.MedicalAssistance
             });            
         }
 
+        [HttpPost]
+        public async Task<IHttpActionResult> GetPendingReview(BoardPatient data)
+        {
+            BoardPatient result = null;
+            return await Task.Run(() =>
+            {
+                result = oPatientsAssistanceBL.GetPendingReview(data);
+                return Ok(result);
+            });
+        }
+
         [HttpGet]
         public async Task<IHttpActionResult> GetSchedule()
         {

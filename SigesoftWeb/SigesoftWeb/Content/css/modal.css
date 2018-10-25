@@ -1,17 +1,4 @@
 ﻿.modalContent {
-    width: 70%;
+    width: 90%;
     /*margin: 15px auto !important;*/
-}
-@media (max-width: 480px) {
-    .modalContent {
-        width: 90%;
-        /*margin: 15px auto !important;*/
-    }
-}
-
-@media only screen and (max-width: 640px) and (orientation: landscape) {
-    .modalContent {
-        width: 80%;
-        /*margin: 15px auto !important;*/
-    }
 }

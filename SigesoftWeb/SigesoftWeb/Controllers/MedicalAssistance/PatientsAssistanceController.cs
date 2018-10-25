@@ -40,6 +40,7 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
             return await Task.Run(() =>
             {
                 ViewBag.Services = API.Post<BoardPatient>("PatientsAssistance/GetAllPatientsAssistance", arg);
+                ViewBag.PendingReview = API.Post<BoardPatient>("PatientsAssistance/GetPendingReview",arg);
 
                 return PartialView("_BoardPatientsAssistancePartial");
             });

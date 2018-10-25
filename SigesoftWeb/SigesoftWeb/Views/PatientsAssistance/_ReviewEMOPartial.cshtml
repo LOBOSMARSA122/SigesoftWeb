@@ -3,12 +3,43 @@
 <script src="~/Scripts/pdfobject.min.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 
- 
+<style>
+    .tbody tr{
+        cursor: default;
+    }
+    tr td span{
+        cursor: pointer;
+    }
+    .titleEso {
+        border-radius: 3px;
+        color: #3c3c3b;
+        text-align: left;
+        border-top: 3px solid #d2d6de;
+        border-bottom: 1px rgba(173, 173,173, 0.2) inset;
+        border-left: 1px rgba(173, 173,173, 0.2) inset;
+        border-right: 1px rgba(173, 173,173, 0.2) inset;
+        font-weight: 500;
+        cursor: pointer;
+    }
+        .titleEso:hover {
+            background: rgba(173, 173,173, 0.1);
+        }
+    #DivESO {
+        border-bottom: 1px rgba(173, 173,173, 0.2) inset;
+        border-left: 1px rgba(173, 173,173, 0.2) inset;
+        border-right: 1px rgba(173, 173,173, 0.2) inset;
+    }
+
+</style>
 <div class="col-12">
-    <div class="row w-100 p-0 m-0">
-        <div class="col-12 mb-2 ml-0 mr-0 p-0 p-lg-1 col-lg-4">
+    <div class="row titleEso  mx-0 pl-2 mx-lg-1" onclick="ColapseTable('DivESO','heightDivESO')">
+        Información ESO
+    </div>
+    <input id="heightDivESO" type="hidden" value="">
+    <div class="row p-0 mb-2 mx-lg-1 m-0" id="DivESO" style="overflow:hidden">
+        <div class="col-12 ml-0 mr-0 p-0 pt-lg-1 col-lg-4">
             <div class="row titleRow p-0 m-0">
-                <div class="col-12 p-0 m-0" onclick="ColapseTable('DivNotices','heightDivNotices')">
+                <div class="col-12 p-0 m-0">
                     <div class="ml-2">
                         Antecedentes médicos
                     </div>
@@ -24,8 +55,8 @@
                                 <th scope="col">Tipo de atención</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @{ 
+                        <tbody class="tbody">
+                            @{
                                 var item = ViewBag.Antecedent;
                                 if (item == null)
                                 {
@@ -40,11 +71,11 @@
                                 {
                                     for (int i = 0; i < item.Count; i++)
                                     {
-                                    <tr>
-                                        <td class="ColumnNoWrap">@item[i].v_DateOrGroup</td>
-                                        <td class="ColumnNoWrap">@item[i].v_DiseasesName</td>
-                                        <td class="ColumnNoWrap">@item[i].v_AntecedentTypeName</td>
-                                    </tr>
+                                        <tr>
+                                            <td class="ColumnNoWrap">@item[i].v_DateOrGroup</td>
+                                            <td class="ColumnNoWrap">@item[i].v_DiseasesName</td>
+                                            <td class="ColumnNoWrap">@item[i].v_AntecedentTypeName</td>
+                                        </tr>
                                     }
 
                                 }
@@ -54,9 +85,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 mb-2 ml-0 mr-0 p-0 p-lg-1 col-lg-4 ">
+        <div class="col-12 ml-0 mr-0 p-0 px-lg-1 pt-lg-1 col-lg-4 ">
             <div class="row titleRow p-0 m-0">
-                <div class="col-12 p-0 m-0" onclick="ColapseTable('DivNotices','heightDivNotices')">
+                <div class="col-12 p-0 m-0">
                     <div class="ml-2">
                         Examenes de Salud Ocupacional
                     </div>
@@ -74,8 +105,8 @@
                                 <th scope="col">Diagnóstico</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @{ 
+                        <tbody class="tbody">
+                            @{
                                 var item1 = ViewBag.Reviews;
                                 if (item1 == null)
                                 {
@@ -88,20 +119,20 @@
                                 }
                                 else
                                 {
-                                    
+
                                     for (int i = 0; i < item1.Count; i++)
                                     {
                                         if (item1[i].MasterServiceId == 2)
                                         {
-                                    <tr>
-                                        <td class="ColumnNoWrap"><span onclick="DownloadPdf(74390363)"><i class="fas fa-file-download"></i></span></td>
-                                        <td class="ColumnNoWrap"><span><i class="far fa-file-pdf "></i></span></td>
-                                        <td class="ColumnNoWrap">@item1[i].ServiceDate.ToShortDateString()</td>
-                                        <td class="ColumnNoWrap">@item1[i].Aptitude</td>
-                                        <td class="ColumnNoWrap">@item1[i].DiseaseName</td>
-                                    </tr>
-                                        }                                        
-                                    }                                  
+                                            <tr>
+                                                <td class="ColumnNoWrap"><span onclick="DownloadPdf(74390363)"><i class="fas fa-file-download"></i></span></td>
+                                                <td class="ColumnNoWrap ViewerPdf"><span><i class="far fa-file-pdf "></i></span></td>
+                                                <td class="ColumnNoWrap">@item1[i].ServiceDate.ToShortDateString()</td>
+                                                <td class="ColumnNoWrap">@item1[i].Aptitude</td>
+                                                <td class="ColumnNoWrap">@item1[i].DiseaseName</td>
+                                            </tr>
+                                        }
+                                    }
                                 }
                             }
                         </tbody>
@@ -109,9 +140,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 mb-2 ml-0 mr-0 p-0 p-lg-1 col-lg-4">
+        <div class="col-12 ml-0 mr-0 p-0 pt-lg-1 col-lg-4">
             <div class="row titleRow p-0 m-0">
-                <div class="col-12 p-0 m-0" onclick="ColapseTable('DivNotices','heightDivNotices')">
+                <div class="col-12 p-0 m-0">
                     <div class="ml-2">
                         Atenciones médicas
                     </div>
@@ -124,11 +155,11 @@
                             <tr class="text-center">
                                 <th scope="col">Fecha/Servicio</th>
                                 <th scope="col">Diagnóstico</th>
-                                
+
                             </tr>
                         </thead>
-                        <tbody>
-                            @{ 
+                        <tbody class="tbody">
+                            @{
                                 var item2 = ViewBag.Reviews;
                                 if (item2 == null)
                                 {
@@ -143,16 +174,16 @@
                                 {
                                     for (int i = 0; i < item2.Count; i++)
                                     {
-                                        
+
                                         if (item2[i].MasterServiceId == 21)
                                         {
-                                    <tr>
-                                        <td class="ColumnNoWrap">@item2[i].ServiceDate.ToShortDateString()</td>
-                                        <td class="ColumnNoWrap">@item2[i].DiseaseName</td>
-                                    </tr>
+                                            <tr>
+                                                <td class="ColumnNoWrap">@item2[i].ServiceDate.ToShortDateString()</td>
+                                                <td class="ColumnNoWrap">@item2[i].DiseaseName</td>
+                                            </tr>
                                         }
                                     }
-                          
+
                                 }
                             }
                         </tbody>
@@ -161,9 +192,56 @@
             </div>
         </div>
     </div>
+    <div class="row titleEso  mx-0 pl-2 mx-lg-1" onclick="ColapseTable('DivGraph','heightDivGraph')">
+        Gráficos ESO
+    </div>
+    <input id="heightDivGraph" type="hidden" value="">
+    <div class="row p-0 mb-2 mx-lg-1 m-0" id="DivGraph"  style="overflow:hidden">
+        <div class="col-12 ml-0 mr-0 p-0 pt-lg-1 col-lg-4">
+            <div class="row titleRow p-0 m-0">
+                <div class="col-12 p-0 m-0">
+                    <div class="ml-2">
+                        Antecedentes médicos
+                    </div>
+                </div>
+            </div>
+            <div class="row bodyRow p-0 m-0">
+                <div id="DivNotices" class="col-12 View p-0 m-0">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-12 ml-0 mr-0 p-0 px-lg-1 pt-lg-1 col-lg-4 ">
+            <div class="row titleRow p-0 m-0">
+                <div class="col-12 p-0 m-0">
+                    <div class="ml-2">
+                        Examenes de Salud Ocupacional
+                    </div>
+                </div>
+            </div>
+            <div class="row bodyRow p-0 m-0">
+                <div id="DivNotices" class="col-12 View p-0 m-0">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-12 ml-0 mr-0 p-0 pt-lg-1 col-lg-4">
+            <div class="row titleRow p-0 m-0">
+                <div class="col-12 p-0 m-0">
+                    <div class="ml-2">
+                        Atenciones médicas
+                    </div>
+                </div>
+            </div>
+            <div class="row p-0 bodyRow m-0">
+                <div id="DivNotices" class="col-12 View p-0 m-0">
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row m-0 p-0">
         <div class="col-12 w-100 m-0 p-0">
-            <div id="viewpdf" style="width:100%; height:600px"></div>
+            <div id="viewpdf" style="width:100%; height:400px"></div>
         </div>
     </div>
 </div>
@@ -174,5 +252,10 @@
     $("window, html").resize(function () {
         $(document).ready();
     });
-
+    $(".ViewerPdf").on("click", function () {
+        $(".ViewerPdf").parent().css("background-color", "transparent");
+        $(this).parent().css("background-color", "#dddddd");
+    });
+    
+    
 </script>
