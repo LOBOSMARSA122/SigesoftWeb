@@ -87,8 +87,9 @@
                     <table class="table tableNotice table-bordered table-sm">
                         <thead>
                             <tr class="text-center">
-                                <th></th>
-                                <th></th>
+                                <th>R</th>
+                                <th>D</th>
+                                <th>V</th>
                                 <th scope="col">Fecha/Servicio</th>
                                 <th scope="col">Aptitud</th>
                                 <th scope="col">Diagnóstico</th>
@@ -113,13 +114,28 @@
                                     {
                                         if (item1[i].MasterServiceId == 2)
                                         {
-                                            <tr>
-                                                <td class="ColumnNoWrap"><span onclick="DownloadPdf(74390363)"><i class="fas fa-file-download"></i></span></td>
-                                                <td class="ColumnNoWrap "><span class="ViewerPdf"><i class="far fa-file-pdf "></i></span></td>
-                                                <td class="ColumnNoWrap">@item1[i].ServiceDate.ToShortDateString()</td>
-                                                <td class="ColumnNoWrap">@item1[i].Aptitude</td>
-                                                <td class="ColumnNoWrap">@item1[i].DiseaseName</td>
-                                            </tr>
+                                            if (item1[i].IsRevisedHistoryId == 1)
+                                            {
+                                                <tr>
+                                                    <td class="ColumnNoWrap "><span><i class="icon-book"></i></span></td> @*poner un check*@
+                                                    <td class="ColumnNoWrap"><span onclick="DownloadPdf(74390363)"><i class="fas fa-file-download"></i></span></td>
+                                                    <td class="ColumnNoWrap "><span class="ViewerPdf"><i class="far fa-file-pdf "></i></span></td>
+                                                    <td class="ColumnNoWrap">@item1[i].ServiceDate.ToShortDateString()</td>
+                                                    <td class="ColumnNoWrap">@item1[i].Aptitude</td>
+                                                    <td class="ColumnNoWrap">@item1[i].DiseaseName</td>
+                                                </tr>
+                                            }
+                                            else
+                                            {
+                                                <tr>
+                                                    <td class="ColumnNoWrap "><span><i class="icon-eye"></i></span></td> @*poner un ojo*@
+                                                    <td class="ColumnNoWrap"><span onclick="DownloadPdf(74390363)"><i class="fas fa-file-download"></i></span></td>
+                                                    <td class="ColumnNoWrap "><span class="ViewerPdf"><i class="far fa-file-pdf "></i></span></td>
+                                                    <td class="ColumnNoWrap">@item1[i].ServiceDate.ToShortDateString()</td>
+                                                    <td class="ColumnNoWrap">@item1[i].Aptitude</td>
+                                                    <td class="ColumnNoWrap">@item1[i].DiseaseName</td>
+                                                </tr>
+                                            }
                                         }
                                     }
                                 }

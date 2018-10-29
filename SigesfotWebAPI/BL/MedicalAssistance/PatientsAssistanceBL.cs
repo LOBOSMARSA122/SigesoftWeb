@@ -199,7 +199,7 @@ namespace BL.MedicalAssistance
             {
                 var isDeleted = (int)Enumeratores.SiNo.No;          
                 var count = (from a in ctx.Service
-                             where a.i_IsDeleted == isDeleted && a.i_MasterServiceId.Value == 2 && a.i_MasterServiceId.Value != 1
+                             where a.i_IsDeleted == isDeleted && a.i_MasterServiceId.Value == 2 && a.i_MasterServiceId.Value != 1 && a.i_IsRevisedHistoryId !=1
                              select new Patients
                              {
                                  MasterServiceId = a.i_MasterServiceId.Value,
@@ -541,7 +541,7 @@ namespace BL.MedicalAssistance
                                   ServiceId = A.ServiceId,
                                   Aptitude = A.Aptitude,
                                   ServiceDate = A.ServiceDate,
-                                  IsRevisedHistoryId = A.IsRevisedHistoryId,
+                                  IsRevisedHistoryId = A.IsRevisedHistoryId == null ? 0 : 1,
                                   MasterServiceId = A.MasterServiceId,
                                   DiseaseName = ConcatenateDxForServiceAntecedent(A.ServiceId),
                               }).OrderByDescending(p => p.ServiceDate).ToList();
