@@ -117,10 +117,9 @@ namespace BL.MedicalAssistance
                                join b in ctx.Person on a.v_PersonId equals b.v_PersonId
                                join c in ctx.DataHierarchy on new { a = b.i_DocTypeId.Value, b = groupDocTypeId } equals new { a = c.i_ItemId, b = c.i_GroupId }
                                join d in ctx.SystemParameter on new { a = b.i_SexTypeId.Value, b = genderId } equals new { a = d.i_ParameterId, b = d.i_GroupId }                              
-                               join f in ctx.Organization on a.v_OrganizationId equals f.v_OrganizationId                               
-                               where a.i_IsDeleted == isDeleted
-                                       && (b.v_FirstName.Contains(filterPacient) || b.v_FirstLastName.Contains(filterPacient) || b.v_SecondLastName.Contains(filterPacient) || b.v_DocNumber.Contains(filterPacient))
-                                        
+                               join f in ctx.Organization on a.v_OrganizationId equals f.v_OrganizationId
+                               where (b.v_FirstName.Contains(filterPacient) || b.v_FirstLastName.Contains(filterPacient) || b.v_SecondLastName.Contains(filterPacient) || b.v_DocNumber.Contains(filterPacient))
+
                                select new Patients
                                {                                  
                                    PatientId = a.v_PersonId,
@@ -130,7 +129,8 @@ namespace BL.MedicalAssistance
                                    Occupation = b.v_CurrentOccupation,
                                    Birthdate = b.d_Birthdate.Value,
                                    Gender = d.v_Value1,
-                                   OrganizationLocation = f.v_Name
+                                   OrganizationLocation = f.v_Name,
+                                   StatusOrganizationPerson = a.i_IsDeleted.Value
                                }).ToList();
 
                 var list = (from a in preList
@@ -144,7 +144,9 @@ namespace BL.MedicalAssistance
                                 Birthdate = a.Birthdate,
                                 Age = Utils.GetAge(a.Birthdate.Value),
                                 Gender = a.Gender,
-                                OrganizationLocation = a.OrganizationLocation                               
+                                OrganizationLocation = a.OrganizationLocation,
+                                EMOsByReview = EMOsByReviewByPersonId(a.PatientId),
+                                StatusOrganizationPerson = a.StatusOrganizationPerson
                             }).ToList();
 
                 int totalRecords = list.Count;
@@ -160,6 +162,32 @@ namespace BL.MedicalAssistance
             }
             catch (Exception ex)
             {
+                throw;
+            }
+        }
+
+        private bool EMOsByReviewByPersonId(string patientId)
+        {
+            try
+            {
+                if (patientId == "N009-PP000000007")
+                {
+
+                }
+                var isDeleted = (int)Enumeratores.SiNo.No;
+                var count = (from a in ctx.Service
+                             where a.i_IsDeleted == isDeleted && a.i_MasterServiceId.Value == 2 && a.i_MasterServiceId.Value != 1 && a.v_PersonId == patientId
+                             select new Patients
+                             {
+                                 MasterServiceId = a.i_MasterServiceId.Value,
+                             }).ToList();
+
+                if (count.Count > 0) return true;
+                    return false;
+            }
+            catch (Exception)
+            {
+
                 throw;
             }
         }
@@ -428,7 +456,7 @@ namespace BL.MedicalAssistance
                 throw;
             }
         }
-
+    
         public MonthlyControls MonthlyControls()
         {
            var currentDate = DateTime.Today;

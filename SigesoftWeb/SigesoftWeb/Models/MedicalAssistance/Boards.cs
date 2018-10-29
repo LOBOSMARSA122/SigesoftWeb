@@ -39,6 +39,8 @@ namespace SigesoftWeb.Models.MedicalAssistance
         public int MasterServiceId { get; set; }
         public string MasterService { get; set; }
         public int? IsRevisedHistoryId { get; set; }
+        public bool EMOsByReview { get; set; }
+        public int StatusOrganizationPerson { get; set; }
     }
 
     //public class PersonMedicalHistoryList

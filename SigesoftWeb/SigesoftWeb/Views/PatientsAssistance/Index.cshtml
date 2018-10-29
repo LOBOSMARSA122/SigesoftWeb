@@ -7,7 +7,9 @@
     #filtPaciente {
         opacity: 0;
     }
-
+    a{
+        outline: none;
+    }
     .iconEdit {
         color: Black;
     }
@@ -213,7 +215,7 @@
                 </div>
                 <div class="col-12 Chart wrapperTopDx loadingGrid">
                     <div class="row title " onclick="ColapseTable('divTopDx','heightdivTopDx')">
-                        Top 10 Dx Asistenciales
+                        Top 10 Diagnósticos
                     </div>
                     <input id="heightdivTopDx" type="hidden" value="">
                     <div id="divTopDx" style="overflow:hidden">
@@ -222,14 +224,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 Chart wrapperTopDx loadingGrid">
-                    <div class="row title " onclick="ColapseTable('divTopDxOccupational','heightdivTopDxOccupational')">
-                        Top 10 Dx Ocupacionales
+                <div class="col-12 Chart wrapperMonthlyControls loadingGrid">
+                    <div class="row title " onclick="ColapseTable('divMonthlyCompliance','heightdivMontlhyCompliance')">
+                        Cumplimiento mensual:
+                        <label class="pl-1 lblDate" style="cursor: pointer"></label>
                     </div>
-                    <input id="heightdivTopDxOccupational" type="hidden" value="">
-                    <div id="divTopDxOccupational" style="overflow:hidden">
-                        <div class="row info" id="RenderTopDxOccupational">
-                            <a href="#" class="table-responsive" data-toggle="modal" data-target="#modal1" onclick="LoadModalTopDxOccupationalPartial()"></a>
+                    <input id="heightdivMontlhyCompliance" type="hidden" value="">
+                    <div id="divMonthlyCompliance" style="overflow:hidden">
+                        <div class="row info" id="RenderMonthlyCompliance">
+                            <a href="#" class="table-responsive" data-toggle="modal" data-target="#modal3" onclick="LoadModalMonthlyCompliance()">@Html.Partial("_MonthlyCompliancePartial")</a>
                         </div>
                     </div>
                 </div>
@@ -247,7 +250,7 @@
                 </div>
 
             </div>
-            
+
         </aside>
     </section>
 
@@ -278,8 +281,19 @@
             </div>
         </div>
     </div>
+    <div class="modal fade p-0 modalFade" id="modal3">
+        <div class="modal-dialog d-flex justify-content-center align-items-center modal-dialog-centered">
+            <div class="modal-content modalContent">
+                <div class="modal-header pb-4">
+                    <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @Html.Partial("_ModalMonthlyCompliancePartial")
+            </div>
+        </div>
+    </div>
 
-    
     <div class="modal fade p-0 modalFade" id="modalReviewEMO">
         <div class="modal-dialog d-flex justify-content-center align-items-center modal-dialog-centered">
             <div class="modal-content modalContent">
@@ -294,6 +308,7 @@
             </div>
         </div>
     </div>
+
 
 </div>
 
@@ -311,7 +326,7 @@
         }
         else
         {
-            <script src="~/Scripts/highcharts.js"></script>
+            <script src="https://code.highcharts.com/highcharts.js"></script>
             <script src="~/Scripts/highcharts-3d.js"></script>
             <script src="~/Scripts/exporting.js"></script>
             <script src="~/Scripts/offline-exporting.js"></script>
@@ -321,15 +336,19 @@
     }
 }         
 
-            <script>
+    <script>   
+
+    var month = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre")
+    var date = new Date();
+    console.log(month[date.getMonth()]);
+    $(".lblDate").text(month[date.getMonth()]);
 
     $(document).ready(function () {
         LoadSchedule();
         LoadTopDiagnostic();
         MonthlyControls();
         $("#take").val(10);
-        Filter(1);
-
+        Filter(1);       
         $.contextMenu({
             selector: '.context-menu-one',
             trigger: 'left',
@@ -498,6 +517,7 @@
                 if (html.indexOf("IniciarSesion") == -1) {
                     $('.wrapperMonthlyControls').removeClass('loadingGrid');
                     LoadMonContr(html);
+                    LoadMonthlyCompliance(html);
                 } else {
                     location.href = "/";
                 }
@@ -531,6 +551,26 @@
         });
     }
 
+    function LoadModalMonthlyCompliance() {
+        $.ajax({
+            cache: false,
+            dataType: 'html',
+            method: 'GET',
+            async: true,
+            url: '/PatientsAssistance/MonthlyControls',
+            success: function (html) {
+                if (html.indexOf("IniciarSesion") == -1) {
+                    ModalMonthlyCompliance(html);
+                } else {
+                    location.href = "/";
+                }
+            },
+            error: function (error) {
+                alerta("Sucedió un error al conectarse al servidor", "rojo");
+                console.log(error);
+            }
+        });
+    }
     function LoadSchedule() {
         var events = [];
         $.ajax({
@@ -555,9 +595,7 @@
             }
 
         });
-    }
-
-    
+    }  
 
     function GenerateCalender(events) {
         $('#calendar').fullCalendar('destroy');
