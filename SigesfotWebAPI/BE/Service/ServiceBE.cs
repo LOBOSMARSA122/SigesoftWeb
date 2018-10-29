@@ -106,7 +106,6 @@ namespace BE.Service
 
         public int? i_StatusControl { get; set; }
         public int? i_IsControl { get; set; }
-
         public int? i_IsRevisedHistoryId { get; set; }
     }
 }

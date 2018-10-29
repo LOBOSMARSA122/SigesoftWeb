@@ -438,6 +438,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" id="Glucose-tab" data-toggle="tab" role="tab" aria-controls="Glucose" aria-selected="true" onclick="NavTabActive()" href="#Glucose">Glucosa</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="Espiro-tab" data-toggle="tab" role="tab" aria-controls="Espiro" aria-selected="true" onclick="NavTabActive()" href="#Espiro">Espirometría</a>
+                                </li>
                             </ul>
                             <div class="tab-content" id="myTabContent" style="width:100%">
                                 <div class="tab-pane fade show active" id="Weight" role="tabpanel" aria-labelledby="home-tab">@Html.Partial("_WeightPartial")</div>
@@ -445,6 +448,7 @@
                                 <div class="tab-pane fade" id="Cholesterol" role="tabpanel" aria-labelledby="contact-tab">@Html.Partial("_CholesterolPartial")</div>
                                 <div class="tab-pane fade" id="BloodPressure" role="tabpanel" aria-labelledby="contact-tab">@Html.Partial("_BloodPressurePartial")</div>
                                 <div class="tab-pane fade" id="Glucose" role="tabpanel" aria-labelledby="contact-tab">@Html.Partial("_GlucosePartial")</div>
+                                <div class="tab-pane fade" id="Espiro" role="tabpanel" aria-labelledby="contact-tab">@Html.Partial("_EspiroPartial")</div>
                             </div>
 
                         </div>
@@ -507,6 +511,7 @@
         LoadHaemoglobin();
         LoadBloodPressure();
         LoadGlucose();
+        LoadCvf();
         var inputs = document.getElementsByClassName('inputLabelFloat');
         for (var i = 0; i < inputs.length; i++) {
             inputs[i].addEventListener('keyup', function () {

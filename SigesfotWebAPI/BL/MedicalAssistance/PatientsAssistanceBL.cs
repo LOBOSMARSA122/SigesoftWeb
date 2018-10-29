@@ -16,7 +16,7 @@ namespace BL.MedicalAssistance
     {
         private DatabaseContext ctx = new DatabaseContext();
 
-        public BoardPatient GetAllPatientsAssistance(BoardPatient data)
+        public BoardPatient GetAllPatientsAssistanceOld(BoardPatient data)
         {
             try
             {
@@ -80,6 +80,71 @@ namespace BL.MedicalAssistance
                                 MasterServiceId = a.MasterServiceId,
                                 MasterService = a.MasterService,
                                 IsRevisedHistoryId = a.IsRevisedHistoryId
+                            }).ToList();
+
+                int totalRecords = list.Count;
+
+                if (data.Take > 0)
+                    list = list.Skip(skip).Take(data.Take).ToList();
+
+                data.TotalRecords = totalRecords;
+                data.List = list;
+
+                return data;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public BoardPatient GetAllPatientsAssistance(BoardPatient data)
+        {
+            try
+            {
+                //Thread.Sleep(20000);
+                var isDeleted = (int)Enumeratores.SiNo.No;
+                int groupDocTypeId = (int)Enumeratores.DataHierarchy.TypeDoc;
+                int genderId = (int)Enumeratores.Parameters.Gender;
+                int skip = (data.Index - 1) * data.Take;
+
+                string filterPacient = string.IsNullOrWhiteSpace(data.Patient) ? "" : data.Patient;
+                var startDate = data.StartDate.ToString() == "" ? DateTime.Parse("01/01/2000") : data.StartDate;
+                var endDate = data.EndDate.ToString() == "" ? DateTime.Parse("01/01/2020") : data.EndDate;
+
+                var preList = (from a in ctx.OrganizationPerson
+                               join b in ctx.Person on a.v_PersonId equals b.v_PersonId
+                               join c in ctx.DataHierarchy on new { a = b.i_DocTypeId.Value, b = groupDocTypeId } equals new { a = c.i_ItemId, b = c.i_GroupId }
+                               join d in ctx.SystemParameter on new { a = b.i_SexTypeId.Value, b = genderId } equals new { a = d.i_ParameterId, b = d.i_GroupId }                              
+                               join f in ctx.Organization on a.v_OrganizationId equals f.v_OrganizationId                               
+                               where a.i_IsDeleted == isDeleted
+                                       && (b.v_FirstName.Contains(filterPacient) || b.v_FirstLastName.Contains(filterPacient) || b.v_SecondLastName.Contains(filterPacient) || b.v_DocNumber.Contains(filterPacient))
+                                        
+                               select new Patients
+                               {                                  
+                                   PatientId = a.v_PersonId,
+                                   PatientFullName = b.v_FirstName + " " + b.v_FirstLastName + " " + b.v_SecondLastName,
+                                   DocumentType = c.v_Value1,
+                                   DocumentNumber = b.v_DocNumber,
+                                   Occupation = b.v_CurrentOccupation,
+                                   Birthdate = b.d_Birthdate.Value,
+                                   Gender = d.v_Value1,
+                                   OrganizationLocation = f.v_Name
+                               }).ToList();
+
+                var list = (from a in preList
+                            select new Patients
+                            {
+                                PatientId = a.PatientId,
+                                PatientFullName = a.PatientFullName,
+                                DocumentType = a.DocumentType,
+                                DocumentNumber = a.DocumentNumber,
+                                Occupation = a.Occupation,
+                                Birthdate = a.Birthdate,
+                                Age = Utils.GetAge(a.Birthdate.Value),
+                                Gender = a.Gender,
+                                OrganizationLocation = a.OrganizationLocation                               
                             }).ToList();
 
                 int totalRecords = list.Count;
@@ -190,7 +255,7 @@ namespace BL.MedicalAssistance
                                                    join D in ctx.ServiceComponentFieldValues on C.v_ServiceComponentFieldsId equals D.v_ServiceComponentFieldsId
 
                                                    where A.v_PersonId == pacientId
-                                                           && (C.v_ComponentFieldId == Constants.COLESTEROL_TOTAL_Colesterol_Total_Id || C.v_ComponentFieldId == Constants.PERFIL_LIPIDICO_Colesterol_Total_Id || C.v_ComponentFieldId == Constants.GLUCOSA_Glucosa_Id || C.v_ComponentFieldId == Constants.HEMOGLOBINA_Hemoglobina_Id || C.v_ComponentFieldId == Constants.HEMOGRAMA_Hemoglobina_Id || C.v_ComponentFieldId == Constants.FUNCIONES_VITALES_Presion_Sistolica_Id || C.v_ComponentFieldId == Constants.FUNCIONES_VITALES_Presion_Distolica_Id || C.v_ComponentFieldId == Constants.ANTROPOMETRIA_Peso_Id)
+                                                           && (C.v_ComponentFieldId == Constants.COLESTEROL_TOTAL_Colesterol_Total_Id || C.v_ComponentFieldId == Constants.PERFIL_LIPIDICO_Colesterol_Total_Id || C.v_ComponentFieldId == Constants.GLUCOSA_Glucosa_Id || C.v_ComponentFieldId == Constants.HEMOGLOBINA_Hemoglobina_Id || C.v_ComponentFieldId == Constants.HEMOGRAMA_Hemoglobina_Id || C.v_ComponentFieldId == Constants.FUNCIONES_VITALES_Presion_Sistolica_Id || C.v_ComponentFieldId == Constants.FUNCIONES_VITALES_Presion_Distolica_Id || C.v_ComponentFieldId == Constants.ANTROPOMETRIA_Imc_Id || C.v_ComponentFieldId == Constants.ESPIROMETRIA_Cvf_Id)
                                                            && B.i_IsDeleted == 0
                                                            && C.i_IsDeleted == 0
 
@@ -205,9 +270,9 @@ namespace BL.MedicalAssistance
                 oIndicators.PersonId = pacientId;
 
 
-                #region Weights
+                #region IMC
                 List<Weight> Weights = new List<Weight>();
-                var ListWeights = serviceComponentFieldValues.FindAll(p => p.ComponentFieldId == Constants.ANTROPOMETRIA_Peso_Id);
+                var ListWeights = serviceComponentFieldValues.FindAll(p => p.ComponentFieldId == Constants.ANTROPOMETRIA_Imc_Id);
                 foreach (var item in ListWeights)
                 {
                     var oWeight = new Weight();
@@ -287,6 +352,21 @@ namespace BL.MedicalAssistance
                     Haemoglobins.Add(oHaemoglobin);
                 }
                 oIndicators.Haemoglobins = Haemoglobins;
+                #endregion
+
+                #region Espiro
+
+                var Espiros = new List<Espiro>();
+                var ListEspiros = serviceComponentFieldValues.FindAll(p => p.ComponentFieldId == Constants.ESPIROMETRIA_Cvf_Id);
+                foreach (var item in ListEspiros)
+                {
+                    var oEspiro = new Espiro();
+                    oEspiro.Date = item.ServiceDate.Value.ToString("dd-MM-yyyy");
+                    oEspiro.y = item.Value1;
+
+                    Espiros.Add(oEspiro);
+                }
+                oIndicators.Espiros = Espiros;
                 #endregion
 
                 return oIndicators;
@@ -668,6 +748,23 @@ namespace BL.MedicalAssistance
                        }).ToList();
 
             return string.Join(", ", qry.Select(p => p.v_DiseasesName));
+        }
+
+        public bool RevisedStatusEMO(string serviceId, bool status)
+        {
+            try
+            {
+                var objEntitySource = (from a in ctx.Service
+                                       where a.v_ServiceId == serviceId
+                                       select a).FirstOrDefault();
+
+                objEntitySource.i_IsRevisedHistoryId = status == true ? 1 : 0;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return false;
         }
 
     }

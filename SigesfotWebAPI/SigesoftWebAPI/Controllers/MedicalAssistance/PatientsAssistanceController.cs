@@ -111,6 +111,7 @@ namespace SigesoftWebAPI.Controllers.MedicalAssistance
                 return Ok(result);
             });
         }
+
         [HttpPost]
         public IHttpActionResult DownloadFile(Patients patientId)
         {
@@ -118,6 +119,17 @@ namespace SigesoftWebAPI.Controllers.MedicalAssistance
 
             MemoryStream response = oPatientsAssistanceBL.DownloadFile(patientId.PatientId, directorioESO);
             return Ok(response);
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> RevisedStatusEMO(string serviceId, bool status)
+        {
+            bool result = false;
+            return await Task.Run(() =>
+            {
+                result = oPatientsAssistanceBL.RevisedStatusEMO(serviceId, status);
+                return Ok(result);
+            });
         }
     }
 }

@@ -98,6 +98,7 @@
     <Compile Include="Organization\LocationBE.cs" />
     <Compile Include="Organization\OccupationBE.cs" />
     <Compile Include="Organization\OrganizationBE.cs" />
+    <Compile Include="Organization\OrganizationPersonBE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Protocol\ProtocolBE.cs" />
     <Compile Include="Protocol\ProtocolComponentBE.cs" />

@@ -97,5 +97,7 @@ namespace DAL
         public DbSet<ApplicationHierarchyBE> ApplicationHierarchy { get; set; }
 
         public DbSet<TypeOfEppBE> TypeOfEpp { get; set; }
+
+        public DbSet<OrganizationPersonBE> OrganizationPerson { get; set; }
     }
 }

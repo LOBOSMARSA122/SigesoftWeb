@@ -20,5 +20,9 @@ namespace BE.Common
         public const string FUNCIONES_VITALES_Presion_Distolica_Id = "N002-MF000000002";
 
         public const string ANTROPOMETRIA_Peso_Id = "N002-MF000000008";
+        public const string ANTROPOMETRIA_Imc_Id = "N002-MF000000009";
+
+        public const string ESPIROMETRIA_Cvf_Id = "N002-MF000000286";
+        
     }
 }

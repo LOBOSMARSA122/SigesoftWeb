@@ -25,6 +25,7 @@ namespace BE.MedicalAssistance
         public List<Cholesterol> Cholesterols { get; set; }
         public List<Glucose> Glucoses { get; set; }
         public List<Haemoglobin> Haemoglobins { get; set; }
+        public List<Espiro> Espiros { get; set; }
 
     }
 
@@ -65,7 +66,12 @@ namespace BE.MedicalAssistance
         public string Date { get; set; }
         public string y { get; set; }
     }
-       
+    public class Espiro
+    {
+        public string Date { get; set; }
+        public string y { get; set; }
+
+    }
     public class MonthlyControls
     {
         public string Date { get; set; }

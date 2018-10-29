@@ -24,7 +24,7 @@ namespace SigesoftWeb.Models.MedicalAssistance
         public List<Cholesterol> Cholesterols { get; set; }
         public List<Glucose> Glucoses { get; set; }
         public List<Haemoglobin> Haemoglobins { get; set; }
-
+        public List<Espiro> Espiros { get; set; }
     }
 
     public class Weight
@@ -63,8 +63,12 @@ namespace SigesoftWeb.Models.MedicalAssistance
         public string Date { get; set; }
         public string y { get; set; }
     }
-
-    public class MonthlyControls
+    public class Espiro
+    {
+        public string Date { get; set; }
+        public string y { get; set; }
+    }
+        public class MonthlyControls
     {
         public string Date { get; set; }
         public List<Day> NroDays { get; set; }
