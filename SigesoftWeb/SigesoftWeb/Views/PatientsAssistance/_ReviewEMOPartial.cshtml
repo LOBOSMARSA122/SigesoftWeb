@@ -10,20 +10,9 @@
     tr td span{
         cursor: pointer;
     }
-    .titleEso {
-        border-radius: 3px;
-        color: #3c3c3b;
-        text-align: left;
-        border-top: 3px solid #d2d6de;
-        border-bottom: 1px rgba(173, 173,173, 0.2) inset;
-        border-left: 1px rgba(173, 173,173, 0.2) inset;
-        border-right: 1px rgba(173, 173,173, 0.2) inset;
-        font-weight: 500;
+    .box{
         cursor: pointer;
     }
-        .titleEso:hover {
-            background: rgba(173, 173,173, 0.1);
-        }
     #DivESO {
         border-bottom: 1px rgba(173, 173,173, 0.2) inset;
         border-left: 1px rgba(173, 173,173, 0.2) inset;
@@ -32,12 +21,12 @@
 
 </style>
 <div class="col-12">
-    <div class="row titleEso  mx-0 pl-2 mx-lg-1" onclick="ColapseTable('DivESO','heightDivESO')">
+    <div class="row box box-warning  m-0 pl-2" onclick="ColapseTable('DivESO','heightDivESO')">
         Información ESO
     </div>
     <input id="heightDivESO" type="hidden" value="">
     <div class="row p-0 mb-2 mx-lg-1 m-0" id="DivESO" style="overflow:hidden">
-        <div class="col-12 ml-0 mr-0 p-0 pt-lg-1 col-lg-4">
+        <div class="col-12 ml-0 mr-0 p-0 col-lg-4">
             <div class="row titleRow p-0 m-0">
                 <div class="col-12 p-0 m-0">
                     <div class="ml-2">
@@ -85,7 +74,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 ml-0 mr-0 p-0 px-lg-1 pt-lg-1 col-lg-4 ">
+        <div class="col-12 ml-0 mr-0 p-0 px-lg-1 col-lg-4 ">
             <div class="row titleRow p-0 m-0">
                 <div class="col-12 p-0 m-0">
                     <div class="ml-2">
@@ -126,7 +115,7 @@
                                         {
                                             <tr>
                                                 <td class="ColumnNoWrap"><span onclick="DownloadPdf(74390363)"><i class="fas fa-file-download"></i></span></td>
-                                                <td class="ColumnNoWrap ViewerPdf"><span><i class="far fa-file-pdf "></i></span></td>
+                                                <td class="ColumnNoWrap "><span class="ViewerPdf"><i class="far fa-file-pdf "></i></span></td>
                                                 <td class="ColumnNoWrap">@item1[i].ServiceDate.ToShortDateString()</td>
                                                 <td class="ColumnNoWrap">@item1[i].Aptitude</td>
                                                 <td class="ColumnNoWrap">@item1[i].DiseaseName</td>
@@ -140,7 +129,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 ml-0 mr-0 p-0 pt-lg-1 col-lg-4">
+        <div class="col-12 ml-0 mr-0 p-0 col-lg-4">
             <div class="row titleRow p-0 m-0">
                 <div class="col-12 p-0 m-0">
                     <div class="ml-2">
@@ -192,12 +181,12 @@
             </div>
         </div>
     </div>
-    <div class="row titleEso  mx-0 pl-2 mx-lg-1" onclick="ColapseTable('DivGraph','heightDivGraph')">
+    <div class="row box box-warning m-0 pl-2" onclick="ColapseTable('DivGraph','heightDivGraph')">
         Gráficos ESO
     </div>
     <input id="heightDivGraph" type="hidden" value="">
     <div class="row p-0 mb-2 mx-lg-1 m-0" id="DivGraph"  style="overflow:hidden">
-        <div class="col-12 ml-0 mr-0 p-0 pt-lg-1 col-lg-4">
+        <div class="col-12 ml-0 mr-0 p-0 col-lg-4">
             <div class="row titleRow p-0 m-0">
                 <div class="col-12 p-0 m-0">
                     <div class="ml-2">
@@ -211,7 +200,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 ml-0 mr-0 p-0 px-lg-1 pt-lg-1 col-lg-4 ">
+        <div class="col-12 ml-0 mr-0 p-0 px-lg-1 col-lg-4 ">
             <div class="row titleRow p-0 m-0">
                 <div class="col-12 p-0 m-0">
                     <div class="ml-2">
@@ -225,7 +214,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 ml-0 mr-0 p-0 pt-lg-1 col-lg-4">
+        <div class="col-12 ml-0 mr-0 p-0 col-lg-4">
             <div class="row titleRow p-0 m-0">
                 <div class="col-12 p-0 m-0">
                     <div class="ml-2">
@@ -253,8 +242,8 @@
         $(document).ready();
     });
     $(".ViewerPdf").on("click", function () {
-        $(".ViewerPdf").parent().css("background-color", "transparent");
-        $(this).parent().css("background-color", "#dddddd");
+        $(".ViewerPdf").parent().parent().css("background-color", "transparent");
+        $(this).parent().parent().css("background-color", "#dddddd");
     });
     
     

@@ -89,7 +89,7 @@
                 contador = ViewBag.PendingReview.List.Count;
             }
 
-        <span class="pendRevisar">Pendientes por revisar: <span class="text-white bg-danger px-1">@contador</span></span>
+        <span class="pendRevisar">Pendientes por revisar: <span class="text-white label-danger px-1">@contador</span></span>
         }
         <div class="float-lg-right informacion">
             Total de registros:
@@ -178,24 +178,17 @@
                             }
                         }
                     }
+
                 </tbody>
-            </table>
-            <div class="paginacion-tabla d-flex justify-content-center">
-                <div class="col-7 col-md-4 d-flex justify-content-center align-items-center">
-                    <span class="ant-badge-status-dot ant-badge-status-assistence"></span>
-                    <label class="m-0 pl-1 mr-3 text1">RR.HH</label>
-                    <span class="ant-badge-status-dot ant-badge-status-ocupational"></span>
-                    <label class="m-0 pl-1 mr-3 text2">EMO</label>
-                    <span class="ant-badge-status-dot ant-badge-status-control"></span>
-                    <label class="m-0 pl-1 mr-3 text3">Control</label>
-                </div>               
-                <div class="col-5 col-md-8">
+            </table>  
+            <div class="paginacion-tabla d-flex justify-content-center">               
+                <nav class="col-12 d-flex justify-content-center">
                     <ul class="pagination">
                         @{
                             if (Index > 1)
                             {
                                 <li class="page-item" onclick="Filter(@(Index - 1))">
-                                    <span class="page-link" aria-hidden="true">Anterior</span>
+                                    <span class="page-link" aria-hidden="true"><i class="text-info fas fa-caret-left"></i></span>
                                 </li>
                             }
                             int pagina = 0;
@@ -209,16 +202,27 @@
                                         <li @(pagina == Index ? "class=pagination-active" : "onclick=Filter(" + pagina + ")")><span class="page-link" aria-hidden="true">@pagina</span></li>
                                     }
 
+
                                 }
                             }
                             if (pagina > Index)
                             {
                                 <li class="page-item" onclick="Filter(@(Index + 1))">
-                                    <span class="page-link" aria-hidden="true">Siguiente</span>
+                                    <span class="page-link" aria-hidden="true"><i class="text-info fas fa-caret-right"></i></span>
                                 </li>
                             }
                         }
                     </ul>
+                </nav>
+            </div>
+            <div class="row w-100 m-0 p-1 leyenda">
+                <div class="col-12 d-flex justify-content-center align-items-center">
+                    <span class="ant-badge-status-dot ant-badge-status-assistence"></span>
+                    <label class="m-0 pl-1 mr-2 text1">RR.HH</label>
+                    <span class="ant-badge-status-dot ant-badge-status-ocupational"></span>
+                    <label class="m-0 pl-1 mr-2 text2">EMO</label>
+                    <span class="ant-badge-status-dot ant-badge-status-control"></span>
+                    <label class="m-0 pl-1 mr-2 text3">CONTROL</label>
                 </div>
             </div>
         </div>

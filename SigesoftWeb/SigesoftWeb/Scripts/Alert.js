@@ -17,7 +17,7 @@
 
         controlBotones();
         var contenido = "";
-        contenido = `    <div class="container pluginContenedor">
+        contenido = `    <div class="container pluginContenedor w-50">
 								<div class="bigBox-Fondo"></div>
 								<div class="row justify-content-center bigBox-contenedor `+ opciones.classTitleAndButtons +`" align="center">
 									<div class="col-12 m-0 p-0 ">

@@ -51,12 +51,12 @@
                                 if (ViewBag.CategoryProd != null)
                                 {
                                     <select class="mt-2 p-0 m-0 form-control" id="CategoryProd">
-                                        @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.CategoryProd)
-                                {
-                                    <option value="@G.Id">@G.Value</option>
-                        }
+                                    @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.CategoryProd)
+                                    {
+                                        <option value="@G.Id">@G.Value</option>
+                                    }
                                     </select>
-                        }
+                                }
                                     }
                                 </div>
                             </div>
