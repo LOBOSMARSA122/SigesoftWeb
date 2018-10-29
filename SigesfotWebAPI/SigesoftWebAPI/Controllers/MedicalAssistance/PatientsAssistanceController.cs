@@ -19,10 +19,10 @@ namespace SigesoftWebAPI.Controllers.MedicalAssistance
         public async Task<IHttpActionResult> GetTest()
         {
             var result = 0;
-            return  await Task.Run(() => {
+            return await Task.Run(() => {
                 result = oPatientsAssistanceBL.Test();
                 return Ok(result);
-            });            
+            });
         }
 
         [HttpGet]
@@ -40,11 +40,11 @@ namespace SigesoftWebAPI.Controllers.MedicalAssistance
         public async Task<IHttpActionResult> GetAllPatientsAssistance(BoardPatient data)
         {
             BoardPatient result = null;
-           return  await Task.Run(() =>
+            return await Task.Run(() =>
             {
                 result = oPatientsAssistanceBL.GetAllPatientsAssistance(data);
                 return Ok(result);
-            });            
+            });
         }
 
         [HttpPost]
@@ -62,8 +62,8 @@ namespace SigesoftWebAPI.Controllers.MedicalAssistance
         public async Task<IHttpActionResult> GetSchedule()
         {
             return await Task.Run(() => {
-               var result = oPatientsAssistanceBL.GetSchedule();
-               return Ok(result);
+                var result = oPatientsAssistanceBL.GetSchedule();
+                return Ok(result);
             });
         }
 

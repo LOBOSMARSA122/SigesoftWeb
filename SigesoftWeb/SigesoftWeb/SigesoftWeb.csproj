@@ -634,6 +634,8 @@
     <Content Include="Views\PatientsAssistance\_ReviewEMOPartial.cshtml" />
     <Content Include="Temp\sample.pdf" />
     <Content Include="Views\PatientsAssistance\Temp\sample.pdf" />
+    <Content Include="Views\PatientsAssistance\_MonthlyCompliancePartial.cshtml" />
+    <Content Include="Views\PatientsAssistance\_ModalMonthlyCompliancePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

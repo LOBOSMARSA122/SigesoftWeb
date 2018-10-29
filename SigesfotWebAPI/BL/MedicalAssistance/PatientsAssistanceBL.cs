@@ -348,7 +348,7 @@ namespace BL.MedicalAssistance
                 throw;
             }
         }
-
+    
         public MonthlyControls MonthlyControls()
         {
            var currentDate = DateTime.Today;
