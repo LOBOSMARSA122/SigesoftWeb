@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 
 namespace SigesoftWeb.Controllers.MedicalAssistance
 {
@@ -83,6 +84,21 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
             });
 
         }
+        
+        public  async Task<JsonResult> RevisedStatusEMO(string serviceId, bool status)
+        {
+            Api API = new Api();
+            string url = "PatientsAssistance/RevisedStatusEMO";           
+            Dictionary<string, string> arg = new Dictionary<string, string>()
+            {
+                { "serviceId", serviceId },
+                { "status", status.ToString() },
+            };
+            return await Task.Run(() =>
+            {                
+                return new JsonResult { Data = API.Get<bool>(url, arg), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            });
+        }
 
         public async Task<JsonResult> MonthlyControls()
         {
@@ -112,6 +128,7 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
             });
         }
 
+        
         public JsonResult DownloadFile(string patientId)
         {
             Api API = new Api();
@@ -243,6 +260,7 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
             var result = API.Get<int>(url);
             return new JsonResult { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
+
 
         #region ...
         //public async Task<JsonObject> GetAsync(string uri)

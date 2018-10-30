@@ -564,6 +564,7 @@ namespace BL.MedicalAssistance
                             && a.v_PersonId == patientId
                             select new ReviewEMO
                             {
+                                PatientId = a.v_PersonId,
                                 ServiceId = a.v_ServiceId,
                                 Aptitude = b.v_Value1,
                                 ServiceDate = a.d_ServiceDate.Value,
@@ -574,6 +575,7 @@ namespace BL.MedicalAssistance
                 var result = (from A in list
                               select new ReviewEMO
                               {
+                                  PatientId = A.PatientId,
                                   ServiceId = A.ServiceId,
                                   Aptitude = A.Aptitude,
                                   ServiceDate = A.ServiceDate,
@@ -823,12 +825,16 @@ namespace BL.MedicalAssistance
                                        select a).FirstOrDefault();
 
                 objEntitySource.i_IsRevisedHistoryId = status == true ? 1 : 0;
+
+                 ctx.SaveChanges();
+                return true;
             }
             catch (Exception ex)
             {
+                return false;
                 throw;
             }
-            return false;
+            
         }
 
     }

@@ -121,13 +121,14 @@ namespace SigesoftWebAPI.Controllers.MedicalAssistance
             return Ok(response);
         }
 
-        [HttpPost]
-        public async Task<IHttpActionResult> RevisedStatusEMO(string serviceId, bool status)
+        [HttpGet]
+        public async Task<IHttpActionResult> RevisedStatusEMO(string serviceId, string status)
         {
+            var status_ = bool.Parse(status);
             bool result = false;
             return await Task.Run(() =>
             {
-                result = oPatientsAssistanceBL.RevisedStatusEMO(serviceId, status);
+                result = oPatientsAssistanceBL.RevisedStatusEMO(serviceId, status_);
                 return Ok(result);
             });
         }

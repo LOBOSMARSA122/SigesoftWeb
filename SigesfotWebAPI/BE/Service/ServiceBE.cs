@@ -18,14 +18,14 @@ namespace BE.Service
         public string v_PersonId { get; set; }
         public int? i_MasterServiceId { get; set; }
         public int? i_ServiceStatusId { get; set; }
-        public string Motive { get; set; }
+        public string v_Motive { get; set; }
         public int? i_AptitudeStatusId { get; set; }
         public DateTime? d_ServiceDate { get; set; }
         public DateTime? d_GlobalExpirationDate { get; set; }
         public DateTime? d_ObsExpirationDate { get; set; }
         public int? i_FlagAgentId { get; set; }
         public string v_OrganizationId { get; set; }
-        public string LocationId { get; set; }
+        public string v_LocationId { get; set; }
         public string v_MainSymptom { get; set; }
         public int? i_TimeOfDisease { get; set; }
         public int? i_TimeOfDiseaseTypeId { get; set; }
@@ -42,7 +42,7 @@ namespace BE.Service
         public int? i_HasMedicalBreakId { get; set; }
         public DateTime? d_MedicalBreakStartDate { get; set; }
         public DateTime? d_MedicalBreakEndDate { get; set; }
-        public string GeneralRecomendations { get; set; }
+        public string v_GeneralRecomendations { get; set; }
         public int? i_DestinationMedicationId { get; set; }
         public int? i_TransportMedicationId { get; set; }
         public DateTime? d_StartDateRestriction { get; set; }
@@ -69,8 +69,8 @@ namespace BE.Service
         public DateTime? d_InsertDateOccupationalMedical { get; set; }
         public DateTime? d_UpdateDateOccupationalMedical { get; set; }
         public int? i_HazinterconsultationId { get; set; }
-        public string Gestapara { get; set; }
-        public string Menarquia { get; set; }
+        public string v_Gestapara { get; set; }
+        public string v_Menarquia { get; set; }
         public DateTime? d_PAP { get; set; }
         public DateTime? d_Mamografia { get; set; }
         public string v_CiruGine { get; set; }
@@ -90,7 +90,7 @@ namespace BE.Service
         public string v_ResultadosPAP { get; set; }
         public string v_FechaUltimaMamo { get; set; }
         public string v_ResultadoMamo { get; set; }
-        public float r_Costo { get; set; }
+        public float? r_Costo { get; set; }
         public int? i_EnvioCertificado { get; set; }
         public int? i_EnvioHistoria { get; set; }
         public string v_IdVentaCliente { get; set; }
