@@ -34,6 +34,7 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
                 { "Patient",data.Patient},
                 //{ "StartDate",data.StartDate == null ? "" :data.StartDate.Value.ToString("yyyy/MM/dd")},
                 //{ "EndDate", data.EndDate== null ? "" :data.EndDate.Value.ToString("yyyy/MM/dd")},
+                { "Workerstatus", data.Workerstatus.ToString()},
                 { "Index", data.Index.ToString()},
                 { "Take", data.Take.ToString()}
             };
