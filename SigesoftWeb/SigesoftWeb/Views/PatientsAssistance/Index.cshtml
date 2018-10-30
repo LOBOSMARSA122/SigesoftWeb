@@ -164,21 +164,21 @@
                                         <div class="col-12 col-md-4 ">
                                             <label class="xxxx radButton">
                                                 Todos
-                                                <input type="radio" checked="checked" name="radio">
+                                                <input type="radio" checked="checked" name="radio" id="rbtodos" >
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
                                         <div class="col-12 col-md-4">
                                             <label class="xxxx radButton">
                                                 Activo
-                                                <input type="radio" name="radio">
+                                                <input type="radio" name="radio" id="rbActivo" >
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
                                         <div class="col-12 col-md-4">
                                             <label class="xxxx radButton">
                                                 Inactivo
-                                                <input type="radio" name="radio">
+                                                <input type="radio" name="radio" id="rbInactivo" >
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
@@ -651,8 +651,25 @@
 
     function Filter(index) {
         $('.wrapperGrid').addClass('loadingGrid');
+
+        var workerstatus = -1;
+
+        if (rbtodos.checked) {
+            workerstatus = -1;
+        } else if (rbActivo.checked) {
+            workerstatus = 0;
+        } else {
+            workerstatus = 1;
+        }
+        
+        console.log("todos", rbtodos.checked);
+        console.log("Activo",rbActivo.checked);
+        console.log("Inactivo",rbInactivo.checked);
+
+
         var data = {
             Patient: $("#PacientFullName").val(),
+            Workerstatus: workerstatus,
             //StartDate: moment($("#StartDate").val()).format("DD/MM/YYYY"),
             //EndDate: moment($("#EndDate").val()).format("DD/MM/YYYY"),
             Index: index,

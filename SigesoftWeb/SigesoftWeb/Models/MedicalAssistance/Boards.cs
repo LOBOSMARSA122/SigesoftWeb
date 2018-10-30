@@ -17,6 +17,7 @@ namespace SigesoftWeb.Models.MedicalAssistance
         public string Patient { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
+        public int Workerstatus { get; set; }
         public List<Patients> List { get; set; }
     }
 

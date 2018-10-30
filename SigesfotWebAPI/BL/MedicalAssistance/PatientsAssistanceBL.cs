@@ -119,6 +119,7 @@ namespace BL.MedicalAssistance
                                join d in ctx.SystemParameter on new { a = b.i_SexTypeId.Value, b = genderId } equals new { a = d.i_ParameterId, b = d.i_GroupId }                              
                                join f in ctx.Organization on a.v_OrganizationId equals f.v_OrganizationId
                                where (b.v_FirstName.Contains(filterPacient) || b.v_FirstLastName.Contains(filterPacient) || b.v_SecondLastName.Contains(filterPacient) || b.v_DocNumber.Contains(filterPacient))
+                                    && (data.Workerstatus == -1 || a.i_IsDeleted == data.Workerstatus)
 
                                select new Patients
                                {                                  
