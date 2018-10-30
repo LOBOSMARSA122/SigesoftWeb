@@ -213,8 +213,8 @@
                 </div>
             </div>
             <div class="row bodyRow p-0 m-0">
-                <div id="DivNotices" class="col-12 View p-0 m-0">
-                    <div class="tab-pane fade show active" id="Weight" role="tabpanel" aria-labelledby="home-tab">@Html.Partial("_WeightPartial")</div>
+                <div id="" class="col-12 View p-0 m-0">
+                    <div>@Html.Partial("_WeightPartial")</div>
                 </div>
             </div>
         </div>
@@ -227,9 +227,7 @@
                 </div>
             </div>
             <div class="row bodyRow p-0 m-0">
-                <div id="DivNotices" class="col-12 View p-0 m-0">
-                    <div class="tab-pane fade" id="BloodPressure" role="tabpanel" aria-labelledby="contact-tab">@Html.Partial("_BloodPressurePartial")</div>
-                </div>
+                    <div>@Html.Partial("_BloodPressurePartial")</div>
             </div>
         </div>
         <div class="col-12 ml-0 mr-0 p-0 col-lg-4">
@@ -241,8 +239,8 @@
                 </div>
             </div>
             <div class="row p-0 bodyRow m-0">
-                <div id="DivNotices" class="col-12 View p-0 m-0">
-                    <div class="tab-pane fade" id="Espiro" role="tabpanel" aria-labelledby="contact-tab">@Html.Partial("_EspiroPartial")</div>
+                <div id="" class="col-12 View p-0 m-0">
+                    <div>@Html.Partial("_EspiroPartial")</div>
                 </div>
             </div>
         </div>
@@ -257,10 +255,13 @@
 <script src="~/Scripts/Alert.js"></script>
 <script src="~/Scripts/TweenMax.min.js"></script>
 <link href="~/Content/css/Alert.css" rel="stylesheet" type="text/css" />
+
 <script>
-    //LoadWeight();
-    //LoadBloodPressure();
-    //LoadCvf();
+    $(document).ready(function () {
+        LoadWeight();
+        LoadBloodPressure();
+        LoadCvf();
+    })
     var viewer = $('#viewpdf');
     PDFObject.embed('Temp/sample.pdf', viewer);
     $("window, html").resize(function () {
