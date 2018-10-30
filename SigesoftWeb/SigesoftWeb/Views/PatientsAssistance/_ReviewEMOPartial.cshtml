@@ -4,21 +4,23 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 
 <style>
-    .tbody tr{
+    .tbody tr {
         cursor: default;
     }
-    tr td span{
+
+    tr td span {
         cursor: pointer;
     }
-    .box{
+
+    .box {
         cursor: pointer;
     }
+
     #DivESO {
         border-bottom: 1px rgba(173, 173,173, 0.2) inset;
         border-left: 1px rgba(173, 173,173, 0.2) inset;
         border-right: 1px rgba(173, 173,173, 0.2) inset;
     }
-
 </style>
 <div class="col-12">
     <div class="row box box-warning  m-0 pl-2" onclick="ColapseTable('DivESO','heightDivESO')">
@@ -117,7 +119,7 @@
                                             if (item1[i].IsRevisedHistoryId == 1)
                                             {
                                                 <tr>
-                                                    <td class="ColumnNoWrap "><span><i class="icon-book"></i></span></td> @*poner un check*@
+                                                    <td class="ColumnNoWrap "><span><i class="far fa-check-circle"></i></span></td> @*poner un check*@
                                                     <td class="ColumnNoWrap"><span onclick="DownloadPdf(74390363)"><i class="fas fa-file-download"></i></span></td>
                                                     <td class="ColumnNoWrap "><span class="ViewerPdf"><i class="far fa-file-pdf "></i></span></td>
                                                     <td class="ColumnNoWrap">@item1[i].ServiceDate.ToShortDateString()</td>
@@ -128,7 +130,7 @@
                                             else
                                             {
                                                 <tr>
-                                                    <td class="ColumnNoWrap "><span><i class="icon-eye"></i></span></td> @*poner un ojo*@
+                                                    <td class="ColumnNoWrap"><span><i class="fas fa-eye row-@i" onclick="RevisedStatusEMO('@item1[i].ServiceId' , '@i')"></i></span></td> @*poner un ojo*@
                                                     <td class="ColumnNoWrap"><span onclick="DownloadPdf(74390363)"><i class="fas fa-file-download"></i></span></td>
                                                     <td class="ColumnNoWrap "><span class="ViewerPdf"><i class="far fa-file-pdf "></i></span></td>
                                                     <td class="ColumnNoWrap">@item1[i].ServiceDate.ToShortDateString()</td>
@@ -201,18 +203,18 @@
         Gráficos ESO
     </div>
     <input id="heightDivGraph" type="hidden" value="">
-    <div class="row p-0 mb-2 mx-lg-1 m-0" id="DivGraph"  style="overflow:hidden">
+    <div class="row p-0 mb-2 mx-lg-1 m-0" id="DivGraph" style="overflow:hidden">
         <div class="col-12 ml-0 mr-0 p-0 col-lg-4">
             <div class="row titleRow p-0 m-0">
                 <div class="col-12 p-0 m-0">
                     <div class="ml-2">
-                        Antecedentes médicos
+                        IMC
                     </div>
                 </div>
             </div>
             <div class="row bodyRow p-0 m-0">
                 <div id="DivNotices" class="col-12 View p-0 m-0">
-                    
+                    <div class="tab-pane fade show active" id="Weight" role="tabpanel" aria-labelledby="home-tab">@Html.Partial("_WeightPartial")</div>
                 </div>
             </div>
         </div>
@@ -220,13 +222,13 @@
             <div class="row titleRow p-0 m-0">
                 <div class="col-12 p-0 m-0">
                     <div class="ml-2">
-                        Examenes de Salud Ocupacional
+                        PRESIÓN
                     </div>
                 </div>
             </div>
             <div class="row bodyRow p-0 m-0">
                 <div id="DivNotices" class="col-12 View p-0 m-0">
-                    
+                    <div class="tab-pane fade" id="BloodPressure" role="tabpanel" aria-labelledby="contact-tab">@Html.Partial("_BloodPressurePartial")</div>
                 </div>
             </div>
         </div>
@@ -234,12 +236,13 @@
             <div class="row titleRow p-0 m-0">
                 <div class="col-12 p-0 m-0">
                     <div class="ml-2">
-                        Atenciones médicas
+                        ESPIROMETRÍA
                     </div>
                 </div>
             </div>
             <div class="row p-0 bodyRow m-0">
                 <div id="DivNotices" class="col-12 View p-0 m-0">
+                    <div class="tab-pane fade" id="Espiro" role="tabpanel" aria-labelledby="contact-tab">@Html.Partial("_EspiroPartial")</div>
                 </div>
             </div>
         </div>
@@ -250,8 +253,14 @@
         </div>
     </div>
 </div>
-
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/Alert.js"></script>
+<script src="~/Scripts/TweenMax.min.js"></script>
+<link href="~/Content/css/Alert.css" rel="stylesheet" type="text/css" />
 <script>
+    //LoadWeight();
+    //LoadBloodPressure();
+    //LoadCvf();
     var viewer = $('#viewpdf');
     PDFObject.embed('Temp/sample.pdf', viewer);
     $("window, html").resize(function () {
@@ -261,6 +270,5 @@
         $(".ViewerPdf").parent().parent().css("background-color", "transparent");
         $(this).parent().parent().css("background-color", "#dddddd");
     });
-    
-    
+
 </script>

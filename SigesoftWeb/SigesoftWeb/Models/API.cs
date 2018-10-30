@@ -129,6 +129,11 @@ namespace SigesoftWeb.Models
             return obj;
         }
 
+        internal void Post<T>(string v, Dictionary<string, T> arg2)
+        {
+            throw new NotImplementedException();
+        }
+
         private byte[] CallStream(string relativePath, HttpVerb httpVerb, Dictionary<string, string> args)
         {
             Uri baseURL = new Uri(apiUrl);
