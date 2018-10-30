@@ -172,7 +172,7 @@ namespace BL.MedicalAssistance
             {
                 var isDeleted = (int)Enumeratores.SiNo.No;
                 var count = (from a in ctx.Service
-                             where a.i_IsDeleted == isDeleted && a.i_MasterServiceId.Value == 2 && a.i_MasterServiceId.Value != 1 && a.v_PersonId == patientId
+                             where a.i_IsDeleted == isDeleted && a.i_MasterServiceId.Value == 2 && a.i_MasterServiceId.Value != 1 && a.v_PersonId == patientId && a.i_IsRevisedHistoryId != 1
                              select new Patients
                              {
                                  MasterServiceId = a.i_MasterServiceId.Value,
@@ -231,17 +231,18 @@ namespace BL.MedicalAssistance
                 }
                 //////*************////////////
 
-                var count = (from a in ctx.Service
-                             where a.i_IsDeleted == isDeleted && a.i_MasterServiceId.Value == 2 && a.i_MasterServiceId.Value != 1 
+                var services = (from a in ctx.Service
+                             where a.i_IsDeleted == isDeleted && a.i_MasterServiceId.Value == 2 && a.i_MasterServiceId.Value != 1  && a.i_IsRevisedHistoryId != 1
                              && x.Contains(a.v_PersonId)
-                             select new Patients
+                             select new 
                              {
                                  MasterServiceId = a.i_MasterServiceId.Value,
+                                 personId = a.v_PersonId
                              }).ToList();
 
-        
-                
-                return count.Count();
+               var servicesByReview = services.GroupBy(g => g.personId).Select(s => s.First()).ToList();
+
+                return servicesByReview.Count();
             }
             catch (Exception)
             {
