@@ -46,7 +46,8 @@ namespace BE.Common
         public enum masterService
         {
             Ocupational = 2,
-            Assistence = 10,
+            //Assistence = 10,
+            Control = 21
         }
 
         public enum ServiceStatus
@@ -68,6 +69,15 @@ namespace BE.Common
             AptoRestriccion = 5,
             Asistencial = 6,
             Evaluado = 7
+        }
+
+        public enum FinalQualification
+        {
+            SinCalificar = 1,
+            Definitivo = 2,
+            Presuntivo = 3,
+            Descartado = 4
+
         }
     }
 }

@@ -173,7 +173,7 @@ namespace BL.MedicalAssistance
             {
                 var isDeleted = (int)Enumeratores.SiNo.No;
                 var count = (from a in ctx.Service
-                             where a.i_IsDeleted == isDeleted && a.i_MasterServiceId.Value == 2 && a.i_MasterServiceId.Value != 1 && a.v_PersonId == patientId && a.i_IsRevisedHistoryId != 1
+                             where a.i_IsDeleted == isDeleted && a.i_MasterServiceId.Value == (int)masterService.Ocupational && a.i_MasterServiceId.Value != 1 && a.v_PersonId == patientId && a.i_IsRevisedHistoryId != 1
                              select new Patients
                              {
                                  MasterServiceId = a.i_MasterServiceId.Value,
@@ -233,7 +233,9 @@ namespace BL.MedicalAssistance
                 //////*************////////////
 
                 var services = (from a in ctx.Service
-                             where a.i_IsDeleted == isDeleted && a.i_MasterServiceId.Value == 2 && a.i_MasterServiceId.Value != 1  && a.i_IsRevisedHistoryId != 1
+                             where a.i_IsDeleted == isDeleted 
+                             && a.i_MasterServiceId.Value == (int)masterService.Ocupational                             
+                             && a.i_IsRevisedHistoryId != 1
                              && x.Contains(a.v_PersonId)
                              select new 
                              {
@@ -257,7 +259,7 @@ namespace BL.MedicalAssistance
         {
             try
             {
-                int masterServiceId = (int)Enumeratores.masterService.Assistence;
+                int masterServiceId = (int)Enumeratores.masterService.Control;
                 var isDeleted = (int)Enumeratores.SiNo.No;
                 var list = (from a in ctx.Service
                                join b in ctx.Person on a.v_PersonId equals b.v_PersonId                               
@@ -287,11 +289,13 @@ namespace BL.MedicalAssistance
                 var isDeleted = (int)Enumeratores.SiNo.No;
                 var list = (from a in ctx.DiagnosticRepository
                             join b in ctx.Diseases on a.v_DiseasesId equals b.v_DiseasesId
-                            where a.i_IsDeleted == isDeleted
+                            join c in ctx.Service on a.v_ServiceId equals c.v_ServiceId
+                            where a.i_IsDeleted == isDeleted && a.i_FinalQualificationId == (int)FinalQualification.Definitivo
                             select new 
                             {
                                 DiagnosticId = a.v_DiseasesId,
-                                Diagnostic = b.v_Name,                               
+                                Diagnostic = b.v_Name,    
+                                MasterServiceId = c.i_MasterServiceId
                             }).ToList();
 
                 var group = list
@@ -504,7 +508,7 @@ namespace BL.MedicalAssistance
             var services = (from A in ctx.Service
                             join B in ctx.Protocol on A.v_ProtocolId equals B.v_ProtocolId
                             where (A.d_ServiceDate >= firstDay && A.d_ServiceDate <= lastDay)
-                                    && A.i_IsDeleted == 0 && A.i_MasterServiceId == 21 && B.i_MasterServiceTypeId == 20
+                                    && A.i_IsDeleted == 0 && A.i_MasterServiceId == (int)masterService.Control
                             select new
                             {
                                 ServiceDate = A.d_ServiceDate,
