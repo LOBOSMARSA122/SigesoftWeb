@@ -505,13 +505,14 @@
 <link href="~/Content/Themes/FormValidatorTheme.css" rel="stylesheet" type="text/css" />
 
 <script>
+    LoadWeight();
+    LoadCholesterol();
+    LoadHaemoglobin();
+    LoadBloodPressure();
+    LoadGlucose();
+    LoadCvf();
     $(document).ready(function () {
-        LoadWeight();
-        LoadCholesterol();
-        LoadHaemoglobin();
-        LoadBloodPressure();
-        LoadGlucose();
-        LoadCvf();
+        
         var inputs = document.getElementsByClassName('inputLabelFloat');
         for (var i = 0; i < inputs.length; i++) {
             inputs[i].addEventListener('keyup', function () {

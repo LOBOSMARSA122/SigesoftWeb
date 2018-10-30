@@ -1,8 +1,7 @@
 ﻿
 <script src="~/Scripts/jquery.min.js"></script>
 <script src="~/Scripts/pdfobject.min.js"></script>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-
+<link href="~/fontawesome/css/all.css" rel="stylesheet" />
 <style>
     .tbody tr {
         cursor: default;
@@ -17,6 +16,11 @@
     }
 
     #DivESO {
+        border-bottom: 1px rgba(173, 173,173, 0.2) inset;
+        border-left: 1px rgba(173, 173,173, 0.2) inset;
+        border-right: 1px rgba(173, 173,173, 0.2) inset;
+    }
+    .contGraph {
         border-bottom: 1px rgba(173, 173,173, 0.2) inset;
         border-left: 1px rgba(173, 173,173, 0.2) inset;
         border-right: 1px rgba(173, 173,173, 0.2) inset;
@@ -212,8 +216,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row bodyRow p-0 m-0">
-                <div id="" class="col-12 View p-0 m-0">
+            <div class="row contGraph p-0 m-0">
+                <div id="" class="col-12 p-0 m-0">
                     <div>@Html.Partial("_WeightPartial")</div>
                 </div>
             </div>
@@ -222,24 +226,26 @@
             <div class="row titleRow p-0 m-0">
                 <div class="col-12 p-0 m-0">
                     <div class="ml-2">
-                        PRESIÓN
+                        Presión
                     </div>
                 </div>
             </div>
-            <div class="row bodyRow p-0 m-0">
+            <div class="row contGraph p-0 m-0">
+                <div id="" class="col-12 p-0 m-0">
                     <div>@Html.Partial("_BloodPressurePartial")</div>
+                </div>              
             </div>
         </div>
         <div class="col-12 ml-0 mr-0 p-0 col-lg-4">
             <div class="row titleRow p-0 m-0">
                 <div class="col-12 p-0 m-0">
                     <div class="ml-2">
-                        ESPIROMETRÍA
+                        Espirometría
                     </div>
                 </div>
             </div>
-            <div class="row p-0 bodyRow m-0">
-                <div id="" class="col-12 View p-0 m-0">
+            <div class="row p-0 m-0">
+                <div id="" class="contGraph col-12 p-0 m-0">
                     <div>@Html.Partial("_EspiroPartial")</div>
                 </div>
             </div>
@@ -257,11 +263,9 @@
 <link href="~/Content/css/Alert.css" rel="stylesheet" type="text/css" />
 
 <script>
-    $(document).ready(function () {
-        LoadWeight();
-        LoadBloodPressure();
-        LoadCvf();
-    })
+    LoadWeight();
+    LoadBloodPressure();
+    LoadCvf();  
     var viewer = $('#viewpdf');
     PDFObject.embed('Temp/sample.pdf', viewer);
     $("window, html").resize(function () {

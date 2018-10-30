@@ -310,7 +310,7 @@ namespace BL.MedicalAssistance
             }
         }
 
-        public Indicators IndicatorByPacient(string pacientId)
+        public Indicators IndicatorByPacient(string patientId)
         {
             try
             {
@@ -319,7 +319,7 @@ namespace BL.MedicalAssistance
                                                    join C in ctx.ServiceComponentFields on B.v_ServiceComponentId equals C.v_ServiceComponentId
                                                    join D in ctx.ServiceComponentFieldValues on C.v_ServiceComponentFieldsId equals D.v_ServiceComponentFieldsId
 
-                                                   where A.v_PersonId == pacientId
+                                                   where A.v_PersonId == patientId
                                                            && (C.v_ComponentFieldId == Constants.COLESTEROL_TOTAL_Colesterol_Total_Id || C.v_ComponentFieldId == Constants.PERFIL_LIPIDICO_Colesterol_Total_Id || C.v_ComponentFieldId == Constants.GLUCOSA_Glucosa_Id || C.v_ComponentFieldId == Constants.HEMOGLOBINA_Hemoglobina_Id || C.v_ComponentFieldId == Constants.HEMOGRAMA_Hemoglobina_Id || C.v_ComponentFieldId == Constants.FUNCIONES_VITALES_Presion_Sistolica_Id || C.v_ComponentFieldId == Constants.FUNCIONES_VITALES_Presion_Distolica_Id || C.v_ComponentFieldId == Constants.ANTROPOMETRIA_Imc_Id || C.v_ComponentFieldId == Constants.ESPIROMETRIA_Cvf_Id)
                                                            && B.i_IsDeleted == 0
                                                            && C.i_IsDeleted == 0
@@ -332,7 +332,7 @@ namespace BL.MedicalAssistance
                                                        Value1 = D.v_Value1,
                                                    }).ToList();
                 Indicators oIndicators = new Indicators();
-                oIndicators.PersonId = pacientId;
+                oIndicators.PersonId = patientId;
 
 
                 #region IMC

@@ -54,7 +54,7 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
             Api API = new Api();
             Dictionary<string, string> arg = new Dictionary<string, string>()
             {
-                { "pacientId",id}               
+                { "patientId",id}               
             };
 
             return await Task.Run(() =>
@@ -124,6 +124,7 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
             {
                 ViewBag.Antecedent = API.Get<List<PersonMedicalHistoryList>>("PatientsAssistance/GetAntecedentConsolidateForService", arg);
                 ViewBag.Reviews = API.Get<List<ReviewEMO>>("PatientsAssistance/ReviewsEMOs", arg);
+                ViewBag.Indicators = API.Get<Indicators>("PatientsAssistance/IndicatorByPacient", arg);
                 return PartialView("_ReviewEMOPartial");
             });
         }
