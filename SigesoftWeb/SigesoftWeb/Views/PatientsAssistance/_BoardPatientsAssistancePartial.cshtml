@@ -80,13 +80,13 @@
             {
                 contador = 0;
             }
-            else if (ViewBag.PendingReview.List.Count == 0)
+            else if (ViewBag.PendingReview == 0)
             {
                 contador = 0;
             }
             else
             {
-                contador = ViewBag.PendingReview.List.Count;
+                contador = ViewBag.PendingReview;
             }
 
         <span class="pendRevisar">Pendientes por revisar: <span class="text-white label-danger px-1">@contador</span></span>

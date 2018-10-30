@@ -48,12 +48,12 @@ namespace SigesoftWebAPI.Controllers.MedicalAssistance
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> GetPendingReview(BoardPatient data)
+        public async Task<IHttpActionResult> GetPendingReview()
         {
-            BoardPatient result = null;
+            int? result = null;
             return await Task.Run(() =>
             {
-                result = oPatientsAssistanceBL.GetPendingReview(data);
+                result = oPatientsAssistanceBL.GetPendingReview();
                 return Ok(result);
             });
         }

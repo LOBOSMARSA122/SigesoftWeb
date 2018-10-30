@@ -31,8 +31,8 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
             Dictionary<string, string> arg = new Dictionary<string, string>()
             {
                 { "Patient",data.Patient},
-                { "StartDate",data.StartDate == null ? "" :data.StartDate.Value.ToString("yyyy/MM/dd")},
-                { "EndDate", data.EndDate== null ? "" :data.EndDate.Value.ToString("yyyy/MM/dd")},
+                //{ "StartDate",data.StartDate == null ? "" :data.StartDate.Value.ToString("yyyy/MM/dd")},
+                //{ "EndDate", data.EndDate== null ? "" :data.EndDate.Value.ToString("yyyy/MM/dd")},
                 { "Index", data.Index.ToString()},
                 { "Take", data.Take.ToString()}
             };
@@ -40,7 +40,7 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
             return await Task.Run(() =>
             {
                 ViewBag.Services = API.Post<BoardPatient>("PatientsAssistance/GetAllPatientsAssistance", arg);
-                ViewBag.PendingReview = API.Post<BoardPatient>("PatientsAssistance/GetPendingReview",arg);
+                ViewBag.PendingReview = API.Post<int?>("PatientsAssistance/GetPendingReview",arg);
 
                 return PartialView("_BoardPatientsAssistancePartial");
             });

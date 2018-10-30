@@ -170,10 +170,6 @@ namespace BL.MedicalAssistance
         {
             try
             {
-                if (patientId == "N009-PP000000007")
-                {
-
-                }
                 var isDeleted = (int)Enumeratores.SiNo.No;
                 var count = (from a in ctx.Service
                              where a.i_IsDeleted == isDeleted && a.i_MasterServiceId.Value == 2 && a.i_MasterServiceId.Value != 1 && a.v_PersonId == patientId
@@ -192,14 +188,14 @@ namespace BL.MedicalAssistance
             }
         }
 
-        public BoardPatient GetPendingReview(BoardPatient data)
+        public BoardPatient GetPendingReview_Old(BoardPatient data)
         {
 
             try
             {
                 var isDeleted = (int)Enumeratores.SiNo.No;          
                 var count = (from a in ctx.Service
-                             where a.i_IsDeleted == isDeleted && a.i_MasterServiceId.Value == 2 && a.i_MasterServiceId.Value != 1 && a.i_IsRevisedHistoryId !=1
+                             where a.i_IsDeleted == isDeleted && a.i_MasterServiceId.Value == (int)masterService.Ocupational && a.i_IsRevisedHistoryId !=1
                              select new Patients
                              {
                                  MasterServiceId = a.i_MasterServiceId.Value,
@@ -213,6 +209,46 @@ namespace BL.MedicalAssistance
                 throw;
             }
             
+        }
+
+        public int GetPendingReview()
+        {
+            try
+            {
+                var isDeleted = (int)Enumeratores.SiNo.No;
+                var x = new List<string>();
+                var list = (from a in ctx.OrganizationPerson
+                             where a.i_IsDeleted == isDeleted
+                             select new
+                             {
+                                 v_PersonId = a.v_PersonId
+                             }).ToList();
+
+                //****optimizar código*****//////
+                foreach (var item in list)
+                {
+                    x.Add(item.v_PersonId);
+                }
+                //////*************////////////
+
+                var count = (from a in ctx.Service
+                             where a.i_IsDeleted == isDeleted && a.i_MasterServiceId.Value == 2 && a.i_MasterServiceId.Value != 1 
+                             && x.Contains(a.v_PersonId)
+                             select new Patients
+                             {
+                                 MasterServiceId = a.i_MasterServiceId.Value,
+                             }).ToList();
+
+        
+                
+                return count.Count();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
 
         public List<Schedule> GetSchedule()
