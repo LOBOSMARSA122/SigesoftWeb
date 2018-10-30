@@ -247,14 +247,16 @@
                                 <span class="label label-warning result">10</span>
                             </div>
                         </div>
-                        <div class="row info">
-                            <div class="col-10">
-                                Empresas con  deudas:
+                        <a class="provDeudas">
+                            <div class="row info">
+                                <div class="col-10">
+                                    Empresas con  deudas:
+                                </div>
+                                <div class="col-2">
+                                    <span class="label label-danger result">02</span>
+                                </div>
                             </div>
-                            <div class="col-2">
-                                <span class="label label-danger result">02</span>
-                            </div>
-                        </div>
+                        </a>                       
                     </div>
                 </div>
                 <div class="col-12 Chart wrapperTopDx loadingGrid">
@@ -392,7 +394,9 @@
         LoadTopDiagnostic();
         MonthlyControls();
         $("#take").val(10);
-        Filter(1);       
+        Filter(1); 
+        
+        $(".provDeudas").attr("href", "/Organization/Proveedores");
         $.contextMenu({
             selector: '.context-menu-one',
             trigger: 'left',

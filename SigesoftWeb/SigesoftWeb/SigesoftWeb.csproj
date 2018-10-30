@@ -655,6 +655,7 @@
     <Content Include="Views\PatientsAssistance\_EspiroPartial.cshtml" />
     <Content Include="Views\PatientsAssistance\_MonthlyCompliancePartial.cshtml" />
     <Content Include="Views\PatientsAssistance\_ModalMonthlyCompliancePartial.cshtml" />
+    <Content Include="Views\Organization\Proveedores.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
