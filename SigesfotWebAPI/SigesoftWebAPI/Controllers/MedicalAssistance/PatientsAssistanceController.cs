@@ -77,6 +77,15 @@ namespace SigesoftWebAPI.Controllers.MedicalAssistance
         }
 
         [HttpGet]
+        public async Task<IHttpActionResult> TopDiagnosticOcupational()
+        {
+            return await Task.Run(() => {
+                var result = oPatientsAssistanceBL.TopDiagnosticOcupational();
+                return Ok(result);
+            });
+        }
+
+        [HttpGet]
         public async Task<IHttpActionResult> IndicatorByPacient(string patientId)
         {
             return await Task.Run(() => {

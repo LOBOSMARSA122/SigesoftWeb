@@ -83,9 +83,19 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
             {
                 return new JsonResult { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             });
+        }
+        public async Task<JsonResult> TopDiagnosticOcupational()
+        {
+            Api API = new Api();
+            string url = "PatientsAssistance/TopDiagnosticOcupational";
+            var result = API.Get<List<TopDiagnostic>>(url);
+            return await Task.Run(() =>
+            {
+                return new JsonResult { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            });
 
         }
-        
+
         public  async Task<JsonResult> RevisedStatusEMO(string serviceId, bool status)
         {
             Api API = new Api();

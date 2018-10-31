@@ -291,10 +291,45 @@ namespace BL.MedicalAssistance
                             join b in ctx.Diseases on a.v_DiseasesId equals b.v_DiseasesId
                             join c in ctx.Service on a.v_ServiceId equals c.v_ServiceId
                             where a.i_IsDeleted == isDeleted && a.i_FinalQualificationId == (int)FinalQualification.Definitivo
+                             && c.i_MasterServiceId == (int)masterService.Control
                             select new 
                             {
                                 DiagnosticId = a.v_DiseasesId,
                                 Diagnostic = b.v_Name,    
+                                MasterServiceId = c.i_MasterServiceId
+                            }).ToList();
+
+                var group = list
+                            .GroupBy(n => n.Diagnostic)
+                            .Select(n => new TopDiagnostic
+                            {
+                                name = n.Key,
+                                y = n.Count()
+                            }).OrderByDescending(n => n.y).Take(10);
+
+                return group.ToList();
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public List<TopDiagnostic> TopDiagnosticOcupational()
+        {
+            try
+            {
+                var isDeleted = (int)Enumeratores.SiNo.No;
+                var list = (from a in ctx.DiagnosticRepository
+                            join b in ctx.Diseases on a.v_DiseasesId equals b.v_DiseasesId
+                            join c in ctx.Service on a.v_ServiceId equals c.v_ServiceId
+                            where a.i_IsDeleted == isDeleted && a.i_FinalQualificationId == (int)FinalQualification.Definitivo 
+                                    && c.i_MasterServiceId == (int)masterService.Ocupational
+                            select new
+                            {
+                                DiagnosticId = a.v_DiseasesId,
+                                Diagnostic = b.v_Name,
                                 MasterServiceId = c.i_MasterServiceId
                             }).ToList();
 
