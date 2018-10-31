@@ -18,6 +18,7 @@ namespace SigesoftWeb.Utils
 
         public enum SystemParameter
         {
+            OrgType = 103,
             TypeMovement = 109,
             Gender = 100,         
             MotiveMovement = 110,

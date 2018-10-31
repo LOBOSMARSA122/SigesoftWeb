@@ -23,6 +23,7 @@ namespace BE.Warehouse
         public List<ProductWarehouse> List { get; set; }
     }
 
+
     public class ProductWarehouse : Boards
     {
         public string Category { get; set; }

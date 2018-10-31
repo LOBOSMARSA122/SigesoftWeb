@@ -189,6 +189,7 @@
     <Compile Include="Controllers\Common\PacientController.cs" />
     <Compile Include="Controllers\Common\SystemParameterController.cs" />
     <Compile Include="Controllers\MedicalAssistance\PatientsAssistanceController.cs" />
+    <Compile Include="Controllers\Organization\OrganizationController.cs" />
     <Compile Include="Controllers\Report\ReportProductController.cs" />
     <Compile Include="Controllers\Security\AuthorizationController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />

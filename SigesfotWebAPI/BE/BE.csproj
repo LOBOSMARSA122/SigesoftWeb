@@ -92,6 +92,7 @@
     <Compile Include="MedicalAssistance\Schedule.cs" />
     <Compile Include="MedicalAssistance\TopDiagnostic.cs" />
     <Compile Include="Organization\AreaBE.cs" />
+    <Compile Include="Organization\Boards.cs" />
     <Compile Include="Organization\CodigoEmpresaBE.cs" />
     <Compile Include="Organization\GesBE.cs" />
     <Compile Include="Organization\GroupOccupationBE.cs" />

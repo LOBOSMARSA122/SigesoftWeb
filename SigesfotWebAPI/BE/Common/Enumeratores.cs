@@ -24,6 +24,7 @@ namespace BE.Common
 
         public enum Parameters
         {
+            OrgType = 103,
             TypeMovement = 109,
             Gender = 100
         }

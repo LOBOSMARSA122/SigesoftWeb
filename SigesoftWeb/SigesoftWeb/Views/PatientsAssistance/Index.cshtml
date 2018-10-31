@@ -224,11 +224,13 @@
             </div>
         </main>
         <aside class="col-12 col-md-4 colAside" style="padding-right: 0px;">
-            <div class="row notice" style="margin-right:0px;">
+            <div class="row notice" style="margin-right:0px">
                 <div class="col-12 Chart">
                     <div class="row title" onclick="ColapseTable('DivNotices','heightDivNotices')">
                         Avisos Diarios
                     </div>
+
+
                     <input id="heightDivNotices" type="hidden" value="">
                     <div id="DivNoticesHoy" style="overflow:hidden">
                         <div class="row info">
@@ -256,46 +258,59 @@
                                     <span class="label label-danger result">02</span>
                                 </div>
                             </div>
-                        </a>                       
+                        </a>
                     </div>
                 </div>
-                <div class="col-12 Chart wrapperTopDx loadingGrid">
-                    <div class="row title " onclick="ColapseTable('divTopDx','heightdivTopDx')">
-                        Top 10 Diagnósticos
-                    </div>
-                    <input id="heightdivTopDx" type="hidden" value="">
-                    <div id="divTopDx" style="overflow:hidden">
-                        <div class="row info" id="RenderTopDiagnostic">
-                            <a href="#" class="table-responsive" data-toggle="modal" data-target="#modal1" onclick="LoadModalTopDiagnostic()">@Html.Partial("_TopDiagnosticPartial")</a>
-                        </div>
-                    </div>
+            </div>
+            
+            <div class="col-12 Chart wrapperTopDx loadingGrid">
+                <div class="row title " onclick="ColapseTable('divTopDx','heightdivTopDx')">
+                    Top 10 Diagnósticos
                 </div>
-                <div class="col-12 Chart wrapperMonthlyControls loadingGrid">
-                    <div class="row title " onclick="ColapseTable('divMonthlyCompliance','heightdivMontlhyCompliance')">
-                        Cumplimiento mensual:
-                        <label class="pl-1 lblDate" style="cursor: pointer"></label>
-                    </div>
-                    <input id="heightdivMontlhyCompliance" type="hidden" value="">
-                    <div id="divMonthlyCompliance" style="overflow:hidden">
-                        <div class="row info" id="RenderMonthlyCompliance">
-                            <a href="#" class="table-responsive" data-toggle="modal" data-target="#modal3" onclick="LoadModalMonthlyCompliance()">@Html.Partial("_MonthlyCompliancePartial")</a>
+                <input id="heightdivTopDx" type="hidden" value="">
+                <div id="divTopDx" style="overflow:hidden">
+                    <div class="row info" id="RenderTopDiagnostic">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item Assistance-tab">
+                                <a class="nav-link active" id="Assistance-tab" data-toggle="tab" role="tab" aria-controls="Assistance" aria-selected="true" onclick="NavTabActiveDx()" href="#Assistance">Asistenciales</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="Occupational-tab" data-toggle="tab" role="tab" aria-controls="Occupational" aria-selected="true" onclick="NavTabActiveDx()" href="#Occupational">Ocupacionales</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="" style="width:100%">
+                            <div class="tab-pane fade" id="Assistance" style="width:100%" role="tabpanel" aria-labelledby="contact-tab"><a href="#" class="table-responsive" data-toggle="modal" data-target="#modal1" onclick="LoadModalTopDiagnostic()">@Html.Partial("_TopDiagnosticPartial")</a></div>
+                            <div class="tab-pane fade" id="Occupational" style="width:100%" role="tabpanel" aria-labelledby="contact-tab">@Html.Partial("_TopDxOccupationalPartial")</div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 Chart wrapperMonthlyControls loadingGrid">
-                    <div class="row title" onclick="ColapseTable('divMonthlyControls','heightDivMonthlyControls')">
-                        Cumplimiento de controles mensuales
-                    </div>
-                    <input id="heightDivMonthlyControls" type="hidden" value="">
-                    <div id="divMonthlyControls" style="overflow:hidden">
-                        <div class="row info" id="RenderHeightdivMonthlyControls">
-                            <a href="#" class="table-responsive" data-toggle="modal" data-target="#modal2" onclick="LoadModalMonthlyControls()">@Html.Partial("_MonthlyControlsPartial")</a>
-                        </div>
-                    </div>
-
                 </div>
 
             </div>
+            <div class="col-12 Chart wrapperMonthlyControls loadingGrid">
+                <div class="row title " onclick="ColapseTable('divMonthlyCompliance','heightdivMontlhyCompliance')">
+                    Cumplimiento mensual:
+                    <label class="pl-1 lblDate" style="cursor: pointer"></label>
+                </div>
+                <input id="heightdivMontlhyCompliance" type="hidden" value="">
+                <div id="divMonthlyCompliance" style="overflow:hidden">
+                    <div class="row info" id="RenderMonthlyCompliance">
+                        <a href="#" class="table-responsive" data-toggle="modal" data-target="#modal3" onclick="LoadModalMonthlyCompliance()">@Html.Partial("_MonthlyCompliancePartial")</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 Chart wrapperMonthlyControls loadingGrid">
+                <div class="row title" onclick="ColapseTable('divMonthlyControls','heightDivMonthlyControls')">
+                    Cumplimiento de controles mensuales
+                </div>
+                <input id="heightDivMonthlyControls" type="hidden" value="">
+                <div id="divMonthlyControls" style="overflow:hidden">
+                    <div class="row info" id="RenderHeightdivMonthlyControls">
+                        <a href="#" class="table-responsive" data-toggle="modal" data-target="#modal2" onclick="LoadModalMonthlyControls()">@Html.Partial("_MonthlyControlsPartial")</a>
+                    </div>
+                </div>
+
+            </div>
+
 
         </aside>
     </section>
@@ -389,14 +404,15 @@
     console.log(month[date.getMonth()]);
     $(".lblDate").text(month[date.getMonth()]);
 
-    $(document).ready(function () {
-        LoadSchedule();
-        LoadTopDiagnostic();
-        MonthlyControls();
-        $("#take").val(10);
-        Filter(1); 
-        
-        $(".provDeudas").attr("href", "/Organization/Proveedores");
+        $(document).ready(function () {
+            LoadSchedule();
+            LoadTopDiagnostic();
+            MonthlyControls();
+            LoadTopDxOccupational();
+            $("#take").val(10);
+            Filter(1);
+            $("#Assistance-tab").click();
+        $(".provDeudas").attr("href", "/Organization/Index");
         $.contextMenu({
             selector: '.context-menu-one',
             trigger: 'left',
@@ -506,7 +522,30 @@
                 console.log(error);
             }
         });
-    }
+        }
+        function LoadTopDxOccupational() {
+            $('.wrapperTopDx').addClass('loadingGrid');
+            $.ajax({
+                cache: false,
+                dataType: 'html',
+                method: 'GET',
+                async: true,
+                url: '/PatientsAssistance/TopDiagnostic',
+                success: function (html) {
+                    if (html.indexOf("IniciarSesion") == -1) {
+                        $('.wrapperTopDx').removeClass('loadingGrid');
+                        LoadDxOccupational(html);
+                    } else {
+                        location.href = "/";
+                    }
+                },
+                error: function (error) {
+                    alerta("Sucedió un error al conectarse al servidor", "rojo");
+                    $('.wrapperTopDx').removeClass('loadingGrid');
+                    console.log(error);
+                }
+            });
+        }
 
     function LoadModalTopDiagnostic() {
         $.ajax({
@@ -801,7 +840,10 @@
             }
         })
     }
-
+    function NavTabActiveDx() {
+        $("ul li a").removeClass("active");
+        $(this).toggleClass("active");
+    }
     function RevisedStatusEMO(serviceId, iterador) {
     var width = $(window).width();
     var height = $(window).height();

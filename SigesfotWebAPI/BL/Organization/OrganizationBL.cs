@@ -13,6 +13,75 @@ namespace BL.Organization
     {
         private DatabaseContext ctx = new DatabaseContext();
 
+        #region Bussines 
+        public BoardProvider GetAllProviders(BoardProvider data)
+        {
+            try
+            {
+                var isDeleted = (int)Enumeratores.SiNo.No;
+                int groupOrganization = (int)Enumeratores.Parameters.OrgType;
+                int skip = (data.Index - 1) * data.Take;
+
+                string filterProviderIdentification = string.IsNullOrWhiteSpace(data.IdentificationNumber) ? "" : data.IdentificationNumber;
+                string filterProviderName = string.IsNullOrWhiteSpace(data.Name) ? "" : data.Name;
+
+                var list = (from a in ctx.Organization
+                            join b in ctx.SystemParameter on new { a = a.i_OrganizationTypeId.Value, b = groupOrganization } equals new { a = b.i_ParameterId, b = b.i_GroupId }
+                            where a.i_IsDeleted == isDeleted
+                                    && (a.v_IdentificationNumber.Contains(filterProviderIdentification))
+                                    && (a.v_Name.Contains(filterProviderName)
+                                    && (data.OrganizationTypeId == -1 || a.i_OrganizationTypeId == data.OrganizationTypeId))
+                            select new Provider
+                            {
+                                OrganizationId = a.v_OrganizationId,
+                                OrganizationTypeId = b.i_ParameterId,
+                                SectorTypeId = a.i_SectorTypeId,
+                                SectorName = a.v_SectorName,
+                                SectorCodigo = a.v_SectorCodigo,
+                                IdentificationNumber = a.v_IdentificationNumber,
+                                Name = a.v_Name,
+                                Address = a.v_Address,
+                                PhoneNumber = a.v_PhoneNumber,
+                                Mail = a.v_Mail,
+                                ContacName = a.v_ContacName,
+                                Contacto = a.v_Contacto,
+                                EmailContacto = a.v_EmailContacto,
+                                Observation = a.v_Observation,
+                                NumberQuotasOrganization = a.i_NumberQuotasOrganization,
+                                NumberQuotasMen = a.i_NumberQuotasMen,
+                                NumberQuotasWomen = a.i_NumberQuotasWomen,
+                                DepartmentId = a.i_DepartmentId,
+                                ProvinceId = a.i_ProvinceId,
+                                DistrictId = a.i_DistrictId,
+                                Image = a.b_Image,
+                                ContactoMedico = a.v_ContactoMedico,
+                                EmailMedico = a.v_EmailMedico,
+                                IsDeleted = a.i_IsDeleted,
+                                InsertUserId = a.i_InsertUserId,
+                                InsertDate = a.d_InsertDate,
+                                UpdateDate = a.d_UpdateDate,
+                                UpdateUserId = a.i_UpdateUserId
+                            }).ToList();
+
+                int totalRecords = list.Count;
+
+                if (data.Take > 0)
+                    list = list.Skip(skip).Take(data.Take).ToList();
+
+                data.TotalRecords = totalRecords;
+                data.List = list;
+                return data;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        #endregion
+
         #region CRUD
         public OrganizationBE GetOrganization(string organizationId)
         {

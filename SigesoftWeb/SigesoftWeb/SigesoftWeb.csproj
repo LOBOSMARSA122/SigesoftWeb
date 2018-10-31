@@ -193,6 +193,7 @@
     <Compile Include="Controllers\Common\PacientController.cs" />
     <Compile Include="Controllers\GeneralsController.cs" />
     <Compile Include="Controllers\MedicalAssistance\PatientsAssistanceController.cs" />
+    <Compile Include="Controllers\Organization\OrganizationController.cs" />
     <Compile Include="Controllers\Report\ReportController.cs" />
     <Compile Include="Controllers\Security\GeneralSecurityAttributeController.cs" />
     <Compile Include="Controllers\Warehouse\InputOutputController.cs" />
@@ -209,6 +210,7 @@
     <Compile Include="Models\MedicalAssistance\ReviewEMO.cs" />
     <Compile Include="Models\MedicalAssistance\Schedule.cs" />
     <Compile Include="Models\MedicalAssistance\TopDiagnostic.cs" />
+    <Compile Include="Models\Organization\Boards.cs" />
     <Compile Include="Models\Security\AuthorizationModel.cs" />
     <Compile Include="Models\Warehouse\Boards.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -655,7 +657,9 @@
     <Content Include="Views\PatientsAssistance\_EspiroPartial.cshtml" />
     <Content Include="Views\PatientsAssistance\_MonthlyCompliancePartial.cshtml" />
     <Content Include="Views\PatientsAssistance\_ModalMonthlyCompliancePartial.cshtml" />
-    <Content Include="Views\Organization\Proveedores.cshtml" />
+    <Content Include="Views\PatientsAssistance\_TopDxOccupationalPartial.cshtml" />
+    <Content Include="Views\Organization\Index.cshtml" />
+    <Content Include="Views\Organization\_BoardProviderPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

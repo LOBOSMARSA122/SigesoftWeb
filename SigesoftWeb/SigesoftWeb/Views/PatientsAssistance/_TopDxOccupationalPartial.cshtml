@@ -1,0 +1,67 @@
+﻿
+<div class="" id="reportOccupational" style="width:100%">
+    <div id="chartOccupational" class="chart"></div>
+</div>
+
+@{
+
+    if (Request.Browser.Browser == "IE" && Convert.ToDouble(Request.Browser.Version) < 9.0)
+    {
+    }
+    else
+    {
+        <script>
+    function LoadDxOccupational(data) {
+        var obj = JSON.parse(data);
+        Highcharts.chart('chartOccupational', {
+                    navigation: {
+                        buttonOptions: {
+                            enabled: false
+                        }
+                    },
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: ' '
+                    },
+                    xAxis: {
+                        type: 'category'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Cantidad de casos'
+                        }
+
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        series: {
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y: f}'
+                            }
+                        }
+                    },
+
+                    tooltip: {
+                        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                    },
+
+                    "series": [
+                        {
+                            "name": "Browsers",
+                            "colorByPoint": true,
+                            "data": obj
+                        }
+                    ]
+                });
+            }
+        </script>
+    }
+}
+
