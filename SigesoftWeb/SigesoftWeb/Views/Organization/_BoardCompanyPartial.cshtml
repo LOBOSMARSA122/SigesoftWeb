@@ -5,13 +5,13 @@
     int Ultimo = 0;
     int Index = 0;
 
-    if (ViewBag.Providers != null)
+    if (ViewBag.Company != null)
     {
-        Take = ViewBag.Providers.Take;
-        Index = ViewBag.Providers.Index;
-        Total = ViewBag.Providers.TotalRecords;
+        Take = ViewBag.Company.Take;
+        Index = ViewBag.Company.Index;
+        Total = ViewBag.Company.TotalRecords;
         Primer = ((Index - 1) * Take) + 1;
-        Ultimo = Primer + (ViewBag.Providers.List.Count - 1);
+        Ultimo = Primer + (ViewBag.Company.List.Count - 1);
 
         Primer = Primer < 0 ? 0 : Primer;
         Ultimo = Ultimo < 0 ? 0 : Ultimo;
@@ -25,11 +25,17 @@
     th {
         text-align: center;
     }
+
+    .ColumnNoWrap {
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
 </style>
 <div class="container-fluid" style="padding:0px;">
     <div class="box box-default mt-2" id="acordion">
         <div class="box-header with-border" id="heading1">
-            <h3 class="box-title" style="cursor:pointer;" onclick="ColapsarTabla('table-responsive')"><i class="icon-list-numbered"></i> Listado de Pacientes </h3>
+            <h3 class="box-title" style="cursor:pointer;" onclick="ColapsarTabla('table-responsive')"><i class="icon-list-numbered"></i> Listado Empresas </h3>
         </div>
     </div>
 </div>
@@ -57,32 +63,30 @@
                     <th>Sector</th>
                     <th>Código</th>
                     <th>Editar</th>
-                    <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
                 @{
-                    if (ViewBag.Providers == null)
+                    if (ViewBag.Company == null)
                     {
                         <tr><td colspan="7" class="text-center">Error al conectarse al servidor</td></tr>
                     }
-                    else if (ViewBag.Providers.List.Count == 0)
+                    else if (ViewBag.Company.List.Count == 0)
                     {
                         <tr><td colspan="7" class="text-center">No hay resultados</td></tr>
                     }
                     else
                     {
-                        foreach (var item in ViewBag.Providers.List)
+                        foreach (var item in ViewBag.Company.List)
                         {
                             <tr>
-                                <td>@item.OrganizationId</td>
-                                <td>@item.Name</td>
-                                <td class="text-center">@item.OrganizationTypeId</td>
-                                <td>@item.IdentificationNumber</td>
-                                <td>@item.SectorName</td>
-                                <td>@item.SectorCodigo</td>
-                                <td><a class="iconEdit" href="@Url.Action("CreatePacient", "Provider", new { id = item.OrganizationId })"><span class="d-flex justify-content-center iconEdit align-items-center icon-edit"></span></a></td>
-                                <td><a class="eliminar" onclick='Delete("@item.OrganizationId")'><span class="d-flex justify-content-center align-items-center iconEdit icon-trash"></span></a></td>
+                                <td class="ColumnNoWrap">@item.OrganizationId</td>
+                                <td class="ColumnNoWrap">@item.Name</td>
+                                <td class="ColumnNoWrap">@item.OrganizationType</td>
+                                <td class="ColumnNoWrap text-center">@item.IdentificationNumber</td>
+                                <td class="ColumnNoWrap">@item.SectorName</td>
+                                <td class="ColumnNoWrap">@item.SectorCodigo</td>
+                                <td class="ColumnNoWrap"><a class="iconEdit" href="@Url.Action("CreateCompany", "Organization", new { organizationId = item.OrganizationId })"><span class="d-flex justify-content-center iconEdit align-items-center icon-edit"></span></a></td>
                             </tr>
                         }
                     }

@@ -659,7 +659,8 @@
     <Content Include="Views\PatientsAssistance\_ModalMonthlyCompliancePartial.cshtml" />
     <Content Include="Views\PatientsAssistance\_TopDxOccupationalPartial.cshtml" />
     <Content Include="Views\Organization\Index.cshtml" />
-    <Content Include="Views\Organization\_BoardProviderPartial.cshtml" />
+    <Content Include="Views\Organization\_BoardCompanyPartial.cshtml" />
+    <Content Include="Views\Organization\CreateCompany.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

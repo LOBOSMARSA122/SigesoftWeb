@@ -49,11 +49,7 @@ namespace SigesoftWeb.Controllers.Common
             };
 
             ViewBag.DocType = Utils.Utils.LoadDropDownList(API.Get<List<Dropdownlist>>("DataHierarchy/GetDataHierarchyByGrupoId", arg), Constants.Select);
-            //if (id.HasValue)
-            //{
-                ViewBag.Pacient = API.Get<Pacients>("Pacient/GetPacientById", new Dictionary<string, string> { { "pacientId", id } });
-           // }
-
+            ViewBag.Pacient = API.Get<Pacients>("Pacient/GetPacientById", new Dictionary<string, string> { { "pacientId", id } });
             return View();
         }
 
