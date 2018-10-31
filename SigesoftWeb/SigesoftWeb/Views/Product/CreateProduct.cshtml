@@ -92,15 +92,15 @@
                             <div class="SubTitulo">Tipo producto: </div>
                             <div>
                                 @{
-                    if (ViewBag.CategoryProd != null)
-                    {
-                        <select class="dropdown" id="CategoryProd" data-validation="number" data-validation-allowing="range[1;100]" data-validation-error-msg="Debe seleccionar una opción">
-                            @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.CategoryProd)
-            {
-                <option value="@G.Id" @(CategoryId == int.Parse(G.Id.ToString()) ? "selected" : "")>@G.Value</option>
-}
-                        </select>
-    }
+                                if (ViewBag.CategoryProd != null)
+                                {
+                                    <select class="dropdown" id="CategoryProd" data-validation="number" data-validation-allowing="range[1;100]" data-validation-error-msg="Debe seleccionar una opción">
+                                        @foreach (SigesoftWeb.Models.Common.Dropdownlist G in ViewBag.CategoryProd)
+                                        {
+                                            <option value="@G.Id" @(CategoryId == int.Parse(G.Id.ToString()) ? "selected" : "")>@G.Value</option>
+                                        }
+                                    </select>
+                                }
                                 }
                             </div>
                         </div>

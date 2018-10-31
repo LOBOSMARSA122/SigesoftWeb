@@ -12,16 +12,18 @@ namespace SigesoftWeb.Models.Organization
         public int Take { get; set; }
     }
 
-    public class BoardProvider : Boards
+    public class BoardCompany : Boards
     {
         public int? OrganizationTypeId { get; set; }
         public string IdentificationNumber { get; set; }
         public string Name { get; set; }
-        public List<Provider> List { get; set; }
+        public List<Company> List { get; set; }
     }
 
-    public class Provider : Boards
+    public class Company : Boards
     {
+
+        public string OrganizationType { get; set; }
         public string OrganizationId { get; set; }
         public int? OrganizationTypeId { get; set; }
         public int? SectorTypeId { get; set; }
