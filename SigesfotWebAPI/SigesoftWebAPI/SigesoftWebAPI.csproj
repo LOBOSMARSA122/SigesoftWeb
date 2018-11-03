@@ -229,7 +229,10 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <Content Include="ESO\74390363.pdf" />
+    <Content Include="ESO\N009-SR000000007.pdf" />
+    <Content Include="ESO\N009-SR000000008.pdf" />
+    <Content Include="ESO\N009-SR000000009.pdf" />
+    <Content Include="ESO\N009-SR000000011.pdf" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

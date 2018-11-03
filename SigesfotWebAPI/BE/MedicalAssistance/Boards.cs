@@ -24,6 +24,7 @@ namespace BE.MedicalAssistance
 
     public class Patients
     {
+        
         public string ServiceId { get; set; }
         public string PatientId { get; set; }
         public string PatientFullName { get; set; }
@@ -44,5 +45,6 @@ namespace BE.MedicalAssistance
         public bool EMOsByReview { get; set; }
         public int StatusOrganizationPerson { get; set; }
     }
+
 
 }

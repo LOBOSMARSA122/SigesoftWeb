@@ -320,6 +320,7 @@ namespace BL.MedicalAssistance
         {
             try
             {
+
                 var isDeleted = (int)Enumeratores.SiNo.No;
                 var list = (from a in ctx.DiagnosticRepository
                             join b in ctx.Diseases on a.v_DiseasesId equals b.v_DiseasesId
@@ -333,10 +334,21 @@ namespace BL.MedicalAssistance
                                 MasterServiceId = c.i_MasterServiceId
                             }).ToList();
 
+                var countList = (from a in ctx.OrganizationPerson
+                                 join b  in ctx.Organization on a.v_OrganizationId equals b.v_OrganizationId
+                                 join c in ctx.Person on a.v_PersonId equals c.v_PersonId
+                                 where a.i_IsDeleted == isDeleted
+                            select new Patients
+                            {
+                                PatientId = a.v_PersonId,
+                            }).ToList();
+
+
                 var group = list
                             .GroupBy(n => n.Diagnostic)
                             .Select(n => new TopDiagnostic
                             {
+                                count = countList.Count,
                                 name = n.Key,
                                 y = n.Count()
                             }).OrderByDescending(n => n.y).Take(10);

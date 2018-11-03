@@ -234,7 +234,6 @@
     <Content Include="Content\css\bootstrap-treeview.min.css" />
     <Content Include="Content\css\Estilos.css" />
     <Content Include="Content\css\FloatLabel.css" />
-    <Content Include="Content\css\fontawesome.min.css" />
     <Content Include="Content\css\fontello-codes.css" />
     <Content Include="Content\css\fontello-embedded.css" />
     <Content Include="Content\css\fontello-ie7-codes.css" />
@@ -431,7 +430,6 @@
     <Content Include="Content\bootstrap-reboot.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Scripts\exporting.js" />
-    <Content Include="Scripts\fontawesome.min.js" />
     <Content Include="Scripts\FormValidateFile.js" />
     <Content Include="Scripts\FormValidateSecurity.js" />
     <Content Include="Scripts\fullcalendar.js" />
@@ -652,7 +650,6 @@
     <Content Include="Views\PatientsAssistance\_ModalTopDiagnosticPartial.cshtml" />
     <Content Include="Views\PatientsAssistance\_ModalMonthlyControlsPartial.cshtml" />
     <Content Include="Views\PatientsAssistance\_ReviewEMOPartial.cshtml" />
-    <Content Include="Temp\sample.pdf" />
     <Content Include="Views\PatientsAssistance\Temp\sample.pdf" />
     <Content Include="Views\PatientsAssistance\_EspiroPartial.cshtml" />
     <Content Include="Views\PatientsAssistance\_MonthlyCompliancePartial.cshtml" />
@@ -661,6 +658,10 @@
     <Content Include="Views\Organization\Index.cshtml" />
     <Content Include="Views\Organization\_BoardCompanyPartial.cshtml" />
     <Content Include="Views\Organization\CreateCompany.cshtml" />
+    <Content Include="Temp\N009-SR000000007.pdf" />
+    <Content Include="Temp\N009-SR000000008.pdf" />
+    <Content Include="Temp\N009-SR000000009.pdf" />
+    <Content Include="Temp\N009-SR000000011.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

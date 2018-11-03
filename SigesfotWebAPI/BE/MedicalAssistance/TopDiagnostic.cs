@@ -11,6 +11,7 @@ namespace BE.MedicalAssistance
         //public string DiagnosticId { get; set; }
         //public string Diagnostic { get; set; }
         //public int TotalDiagnostic { get; set; }
+        public int count { get; set; }
         public string name { get; set; }
         public int y { get; set; }
     }
