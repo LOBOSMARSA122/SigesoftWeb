@@ -18,6 +18,7 @@ namespace SigesoftWeb.Models.MedicalAssistance
     public class Indicators
     {
         public string PersonId { get; set; }
+        public List<DataPatient> DataPatient { get; set; }
         public List<Weight> Weights { get; set; }
         public List<BloodPressureSis> BloodPressureSis { get; set; }
         public List<BloodPressureDia> BloodPressureDia { get; set; }
@@ -26,6 +27,13 @@ namespace SigesoftWeb.Models.MedicalAssistance
         public List<Glucose> Glucoses { get; set; }
         public List<Haemoglobin> Haemoglobins { get; set; }
         public List<Espiro> Espiros { get; set; }
+    }
+
+    public class DataPatient
+    {
+        public string Name { get; set; }
+        public string Puesto { get; set; }
+        public string Empresa { get; set; }
     }
 
     public class Weight

@@ -60,7 +60,8 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
             return await Task.Run(() =>
             {
                 ViewBag.Indicators = API.Get<Indicators>("PatientsAssistance/IndicatorByPacient", arg);
-
+                ViewBag.Antecedent = API.Get<List<PersonMedicalHistoryList>>("PatientsAssistance/GetAntecedentConsolidateForService", arg);
+                ViewBag.Reviews = API.Get<List<ReviewEMO>>("PatientsAssistance/ReviewsEMOs", arg);
                 return View();
             });
         }

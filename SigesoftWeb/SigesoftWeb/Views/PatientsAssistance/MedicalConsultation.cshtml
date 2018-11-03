@@ -1,9 +1,10 @@
-﻿<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+﻿
 <style>
-    .fa-medkit{
+    .fa-medkit {
         color: green;
         font-size: 20px;
     }
+
     .tableActive::-webkit-scrollbar {
         max-width: 7px;
         max-height: 7px;
@@ -13,6 +14,7 @@
         border-radius: 5px;
         background-color: #dddddd;
     }
+
     .tblScroll::-webkit-scrollbar {
         max-width: 7px;
         max-height: 7px;
@@ -22,6 +24,7 @@
         border-radius: 5px;
         background-color: #dddddd;
     }
+
     .contTablePrin::-webkit-scrollbar {
         max-width: 7px;
         max-height: 7px;
@@ -31,30 +34,36 @@
         border-radius: 5px;
         background-color: #dddddd;
     }
+
     .tableNoActive {
         height: 0 !important;
         width: 0 !important;
         overflow: hidden;
         /*transition: all ease 1s;*/
     }
+
     .tableActive {
         height: 100%;
         width: 100%;
         overflow-y: scroll;
         transition: all ease 1s;
     }
+
     .contForm {
         border: 1px rgba(173, 173,173, 0.3) solid;
     }
+
     .titleLabel {
         background-color: lightskyblue;
         font-size: 0.9rem;
         font-family: 'Roboto', sans-serif;
     }
+
     .lblTipo {
         font-size: 0.9rem;
         font-family: 'Roboto', sans-serif;
     }
+
     .lblDX {
         position: absolute;
         z-index: 100;
@@ -63,18 +72,255 @@
         font-size: 0.9rem;
         font-family: 'Roboto', sans-serif;
     }
+
+    span .fa-file-pdf {
+        font-size: 15px;
+        color: red;
+    }
+
+    span .fa-file-download {
+        font-size: 15px;
+        color: forestgreen;
+    }
+
+    span .fa-check-circle {
+        font-size: 15px;
+        color: dodgerblue;
+        cursor: default;
+    }
+
+    span .fa-eye {
+        font-size: 15px;
+        color: fuchsia;
+    }
+
+        span .fa-eye:hover {
+            color: hotpink;
+        }
+
+    span .fa-file-download:hover {
+        font-size: 15px;
+        color: darkgreen;
+    }
+
+    span .fa-file-pdf:hover {
+        color: darkred;
+    }
+
+    .ColumnNoWrap {
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .bodyRow {
+        height: auto;
+        max-height: 150px;
+    }
+
+    .View {
+        width: 100%;
+        max-height: 150px;
+        margin: 10px;
+        border: 1px rgba(173, 173,173, 0.1) inset;
+        overflow-y: scroll;
+        overflow-x: scroll;
+    }
+
+        .View::-webkit-scrollbar {
+            max-width: 7px;
+            max-height: 7px;
+        }
+
+        .View::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background-color: #dddddd;
+            border: 1px solid #c9c9c9;
+        }
+
+    .bodyRow {
+        height: 150px;
+    }
 </style>
 <div class="container-fluid">
     <section class="contenedor-main  row">
         <main class="col-md-8">
             <div class="box box-info mb-1" id="acordion">
                 <div class="box-header with-border" id="heading1">
-                    <h3 class="box-title" style="cursor:pointer;" onclick="ColapseTable('TableSummary','heightBoardMedicalSummaryPartial')"><i class="icon-calendar"></i>Resumen EMO</h3>
+                    <h3 class="box-title" style="cursor:pointer;" onclick="ColapseTable('RenderBoardMedicalSummaryPartial','heightBoardMedicalSummaryPartial')"><i class="icon-calendar"></i>Resumen EMO</h3>
                 </div>
             </div>
             <input id="heightBoardMedicalSummaryPartial" type="hidden" value="">
-            <div id="RenderBoardMedicalSummaryPartial">
-                @Html.Partial("_BoardMedicalSummaryPartial")
+            <div id="RenderBoardMedicalSummaryPartial" class="row w-100 m-0" style="overflow:hidden">
+                @*@Html.Partial("_BoardMedicalSummaryPartial")*@
+                <div class="row w-100 mr-0 p-0 mb-2 mx-lg-1 m-0" id="DivESO" style="overflow:hidden">
+                    <div class="col-12 ml-0 mr-0 p-0 mb-2 mb-md-0 col-lg-4">
+                        <div class="row titleRow p-0 m-0">
+                            <div class="col-12 p-0 m-0">
+                                <div class="ml-2">
+                                    Antecedentes médicos
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row bodyRow p-0 m-0">
+                            <div id="DivNotices" class="col-12 View p-0 m-0">
+                                <table class="table tableNotice table-bordered table-sm">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th scope="col">Fecha/Grupo</th>
+                                            <th scope="col">Descripción</th>
+                                            <th scope="col">Tipo de atención</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="tbody">
+                                        @{
+                                            var item = ViewBag.Antecedent;
+                                            if (item == null)
+                                            {
+                                                <tr><td colspan="7" class="text-center">Error al conectarse al servidor</td></tr>
+
+                                            }
+                                            else if (item.Count == 0)
+                                            {
+                                                <tr><td colspan="7" class="text-center">No hay resultados</td></tr>
+                                            }
+                                            else
+                                            {
+                                                for (int i = 0; i < item.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td class="ColumnNoWrap">@item[i].v_DateOrGroup</td>
+                                                        <td class="ColumnNoWrap">@item[i].v_DiseasesName</td>
+                                                        <td class="ColumnNoWrap">@item[i].v_AntecedentTypeName</td>
+                                                    </tr>
+                                                }
+
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 ml-0 mr-0 p-0 mb-2 mb-md-0 px-lg-1 col-lg-4 ">
+                        <div class="row titleRow p-0 m-0">
+                            <div class="col-12 p-0 m-0">
+                                <div class="ml-2">
+                                    ESO
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row bodyRow p-0 m-0">
+                            <div id="DivNotices" class="col-12 View p-0 m-0">
+                                <table class="table tableNotice table-bordered table-sm">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>R</th>
+                                            <th>D</th>
+                                            <th scope="col">Fecha/Servicio</th>
+                                            <th scope="col">Aptitud</th>
+                                            <th scope="col">Diagnóstico</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="tbody">
+                                        @{
+                                            var item1 = ViewBag.Reviews;
+                                            if (item1 == null)
+                                            {
+                                                <tr><td colspan="7" class="text-center">Error al conectarse al servidor</td></tr>
+
+                                            }
+                                            else if (item1.Count == 0)
+                                            {
+                                                <tr><td colspan="7" class="text-center">No hay resultados</td></tr>
+                                            }
+                                            else
+                                            {
+
+                                                for (int i = 0; i < item1.Count; i++)
+                                                {
+                                                    if (item1[i].MasterServiceId == 2)
+                                                    {
+                                                        if (item1[i].IsRevisedHistoryId == 1)
+                                                        {
+                                                            <tr>
+                                                                <td class="ColumnNoWrap "><span><i class="far fa-check-circle"></i></span></td> @*poner un check*@
+                                                                <td class="ColumnNoWrap"><span onclick="DownloadPdf('@item1[i].ServiceId')"><i class="fas fa-file-download"></i></span></td>
+                                                                <td class="ColumnNoWrap">@item1[i].ServiceDate.ToShortDateString()</td>
+                                                                <td class="ColumnNoWrap">@item1[i].Aptitude</td>
+                                                                <td class="ColumnNoWrap">@item1[i].DiseaseName</td>
+                                                            </tr>
+                                                        }
+                                                        else
+                                                        {
+                                                            <tr>
+                                                                <td class="ColumnNoWrap"><span onclick="RevisedStatus('@item1[i].ServiceId' , '@i')"><i class="fas fa-eye row-@i"></i></span></td> @*poner un ojo*@
+                                                                <td class="ColumnNoWrap"><span onclick="DownloadPdf('@item1[i].ServiceId')"><i class="fas fa-file-download"></i></span></td>
+                                                                <td class="ColumnNoWrap">@item1[i].ServiceDate.ToShortDateString()</td>
+                                                                <td class="ColumnNoWrap">@item1[i].Aptitude</td>
+                                                                <td class="ColumnNoWrap">@item1[i].DiseaseName</td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 ml-0 mr-0 p-0 mb-2 mb-md-0 col-lg-4">
+                        <div class="row titleRow p-0 m-0">
+                            <div class="col-12 p-0 m-0">
+                                <div class="ml-2">
+                                    Atenciones médicas
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row p-0 bodyRow m-0">
+                            <div id="DivNotices" class="col-12 View p-0 m-0">
+                                <table class="table tableNotice table-bordered table-sm">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th scope="col">Fecha/Servicio</th>
+                                            <th scope="col">Diagnóstico</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody class="tbody">
+                                        @{
+                                            var item2 = ViewBag.Reviews;
+                                            if (item2 == null)
+                                            {
+                                                <tr><td colspan="7" class="text-center">Error al conectarse al servidor</td></tr>
+
+                                            }
+                                            else if (item2.Count == 0)
+                                            {
+                                                <tr><td colspan="7" class="text-center">No hay resultados</td></tr>
+                                            }
+                                            else
+                                            {
+                                                for (int i = 0; i < item2.Count; i++)
+                                                {
+
+                                                    if (item2[i].MasterServiceId == 21)
+                                                    {
+                                                        <tr>
+                                                            <td class="ColumnNoWrap">@item2[i].ServiceDate.ToShortDateString()</td>
+                                                            <td class="ColumnNoWrap">@item2[i].DiseaseName</td>
+                                                        </tr>
+                                                    }
+                                                }
+
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="box box-info mb-1" id="acordion">
                 <div class="box-header with-border" id="heading1">
@@ -87,17 +333,17 @@
                     <div class="col-12">
                         <form action="/">
                             <div class="form-group row">
-                                <div class="col-12 col-md-4">
-                                    <input type="text" class="form-control inputLabelFloat" placeholder="" name="pacient" id="pacient" />
-                                    <label for="nombre" class="has-float-label">Paciente</label>
+                                <div class="col-12 mt-2 col-md-4">
+                                    <input type="text" class="form-control inputLabelFloat" placeholder="" value="@ViewBag.Indicators.DataPatient[0].Name" name="pacient" id="name" />
+                                    <label for="" class="has-float-label static">Paciente</label>
                                 </div>
-                                <div class="col-12 col-md-4">
-                                    <input type="text" class="form-control inputLabelFloat" placeholder="" name="pass" id="pass" />
-                                    <label for="nombre" class="has-float-label">Empresa/Sede/Área</label>
+                                <div class="col-12  mt-2 col-md-4">
+                                    <input type="text" class="form-control inputLabelFloat" placeholder="" value="@ViewBag.Indicators.DataPatient[0].Empresa" name="pass" id="empresa" />
+                                    <label for="" class="has-float-label static">Empresa/Sede/Área</label>
                                 </div>
-                                <div class="col-12 col-md-4">
-                                    <input type="text" class="form-control inputLabelFloat" placeholder="" name="pacient" id="pacient" />
-                                    <label for="nombre" class="has-float-label">Puesto</label>
+                                <div class="col-12  mt-2 col-md-4">
+                                    <input type="text" class="form-control inputLabelFloat" placeholder="" value="@ViewBag.Indicators.DataPatient[0].Puesto" name="pacient" id="area" />
+                                    <label for="" class="has-float-label static">Puesto</label>
                                 </div>
                             </div>
                         </form>
@@ -115,50 +361,50 @@
                 <div class="row" style="margin:0px; padding:0px;">
                     <div class="col-12 p-0">
                         <form action="/" class="formGroup">
-                            <div class="form-group row w-100 mx-0">
-                                <div class="col-12 col-md-2">
+                            <div class="form-group row w-100 m-0">
+                                <div class="col-12 mt-2 col-md-2">
                                     <input type="text" class="form-control inputLabelFloat" placeholder="" name="pacient" id="pacient" />
                                     <label for="nombre" class="has-float-label">Peso</label>
                                 </div>
-                                <div class="col-12 col-md-2">
+                                <div class="col-12 mt-2 col-md-2">
                                     <input type="text" class="form-control inputLabelFloat" placeholder="" name="pass" id="pass" />
                                     <label for="nombre" class="has-float-label">Talla</label>
                                 </div>
-                                <div class="col-12 col-md-2">
+                                <div class="col-12 mt-2 col-md-2">
                                     <input type="text" class="form-control inputLabelFloat" placeholder="" name="pacient" id="pacient" />
                                     <label for="nombre" class="has-float-label">IMC</label>
                                 </div>
-                                <div class="col-12 col-md-2">
+                                <div class="col-12 mt-2 col-md-2">
                                     <input type="text" class="form-control inputLabelFloat" placeholder="" name="pacient" id="pacient" />
                                     <label for="nombre" class="has-float-label">P. Abdom.</label>
                                 </div>
-                                <div class="col-12 col-md-2">
+                                <div class="col-12 mt-2 col-md-2">
                                     <input type="text" class="form-control inputLabelFloat" placeholder="" name="pass" id="pass" />
                                     <label for="nombre" class="has-float-label">P. Cad.</label>
                                 </div>
-                                <div class="col-12 col-md-2">
+                                <div class="col-12 mt-2 col-md-2">
                                     <input type="text" class="form-control inputLabelFloat" placeholder="" name="pacient" id="pacient" />
                                     <label for="nombre" class="has-float-label">I. C.</label>
                                 </div>
                             </div>
                             <div class="form-group row formGroup w-100 mx-0">
-                                <div class="col-12 col-md-2">
+                                <div class="col-12 mt-2 col-md-2">
                                     <input type="text" class="form-control inputLabelFloat" placeholder="" name="pacient" id="pacient" />
                                     <label for="nombre" class="has-float-label">PS-PD</label>
                                 </div>
-                                <div class="col-12 col-md-2">
+                                <div class="col-12 mt-2 col-md-2">
                                     <input type="text" class="form-control inputLabelFloat" placeholder="" name="pacient" id="pacient" />
                                     <label for="nombre" class="has-float-label">F. Respi.</label>
                                 </div>
-                                <div class="col-12 col-md-2">
+                                <div class="col-12 mt-2 col-md-2">
                                     <input type="text" class="form-control inputLabelFloat" placeholder="" name="pacient" id="pacient" />
                                     <label for="nombre" class="has-float-label">F. Cardi.</label>
                                 </div>
-                                <div class="col-12 col-md-2">
+                                <div class="col-12 mt-2 col-md-2">
                                     <input type="text" class="form-control inputLabelFloat" placeholder="" name="pacient" id="pacient" />
                                     <label for="nombre" class="has-float-label">PSD</label>
                                 </div>
-                                <div class="col-12 col-md-2">
+                                <div class="col-12 mt-2 col-md-2">
                                     <input type="text" class="form-control inputLabelFloat" placeholder="" name="pacient" id="pacient" />
                                     <label for="nombre" class="has-float-label">Sat. O.</label>
                                 </div>
@@ -243,7 +489,7 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </div> 
+                                    </div>
                                     <div class="col-12 p-1">
                                         <div class="row justify-content-end w-100 p-0 mx-0">
                                             <div class="col-11 p-0">
@@ -294,7 +540,7 @@
                                 <div class="col-12 py-2 px-0 col-lg-4">
                                     <div class="p-2 contForm">
                                         <div class="row titleLabel w-100 m-0 mb-2 p-1 justify-content-center">
-                                                En caso de accidentes de trabajo
+                                            En caso de accidentes de trabajo
                                         </div>
                                         <div class="row w-100 m-0">
                                             <div class="col-12 p-0">
@@ -376,7 +622,7 @@
                                 <div class="col-12 py-2 px-0 col-lg-4 p-0">
                                     <div class="p-2 contForm">
                                         <div class="row titleLabel w-100 m-0 mb-2 p-1 justify-content-center">
-                                                En caso de exámen ocupacional
+                                            En caso de exámen ocupacional
                                         </div>
                                         <div class="row w-100 m-0">
                                             <div class="col-12 p-0">
@@ -495,15 +741,13 @@
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/JqueryFormValidate.js"></script>
 <script src="~/Scripts/FormValidateSecurity.js"></script>
-
 <script src="~/Scripts/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/series-label.js"></script>
 <script src="~/Scripts/exporting.js"></script>
 <script src="~/Scripts/offline-exporting.js"></script>
 <link href="~/Content/css/highcharts.css" rel="stylesheet">
-
 <link href="~/Content/Themes/FormValidatorTheme.css" rel="stylesheet" type="text/css" />
-
+<link href="~/fontawesome/css/all.css" rel="stylesheet" />
 <script>
     LoadWeight();
     LoadCholesterol();
@@ -512,7 +756,7 @@
     LoadGlucose();
     LoadCvf();
     $(document).ready(function () {
-        
+
         var inputs = document.getElementsByClassName('inputLabelFloat');
         for (var i = 0; i < inputs.length; i++) {
             inputs[i].addEventListener('keyup', function () {
@@ -524,22 +768,155 @@
             });
         }
     })
+
     function TableActive() {
-        var contIcon = $(".contIcon");         
-            $(".tblcontrol").toggleClass("tableNoActive");
-            $(".tblcontrol").toggleClass("tableActive");
-            var height = $(".btnHeight").offset();
-            console.log(height);
+        var contIcon = $(".contIcon");
+        $(".tblcontrol").toggleClass("tableNoActive");
+        $(".tblcontrol").toggleClass("tableActive");
+        var height = $(".btnHeight").offset();
+        console.log(height);
         if ($(window).width() > 1000) {
             $("html, body").animate({
                 scrollTop: height.top,
             }, 1000);
         }
-            
+
+    }
+
+    function RevisedStatus(serviceId, iterador) {
+        
+        ScrollTop();
+        var width = $(window).width();
+        var height = $(window).height();
+
+        notificacion({
+            classTitleAndButtons: "warningTitleAndButtons",
+            classMessage: "warningMessage",
+            title: "¡ Aviso !",
+            icono: "",
+            contenido: "¿Seguro de marcar como revisado? ",
+            btnAceptar: "Aceptar",
+            btnCancelar: "Cancelar",
+            btnOk: "OK",
+            mostrarBtnAceptarAndCancelar: "",
+            mostrarBtnOk: "no",
+        })
+
+        $(".bigBox-Aceptar").on("click", function () {
+            var status = true;
+            $(".pluginContenedor").remove();
+            $("#Loading").show().css("width", width + "px").css("height", height + "px");
+            $("#Loading > img").css("margin-left", ((width - 200) / 2) + "px").css("margin-top", ((height - 266) / 2) + "px");
+            $.ajax({
+                cache: false,
+                dataType: 'json',
+                method: 'POST',
+                url: '/PatientsAssistance/RevisedStatusEMO?serviceId=' + serviceId + '&status=' + status,
+                success: function (json) {
+                    $("#Loading").hide();
+                    $(".row-" + iterador).removeClass("fas fa-eye").addClass("far fa-check-circle");
+                    console.log(iterador);
+                    if (json) {
+                    } else {
+                        notificacion({
+                            classTitleAndButtons: "infoTitleAndButtons",
+                            classMessage: "infoMessage",
+                            title: "Error",
+                            icono: "",
+                            contenido: "No se pudo grabar",
+                            btnAceptar: "Aceptar",
+                            btnCancelar: "Cancelar",
+                            btnOk: "OK",
+                            mostrarBtnAceptarAndCancelar: "no",
+                            mostrarBtnOk: "",
+                        })
+                        //alerta("No se pudo eliminar el proveedor", "rojo");
+                    }
+                },
+                error: function (error) {
+                    //alerta("Sucedió un error al conectarse al servidor", "rojo");
+                    notificacion({
+                        classTitleAndButtons: "infoTitleAndButtons",
+                        classMessage: "infoMessage",
+                        title: "Error",
+                        icono: "",
+                        contenido: "Sucedió un error al conectarse al servidor",
+                        btnAceptar: "Aceptar",
+                        btnCancelar: "Cancelar",
+                        btnOk: "OK",
+                        mostrarBtnAceptarAndCancelar: "no",
+                        mostrarBtnOk: "",
+                    })
+                    $("#Loading").hide();
+                    console.log(error);
+                }
+            })
+        })
+
+
+    }
+    function ScrollTop() {
+        $("html, body").animate({
+            scrollTop: 0
+        }, 100)
     }
     function NavTabActive() {
         $("ul li a").removeClass("active");
         $(this).toggleClass("active");
     }
+    function DownloadPdf(serviceId) {
+        data = {
+            patientId: serviceId
+        };
 
+        $.ajax({
+            cache: false,
+            method: 'POST',
+            data: data,
+            url: '/PatientsAssistance/DownloadFile',
+            success: function (response) {
+                var base64 = JSON.parse(response);
+                var binaryString = window.atob(base64._buffer);
+                var binaryLen = binaryString.length;
+                var bytes = new Uint8Array(binaryLen);
+                for (var i = 0; i < binaryLen; i++) {
+                    var ascii = binaryString.charCodeAt(i);
+                    bytes[i] = ascii;
+                }
+                var d = new Date();
+                var fileName = serviceId + ".pdf";
+                var blob = new Blob([bytes], { type: 'application/pdf' });
+
+                if (window.navigator.msSaveOrOpenBlob) {
+                    window.navigator.msSaveOrOpenBlob(blob, fileName);
+                } else if (window.navigator.userAgent.indexOf("Firefox") > 0) {
+
+                    var url = window.URL.createObjectURL(blob);
+                    var anchorElement = document.createElement("a");
+                    anchorElement.style = "display: none";
+                    anchorElement.href = url;
+                    anchorElement.download = fileName;
+                    document.body.appendChild(anchorElement);
+                    anchorElement.click();
+                    document.body.removeChild(anchorElement);
+
+                    setTimeout(function () {
+                        window.URL.revokeObjectURL(url);
+                    }, 1000);
+                } else {
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = fileName;
+                    link.click();
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        })
+    }
 </script>
+
+<script src="~/Scripts/Alert.js"></script>
+<script src="~/Scripts/TweenMax.min.js"></script>
+<link href="~/Content/css/Alert.css" rel="stylesheet" />

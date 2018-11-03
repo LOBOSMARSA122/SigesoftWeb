@@ -281,7 +281,7 @@
 
             <div class="col-12 Chart wrapperTopDx loadingGrid">
                 <div class="row title " onclick="ColapseTable('divTopDx','heightdivTopDx')">
-                    Top 10 Diagnósticos de <span class="mx-1" id="totalPatient"></span> pacientes <input type="text" id="RecordsPatient" class="d-none" name="name" value="" />
+                    Top 10 Diagnósticos de <span class="mx-1" id="totalPatient">0</span> pacientes <input type="text" id="RecordsPatient" class="d-none" name="name" value="" />
                 </div>
                 <input id="heightdivTopDx" type="hidden" value="">
                 <div id="divTopDx" style="overflow:hidden">
@@ -436,18 +436,17 @@
             callback: function (key, options) {
                 if (key === "RevisarEMO") {
                     $('tr.context-menu-active').each(function () {
-                        var patientId = $(this).find('td').eq(1).text();
+                        var patientId = $(this).find('td').eq(1).text();                       
                         $('#btnModalReviewEMO').click();
+                        ScrollTop();
                         LoadAntecedent(patientId);
                         LoadGraphPatients(patientId)
-
 
                     });
                 }
                 else if (key === "ConsultaMedica") {
                     $('tr.context-menu-active').each(function () {
                         var personId = $(this).find('td').eq(1).text();
-                        console.log("AMC", personId)
                         LoadMedicalConsultation(personId)
                     });
                 }
@@ -503,6 +502,7 @@
             type: 'GET',
         });
     }
+    
     function LoadMedicalConsultation(personId) {
 
         var url = '/PatientsAssistance/MedicalConsultation?id=' + personId;
@@ -513,6 +513,7 @@
         anchorElement.click();
         document.body.removeChild(anchorElement);
         $("#Loading").hide();
+
     }
 
     function LoadTopDiagnostic() {
@@ -557,7 +558,6 @@
                 if (html.indexOf("IniciarSesion") == -1) {
                     $('.wrapperTopDx').removeClass('loadingGrid');
                     var total = $("#RecordsPatient").val();
-                    console.log(total);
                     LoadDxOccupational(html,total);
                 } else {
                     location.href = "/";
@@ -729,12 +729,9 @@
             workerstatus = 1;
         }
 
-        console.log("valor ", workerstatus);
-
         //console.log("todos", rbtodos.checked);
         //console.log("Activo",rbActivo.checked);
         //console.log("Inactivo",rbInactivo.checked);
-
 
         var data = {
             Patient: $("#PacientFullName").val(),
@@ -872,7 +869,7 @@
     function RevisedStatusEMO(serviceId, iterador) {
         var width = $(window).width();
         var height = $(window).height();
-        $.notificacion({
+        notificacion({
             classTitleAndButtons: "warningTitleAndButtons",
             classMessage: "warningMessage",
             title: "¡ Aviso !",
@@ -883,8 +880,7 @@
             btnOk: "OK",
             mostrarBtnAceptarAndCancelar: "",
             mostrarBtnOk: "no",
-        })
-
+        })        
         $(".bigBox-Aceptar").on("click", function () {
             var status = true;
             $(".pluginContenedor").remove();
@@ -901,7 +897,7 @@
                     console.log(iterador);
                     if (json) {
                     } else {
-                        $.notificacion({
+                        notificacion({
                             classTitleAndButtons: "infoTitleAndButtons",
                             classMessage: "infoMessage",
                             title: "Error",
@@ -918,7 +914,7 @@
                 },
                 error: function (error) {
                     //alerta("Sucedió un error al conectarse al servidor", "rojo");
-                    $.notificacion({
+                    notificacion({
                         classTitleAndButtons: "infoTitleAndButtons",
                         classMessage: "infoMessage",
                         title: "Error",
@@ -937,5 +933,10 @@
         })
 
 
+    }
+    function ScrollTop() {
+        $("html, body").animate({
+            scrollTop: 0
+        }, 100)
     }
 </script>

@@ -136,7 +136,7 @@
         $(this).toggleClass("classRowsClick");
     });
     function Delete(id) {
-       
+        ScrollTop();
         var width = $(window).width();
         var height = $(window).height();
 
@@ -153,7 +153,7 @@
 
         //Encabezado y Botones Info = "infoTitleAndButtons"
         //Texto Info = "infoMessage"
-        $.notificacion({
+        notificacion({
             classTitleAndButtons: "dangerTitleAndButtons",
             classMessage: "dangerMessage",
             title: "¡ Advertencia !",
@@ -181,7 +181,7 @@
                 success: function (json) {
                     $("#Loading").hide();
                     if (json) {
-                        $.notificacion({
+                        notificacion({
                             classTitleAndButtons: "successTitleAndButtons",
                             classMessage: "successMessage",
                             title: "Hecho",
@@ -195,7 +195,7 @@
                         })                        
                         Filtrar(1);
                     } else {
-                        $.notificacion({
+                        notificacion({
                             classTitleAndButtons: "infoTitleAndButtons",
                             classMessage: "infoMessage",
                             title: "Error",
@@ -212,7 +212,7 @@
                 },
                 error: function (error) {
                     //alerta("Sucedió un error al conectarse al servidor", "rojo");
-                    $.notificacion({
+                    notificacion({
                         classTitleAndButtons: "infoTitleAndButtons",
                         classMessage: "infoMessage",
                         title: "Error",
@@ -232,7 +232,11 @@
 
             
     }
-    
+    function ScrollTop() {
+        $("html, body").animate({
+            scrollTop: 0
+        }, 100)
+    }
 </script>
 
 
