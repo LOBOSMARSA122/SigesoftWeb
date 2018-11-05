@@ -658,10 +658,6 @@
     <Content Include="Views\Organization\Index.cshtml" />
     <Content Include="Views\Organization\_BoardCompanyPartial.cshtml" />
     <Content Include="Views\Organization\CreateCompany.cshtml" />
-    <Content Include="Temp\N009-SR000000007.pdf" />
-    <Content Include="Temp\N009-SR000000008.pdf" />
-    <Content Include="Temp\N009-SR000000009.pdf" />
-    <Content Include="Temp\N009-SR000000011.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

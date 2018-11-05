@@ -275,10 +275,8 @@
     function ViewPdf(patientId) {
         console.log("click");
         var viewer = $('#viewpdf');
-        PDFObject.embed('Temp/'+patientId+'.pdf', viewer);
-        $("window, html").resize(function () {
-            $(document).ready();
-        });       
+        PDFObject.embed('http://localhost:1932/ESO/'+ patientId + '.pdf', viewer);
+        
     }
 
     
