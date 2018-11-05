@@ -366,13 +366,23 @@ namespace BL.MedicalAssistance
         {
             try
             {
+                var serviceData = (from A in ctx.Service
+                                   join E in ctx.Person on A.v_PersonId equals E.v_PersonId
+                                   join F in ctx.OrganizationPerson on E.v_PersonId equals F.v_PersonId
+                                   join G in ctx.Organization on F.v_OrganizationId equals G.v_OrganizationId
+                                   where A.v_PersonId == patientId && A.i_IsDeleted == 0
+                                   select new
+                                   {
+                                       FullName = E.v_FirstName + " " + E.v_FirstLastName + " " + E.v_SecondLastName,
+                                       Puesto = E.v_CurrentOccupation,
+                                       Empresa = G.v_Name,
+                                   }).ToList();
+
+
                 var serviceComponentFieldValues = (from A in ctx.Service
                                                    join B in ctx.ServiceComponent on A.v_ServiceId equals B.v_ServiceId
                                                    join C in ctx.ServiceComponentFields on B.v_ServiceComponentId equals C.v_ServiceComponentId
                                                    join D in ctx.ServiceComponentFieldValues on C.v_ServiceComponentFieldsId equals D.v_ServiceComponentFieldsId
-                                                   join E in ctx.Person on A.v_PersonId equals E.v_PersonId
-                                                   join F in ctx.OrganizationPerson on E.v_PersonId equals F.v_PersonId
-                                                   join G in ctx.Organization on F.v_OrganizationId equals G.v_OrganizationId
                                                    where A.v_PersonId == patientId
                                                            && (C.v_ComponentFieldId == Constants.COLESTEROL_TOTAL_Colesterol_Total_Id || C.v_ComponentFieldId == Constants.PERFIL_LIPIDICO_Colesterol_Total_Id || C.v_ComponentFieldId == Constants.GLUCOSA_Glucosa_Id || C.v_ComponentFieldId == Constants.HEMOGLOBINA_Hemoglobina_Id || C.v_ComponentFieldId == Constants.HEMOGRAMA_Hemoglobina_Id || C.v_ComponentFieldId == Constants.FUNCIONES_VITALES_Presion_Sistolica_Id || C.v_ComponentFieldId == Constants.FUNCIONES_VITALES_Presion_Distolica_Id || C.v_ComponentFieldId == Constants.ANTROPOMETRIA_Imc_Id || C.v_ComponentFieldId == Constants.ESPIROMETRIA_Cvf_Id)
                                                            && B.i_IsDeleted == 0
@@ -380,9 +390,7 @@ namespace BL.MedicalAssistance
 
                                                    select new
                                                    {
-                                                       FullName = E.v_FirstName + " " + E.v_FirstLastName + " " + E.v_SecondLastName,
-                                                       Puesto = E.v_CurrentOccupation,
-                                                       Empresa = G.v_Name,
+                                                       
                                                        ServiceDate = A.d_ServiceDate,
                                                        ComponentFieldId = C.v_ComponentFieldId,
                                                        ServiceComponentFieldsId = C.v_ServiceComponentFieldsId,
@@ -391,7 +399,15 @@ namespace BL.MedicalAssistance
                 Indicators oIndicators = new Indicators();
                 oIndicators.PersonId = patientId;
 
-                
+                #region Data
+                List<DataPatient> Data = new List<DataPatient>();
+                var oDataPatient = new DataPatient();
+                oDataPatient.Name = serviceData[0].FullName;
+                oDataPatient.Empresa = serviceData[0].Empresa;
+                oDataPatient.Puesto = serviceData[0].Puesto;
+                Data.Add(oDataPatient);
+                oIndicators.DataPatient = Data;
+                #endregion
 
                 #region IMC
                 List<Weight> Weights = new List<Weight>();
@@ -492,16 +508,7 @@ namespace BL.MedicalAssistance
                 oIndicators.Espiros = Espiros;
                 #endregion
 
-                #region Data
-                List<DataPatient> Data = new List<DataPatient>();
-                var ListData = serviceComponentFieldValues;
-                var oDataPatient = new DataPatient();
-                oDataPatient.Name = serviceComponentFieldValues[0].FullName;
-                oDataPatient.Empresa = serviceComponentFieldValues[0].Empresa;
-                oDataPatient.Puesto = serviceComponentFieldValues[0].Puesto;
-                Data.Add(oDataPatient);
-                oIndicators.DataPatient = Data;
-                #endregion
+                
 
                 return oIndicators;
             }
