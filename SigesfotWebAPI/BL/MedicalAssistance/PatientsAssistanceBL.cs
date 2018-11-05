@@ -320,6 +320,7 @@ namespace BL.MedicalAssistance
         {
             try
             {
+
                 var isDeleted = (int)Enumeratores.SiNo.No;
                 var list = (from a in ctx.DiagnosticRepository
                             join b in ctx.Diseases on a.v_DiseasesId equals b.v_DiseasesId
@@ -333,10 +334,21 @@ namespace BL.MedicalAssistance
                                 MasterServiceId = c.i_MasterServiceId
                             }).ToList();
 
+                var countList = (from a in ctx.OrganizationPerson
+                                 join b  in ctx.Organization on a.v_OrganizationId equals b.v_OrganizationId
+                                 join c in ctx.Person on a.v_PersonId equals c.v_PersonId
+                                 where a.i_IsDeleted == isDeleted
+                            select new Patients
+                            {
+                                PatientId = a.v_PersonId,
+                            }).ToList();
+
+
                 var group = list
                             .GroupBy(n => n.Diagnostic)
                             .Select(n => new TopDiagnostic
                             {
+                                count = countList.Count,
                                 name = n.Key,
                                 y = n.Count()
                             }).OrderByDescending(n => n.y).Take(10);
@@ -354,18 +366,31 @@ namespace BL.MedicalAssistance
         {
             try
             {
+                var serviceData = (from A in ctx.Service
+                                   join E in ctx.Person on A.v_PersonId equals E.v_PersonId
+                                   join F in ctx.OrganizationPerson on E.v_PersonId equals F.v_PersonId
+                                   join G in ctx.Organization on F.v_OrganizationId equals G.v_OrganizationId
+                                   where A.v_PersonId == patientId && A.i_IsDeleted == 0
+                                   select new
+                                   {
+                                       FullName = E.v_FirstName + " " + E.v_FirstLastName + " " + E.v_SecondLastName,
+                                       Puesto = E.v_CurrentOccupation,
+                                       Empresa = G.v_Name,
+                                   }).ToList();
+
+
                 var serviceComponentFieldValues = (from A in ctx.Service
                                                    join B in ctx.ServiceComponent on A.v_ServiceId equals B.v_ServiceId
                                                    join C in ctx.ServiceComponentFields on B.v_ServiceComponentId equals C.v_ServiceComponentId
                                                    join D in ctx.ServiceComponentFieldValues on C.v_ServiceComponentFieldsId equals D.v_ServiceComponentFieldsId
-
                                                    where A.v_PersonId == patientId
                                                            && (C.v_ComponentFieldId == Constants.COLESTEROL_TOTAL_Colesterol_Total_Id || C.v_ComponentFieldId == Constants.PERFIL_LIPIDICO_Colesterol_Total_Id || C.v_ComponentFieldId == Constants.GLUCOSA_Glucosa_Id || C.v_ComponentFieldId == Constants.HEMOGLOBINA_Hemoglobina_Id || C.v_ComponentFieldId == Constants.HEMOGRAMA_Hemoglobina_Id || C.v_ComponentFieldId == Constants.FUNCIONES_VITALES_Presion_Sistolica_Id || C.v_ComponentFieldId == Constants.FUNCIONES_VITALES_Presion_Distolica_Id || C.v_ComponentFieldId == Constants.ANTROPOMETRIA_Imc_Id || C.v_ComponentFieldId == Constants.ESPIROMETRIA_Cvf_Id)
                                                            && B.i_IsDeleted == 0
                                                            && C.i_IsDeleted == 0
 
-                                                   select new 
+                                                   select new
                                                    {
+                                                       
                                                        ServiceDate = A.d_ServiceDate,
                                                        ComponentFieldId = C.v_ComponentFieldId,
                                                        ServiceComponentFieldsId = C.v_ServiceComponentFieldsId,
@@ -374,6 +399,15 @@ namespace BL.MedicalAssistance
                 Indicators oIndicators = new Indicators();
                 oIndicators.PersonId = patientId;
 
+                #region Data
+                List<DataPatient> Data = new List<DataPatient>();
+                var oDataPatient = new DataPatient();
+                oDataPatient.Name = serviceData[0].FullName;
+                oDataPatient.Empresa = serviceData[0].Empresa;
+                oDataPatient.Puesto = serviceData[0].Puesto;
+                Data.Add(oDataPatient);
+                oIndicators.DataPatient = Data;
+                #endregion
 
                 #region IMC
                 List<Weight> Weights = new List<Weight>();
@@ -473,6 +507,8 @@ namespace BL.MedicalAssistance
                 }
                 oIndicators.Espiros = Espiros;
                 #endregion
+
+                
 
                 return oIndicators;
             }

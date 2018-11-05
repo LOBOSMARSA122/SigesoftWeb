@@ -1,6 +1,6 @@
 ﻿(function () {
 
-    $.notificacion = function (opciones) {
+    notificacion = function (opciones) {
         opciones = $.extend({
             title: "Advertencia",
             icono: "",
@@ -65,6 +65,7 @@
 
 
         //Controlar los botones
+
         function controlBotones() {
 
             if (opciones.mostrarBtnAceptarAndCancelar === "si") {   
@@ -126,7 +127,7 @@
                 $('.bigBox-contenedor').css({
                     position: 'absolute',
                     left: ($(window).width() - $('.bigBox-contenedor').width()) / 2,
-                    top: ($(window).height() - $('.bigBox-contenedor').height()) / 4
+                    top: ($(window).height() - $('.bigBox-contenedor').height()) / 2
                 });
 
             });
@@ -134,7 +135,7 @@
                 $('.bigBox-contenedor').css({
                     position: 'absolute',
                     left: ($(window).width() - $('.bigBox-contenedor').width()) / 2,
-                    top: ($(window).height() - $('.bigBox-contenedor').height()) / 4
+                    top: ($(window).height() - $('.bigBox-contenedor').height()) / 2
                 });
 
             });
@@ -158,9 +159,5 @@
         }
     };
 
-
-    $(document).ready(function () {
-        $(window).resize();
-    });
 
 })();

@@ -146,7 +146,7 @@
         var width = $(window).width();
         var height = $(window).height();
 
-        $.notificacion({
+        notificacion({
             classTitleAndButtons: "dangerTitleAndButtons",
             classMessage: "dangerMessage",
             title: "¡ Advertencia !",
@@ -174,7 +174,7 @@
                 success: function (json) {
                     $("#Loading").hide();
                     if (json) {
-                        $.notificacion({
+                        notificacion({
                             classTitleAndButtons: "successTitleAndButtons",
                             classMessage: "successMessage",
                             title: "Hecho",
@@ -189,7 +189,7 @@
 
                         Filtrar(1);
                     } else {
-                        $.notificacion({
+                        notificacion({
                             classTitleAndButtons: "successTitleAndButtons",
                             classMessage: "successMessage",
                             title: "Error",
@@ -204,7 +204,7 @@
                     }
                 },
                 error: function (error) {
-                    $.notificacion({
+                    notificacion({
                         classTitleAndButtons: "successTitleAndButtons",
                         classMessage: "successMessage",
                         title: "Error",

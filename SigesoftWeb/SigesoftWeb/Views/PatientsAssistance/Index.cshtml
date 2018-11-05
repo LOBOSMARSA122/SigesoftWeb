@@ -1,5 +1,6 @@
-﻿<style>
-    
+﻿
+<style>
+
     .pagination-active span {
         color: #f39c12 !important;
     }
@@ -7,51 +8,62 @@
     #filtPaciente {
         opacity: 0;
     }
-    a{
+
+    a {
         outline: none;
     }
+
     .iconEdit {
         color: Black;
     }
-    span .fa-file-pdf{
+
+    span .fa-file-pdf {
         font-size: 15px;
         color: red;
-
     }
+
     span .fa-file-download {
         font-size: 15px;
         color: forestgreen;
     }
+
     span .fa-check-circle {
         font-size: 15px;
         color: dodgerblue;
         cursor: default;
     }
+
     span .fa-eye {
         font-size: 15px;
         color: fuchsia;
     }
-    span .fa-eye:hover {
-        color: hotpink;
-    }
+
+        span .fa-eye:hover {
+            color: hotpink;
+        }
+
     .modal-header {
         height: 20px !important;
     }
+
     span .fa-file-download:hover {
         font-size: 15px;
         color: darkgreen;
     }
+
     span .fa-file-pdf:hover {
         color: darkred;
     }
+
     .ColumnNoWrap {
         overflow: hidden;
         white-space: nowrap;
     }
 
-    .bodyRow{
+    .bodyRow {
         overflow: hidden;
     }
+
     .modal-dialog {
         margin: 0px auto;
         max-width: 100%;
@@ -65,6 +77,7 @@
         overflow-y: scroll;
         overflow-x: scroll;
     }
+
         .View::-webkit-scrollbar {
             max-width: 7px;
             max-height: 7px;
@@ -75,6 +88,7 @@
             background-color: #dddddd;
             border: 1px solid #c9c9c9;
         }
+
     .titleRow {
         font-family: sans-serif;
         background-color: #fff;
@@ -88,40 +102,42 @@
     .bodyRow {
         height: 150px;
     }
-    
+
     .View .info {
         color: #3c3c3b;
         font-family: 'Roboto', sans-serif;
-        font-size: 13px;        
+        font-size: 13px;
         padding-left: 0px;
         margin: 1px;
         border-bottom: 1px rgba(173, 173,173, 0.5) inset;
         text-align: left;
     }
+
     #DivNotices {
         border-bottom-left-radius: 8px;
         border: 2px solid rgba(173, 173,173, 0.1);
     }
-        .View .info div {
-            padding-left: 0px;
-        }
 
-        .View .info .result {
-            margin-left: 10px;
-        }
+    .View .info div {
+        padding-left: 0px;
+    }
 
-        .View .info a {
-            text-decoration: dotted;
-        }
+    .View .info .result {
+        margin-left: 10px;
+    }
+
+    .View .info a {
+        text-decoration: dotted;
+    }
 
     .View div:last-child {
         border-bottom: none;
     }
-    .leyenda{
-        left:0.01rem;
+
+    .leyenda {
+        left: 0.01rem;
         position: sticky;
     }
-
 </style>
 <link href="~/Content/fullcalendar.css" rel="stylesheet" />
 <link href="~/Content/css/FullCalendar-custom.css" rel="stylesheet" />
@@ -145,17 +161,17 @@
                             </div>
 
                             @*<div class="col-12 col-lg-3 col-xl-3">
-                                <div class="form-group">
-                                    <label for="">Desde: </label>
-                                    <input type="date" id="StartDate" class="form-control" />
+                                    <div class="form-group">
+                                        <label for="">Desde: </label>
+                                        <input type="date" id="StartDate" class="form-control" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-12 col-lg-3 col-xl-3">
-                                <div class="form-group">
-                                    <label for="">Hasta:</label>
-                                    <input type="date" id="EndDate" class="form-control" />
-                                </div>
-                            </div>*@
+                                <div class="col-12 col-lg-3 col-xl-3">
+                                    <div class="form-group">
+                                        <label for="">Hasta:</label>
+                                        <input type="date" id="EndDate" class="form-control" />
+                                    </div>
+                                </div>*@
 
                             <div class="col-12 col-lg-4 col-xl-4">
                                 <div class="form-group">
@@ -164,21 +180,21 @@
                                         <div class="col-12 col-md-4 ">
                                             <label class="xxxx radButton">
                                                 Todos
-                                                <input type="radio" checked="checked" name="radio" id="rbtodos" >
+                                                <input type="radio" checked="checked" name="radio" id="rbtodos">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
                                         <div class="col-12 col-md-4">
                                             <label class="xxxx radButton">
                                                 Activo
-                                                <input type="radio" name="radio" id="rbActivo" >
+                                                <input type="radio" name="radio" id="rbActivo">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
                                         <div class="col-12 col-md-4">
                                             <label class="xxxx radButton">
                                                 Inactivo
-                                                <input type="radio" name="radio" id="rbInactivo" >
+                                                <input type="radio" name="radio" id="rbInactivo">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
@@ -186,7 +202,7 @@
                                 </div>
                             </div>
 
-                             
+
 
                             <div class="col-12 col-lg-3 col-xl-2">
                                 <div class="form-group">
@@ -262,10 +278,10 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-12 Chart wrapperTopDx loadingGrid">
                 <div class="row title " onclick="ColapseTable('divTopDx','heightdivTopDx')">
-                    Top 10 Diagnósticos
+                    Top 10 Diagnósticos de <span class="mx-1" id="totalPatient">0</span> pacientes <input type="text" id="RecordsPatient" class="d-none" name="name" value="" />
                 </div>
                 <input id="heightdivTopDx" type="hidden" value="">
                 <div id="divTopDx" style="overflow:hidden">
@@ -395,23 +411,22 @@
 
         }
     }
-}         
+}
 
-    <script>   
+<script>
 
     var month = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre")
     var date = new Date();
-    console.log(month[date.getMonth()]);
     $(".lblDate").text(month[date.getMonth()]);
 
-        $(document).ready(function () {
-            LoadSchedule();
-            LoadTopDiagnostic();
-            MonthlyControls();
-            LoadTopDxOccupational();
-            $("#take").val(10);
-            Filter(1);
-            $("#Assistance-tab").click();
+    $(document).ready(function () {
+        LoadSchedule();
+        LoadTopDxOccupational();
+        LoadTopDiagnostic();
+        MonthlyControls();
+        $("#take").val(10);
+        Filter(1);
+        $("#Assistance-tab").click();
         $(".provDeudas").attr("href", "/Organization/Index");
         $.contextMenu({
             selector: '.context-menu-one',
@@ -421,24 +436,23 @@
             callback: function (key, options) {
                 if (key === "RevisarEMO") {
                     $('tr.context-menu-active').each(function () {
-                        var patientId = $(this).find('td').eq(1).text();
+                        var patientId = $(this).find('td').eq(1).text();                       
                         $('#btnModalReviewEMO').click();
+                        ScrollTop();
                         LoadAntecedent(patientId);
                         LoadGraphPatients(patientId)
-
 
                     });
                 }
                 else if (key === "ConsultaMedica") {
                     $('tr.context-menu-active').each(function () {
                         var personId = $(this).find('td').eq(1).text();
-                        console.log("AMC", personId)
                         LoadMedicalConsultation(personId)
                     });
                 }
             },
             items: {
-                "RevisarEMO": { name: "Revisar ESO"},
+                "RevisarEMO": { name: "Revisar ESO" },
                 "ConsultaMedica": { name: "Consulta Médica" },
                 "sep1": "---------",
                 "Salir": { name: "Salir" }
@@ -456,7 +470,7 @@
                 }
             },
             items: {
-                "ConsultaMedica": { name: "Consulta Médica"},
+                "ConsultaMedica": { name: "Consulta Médica" },
                 "sep1": "---------",
                 "Salir": { name: "Salir" }
             }
@@ -488,6 +502,7 @@
             type: 'GET',
         });
     }
+    
     function LoadMedicalConsultation(personId) {
 
         var url = '/PatientsAssistance/MedicalConsultation?id=' + personId;
@@ -498,6 +513,7 @@
         anchorElement.click();
         document.body.removeChild(anchorElement);
         $("#Loading").hide();
+
     }
 
     function LoadTopDiagnostic() {
@@ -522,30 +538,38 @@
                 console.log(error);
             }
         });
-        }
-        function LoadTopDxOccupational() {
-            $('.wrapperTopDx').addClass('loadingGrid');
-            $.ajax({
-                cache: false,
-                dataType: 'html',
-                method: 'GET',
-                async: true,
-                url: '/PatientsAssistance/TopDiagnosticOcupational',
-                success: function (html) {
-                    if (html.indexOf("IniciarSesion") == -1) {
-                        $('.wrapperTopDx').removeClass('loadingGrid');
-                        LoadDxOccupational(html);
-                    } else {
-                        location.href = "/";
-                    }
-                },
-                error: function (error) {
-                    alerta("Sucedió un error al conectarse al servidor", "rojo");
+    }
+
+    function LoadTotal(total) {
+        document.getElementById('RecordsPatient').value = total;
+        document.getElementById('totalPatient').innerHTML = total;
+        
+    }
+
+    function LoadTopDxOccupational() {
+        $('.wrapperTopDx').addClass('loadingGrid');
+        $.ajax({
+            cache: false,
+            dataType: 'html',
+            method: 'GET',
+            async: true,
+            url: '/PatientsAssistance/TopDiagnosticOcupational',
+            success: function (html) {
+                if (html.indexOf("IniciarSesion") == -1) {
                     $('.wrapperTopDx').removeClass('loadingGrid');
-                    console.log(error);
+                    var total = $("#RecordsPatient").val();
+                    LoadDxOccupational(html,total);
+                } else {
+                    location.href = "/";
                 }
-            });
-        }
+            },
+            error: function (error) {
+                alerta("Sucedió un error al conectarse al servidor", "rojo");
+                $('.wrapperTopDx').removeClass('loadingGrid');
+                console.log(error);
+            }
+        });
+    }
 
     function LoadModalTopDiagnostic() {
         $.ajax({
@@ -658,7 +682,7 @@
             }
 
         });
-    }  
+    }
 
     function GenerateCalender(events) {
         $('#calendar').fullCalendar('destroy');
@@ -705,12 +729,9 @@
             workerstatus = 1;
         }
 
-        console.log("valor ", workerstatus);
-
         //console.log("todos", rbtodos.checked);
         //console.log("Activo",rbActivo.checked);
         //console.log("Inactivo",rbInactivo.checked);
-
 
         var data = {
             Patient: $("#PacientFullName").val(),
@@ -742,6 +763,7 @@
             }
         });
     }
+
 
     function Test() {
         console.log("hola soy solamanente test ");
@@ -801,17 +823,21 @@
             url: '/PatientsAssistance/DownloadFile',
             success: function (response) {
                 var base64 = JSON.parse(response);
+                
                 var binaryString = window.atob(base64._buffer);
+                
                 var binaryLen = binaryString.length;
+                
                 var bytes = new Uint8Array(binaryLen);
                 for (var i = 0; i < binaryLen; i++) {
                     var ascii = binaryString.charCodeAt(i);
                     bytes[i] = ascii;
                 }
+                
                 var d = new Date();
                 var fileName = patientId + ".pdf";
                 var blob = new Blob([bytes], { type: 'application/pdf' });
-
+                console.log(blob);
                 if (window.navigator.msSaveOrOpenBlob) {
                     window.navigator.msSaveOrOpenBlob(blob, fileName);
                 } else if (window.navigator.userAgent.indexOf("Firefox") > 0) {
@@ -840,26 +866,26 @@
             }
         })
     }
+    
     function NavTabActiveDx() {
         $("ul li a").removeClass("active");
         $(this).toggleClass("active");
     }
     function RevisedStatusEMO(serviceId, iterador) {
-    var width = $(window).width();
-    var height = $(window).height();
-    $.notificacion({
-        classTitleAndButtons: "warningTitleAndButtons",
-        classMessage: "warningMessage",
-        title: "¡ Aviso !",
-        icono: "",
-        contenido: "¿Seguro de marcar como revisado? ",
-        btnAceptar: "Aceptar",
-        btnCancelar: "Cancelar",
-        btnOk: "OK",
-        mostrarBtnAceptarAndCancelar: "",
-        mostrarBtnOk: "no",
-    })
-
+        var width = $(window).width();
+        var height = $(window).height();
+        notificacion({
+            classTitleAndButtons: "warningTitleAndButtons",
+            classMessage: "warningMessage",
+            title: "¡ Aviso !",
+            icono: "",
+            contenido: "¿Seguro de marcar como revisado? ",
+            btnAceptar: "Aceptar",
+            btnCancelar: "Cancelar",
+            btnOk: "OK",
+            mostrarBtnAceptarAndCancelar: "",
+            mostrarBtnOk: "no",
+        })        
         $(".bigBox-Aceptar").on("click", function () {
             var status = true;
             $(".pluginContenedor").remove();
@@ -872,11 +898,11 @@
                 url: '/PatientsAssistance/RevisedStatusEMO?serviceId=' + serviceId + '&status=' + status,
                 success: function (json) {
                     $("#Loading").hide();
-                    $(".row-" + iterador).removeClass("fas fa-eye").addClass("far fa-check-circle");             
+                    $(".row-" + iterador).removeClass("fas fa-eye").addClass("far fa-check-circle");
                     console.log(iterador);
-                    if (json) { 
+                    if (json) {
                     } else {
-                        $.notificacion({
+                        notificacion({
                             classTitleAndButtons: "infoTitleAndButtons",
                             classMessage: "infoMessage",
                             title: "Error",
@@ -893,7 +919,7 @@
                 },
                 error: function (error) {
                     //alerta("Sucedió un error al conectarse al servidor", "rojo");
-                    $.notificacion({
+                    notificacion({
                         classTitleAndButtons: "infoTitleAndButtons",
                         classMessage: "infoMessage",
                         title: "Error",
@@ -912,5 +938,10 @@
         })
 
 
+    }
+    function ScrollTop() {
+        $("html, body").animate({
+            scrollTop: 0
+        }, 100)
     }
 </script>

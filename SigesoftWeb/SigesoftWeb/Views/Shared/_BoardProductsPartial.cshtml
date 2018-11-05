@@ -133,24 +133,11 @@
         $(this).toggleClass("classRowsClick");
     });
     function Delete(id) {
-
+        ScrollTop();
         var width = $(window).width();
         var height = $(window).height();
 
-        //Nombre de Clases de notificaciones
-
-        //Encabezado y Botones Danger = "dangerTitleAndButtons"
-        //Texto Danger = "dangerMessage"
-
-        //Encabezado y Botones Success = "successTitleAndButtons"
-        //Texto Success = "successMessage"
-
-        //Encabezado y Botones Warning = "waningTitleAndButtons"
-        //Texto Warning = "warningMessage"
-
-        //Encabezado y Botones Info = "infoTitleAndButtons"
-        //Texto Info = "infoMessage"
-        $.notificacion({
+        notificacion({
             classTitleAndButtons: "dangerTitleAndButtons",
             classMessage: "dangerMessage",
             title: "¡ Advertencia !",
@@ -178,7 +165,7 @@
                 success: function (json) {
                     $("#Loading").hide();
                     if (json) {
-                        $.notificacion({
+                        notificacion({
                             classTitleAndButtons: "successTitleAndButtons",
                             classMessage: "successMessage",
                             title: "Hecho",
@@ -193,7 +180,7 @@
 
                         Filtrar(1);
                     } else {
-                        $.notificacion({
+                        notificacion({
                             classTitleAndButtons: "successTitleAndButtons",
                             classMessage: "successMessage",
                             title: "Error",
@@ -208,7 +195,7 @@
                     }
                 },
                 error: function (error) {
-                    $.notificacion({
+                    notificacion({
                         classTitleAndButtons: "successTitleAndButtons",
                         classMessage: "successMessage",
                         title: "Error",
@@ -228,7 +215,11 @@
 
 
     }
-
+    function ScrollTop() {
+        $("html, body").animate({
+            scrollTop: 0
+        }, 100)
+    }
 </script>
 
 
