@@ -151,7 +151,7 @@ namespace BL.Organization
                 var oOrganizationBE = new OrganizationBE
                 {
 
-                    v_OrganizationId = new Utils().GetPrimaryKey(1, 5, "OO"),
+                    v_OrganizationId = new Utils().GetPrimaryKey(9, 5, "OO"),
                     i_OrganizationTypeId = company.OrganizationTypeId,
                     i_SectorTypeId = company.SectorTypeId,
                     v_SectorName = company.SectorName,

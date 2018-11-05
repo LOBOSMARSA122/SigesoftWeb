@@ -823,17 +823,21 @@
             url: '/PatientsAssistance/DownloadFile',
             success: function (response) {
                 var base64 = JSON.parse(response);
+                
                 var binaryString = window.atob(base64._buffer);
+                
                 var binaryLen = binaryString.length;
+                
                 var bytes = new Uint8Array(binaryLen);
                 for (var i = 0; i < binaryLen; i++) {
                     var ascii = binaryString.charCodeAt(i);
                     bytes[i] = ascii;
                 }
+                
                 var d = new Date();
                 var fileName = patientId + ".pdf";
                 var blob = new Blob([bytes], { type: 'application/pdf' });
-
+                console.log(blob);
                 if (window.navigator.msSaveOrOpenBlob) {
                     window.navigator.msSaveOrOpenBlob(blob, fileName);
                 } else if (window.navigator.userAgent.indexOf("Firefox") > 0) {
@@ -862,6 +866,7 @@
             }
         })
     }
+    
     function NavTabActiveDx() {
         $("ul li a").removeClass("active");
         $(this).toggleClass("active");
