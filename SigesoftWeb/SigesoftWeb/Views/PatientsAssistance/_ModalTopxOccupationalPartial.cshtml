@@ -1,8 +1,8 @@
 ﻿
 
-<div class="" id="reportOccupational" style="width:100%">
-    <div id="chartOccupational" class="chart"></div>
-</div>
+<div class="" id="reportOccupationalModal" style="width:100%">
+    <div id="chartOccupationalModal" class="chart table-responsive"></div>
+</div> 
 
 @{
 
@@ -12,7 +12,7 @@
     else
     {
         <script>
-            function LoadDxOccupational(data) {
+            function LoadDxOccupationalModal(data) {
                 var obj = JSON.parse(data);
 
                 var arrName = new Array();
@@ -24,12 +24,7 @@
                 }
                 LoadTotal(total);
 
-                Highcharts.chart('chartOccupational', {
-                    navigation: {
-                        buttonOptions: {
-                            enabled: false
-                        }
-                    },
+                Highcharts.chart('chartOccupationalModal', {
                     chart: {
                         type: 'column'
                     },
@@ -90,4 +85,3 @@
         </script>
     }
 }
-

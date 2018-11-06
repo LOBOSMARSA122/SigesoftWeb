@@ -659,6 +659,7 @@
     <Content Include="Views\Organization\Index.cshtml" />
     <Content Include="Views\Organization\_BoardCompanyPartial.cshtml" />
     <Content Include="Views\Organization\CreateCompany.cshtml" />
+    <Content Include="Views\PatientsAssistance\_ModalTopxOccupationalPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
