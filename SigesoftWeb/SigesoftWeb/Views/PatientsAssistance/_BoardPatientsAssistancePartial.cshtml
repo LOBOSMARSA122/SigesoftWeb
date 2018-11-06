@@ -36,34 +36,64 @@
         position: relative;
         top: -1px;
     }
-    .text1, .text2, .text3 {
+    .text1, .text2, .text3, .text4 {
         font-size: 0.7em;
     }
     .text1 {
         color: #808080;
     }
     .text2 {
-        color: #ff0000;
+        color: #1c1fd3;
     }
     .text3 {
-        color: #308705;
+        color: #0af332;
     }
+    .text4 {
+        color: #FF0000;
+    }
+
     .ant-badge-status-EMOR {
-        background-color: #db0404;
+        background-color: white;
     }
 
     .ant-badge-status-EMO {
-        background-color: #db0404;
+        background-color: #1c1fd3;
     }
 
     .ant-badge-status-PENDINGCONTROLS {
-        background-color: #0be80f;
+        background-color: #0af332;
+        padding-right: 5px;
     }
 
     .ant-badge-status-CONTROLSCULMINATED {
         background-color: #0711c4;
     }
+    .ant-badge-status-assistence {
+        background-color: #808080;
+        padding-right: 5px;
+    }
+    .ant-badge-status-ocupational {
+        background-color: #1c1fd3;
+    }
+    .ant-badge-status-control {
+        background-color: #0af332;
+        padding-right: 5px;
+    }
+
 </style>
+<head>
+    <script>
+        function imprime(el) {
+            var restorepage = document.body.innerHTML;
+            var print = document.getElementById(el).innerHTML;
+            document.body.innerHTML = print;
+
+            document.body.style.margin = "10mm 15mm 10mm 15mm";
+            window.print();
+            document.body.innerHTML = restorepage;
+        }
+    </script>
+</head>
 
 <div class="container-fluid" style="padding:0px;">
     <div class="box box-default mt-2" id="acordion">
@@ -105,147 +135,159 @@
     </div>
     <div class="box box-info mt-2">
         <div class="table-responsive">
-            <table class="table table-hover" id="TablaAExportar" style="text-align:center">
-                <thead>
-                    <tr>
-                        <th>Paciente</th>
-                        <th>Empresa-Sede</th>
-                        @*<th>Protocolo</th>*@
-                        <th>Puesto</th>
-                        <th>Género</th>
-                        <th>Edad</th>
-                        @*<th>Fch.Atención</th>
+            <div id="printReport">
+                <table class="table table-hover" id="TablaAExportar" style="text-align:center">
+                    <thead>
+                        <tr>
+                            <th>Paciente</th>
+                            <th>Empresa-Sede</th>
+                            @*<th>Protocolo</th>*@
+                            <th>Puesto</th>
+                            <th>Género</th>
+                            <th>Edad</th>
+                            @*<th>Fch.Atención</th>
                         <th>Ges</th>
                         <th>Género</th>
                         <th>Servicio</th>*@
-                    </tr>
-                </thead>
-                <tbody>
-                    @{
-                        if (ViewBag.Services == null)
-                        {
-                            <tr><td colspan="7" class="text-center">Error al conectarse al servidor</td></tr>
-                        }
-                        else if (ViewBag.Services.List.Count == 0)
-                        {
-                            <tr><td colspan="7" class="text-center">No hay resultados</td></tr>
-                        }
-                        else
-                        {
-                            foreach (var item in ViewBag.Services.List)
-                            {
-                                if (item.PendingEvent == "WITHOUTSERVICES")
-                                {
-                                    <tr class="context-menu-one">
-                                        <td style="display:none">@item.ServiceId</td>
-                                        <td style="display:none">@item.PatientId</td>
-                                        <td class="ColumnNoWrap"> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"> <a href="#" data-toggle="modal" data-target="#modalOption">   <span class="ant-badge-status-dot"></span>    </a>   <span class="ant-badge-status-text pl-2">@item.PatientFullName</span></span></td>
-                                        <td class="ColumnNoWrap">@item.OrganizationLocation</td>
-                                        <td class="ColumnNoWrap">@item.Occupation</td>
-                                        <td class="ColumnNoWrap">@item.Gender</td>
-                                        <td class="ColumnNoWrap">@item.Age</td>
-                                    </tr>
-                                }
-                                if (item.PendingEvent == "EMOR")
-                                {
-                                    <tr class="context-menu-one">
-                                        <td style="display:none">@item.ServiceId</td>
-                                        <td style="display:none">@item.PatientId</td>
-                                        <td class="ColumnNoWrap d-flex pl-1"><a href="#" class="d-flex" data-toggle="modal" data-target="#modalOption"> <span class="d-flex justify-content-start align-items-start fas fa-long-arrow-alt-down mt-1 mr-2 ml-2 ant-badge-status-EMOR"></span>  </a>@item.PatientFullName</td>
-                                        <td class="ColumnNoWrap">@item.OrganizationLocation</td>
-                                        <td class="ColumnNoWrap">@item.Occupation</td>
-                                        <td class="ColumnNoWrap">@item.Gender</td>
-                                        <td class="ColumnNoWrap">@item.Age</td>
-                                    </tr>
-                                }
-                                if (item.PendingEvent == "EMO")
-                                {
-                                    <tr class="context-menu-one">
-                                        <td style="display:none">@item.ServiceId</td>
-                                        <td style="display:none">@item.PatientId</td>
-                                        <td class="ColumnNoWrap"> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"> <a href="#" data-toggle="modal" data-target="#modalOption">   <span class="ant-badge-status-dot ant-badge-status-EMO"></span>    </a>   <span class="ant-badge-status-text pl-2">@item.PatientFullName</span></span></td>
-                                        <td class="ColumnNoWrap">@item.OrganizationLocation</td>
-                                        <td class="ColumnNoWrap">@item.Occupation</td>
-                                        <td class="ColumnNoWrap">@item.Gender</td>
-                                        <td class="ColumnNoWrap">@item.Age</td>
-                                    </tr>
-                                }
-                                else if (item.PendingEvent == "PENDINGCONTROLS")
-                                {
-                                    <tr class="context-menu-two">
-                                        <td style="display:none">@item.ServiceId</td>
-                                        <td style="display:none">@item.PatientId</td>
-                                        <td class="ColumnNoWrap"> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"><span class="ant-badge-status-dot ant-badge-status-PENDINGCONTROLS"></span><span class="ant-badge-status-text pl-2">@item.PatientFullName</span></span></td>
-                                        <td class="ColumnNoWrap">@item.OrganizationLocation</td>
-                                        <td class="ColumnNoWrap">@item.Occupation</td>
-                                        <td class="ColumnNoWrap">@item.Gender</td>
-                                        <td class="ColumnNoWrap">@item.Age</td>
-                                    </tr>
-                                }
-                                else if (item.PendingEvent == "CONTROLSCULMINATED")
-                                {
-                                    <tr class="context-menu-two">
-                                        <td style="display:none">@item.ServiceId</td>
-                                        <td style="display:none">@item.PatientId</td>
-                                        <td class="ColumnNoWrap"> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"><span class="ant-badge-status-dot ant-badge-status-CONTROLSCULMINATED"></span><span class="ant-badge-status-text pl-2">@item.PatientFullName</span></span></td>
-                                        <td class="ColumnNoWrap">@item.OrganizationLocation</td>
-                                        <td class="ColumnNoWrap">@item.Occupation</td>
-                                        <td class="ColumnNoWrap">@item.Gender</td>
-                                        <td class="ColumnNoWrap">@item.Age</td>
-                                    </tr>
-                                }                               
-                            }
-                        }
-                    }
-
-                </tbody>
-            </table>  
-            <div class="paginacion-tabla d-flex justify-content-center">               
-                <nav class="col-12 d-flex justify-content-center">
-                    <ul class="pagination">
+                        </tr>
+                    </thead>
+                    <tbody>
                         @{
-                            if (Index > 1)
+                            if (ViewBag.Services == null)
                             {
-                                <li class="page-item" onclick="Filter(@(Index - 1))">
-                                    <span class="page-link" aria-hidden="true"><i class="text-info fas fa-caret-left"></i></span>
-                                </li>
+                                <tr><td colspan="7" class="text-center">Error al conectarse al servidor</td></tr>
                             }
-                            int pagina = 0;
-                            if (Take > 0)
+                            else if (ViewBag.Services.List.Count == 0)
                             {
-                                for (int i = 0; i < Total; i = i + Take)
+                                <tr><td colspan="7" class="text-center">No hay resultados</td></tr>
+                            }
+                            else
+                            {
+                                foreach (var item in ViewBag.Services.List)
                                 {
-                                    pagina++;
-                                    if ((pagina > (Index - 5)) && pagina < (Index + 5))
+                                    if (item.PendingEvent == "WITHOUTSERVICES")
                                     {
-                                        <li @(pagina == Index ? "class=pagination-active" : "onclick=Filter(" + pagina + ")")><span class="page-link" aria-hidden="true">@pagina</span></li>
+                                        <tr class="context-menu-one">
+                                            <td style="display:none">@item.ServiceId</td>
+                                            <td style="display:none">@item.PatientId</td>
+                                            <td class="ColumnNoWrap"> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"> <a href="#" data-toggle="modal" data-target="#modalOption">   <span class="ant-badge-status-dot"></span>    </a>   <span class="ant-badge-status-text pl-2">@item.PatientFullName</span></span></td>
+                                            <td class="ColumnNoWrap">@item.OrganizationLocation</td>
+                                            <td class="ColumnNoWrap">@item.Occupation</td>
+                                            <td class="ColumnNoWrap">@item.Gender</td>
+                                            <td class="ColumnNoWrap">@item.Age</td>
+                                        </tr>
                                     }
-
-
+                                    if (item.PendingEvent == "EMOR")
+                                    {
+                                        <tr class="context-menu-one">
+                                            <td style="display:none">@item.ServiceId</td>
+                                            <td style="display:none">@item.PatientId</td>
+                                            <td class="ColumnNoWrap d-flex pl-1"><a href="#" class="d-flex" data-toggle="modal" data-target="#modalOption"> <span class="d-flex justify-content-start align-items-start mt-1 mr-2 ml-2 ant-badge-status-EMOR" style="color:red;"><i class="fas fa-long-arrow-alt-down"></i> </span>  </a>@item.PatientFullName</td>
+                                            <td class="ColumnNoWrap">@item.OrganizationLocation</td>
+                                            <td class="ColumnNoWrap">@item.Occupation</td>
+                                            <td class="ColumnNoWrap">@item.Gender</td>
+                                            <td class="ColumnNoWrap">@item.Age</td>
+                                        </tr>
+                                    }
+                                    if (item.PendingEvent == "EMO")
+                                    {
+                                        <tr class="context-menu-one">
+                                            <td style="display:none">@item.ServiceId</td>
+                                            <td style="display:none">@item.PatientId</td>
+                                            <td class="ColumnNoWrap"> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"> <a href="#" data-toggle="modal" data-target="#modalOption">   <span class="ant-badge-status-dot ant-badge-status-EMO"></span>    </a>   <span class="ant-badge-status-text pl-2">@item.PatientFullName</span></span></td>
+                                            <td class="ColumnNoWrap">@item.OrganizationLocation</td>
+                                            <td class="ColumnNoWrap">@item.Occupation</td>
+                                            <td class="ColumnNoWrap">@item.Gender</td>
+                                            <td class="ColumnNoWrap">@item.Age</td>
+                                        </tr>
+                                    }
+                                    else if (item.PendingEvent == "PENDINGCONTROLS")
+                                    {
+                                        <tr class="context-menu-two">
+                                            <td style="display:none">@item.ServiceId</td>
+                                            <td style="display:none">@item.PatientId</td>
+                                            <td class="ColumnNoWrap"> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"><a href="#" data-toggle="modal" data-target="#modalOption"> <span class="ant-badge-status-dot ant-badge-status-PENDINGCONTROLS"></span> </a> <span class="ant-badge-status-text pl-2">@item.PatientFullName</span></span></td>
+                                            <td class="ColumnNoWrap">@item.OrganizationLocation</td>
+                                            <td class="ColumnNoWrap">@item.Occupation</td>
+                                            <td class="ColumnNoWrap">@item.Gender</td>
+                                            <td class="ColumnNoWrap">@item.Age</td>
+                                        </tr>
+                                    }
+                                    else if (item.PendingEvent == "CONTROLSCULMINATED")
+                                    {
+                                        <tr class="context-menu-two">
+                                            <td style="display:none">@item.ServiceId</td>
+                                            <td style="display:none">@item.PatientId</td>
+                                            <td class="ColumnNoWrap"> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"><span class="ant-badge-status-dot ant-badge-status-CONTROLSCULMINATED"></span><span class="ant-badge-status-text pl-2">@item.PatientFullName</span></span></td>
+                                            <td class="ColumnNoWrap">@item.OrganizationLocation</td>
+                                            <td class="ColumnNoWrap">@item.Occupation</td>
+                                            <td class="ColumnNoWrap">@item.Gender</td>
+                                            <td class="ColumnNoWrap">@item.Age</td>
+                                        </tr>
+                                    }
                                 }
                             }
-                            if (pagina > Index)
-                            {
-                                <li class="page-item" onclick="Filter(@(Index + 1))">
-                                    <span class="page-link" aria-hidden="true"><i class="text-info fas fa-caret-right"></i></span>
-                                </li>
-                            }
                         }
-                    </ul>
-                </nav>
-            </div>
-            <div class="row w-100 m-0 p-1 leyenda">
-                <div class="col-12 d-flex justify-content-center align-items-center">
-                    <span class="ant-badge-status-dot ant-badge-status-assistence"></span>
-                    <label class="m-0 pl-1 mr-2 text1">RR.HH</label>
-                    <span class="ant-badge-status-dot ant-badge-status-ocupational"></span>
-                    <label class="m-0 pl-1 mr-2 text2">EMO</label>
-                    <span class="ant-badge-status-dot ant-badge-status-control"></span>
-                    <label class="m-0 pl-1 mr-2 text3">CONTROL</label>
+
+                    </tbody>
+                </table>
+                </div>
+                <div class="paginacion-tabla d-flex justify-content-center">
+                    <nav class="col-12 d-flex justify-content-center">
+                        <ul class="pagination">
+                            @{
+                                if (Index > 1)
+                                {
+                                    <li class="page-item" onclick="Filter(@(Index - 1))">
+                                        <span class="page-link" aria-hidden="true"><i class="text-info fas fa-caret-left"></i></span>
+                                    </li>
+                                }
+                                int pagina = 0;
+                                if (Take > 0)
+                                {
+                                    for (int i = 0; i < Total; i = i + Take)
+                                    {
+                                        pagina++;
+                                        if ((pagina > (Index - 5)) && pagina < (Index + 5))
+                                        {
+                                            <li @(pagina == Index ? "class=pagination-active" : "onclick=Filter(" + pagina + ")")><span class="page-link" aria-hidden="true">@pagina</span></li>
+                                        }
+
+
+                                    }
+                                }
+                                if (pagina > Index)
+                                {
+                                    <li class="page-item" onclick="Filter(@(Index + 1))">
+                                        <span class="page-link" aria-hidden="true"><i class="text-info fas fa-caret-right"></i></span>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </nav>
+                </div>
+                <div class="row w-100 m-0 p-1 leyenda">
+                    <div class="col-11 d-flex justify-content-center align-items-center">
+                        <span class="ant-badge-status-dot ant-badge-status-assistence"></span>
+                        <label class="m-0 pl-1 mr-2 text1">RR.HH</label>
+                        <span class="ant-badge-status-dot ant-badge-status-ocupational"></span>
+                        <label class="m-0 pl-1 mr-2 text2">EMO</label>
+                        <span class="ant-badge-status-dot ant-badge-status-control"></span>
+                        <label class="m-0 pl-1 mr-2 text3">CONTROL</label>
+                        <span class="ant-badge-status-EMOR" style="color:red;"><i class="fas fa-long-arrow-alt-down"></i> </span>
+                        <label class="m-0 pl-1 mr-1 text4">EMOR</label>
+
+
+                    </div>
+                    <div class="col-1">
+                        <span style="font-size: 1em; color: black;">
+                            <i class="fas fa-print" onclick="imprime('printReport')"></i>
+                        </span>
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </div>
 
 <!--Modal-->
