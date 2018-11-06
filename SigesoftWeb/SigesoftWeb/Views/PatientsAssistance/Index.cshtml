@@ -64,7 +64,7 @@
         overflow: hidden;
     }
 
-    .modal-dialog {
+    .modalDialog {
         margin: 0px auto;
         max-width: 100%;
     }
@@ -201,9 +201,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
                             <div class="col-12 col-lg-3 col-xl-2">
                                 <div class="form-group">
                                     <label for="" id="filtPaciente" class="d-none d-lg-block">Filtrar</label>
@@ -238,6 +235,7 @@
                     </div>
                 </div>
             </div>
+
         </main>
         <aside class="col-12 col-md-4 colAside" style="padding-right: 0px;">
             <div class="row notice" style="margin-right:0px">
@@ -333,8 +331,37 @@
 
 
     <!--Modal-->
+    <div class="modal fade bd-example-modal-lg" id="ModalData" tabindex="-1" role="dialog" aria-labelledby="ModalData" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-4"><span>Fecha:</span></div>
+                        <div class="col-8"><div class="form-group"><input type="date" class="form-control date" name="name" value="" /></div></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <span>Paciente:</span>
+                        </div>
+                        <div class="col-8">
+                            <div class="form-group">
+                                <input type="text" class="w-100" id="NamePatient" name="name" value="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" data-toggle="modal" data-target="#ModalData" class="btnModalData d-none"></button>
+
     <div class="modal fade p-0 modalFade" id="modal1">
-        <div class="modal-dialog d-flex justify-content-center align-items-center modal-dialog-centered">
+        <div class="modal-dialog modalDialog d-flex justify-content-center align-items-center modal-dialog-centered">
             <div class="modal-content modalContent">
                 <div class="modal-header pb-4">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -347,7 +374,7 @@
     </div>
 
     <div class="modal fade p-0 modalFade" id="modal2">
-        <div class="modal-dialog d-flex justify-content-center align-items-center modal-dialog-centered">
+        <div class="modal-dialog modalDialog d-flex justify-content-center align-items-center modal-dialog-centered">
             <div class="modal-content modalContent">
                 <div class="modal-header pb-4">
                     <button type="button" class="close " data-dismiss="modal" aria-label="Close">
@@ -359,7 +386,7 @@
         </div>
     </div>
     <div class="modal fade p-0 modalFade" id="modal3">
-        <div class="modal-dialog d-flex justify-content-center align-items-center modal-dialog-centered">
+        <div class="modal-dialog modalDialog d-flex justify-content-center align-items-center modal-dialog-centered">
             <div class="modal-content modalContent">
                 <div class="modal-header pb-4">
                     <button type="button" class="close " data-dismiss="modal" aria-label="Close">
@@ -372,7 +399,7 @@
     </div>
 
     <div class="modal fade p-0 modalFade" id="modalReviewEMO">
-        <div class="modal-dialog d-flex justify-content-center align-items-center modal-dialog-centered">
+        <div class="modal-dialog modalDialog d-flex justify-content-center align-items-center modal-dialog-centered">
             <div class="modal-content modalContent">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -390,9 +417,8 @@
 </div>
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-@*<script src="~/Scripts/fullcalendar.js"></script>*@
-@*<script src="~/Scripts/fullcalendar.min.js"></script>*@
-<link href="~/Content/css/modal.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+
 @section Scripts{
     @{
         if (Request.Browser.Browser == "IE" && Convert.ToDouble(Request.Browser.Version) < 9.0)
@@ -409,6 +435,7 @@
             <script src="~/Scripts/offline-exporting.js"></script>
             <link href="~/Content/css/highcharts.css" rel="stylesheet">
 
+
         }
     }
 }
@@ -420,23 +447,25 @@
     $(".lblDate").text(month[date.getMonth()]);
 
     $(document).ready(function () {
+        
         LoadSchedule();
         LoadTopDxOccupational();
         LoadTopDiagnostic();
         MonthlyControls();
         $("#take").val(10);
         Filter(1);
+        $("#NamePatient").keyup(function () { AutoCompleteName() })
         $("#Assistance-tab").click();
         $(".provDeudas").attr("href", "/Organization/Index");
         $.contextMenu({
             selector: '.context-menu-one',
             trigger: 'left',
 
-
+        
             callback: function (key, options) {
                 if (key === "RevisarEMO") {
                     $('tr.context-menu-active').each(function () {
-                        var patientId = $(this).find('td').eq(1).text();                       
+                        var patientId = $(this).find('td').eq(1).text();
                         $('#btnModalReviewEMO').click();
                         ScrollTop();
                         LoadAntecedent(patientId);
@@ -476,6 +505,24 @@
             }
         });
 
+        $.contextMenu({
+            selector: '.context-menu-three',
+            trigger: 'left',
+            items: {
+                "Ver": { name: "Ver" },
+                "sep1": "----------",
+                "salir": { name: "Salir" }
+            },
+
+
+            callback: function (key, options) {
+                if (key === "Ver") {
+                    $('.btnModalData').click();
+                    
+                }
+            }
+        });
+
     });
 
     function LoadAntecedent(patientId) {
@@ -502,7 +549,7 @@
             type: 'GET',
         });
     }
-    
+
     function LoadMedicalConsultation(personId) {
 
         var url = '/PatientsAssistance/MedicalConsultation?id=' + personId;
@@ -542,7 +589,7 @@
 
     function LoadTotal(total) {
         document.getElementById('RecordsPatient').value = total;
-        document.getElementById('totalPatient').innerHTML = total;       
+        document.getElementById('totalPatient').innerHTML = total;
     }
 
     function LoadTopDxOccupational() {
@@ -557,7 +604,7 @@
                 if (html.indexOf("IniciarSesion") == -1) {
                     $('.wrapperTopDx').removeClass('loadingGrid');
                     var total = $("#RecordsPatient").val();
-                    LoadDxOccupational(html,total);
+                    LoadDxOccupational(html, total);
                 } else {
                     location.href = "/";
                 }
@@ -676,7 +723,7 @@
                         allDay: true
                     })
                 });
-                GenerateCalender(events);
+                GenerateCalender();
             },
             error: function (error) {
                 alert('Failed');
@@ -685,8 +732,9 @@
         });
     }
 
-    function GenerateCalender(events) {
+    function GenerateCalender() {
         $('#calendar').fullCalendar('destroy');
+
         $('#calendar').fullCalendar({
             lang: 'es',
             contentHeight: 600,
@@ -697,23 +745,15 @@
                 center: 'title',
                 right: 'month,basicWeek,basicDay,agenda'
             },
+            dayClick: function (date, jsEvent, view) {
+                $(".date").val(date.format());
+                $(this).addClass("context-menu-three");
+
+            },
+
             eventLimit: true,
             eventColor: '#378006',
-            events: events,
-            //eventClick: function (calEvent, jsEvent, view) {
-            //    $('#tabInformacion').removeClass("active");
-            //    $('#tabImportante').removeClass("active");
-            //    $('#tabRegistro').addClass("active");
 
-            //    $('#b').removeClass("active");
-            //    $('#c').removeClass("active");
-            //    $('#a').addClass("active");
-
-            //    $('#ModalInscripcion #eventTitle').text("Inscribir al Curso de: " + calEvent.title);
-            //    $('#CursoProgramadoId').val(calEvent.description);
-            //    $('#ModalInscripcion').modal();
-            //    loadSalon();
-            //}
         });
     }
 
@@ -824,17 +864,17 @@
             url: '/PatientsAssistance/DownloadFile',
             success: function (response) {
                 var base64 = JSON.parse(response);
-                
+
                 var binaryString = window.atob(base64._buffer);
-                
+
                 var binaryLen = binaryString.length;
-                
+
                 var bytes = new Uint8Array(binaryLen);
                 for (var i = 0; i < binaryLen; i++) {
                     var ascii = binaryString.charCodeAt(i);
                     bytes[i] = ascii;
                 }
-                
+
                 var d = new Date();
                 var fileName = patientId + ".pdf";
                 var blob = new Blob([bytes], { type: 'application/pdf' });
@@ -867,7 +907,7 @@
             }
         })
     }
-    
+
     function NavTabActiveDx() {
         $("ul li a").removeClass("active");
         $(this).toggleClass("active");
@@ -886,7 +926,7 @@
             btnOk: "OK",
             mostrarBtnAceptarAndCancelar: "",
             mostrarBtnOk: "no",
-        })        
+        })
         $(".bigBox-Aceptar").on("click", function () {
             var status = true;
             $(".pluginContenedor").remove();
@@ -940,6 +980,26 @@
 
 
     }
+
+    function AutoCompleteName() {
+
+        $.ajax(
+            {
+                url: '/PatientsAssistance/GetNamePatient?value=' + $('#NamePatient').val(),
+                type: 'GET',
+                success: function (availableTags) {
+                    console.log(availableTags);
+                    $("#NamePatient").autocomplete({
+                        source: availableTags
+                    });
+
+                },
+                error: function () {
+                    alert('error');
+                }
+            })
+    }
+
     function ScrollTop() {
         $("html, body").animate({
             scrollTop: 0

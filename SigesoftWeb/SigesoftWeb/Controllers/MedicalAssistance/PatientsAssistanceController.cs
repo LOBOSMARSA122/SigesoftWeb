@@ -140,7 +140,21 @@ namespace SigesoftWeb.Controllers.MedicalAssistance
             });
         }
 
-        
+        public async Task<JsonResult> GetNamePatient(string value)
+        {
+            Api API = new Api();
+            Dictionary<string, string> args = new Dictionary<string, string>
+            {
+                { "value", value}
+            };
+            List<string> result = API.Get<List<string>>("PatientsAssistance/GetNamePatient", args);
+            return await Task.Run(() =>
+            {
+                
+                return new JsonResult { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            });
+        }
+
         public JsonResult DownloadFile(string patientId)
         {
             Api API = new Api();

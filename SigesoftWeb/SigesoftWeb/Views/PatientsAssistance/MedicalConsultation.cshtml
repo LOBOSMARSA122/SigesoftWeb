@@ -673,6 +673,33 @@
                             </div>
                         </div>
                     </div>
+                    <div class="modal fade" id="ModalData" tabindex="-1" role="dialog" aria-labelledby="ModalData" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">                                   
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-4"><span>Fecha:</span></div>
+                                        <div class="col-8"><div class="form-group"><input type="date" class="form-control date" name="name" value="" /></div></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <span>Paciente:</span>
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="form-group">
+                                                <input type="text" class="w-100" name="name" value="@ViewBag.Indicators.DataPatient[0].Name" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -780,7 +807,8 @@
     LoadGlucose();
     LoadCvf();
     $(document).ready(function () {
-        LoadSchedule();
+        GenerateCalender();
+
         var inputs = document.getElementsByClassName('inputLabelFloat');
         for (var i = 0; i < inputs.length; i++) {
             inputs[i].addEventListener('keyup', function () {
@@ -791,6 +819,8 @@
                 }
             });
         }
+
+        
     })
 
     function TableActive() {
@@ -940,36 +970,11 @@
         })
     }
 
-    function LoadSchedule() {
 
-        var events = [];
-        $.ajax({
-            type: "GET",
-            async: true,
-            url: "/PatientsAssistance/GetSchedule",
-            success: function (data) {
-                $.each(data, function (i, v) {
-                    events.push({
-                        title: v.Pacient,
-                        description: v.EsoType,
-                        start: moment(v.ServiceDate),
-                        end: v.FechaFin != null ? moment(v.ServiceDate).add(1, "day") : null,
-                        color: v.Color,
-                        allDay: true
-                    })
-                });
-                GenerateCalender(events);
-            },
-            error: function (error) {
-                alert('Failed');
-            }
+    function GenerateCalender() {    
 
-        });
-    }
-
-
-    function GenerateCalender(events) {
         $('#calendar').fullCalendar('destroy');
+
         $('#calendar').fullCalendar({
             lang: 'es',
             contentHeight: 600,
@@ -980,10 +985,32 @@
                 center: 'title',
                 right: 'month,basicWeek,basicDay,agenda'
             },
+            dayClick: function (date, jsEvent, view) {
+                $(".date").val(date.format());
+                $(this).addClass("context-menu-one");
+                $.contextMenu({
+                    selector: '.context-menu-one',
+                    trigger: 'left',
+                    items: {
+                        "Ver": { name: "Ver" },
+                        "sep1": "----------",
+                        "salir": { name: "Salir" }
+                    },
+
+
+                    callback: function (key, options) {
+                        if (key === "Ver") {
+                            $("#ModalData").modal();
+                        }
+                    }
+                });
+            },
+
             eventLimit: true,
             eventColor: '#378006',
-            events: events,
+
         });
     }
+
 </script>
 

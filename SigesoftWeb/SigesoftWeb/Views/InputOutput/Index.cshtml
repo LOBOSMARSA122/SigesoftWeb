@@ -298,12 +298,13 @@
                 url: '/InputOutput/GetProductName?value=' + $('#nameProduct-' + movNumber).val(),
                 type: 'GET',
                 success: function (availableTags) {
+                    console.log(availableTags);
                     var list = [];
 
                     for (var i = 0; i < availableTags.length; i++) {
                         list.push(availableTags[i]);
                     }
-                    console.log(list);
+                                                   
                     $("#nameProduct-" + movNumber).autocomplete({
                         source: list
                     });

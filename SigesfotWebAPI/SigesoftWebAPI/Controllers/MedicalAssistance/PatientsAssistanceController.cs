@@ -141,5 +141,15 @@ namespace SigesoftWebAPI.Controllers.MedicalAssistance
                 return Ok(result);
             });
         }
+
+        [HttpGet]
+        public async Task<IHttpActionResult> GetNamePatient(string value)
+        {
+            return await Task.Run(() =>
+            {
+                List<string> result = oPatientsAssistanceBL.GetNamePatients(value);
+                return Ok(result);
+            });
+        }
     }
 }

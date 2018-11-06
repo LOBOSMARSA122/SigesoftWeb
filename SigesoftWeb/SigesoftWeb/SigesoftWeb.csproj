@@ -467,6 +467,7 @@
     <Content Include="fontawesome\webfonts\fa-regular-400.woff" />
     <Content Include="fontawesome\webfonts\fa-regular-400.woff2" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.contextMenu.min.js" />
     <Content Include="Scripts\jquery.contextMenu.min.js.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
