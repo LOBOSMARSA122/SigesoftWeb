@@ -40,7 +40,7 @@ namespace SigesoftWeb.Models.MedicalAssistance
         public int MasterServiceId { get; set; }
         public string MasterService { get; set; }
         public int? IsRevisedHistoryId { get; set; }
-        public string EMOsByReview { get; set; }
+        public string PendingEvent { get; set; }
         public int StatusOrganizationPerson { get; set; }
     }
 

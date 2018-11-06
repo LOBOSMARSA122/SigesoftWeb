@@ -48,26 +48,20 @@
     .text3 {
         color: #308705;
     }
-    .ant-badge-status-ocupational {
-        background-color: #ff0000;
+    .ant-badge-status-EMOR {
+        background-color: #db0404;
     }
 
-    .ant-badge-status-ocupational-EMOR {
-        background-color: #000000;
+    .ant-badge-status-EMO {
+        background-color: #db0404;
     }
 
-    .ant-badge-status-ocupational-EMOR-Check {
-        background-color: #ef08eb;
+    .ant-badge-status-PENDINGCONTROLS {
+        background-color: #0be80f;
     }
 
-    .ant-badge-status-assistence {
-        background-color: #808080;
-        padding-right: 5px;
-    }
-
-    .ant-badge-status-control {
-        background-color: #308705;
-        padding-right: 5px;
+    .ant-badge-status-CONTROLSCULMINATED {
+        background-color: #0711c4;
     }
 </style>
 
@@ -140,66 +134,66 @@
                         {
                             foreach (var item in ViewBag.Services.List)
                             {
-                                if (item.EMOsByReview == "EMOS" && item.StatusOrganizationPerson == 0)
+                                if (item.PendingEvent == "WITHOUTSERVICES")
                                 {
                                     <tr class="context-menu-one">
                                         <td style="display:none">@item.ServiceId</td>
                                         <td style="display:none">@item.PatientId</td>
-                                        <td class="ColumnNoWrap"> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"> <a href="#" data-toggle="modal" data-target="#modalOption">   <span class="ant-badge-status-dot ant-badge-status-ocupational"></span>    </a>   <span class="ant-badge-status-text pl-2">@item.PatientFullName</span></span></td>
+                                        <td class="ColumnNoWrap"> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"> <a href="#" data-toggle="modal" data-target="#modalOption">   <span class="ant-badge-status-dot"></span>    </a>   <span class="ant-badge-status-text pl-2">@item.PatientFullName</span></span></td>
                                         <td class="ColumnNoWrap">@item.OrganizationLocation</td>
                                         <td class="ColumnNoWrap">@item.Occupation</td>
                                         <td class="ColumnNoWrap">@item.Gender</td>
                                         <td class="ColumnNoWrap">@item.Age</td>
                                     </tr>
                                 }
-                                if (item.EMOsByReview == "EMOR" && item.StatusOrganizationPerson == 0)
+                                if (item.PendingEvent == "EMOR")
                                 {
                                     <tr class="context-menu-one">
                                         <td style="display:none">@item.ServiceId</td>
                                         <td style="display:none">@item.PatientId</td>
-                                        <td class="ColumnNoWrap d-flex pl-1"><a href="#" class="d-flex" data-toggle="modal" data-target="#modalOption"> <span class="d-flex justify-content-start align-items-start fas fa-long-arrow-alt-down mt-1 mr-2 ml-2 "></span>  </a>@item.PatientFullName</td>
+                                        <td class="ColumnNoWrap d-flex pl-1"><a href="#" class="d-flex" data-toggle="modal" data-target="#modalOption"> <span class="d-flex justify-content-start align-items-start fas fa-long-arrow-alt-down mt-1 mr-2 ml-2 ant-badge-status-EMOR"></span>  </a>@item.PatientFullName</td>
                                         <td class="ColumnNoWrap">@item.OrganizationLocation</td>
                                         <td class="ColumnNoWrap">@item.Occupation</td>
                                         <td class="ColumnNoWrap">@item.Gender</td>
                                         <td class="ColumnNoWrap">@item.Age</td>
                                     </tr>
                                 }
-                                if (item.EMOsByReview == "EMOR-Check" && item.StatusOrganizationPerson == 0)
+                                if (item.PendingEvent == "EMO")
                                 {
                                     <tr class="context-menu-one">
                                         <td style="display:none">@item.ServiceId</td>
                                         <td style="display:none">@item.PatientId</td>
-                                        <td class="ColumnNoWrap"> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"> <a href="#" data-toggle="modal" data-target="#modalOption">   <span class="ant-badge-status-dot ant-badge-status-ocupational-EMOR-Check"></span>    </a>   <span class="ant-badge-status-text pl-2">@item.PatientFullName</span></span></td>
+                                        <td class="ColumnNoWrap"> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"> <a href="#" data-toggle="modal" data-target="#modalOption">   <span class="ant-badge-status-dot ant-badge-status-EMO"></span>    </a>   <span class="ant-badge-status-text pl-2">@item.PatientFullName</span></span></td>
                                         <td class="ColumnNoWrap">@item.OrganizationLocation</td>
                                         <td class="ColumnNoWrap">@item.Occupation</td>
                                         <td class="ColumnNoWrap">@item.Gender</td>
                                         <td class="ColumnNoWrap">@item.Age</td>
                                     </tr>
                                 }
-                                else if (item.StatusOrganizationPerson == 1)
+                                else if (item.PendingEvent == "PENDINGCONTROLS")
                                 {
                                     <tr class="context-menu-two">
                                         <td style="display:none">@item.ServiceId</td>
                                         <td style="display:none">@item.PatientId</td>
-                                        <td class="ColumnNoWrap"> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"><span class="ant-badge-status-dot ant-badge-status-assistence"></span><span class="ant-badge-status-text pl-2">@item.PatientFullName</span></span></td>
+                                        <td class="ColumnNoWrap"> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"><span class="ant-badge-status-dot ant-badge-status-PENDINGCONTROLS"></span><span class="ant-badge-status-text pl-2">@item.PatientFullName</span></span></td>
                                         <td class="ColumnNoWrap">@item.OrganizationLocation</td>
                                         <td class="ColumnNoWrap">@item.Occupation</td>
                                         <td class="ColumnNoWrap">@item.Gender</td>
                                         <td class="ColumnNoWrap">@item.Age</td>
                                     </tr>
                                 }
-                                else
+                                else if (item.PendingEvent == "CONTROLSCULMINATED")
                                 {
-                                    <tr>
+                                    <tr class="context-menu-two">
                                         <td style="display:none">@item.ServiceId</td>
                                         <td style="display:none">@item.PatientId</td>
-                                        <td class="ColumnNoWrap"> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"><span class="ant-badge-status-dot ant-badge-status-control"></span><span class="ant-badge-status-text pl-2">@item.PatientFullName</span></span></td>
+                                        <td class="ColumnNoWrap"> <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper"><span class="ant-badge-status-dot ant-badge-status-CONTROLSCULMINATED"></span><span class="ant-badge-status-text pl-2">@item.PatientFullName</span></span></td>
                                         <td class="ColumnNoWrap">@item.OrganizationLocation</td>
                                         <td class="ColumnNoWrap">@item.Occupation</td>
                                         <td class="ColumnNoWrap">@item.Gender</td>
                                         <td class="ColumnNoWrap">@item.Age</td>
                                     </tr>
-                                }
+                                }                               
                             }
                         }
                     }

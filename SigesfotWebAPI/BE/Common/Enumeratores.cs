@@ -55,7 +55,7 @@ namespace BE.Common
         {
             PorIniciar = 1,
             Iniciado = 2,
-            Completed = 3,
+            Culminado = 3,
             Incompleto = 4,
             Cancelado = 5,
             EsperandoAptitud = 6
@@ -78,6 +78,19 @@ namespace BE.Common
             Definitivo = 2,
             Presuntivo = 3,
             Descartado = 4
+
+        }
+
+        public enum EsoType
+        {
+            PreOcupacional = 1,
+            PeriodicoAnual = 2,
+            Retiro = 3,
+            Preventivo = 4,
+            Reubicacion = 5,
+            Chequeo = 6,
+            Visita = 7
+
 
         }
     }

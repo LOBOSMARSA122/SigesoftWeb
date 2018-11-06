@@ -42,8 +42,10 @@ namespace BE.MedicalAssistance
         public int MasterServiceId { get; set; }
         public string MasterService { get; set; }
         public int? IsRevisedHistoryId { get; set; }
-        public bool EMOsByReview { get; set; }
+        public string PendingEvent { get; set; }
         public int StatusOrganizationPerson { get; set; }
+        public int EsoTypeId { get; set; }
+        public int ServiceStatusId { get; set; }
     }
 
 

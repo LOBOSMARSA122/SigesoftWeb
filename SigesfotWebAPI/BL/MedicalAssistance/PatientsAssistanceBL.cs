@@ -1066,7 +1066,7 @@ namespace BL.MedicalAssistance
                                 Age = Utils.GetAge(a.Birthdate.Value),
                                 Gender = a.Gender,
                                 OrganizationLocation = a.OrganizationLocation,
-                                EMOsByReview = EMOsByReviewByPersonId(a.PatientId),
+                                PendingEvent = PendingEvent(a.PatientId),
                                 StatusOrganizationPerson = a.StatusOrganizationPerson
                             }).ToList();
 
@@ -1087,20 +1087,63 @@ namespace BL.MedicalAssistance
             }
         }
 
-        private bool EMOsByReviewByPersonId(string patientId)
+        private string PendingEvent(string patientId)
         {
             try
             {
                 var isDeleted = (int)Enumeratores.SiNo.No;
-                var count = (from a in ctx.Service
-                             where a.i_IsDeleted == isDeleted && a.i_MasterServiceId.Value == (int)masterService.Ocupational && a.i_MasterServiceId.Value != 1 && a.v_PersonId == patientId && a.i_IsRevisedHistoryId != 1
+                var yesReviewed = (int)Enumeratores.SiNo.Si;
+                var hasService = (from a in ctx.Service
+                                  join b in ctx.Protocol on a.v_ProtocolId equals b.v_ProtocolId
+                             where a.i_IsDeleted == isDeleted
+                                    && a.v_PersonId == patientId
+                                    //&& a.i_MasterServiceId.Value == (int)masterService.Ocupational 
+                                    //&& a.i_MasterServiceId.Value != 1 
+                                    //&& a.i_IsRevisedHistoryId != 1
                              select new Patients
                              {
                                  MasterServiceId = a.i_MasterServiceId.Value,
+                                 IsRevisedHistoryId = a.i_IsRevisedHistoryId.Value,
+                                 EsoTypeId = b.i_EsoTypeId.Value,
+                                 ServiceStatusId = a.i_ServiceStatusId.Value
+
                              }).ToList();
 
-                if (count.Count > 0) return true;
-                return false;
+                if (hasService.Count == 0)
+                {
+                    return "WITHOUTSERVICES";
+                }
+                else if(hasService.Count > 0 )
+                {
+                    var listHistoryByReviseEMOs = hasService.FindAll(p => p.IsRevisedHistoryId != yesReviewed && p.MasterServiceId == (int)masterService.Ocupational).ToList();
+                    if (listHistoryByReviseEMOs.Count > 0)
+                    {
+                        var retiro = listHistoryByReviseEMOs.FindAll(p => p.EsoTypeId == (int)EsoType.Retiro).ToList();
+                        if (retiro.Count > 0)
+                        {
+                            return "EMOR";
+                        }
+                        else{
+                            return "EMO";
+                        }
+                    }
+                    else
+                    {
+                        var pendingControls = hasService.FindAll(p => p.MasterServiceId == (int)masterService.Control && p.ServiceStatusId !=(int)ServiceStatus.Culminado).ToList();
+                        if (pendingControls.Count > 0)
+                        {
+                            return "PENDINGCONTROLS";
+                        }
+                        else
+                        {
+                            return "WITHOUTSERVICES";
+                        }
+                    }
+                }
+                else
+                {
+                    return "WITHOUTSERVICES";
+                }
             }
             catch (Exception)
             {
@@ -1286,11 +1329,12 @@ namespace BL.MedicalAssistance
         {
             try
             {
-                var serviceData = (from A in ctx.Service
-                                   join E in ctx.Person on A.v_PersonId equals E.v_PersonId
-                                   join F in ctx.OrganizationPerson on E.v_PersonId equals F.v_PersonId
+                var serviceData = (from E in ctx.Person
+                                   join A in ctx.Service on E.v_PersonId equals A.v_PersonId into A_join
+                                   from A in A_join.DefaultIfEmpty()
+                                   join F in ctx.OrganizationPerson on E.v_PersonId equals F.v_PersonId 
                                    join G in ctx.Organization on F.v_OrganizationId equals G.v_OrganizationId
-                                   where A.v_PersonId == patientId && A.i_IsDeleted == 0
+                                   where E.v_PersonId == patientId && E.i_IsDeleted == 0
                                    select new
                                    {
                                        FullName = E.v_FirstName + " " + E.v_FirstLastName + " " + E.v_SecondLastName,
@@ -1535,7 +1579,7 @@ namespace BL.MedicalAssistance
                 #endregion
 
                 #region Controles Completados
-                var ControlsDayCompleted = services.ToList().FindAll(p => p.ServiceDate.Value.Day == i && p.StatusControl == (int)ServiceStatus.Completed);
+                var ControlsDayCompleted = services.ToList().FindAll(p => p.ServiceDate.Value.Day == i && p.StatusControl == (int)ServiceStatus.Culminado);
 
                 var oControlCompletedDay = new ControlCompletedDay();
                 oControlCompletedDay.Date = new DateTime(currentDate.Year, currentDate.Month, i).ToString();
