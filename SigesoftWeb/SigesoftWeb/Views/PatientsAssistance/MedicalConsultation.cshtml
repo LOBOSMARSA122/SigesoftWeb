@@ -658,6 +658,23 @@
                     </div>
                 </div>
             </div>
+            <div class="row" style=" margin-left: 0px; margin-right: 0px;">
+                <div class="box box-warning mt-2 col-12" id="acordion" style=" padding-left: 0px; padding-right: 0px;">
+                    <div class="box-header with-border" id="heading1" onclick="ColapseTable('divCalendar','HeightCalendar')">
+                        <h3 class="box-title" style="cursor:pointer;">Agenda de Citas </h3>
+                    </div>
+                    <input id="HeightCalendar" type="hidden" value="">
+                    <div id="divCalendar" style="overflow:hidden;">
+                        <div class="box-body collapse show" aria-labelledby="heading1">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div id="Calendar" class="calendar-custom mt-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
         <aside class="col-md-4 w-100">
             <div class="row notice ">
@@ -738,7 +755,7 @@
     </section>
 </div>
 
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/JqueryFormValidate.js"></script>
 <script src="~/Scripts/FormValidateSecurity.js"></script>
 <script src="~/Scripts/highcharts.js"></script>
@@ -748,6 +765,10 @@
 <link href="~/Content/css/highcharts.css" rel="stylesheet">
 <link href="~/Content/Themes/FormValidatorTheme.css" rel="stylesheet" type="text/css" />
 <link href="~/fontawesome/css/all.css" rel="stylesheet" />
+<script src="~/Scripts/Alert.js"></script>
+<script src="~/Scripts/TweenMax.min.js"></script>
+<link href="~/Content/css/Alert.css" rel="stylesheet" />
+<link href="~/Content/fullcalendar.css" rel="stylesheet" />
 <script>
     LoadWeight();
     LoadCholesterol();
@@ -756,7 +777,7 @@
     LoadGlucose();
     LoadCvf();
     $(document).ready(function () {
-
+        LoadSchedule();
         var inputs = document.getElementsByClassName('inputLabelFloat');
         for (var i = 0; i < inputs.length; i++) {
             inputs[i].addEventListener('keyup', function () {
@@ -784,7 +805,7 @@
     }
 
     function RevisedStatus(serviceId, iterador) {
-        
+
         ScrollTop();
         var width = $(window).width();
         var height = $(window).height();
@@ -915,8 +936,52 @@
             }
         })
     }
+
+    function LoadSchedule() {
+
+        var events = [];
+        $.ajax({
+            type: "GET",
+            async: true,
+            url: "/PatientsAssistance/GetSchedule",
+            success: function (data) {
+                $.each(data, function (i, v) {
+                    events.push({
+                        title: v.Pacient,
+                        description: v.EsoType,
+                        start: moment(v.ServiceDate),
+                        end: v.FechaFin != null ? moment(v.ServiceDate).add(1, "day") : null,
+                        color: v.Color,
+                        allDay: true
+                    })
+                });
+                GenerateCalender(events);
+            },
+            error: function (error) {
+                alert('Failed');
+            }
+
+        });
+    }
+
+
+    function GenerateCalender(events) {
+        console.log("hola");
+        $('#Calendar').fullCalendar('destroy');
+        $('#Calendar').fullCalendar({
+            lang: 'es',
+            contentHeight: 600,
+            defaultDate: new Date(),
+            timeFormat: 'h(:mm)a',
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,basicWeek,basicDay,agenda'
+            },
+            eventLimit: true,
+            eventColor: '#378006',
+            events: events,
+        });
+    }
 </script>
 
-<script src="~/Scripts/Alert.js"></script>
-<script src="~/Scripts/TweenMax.min.js"></script>
-<link href="~/Content/css/Alert.css" rel="stylesheet" />

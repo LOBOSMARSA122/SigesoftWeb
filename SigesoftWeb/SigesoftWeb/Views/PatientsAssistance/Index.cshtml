@@ -542,8 +542,7 @@
 
     function LoadTotal(total) {
         document.getElementById('RecordsPatient').value = total;
-        document.getElementById('totalPatient').innerHTML = total;
-        
+        document.getElementById('totalPatient').innerHTML = total;       
     }
 
     function LoadTopDxOccupational() {
@@ -570,6 +569,8 @@
             }
         });
     }
+
+
 
     function LoadModalTopDiagnostic() {
         $.ajax({
