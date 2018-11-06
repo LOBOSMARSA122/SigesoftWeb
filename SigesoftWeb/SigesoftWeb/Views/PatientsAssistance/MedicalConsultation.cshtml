@@ -668,7 +668,7 @@
                         <div class="box-body collapse show" aria-labelledby="heading1">
                             <div class="row">
                                 <div class="col-12">
-                                    <div id="Calendar" class="calendar-custom mt-2"></div>
+                                    <div id="calendar" class="calendar-custom mt-2"></div>
                                 </div>
                             </div>
                         </div>
@@ -756,6 +756,8 @@
 </div>
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
+<link href="~/Content/fullcalendar.css" rel="stylesheet" />
+<link href="~/Content/css/FullCalendar-custom.css" rel="stylesheet" />
 <script src="~/Scripts/JqueryFormValidate.js"></script>
 <script src="~/Scripts/FormValidateSecurity.js"></script>
 <script src="~/Scripts/highcharts.js"></script>
@@ -768,7 +770,8 @@
 <script src="~/Scripts/Alert.js"></script>
 <script src="~/Scripts/TweenMax.min.js"></script>
 <link href="~/Content/css/Alert.css" rel="stylesheet" />
-<link href="~/Content/fullcalendar.css" rel="stylesheet" />
+
+
 <script>
     LoadWeight();
     LoadCholesterol();
@@ -966,9 +969,8 @@
 
 
     function GenerateCalender(events) {
-        console.log("hola");
-        $('#Calendar').fullCalendar('destroy');
-        $('#Calendar').fullCalendar({
+        $('#calendar').fullCalendar('destroy');
+        $('#calendar').fullCalendar({
             lang: 'es',
             contentHeight: 600,
             defaultDate: new Date(),
