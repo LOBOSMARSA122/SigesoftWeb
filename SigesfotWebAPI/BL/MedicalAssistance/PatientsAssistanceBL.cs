@@ -942,7 +942,7 @@ namespace BL.MedicalAssistance
         {
             try
             {
-                var objEntitySource = (from a in ctx.Service
+                var objEntitySource = (from a in ctx.Service                                      
                                        where a.v_ServiceId == serviceId
                                        select a).FirstOrDefault();
 
