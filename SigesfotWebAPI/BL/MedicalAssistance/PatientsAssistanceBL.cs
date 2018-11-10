@@ -942,7 +942,7 @@ namespace BL.MedicalAssistance
         {
             try
             {
-                var objEntitySource = (from a in ctx.Service
+                var objEntitySource = (from a in ctx.Service                                      
                                        where a.v_ServiceId == serviceId
                                        select a).FirstOrDefault();
 
@@ -964,12 +964,13 @@ namespace BL.MedicalAssistance
             try
             {
                 var isDeleted = (int)Enumeratores.SiNo.No;
-                var list = (from a in ctx.Person
-                            where a.i_IsDeleted == isDeleted && (a.v_FirstName.Contains(value) 
-                            || a.v_FirstLastName.Contains(value) || a.v_SecondLastName.Contains(value))
+                var list = (from a in ctx.Pacient
+                            join b in ctx.Person on a.v_PersonId equals b.v_PersonId
+                            where a.i_IsDeleted == isDeleted && (b.v_FirstName.Contains(value) 
+                            || b.v_FirstLastName.Contains(value) || b.v_SecondLastName.Contains(value)) && a.v_PersonId == b.v_PersonId
                             select new
                             {
-                                Name = a.v_FirstName + " " + a.v_FirstLastName + " " + a.v_SecondLastName,
+                                Name = b.v_FirstName + " " + b.v_FirstLastName + " " + b.v_SecondLastName,
                             }).ToList();
                 return list.Select(x => x.Name).ToList();
             }

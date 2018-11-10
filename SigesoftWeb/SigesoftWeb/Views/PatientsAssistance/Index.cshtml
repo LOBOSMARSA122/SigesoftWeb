@@ -138,6 +138,26 @@
         left: 0.01rem;
         position: sticky;
     }
+    .btnAgendar {
+        position: fixed;
+        z-index: 99000;
+        top: 40px;
+        right: 18px;
+        border-radius: 0;
+        width: 40px;
+        outline:none;
+        border-top-left-radius:5px;
+        border-bottom-left-radius:5px;
+        transition: width 0.5s ease
+    }
+        .btnAgendar:hover {
+            width: 140px;
+            transition: width 0.5s ease
+        }
+        .spnAgenda{
+            font-family: sans-serif;
+            font-weight:normal;
+        }
 </style>
 <link href="~/Content/fullcalendar.css" rel="stylesheet" />
 <link href="~/Content/css/FullCalendar-custom.css" rel="stylesheet" />
@@ -350,7 +370,7 @@
                         </div>
                         <div class="col-8">
                             <div class="form-group">
-                                <input type="text" class="w-100" id="NamePatient" name="name" value="" />
+                                <input type="text" class="w-100 mbd"  id="NamePatient" name="name" value="" />
                             </div>
                         </div>
                     </div>
@@ -414,6 +434,9 @@
     </div>
 
     <div class="modal fade p-0 modalFade" id="modalReviewEMO">
+        <button onclick="AgendarPatient()" onmouseleave="BtnAgendaHover()" onmouseenter="BtnAgendaHover()" class="btn btn-info btnAgendar d-flex justify-content-start">
+            <i class="fas fa-calendar-check" style="font-size:1.5rem"><span class="mx-2 spnAgenda d-none">Agendar</span></i>
+        </button>
         <div class="modal-dialog modalDialog d-flex justify-content-center align-items-center modal-dialog-centered">
             <div class="modal-content modalContent">
                 <div class="modal-header">
@@ -431,7 +454,11 @@
 
 </div>
 
+<<<<<<< HEAD
 
+=======
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+>>>>>>> 377ce20220cb956ac10072a714f5edeacb467b3a
 
 @section Scripts{
     @{
@@ -458,10 +485,13 @@
 
     var month = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre")
     var date = new Date();
+
+          
+    
     $(".lblDate").text(month[date.getMonth()]);
 
     $(document).ready(function () {
-        
+
         LoadSchedule();
         LoadTopDxOccupational();
         LoadTopDiagnostic();
@@ -523,21 +553,49 @@
             selector: '.context-menu-three',
             trigger: 'left',
             items: {
-                "Ver": { name: "Ver" },
+                "NuevoControl": { name: "Nuevo Control" },
                 "sep1": "----------",
                 "salir": { name: "Salir" }
             },
 
 
             callback: function (key, options) {
-                if (key === "Ver") {
+                if (key === "NuevoControl") {
                     $('.btnModalData').click();
                     
                 }
             }
         });
 
+        $.contextMenu({
+            selector: '.context-menu-four',
+            trigger: 'left',
+            items: {
+                "NuevoControl": { name: "Nuevo Control" },
+                "sep1": "----------",
+                "salir": { name: "Salir" }
+            },
+
+
+            callback: function (key, options) {
+                if (key === "NuevoControl") {                  
+                    $('.fondoModalData').toggleClass("d-none");    
+                    
+                }
+            }
+        });
     });
+    function AgendarPatient() {
+        var heightModal = $(".modalFade").height();
+
+        $(".modalFade").animate({
+            scrollTop: heightModal
+        })
+    }
+
+    function Closemodal() {
+        $(".fondoModalData").toggleClass("d-none");
+    }
 
     function LoadAntecedent(patientId) {
         $.ajax({
@@ -768,6 +826,7 @@
     }
 
     function GenerateCalender() {
+       
         $('#calendar').fullCalendar('destroy');
 
         $('#calendar').fullCalendar({
@@ -791,6 +850,8 @@
 
         });
     }
+
+    
 
     function Filter(index) {
         $('.wrapperGrid').addClass('loadingGrid');
@@ -1016,14 +1077,19 @@
 
     }
 
+    function BtnAgendaHover() {
+        $(".spnAgenda").toggleClass("d-none");
+    }
+
     function AutoCompleteName() {
+
+        jQuery.noConflict();
 
         $.ajax(
             {
                 url: '/PatientsAssistance/GetNamePatient?value=' + $('#NamePatient').val(),
                 type: 'GET',
                 success: function (availableTags) {
-                    console.log(availableTags);
                     $("#NamePatient").autocomplete({
                         source: availableTags
                     });

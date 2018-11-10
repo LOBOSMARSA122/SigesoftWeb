@@ -20,13 +20,46 @@
         border-left: 1px rgba(173, 173,173, 0.2) inset;
         border-right: 1px rgba(173, 173,173, 0.2) inset;
     }
+
     .contGraph {
         border-bottom: 1px rgba(173, 173,173, 0.2) inset;
         border-left: 1px rgba(173, 173,173, 0.2) inset;
         border-right: 1px rgba(173, 173,173, 0.2) inset;
     }
+    
+    #DivCalendarESO {
+        position: relative;
+    }
+
+        .contentData .col {
+            height: 150px;
+            width: 500px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+    .closeContData {
+        background-color: transparent;
+        outline: none;
+
+    }
+    .contData {
+        background-color: #fff;
+        border-radius: 5px;
+    }
+    .fondoModalData {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 99000;
+        background-color: rgba(0,0,0,0.5);
+    }
+    
+    
 </style>
 <div class="col-12">
+    
     <div class="row box box-warning  m-0 pl-2" onclick="ColapseTable('DivESO','heightDivESO')">
         Información ESO
     </div>
@@ -122,25 +155,25 @@
                                         {
                                             if (item1[i].IsRevisedHistoryId == 1)
                                             {
-                                    <tr>
-                                        <td class="ColumnNoWrap "><span><i class="far fa-check-circle"></i></span></td> @*poner un check*@
-                                        <td class="ColumnNoWrap"><span onclick="DownloadPdf('@item1[i].ServiceId')"><i class="fas fa-file-download"></i></span></td>
-                                        <td class="ColumnNoWrap "><span class="ViewerPdf" onclick="ViewPdf('@item1[i].ServiceId')"><i class="far fa-file-pdf "></i></span></td>
-                                        <td class="ColumnNoWrap">@item1[i].ServiceDate.ToShortDateString()</td>
-                                        <td class="ColumnNoWrap">@item1[i].Aptitude</td>
-                                        <td class="ColumnNoWrap">@item1[i].DiseaseName</td>
-                                    </tr>
+                                                <tr>
+                                                    <td class="ColumnNoWrap text-center"><span><i class="far fa-check-circle"></i></span></td> @*poner un check*@
+                                                    <td class="ColumnNoWrap text-center"><span onclick="DownloadPdf('@item1[i].ServiceId')"><i class="fas fa-file-download"></i></span></td>
+                                                    <td class="ColumnNoWrap text-center"><span class="ViewerPdf" onclick="ViewPdf('@item1[i].ServiceId')"><i class="far fa-file-pdf "></i></span></td>
+                                                    <td class="ColumnNoWrap">@item1[i].ServiceDate.ToShortDateString()</td>
+                                                    <td class="ColumnNoWrap">@item1[i].Aptitude</td>
+                                                    <td class="ColumnNoWrap">@item1[i].DiseaseName</td>
+                                                </tr>
                                             }
                                             else
                                             {
-                                    <tr>
-                                        <td class="ColumnNoWrap"><span><i class="fas fa-eye row-@i" onclick="RevisedStatusEMO('@item1[i].ServiceId' , '@i')"></i></span></td> @*poner un ojo*@
-                                        <td class="ColumnNoWrap"><span onclick="DownloadPdf('@item1[i].ServiceId')"><i class="fas fa-file-download"></i></span></td>
-                                        <td class="ColumnNoWrap"><span class="ViewerPdf" onclick="ViewPdf('@item1[i].ServiceId')"><i class="far fa-file-pdf "></i></span></td>
-                                        <td class="ColumnNoWrap">@item1[i].ServiceDate.ToShortDateString()</td>
-                                        <td class="ColumnNoWrap">@item1[i].Aptitude</td>
-                                        <td class="ColumnNoWrap">@item1[i].DiseaseName</td>
-                                    </tr>
+                                                <tr>
+                                                    <td class="ColumnNoWrap text-center"><span><i class="fas fa-eye row-@i" onclick="RevisedStatusEMO('@item1[i].ServiceId' , '@i')"></i></span></td> @*poner un ojo*@
+                                                    <td class="ColumnNoWrap text-center"><span onclick="DownloadPdf('@item1[i].ServiceId')"><i class="fas fa-file-download"></i></span></td>
+                                                    <td class="ColumnNoWrap text-center"><span class="ViewerPdf" onclick="ViewPdf('@item1[i].ServiceId')"><i class="far fa-file-pdf "></i></span></td>
+                                                    <td class="ColumnNoWrap">@item1[i].ServiceDate.ToShortDateString()</td>
+                                                    <td class="ColumnNoWrap">@item1[i].Aptitude</td>
+                                                    <td class="ColumnNoWrap">@item1[i].DiseaseName</td>
+                                                </tr>
                                             }
                                         }
                                     }
@@ -233,7 +266,7 @@
             <div class="row contGraph p-0 m-0">
                 <div id="" class="col-12 p-0 m-0">
                     <div>@Html.Partial("_BloodPressurePartial")</div>
-                </div>              
+                </div>
             </div>
         </div>
         <div class="col-12 ml-0 mr-0 p-0 col-lg-4">
@@ -256,17 +289,82 @@
             <div id="viewpdf" style="width:100%; height:600px"></div>
         </div>
     </div>
+    <div class="row" style=" margin-left: 0px; margin-right: 0px;">
+        <div class="box box-warning mt-2 col-12" id="acordion" style=" padding-left: 0px; padding-right: 0px;">
+            <div class="box-header with-border rowCalendar" id="heading1" onclick="ColapseTable('DivCalendarESO','heightCalendarESO')">
+                <h3 class="box-title" style="cursor:pointer;">Agenda de Citas </h3>
+            </div>
+            <input id="heightCalendarESO" type="hidden" value="">
+            <div id="DivCalendarESO" style="overflow:hidden;">
+                <div class="box-body collapse show" aria-labelledby="heading1">
+                    <div class="row">
+                        <div class="col-12">
+                            <div id="calendarESO" class="calendar-custom mt-2"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fondoModalData d-none">
+                    <div class="row contentData h-100 justify-content-center align-items-center">
+                        <div class="contData col-auto">
+                            <div class="row justify-content-end">
+                                <div class="col-12 d-flex justify-content-end">
+                                    <button type="button" onclick="Closemodal()" class="btn p-0 m-2 closeContData">
+                                        <span style="font-size:1.2em" aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-4"><span>Fecha:</span></div>
+                                <div class="col-12 col-md-8"><div class="form-group"><input type="date" class="form-control date" name="name" value="" /></div></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-4">
+                                    <span>Paciente:</span>
+                                </div>
+                                <div class="col-12 col-md-8">
+                                    <div class="form-group">
+                                        <input type="text" class="w-100 mbd" id="NamePatientESO" name="name" value="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-end">
+                                <div class="col-5 mb-2 d-flex justify-content-end">
+                                    <button class="btn btn-info btnGrabar" onclick="Closemodal()">Grabar</button>
+                                </div>                             
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
 </div>
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/moment.js"></script>
+<script src="~/Scripts/fullcalendar.js"></script>
+
 <script src="~/Scripts/Alert.js"></script>
 <script src="~/Scripts/TweenMax.min.js"></script>
 <link href="~/Content/css/Alert.css" rel="stylesheet" type="text/css" />
 
 <script>
-    $(document).ready(function () {
+    
+    $(document).ready(function () {       
+
         LoadWeight();
+        GenerateCalenderESO();
         LoadBloodPressure();
         LoadCvf();
+        //$(".closeContData").on("click", function () {
+        //    $(".fondoModalData").toggleClass("d-none");
+        //});
+        //$(".btnGrabar").on("click", function () {
+        //    $(".fondoModalData").toggleClass("d-none");
+        //});
     });
     $(".ViewerPdf").on("click", function () {
         $(".ViewerPdf").parent().parent().css("background-color", "transparent");
@@ -275,9 +373,34 @@
     function ViewPdf(patientId) {
         console.log("click");
         var viewer = $('#viewpdf');
-        PDFObject.embed('http://localhost:1932/ESO/'+ patientId + '.pdf', viewer);
-        
+        PDFObject.embed('http://localhost:1932/ESO/' + patientId + '.pdf', viewer);
+
     }
 
+    function GenerateCalenderESO() {
+
+        $('#calendarESO').fullCalendar('destroy');
+
+        $('#calendarESO').fullCalendar({
+            lang: 'es',
+            contentHeight: 600,
+            defaultDate: new Date(),
+            timeFormat: 'h(:mm)a',
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,basicWeek,basicDay,agenda'
+            },
+            dayClick: function (date, jsEvent, view) {
+                $(".date").val(date.format());
+                $(this).addClass("context-menu-four");
+
+            },
+
+            eventLimit: true,
+            eventColor: '#378006',
+
+        });
+    }
     
 </script>
