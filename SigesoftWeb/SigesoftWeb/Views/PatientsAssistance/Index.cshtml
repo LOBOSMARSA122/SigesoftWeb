@@ -431,8 +431,7 @@
 
 </div>
 
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+
 
 @section Scripts{
     @{
@@ -469,7 +468,7 @@
         MonthlyControls();
         $("#take").val(10);
         Filter(1);
-        $("#NamePatient").keyup(function () { AutoCompleteName() })
+        //$("#NamePatient").keyup(function () { AutoCompleteName() })
         $("#Assistance-tab").click();
         $(".provDeudas").attr("href", "/Organization/Index");
         $.contextMenu({
